@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "add-module": "/components/add-module/add-module"
+  }
+}

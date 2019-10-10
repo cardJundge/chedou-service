@@ -1,0 +1,86 @@
+/* 添加模块 */
+
+.module-body {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+
+.module-content {
+  width: 670rpx;
+  height: 750rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.module-title {
+  font-size: 36rpx;
+  margin: 24rpx 0 56rpx;
+}
+
+.module-list {
+  padding: 0 40rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.module-item {
+  width: 170rpx;
+  height: 202rpx;
+  box-shadow: 0 0 6rpx 0 rgba(0, 0, 0, 0.10);
+  border-radius: 20rpx;
+  margin-bottom: 50rpx;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.module-item image {
+  width: 106rpx;
+  height: 106rpx;
+}
+
+.circle {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 2rpx solid #979797;
+  z-index: 999;
+  background: #ffffff;
+  position: absolute;
+  top: -20rpx;
+  right: -20rpx;
+}
+
+.circle image {
+  width: 39rpx;
+  height: 39rpx;
+}
+
+.module-btn {
+  width: 630rpx;
+  height: 80rpx;
+  background: #1A84FF;
+  border-radius: 60rpx;
+  color: #ffffff;
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium;
+  text-align: center;
+  line-height: 80rpx;
+}

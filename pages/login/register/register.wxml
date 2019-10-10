@@ -1,0 +1,54 @@
+<!--注册-->
+<view class="register-body">
+  <common-title title="{{register.title}}" />
+  <form bindsubmit="formSubmit">
+    <view class="register-form">
+    <!-- 手机号 -->
+      <view class="register-item">
+          <image src="/images/login/login_phone.png" mode=""></image>
+          <view class="line"></view>
+          <view class="register-input">
+            <input placeholder-class="ph-class" type="text" placeholder="请输入您的手机号" />
+          </view>
+      </view>
+      <!-- 验证码 -->
+      <view class="register-item">
+          <image src="/images/login/login_code.png" mode=""></image>
+          <view class="line"></view>
+          <view class="register-input code-input">
+            <input placeholder-class="ph-class" type="text" placeholder="请输入验证码" />
+          </view>
+          <view class="code-text" bindtap="getCodeNum">
+            <text>{{!codetime?'获取验证码':codetime+' s'}}</text>
+          </view>
+      </view>
+      <!-- 密码 -->
+      <view class="register-item">
+          <image src="/images/login/login_pwd_close.png" mode=""></image>
+          <view class="line"></view>
+          <view class="register-input">
+            <input placeholder-class="ph-class" type="password" placeholder="请设置您的登录密码" />
+          </view>
+      </view>
+      <!-- 再次输入密码 -->
+      <view class="register-item">
+          <image src="/images/login/login_pwd_close.png" mode=""></image>
+          <view class="line"></view>
+          <view class="register-input">
+            <input placeholder-class="ph-class" type="password" placeholder="再次输入您的登录密码" />
+          </view>
+      </view>
+      <!-- 选择公司类型 -->
+      <view class="register-item">
+          <image src="/images/login/login_type.png" mode=""></image>
+          <view class="line"></view>
+          <view class="register-input">
+            <input placeholder-class="ph-class" type="text" placeholder="选择公司类型" />
+          </view>
+      </view>
+
+      <view class="register-btn" formType="submit">确定</view>   
+    </view>
+
+  </form>
+</view>

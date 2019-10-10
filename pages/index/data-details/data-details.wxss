@@ -1,0 +1,44 @@
+/* 数据统计详情 */
+
+.data-details-body {
+}
+
+/* 图标 */
+
+.chart {
+  width: 100%;
+  height: 388rpx;
+}
+
+.chart-bg {
+  width: 100%;
+  height: 245rpx;
+  background: #1a65ff;
+  position: relative;
+}
+
+.chart-content-box {
+  width: 100%;
+  height: 364rpx;
+  position: absolute;
+  left: 0;
+  bottom: -143rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-content {
+  width: 702rpx;
+  height: 364rpx;
+  background: #fff;
+  box-shadow: 0 0 6rpx 2rpx rgba(0, 0, 0, 0.10);
+  border-radius: 20rpx;
+  display: flex;
+  align-items: flex-end;
+}
+
+.chart-content-canvas {
+  width: 702rpx;
+  height: 258rpx;
+}

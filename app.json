@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/personnel/personnel",
+    "pages/index/index",
+    "pages/login/login",
+    "pages/logs/logs",
+    "pages/login/register/register",
+    "pages/login/forget/forget",
+   
+    "pages/mine/mine",
+    "pages/index/data-details/data-details"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1A65FF",
+    "navigationBarTitleText": "商户端",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#616161",
+    "selectedColor": "#000000",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/images/tabbar/home.png",
+        "selectedIconPath": "/images/tabbar/homeed.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/personnel/personnel",
+        "iconPath": "/images/tabbar/personnel.png",
+        "selectedIconPath": "/images/tabbar/personneled.png",
+        "text": "人员"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "/images/tabbar/mine.png",
+        "selectedIconPath": "/images/tabbar/mineed.png",
+        "text": "我"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

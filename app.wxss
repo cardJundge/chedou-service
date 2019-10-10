@@ -1,0 +1,9 @@
+/**app.wxss**/
+page {
+  font-size: 30rpx;
+  color: #242429;
+}
+
+view {
+  box-sizing: border-box;
+}

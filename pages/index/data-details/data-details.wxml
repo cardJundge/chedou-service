@@ -1,0 +1,12 @@
+<!--数据统计详情-->
+<view class="data-details-body">
+  <view class="chart">
+    <view class="chart-bg">
+      <view class="chart-content-box">
+        <view class="chart-content">
+          <canvas canvas-id="areaCanvas" disable-scroll="true" class="chart-content-canvas"></canvas>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

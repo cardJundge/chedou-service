@@ -1,0 +1,26 @@
+<!--登录-->
+<view class="login-body">
+  <view class="register-msg" bindtap="toRegister">注册</view>
+  <view class="login-content">
+    <image class="login-content-logo" src="/images/logo.png"></image>
+    <view class="login-content-title">车豆商户端</view>
+    <form bindsubmit="formSubmit">
+      <view class="login-content-form">
+        <!-- 账号 -->
+        <view class="input-box">
+          <image src="/images/login/login_account.png"></image>
+          <input placeholder-class="ph-class" type='text' placeholder='请输入您的账号' />
+        </view>
+        <!-- 密码 -->
+        <view class="input-box">
+          <image src="/images/login/login_pwd.png"></image>
+          <input placeholder-class="ph-class" type='password' placeholder='请输入您的密码' />
+        </view>
+        <!-- 忘记密码 -->
+        <view class="forget-msg" bindtap="toForget">忘记密码</view>
+        <!-- 登录按钮 -->
+        <button class="btn-box" formType="submit">登录</button>
+      </view>
+    </form>
+  </view>
+</view>
