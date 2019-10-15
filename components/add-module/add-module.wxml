@@ -1,40 +1,16 @@
 <!--添加模块-->
 <view class="module-body" wx:if="{{isShow}}">
   <view class="module-content">
-    <view class="module-title">添加模块</view>
+    <view class="module-title">
+      <text>添加模块</text>
+      <i-icon type="close" class="close-icon" size="18" color="#979797" bindtap="toCloseModule"/>
+    </view>
     <view class="module-list">
-      <view class="module-item">
-        <view class="circle"></view>
-        <view class="circle" wx:if="isSelect">
-          <image src="/images/index/icon_correct.png"></image>
-        </view>
-        <image src="/images/index/chakan.png"></image>
-        <text>查勘定损</text>
-      </view>
-      <view class="module-item">
-        <view class="circle"></view>
-        <image src="/images/index/weixiu.png"></image>
-        <text>车辆维修</text>
-      </view>
-       <view class="module-item">
-        <view class="circle"></view>
-        <image src="/images/index/tuoche.png"></image>
-        <text>拖车</text>
-      </view>
-       <view class="module-item">
-        <view class="circle"></view>
-        <image src="/images/index/jiuyuan.png"></image>
-        <text>事故救援</text>
-      </view>
-       <view class="module-item">
-        <view class="circle"></view>
-        <image src="/images/index/diaocha.png"></image>
-        <text>调查</text>
-      </view>
-       <view class="module-item">
-        <view class="circle"></view>
-        <image src="/images/index/renshang.png"></image>
-        <text>人伤</text>
+      <view wx:for="{{module}}" wx:for-item="item" class="module-item" data-index="{{index}}" bindtap="selectModule">
+        <view class="circle" wx:if="{{!item.selected}}"></view>
+        <i-icon class="icon" wx:if="{{item.selected}}" type="success_fill" size="22" color="#1A65FF" />
+        <image src="{{item.img}}"></image>
+        <text>{{item.name}}</text>
       </view>
     </view>
     <view class="module-btn" bindtap="onConfirm">确定</view>

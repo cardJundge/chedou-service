@@ -3,6 +3,30 @@
 .register-body {
 }
 
+.register-tips {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-tips>text {
+  font-size: 36rpx;
+}
+
+.tips-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 74rpx;
+  margin-bottom: 48rpx;
+}
+
+.tips-box image {
+  width: 348rpx;
+  height: 62rpx;
+}
+
+
 .register-form {
   width: 100%;
   display: flex;
@@ -47,7 +71,7 @@
 .register-btn {
   width: 630rpx;
   height: 90rpx;
-  background: #1A65FF;
+  background: #1a65ff;
   border-radius: 60rpx;
   margin-top: 64rpx;
   font-size: 36rpx;

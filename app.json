@@ -1,14 +1,19 @@
 {
   "pages": [
-    "pages/personnel/personnel",
-    "pages/index/index",
     "pages/login/login",
-    "pages/logs/logs",
+    "pages/index/index",
+    "pages/login/register/register-next/register-next",
     "pages/login/register/register",
-    "pages/login/forget/forget",
-   
     "pages/mine/mine",
-    "pages/index/data-details/data-details"
+    "pages/personnel/personnel",
+    "pages/logs/logs",
+    "pages/login/forget/forget",
+    "pages/index/data-details/data-details",
+    "pages/personnel/add-personnel/add-personnel",
+    "pages/personnel/add-quota/add-quota",
+    "pages/mine/edit-info/edit-info",
+    "pages/login/modify/modify",
+    "pages/mine/serverItemList/serverItemList"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -39,7 +44,7 @@
         "pagePath": "pages/mine/mine",
         "iconPath": "/images/tabbar/mine.png",
         "selectedIconPath": "/images/tabbar/mineed.png",
-        "text": "我"
+        "text": "我的"
       }
     ]
   },

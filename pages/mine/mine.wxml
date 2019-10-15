@@ -1,2 +1,51 @@
-<!--pages/mine/mine.wxml-->
-<text>pages/mine/mine.wxml</text>
+<!--我-->
+<view class="mine-body">
+  <view class="mine-card">
+    <view class="mine-card-box">
+      <view class="mine-card-info">
+        <view class="mine-avatar">
+          <image class="mine-avatar-bg" src="/images/mine/avatar_bg.png"></image>
+          <image class="mine-avatar-img" src="/images/logo.png"></image>
+        </view>
+        <view class="mine-text">
+          <text>陕西兴胜公估</text>
+          <text>非会员</text>
+        </view>
+      </view>
+      <view class="mine-card-btn">
+        <i-icon bindtap="editInfo" type="brush_fill" size="14" color="#ffffff" />
+      </view>
+    </view>
+
+  </view>
+  <view class="mine-list">
+    <view class="mine-item">
+      <image src="/images/mine/icon_money.png"></image>
+      <view class="mine-item-text">
+        <text>账户钱包</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view>
+    <view class="mine-item">
+      <image src="/images/mine/icon_program.png"></image>
+      <view class="mine-item-text">
+        <text>项目管理</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view>
+    <view class="mine-item" bindtap="modifyPwd">
+      <image src="/images/mine/icon_modify.png"></image>
+      <view class="mine-item-text">
+        <text>修改密码</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view>
+    <view class="mine-item" bindtap="toLogout">
+      <image src="/images/mine/icon_logout.png"></image>
+      <view class="mine-item-text">
+        <text>退出登录</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view>
+  </view>
+</view>

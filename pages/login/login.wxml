@@ -9,17 +9,18 @@
         <!-- 账号 -->
         <view class="input-box">
           <image src="/images/login/login_account.png"></image>
-          <input placeholder-class="ph-class" type='text' placeholder='请输入您的账号' />
+          <input placeholder-class="ph-class" type='text' name="phone" value ="{{formData.phone}}" placeholder='请输入您的账号' />
         </view>
         <!-- 密码 -->
         <view class="input-box">
           <image src="/images/login/login_pwd.png"></image>
-          <input placeholder-class="ph-class" type='password' placeholder='请输入您的密码' />
+          <input placeholder-class="ph-class" type='password' name="password" value ="{{formData.password}}" placeholder='请输入您的密码' />
         </view>
         <!-- 忘记密码 -->
         <view class="forget-msg" bindtap="toForget">忘记密码</view>
         <!-- 登录按钮 -->
-        <button class="btn-box" formType="submit">登录</button>
+        <button class="btn-box" formType="submit" wx:if="{{!isDisabled}}">登录</button>
+        <button class="btn-box" wx:if="{{isDisabled}}">登录中...</button>
       </view>
     </form>
   </view>

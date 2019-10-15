@@ -8,7 +8,7 @@
         <image src="/images/login/login_phone.png" mode=""></image>
         <view class="line"></view>
         <view class="forget-input">
-          <input placeholder-class="ph-class" type="text" placeholder="请输入您的手机号" />
+          <input placeholder-class="ph-class" type="text" bindinput="phoneInput" name="phone" value="{{formData.phone}}" placeholder="请输入您的手机号" />
         </view>
       </view>
       <!-- 验证码 -->
@@ -16,7 +16,7 @@
         <image src="/images/login/login_code.png" mode=""></image>
         <view class="line"></view>
         <view class="forget-input code-input">
-          <input placeholder-class="ph-class" type="text" placeholder="请输入验证码" />
+          <input placeholder-class="ph-class" type="text" placeholder="请输入验证码" name="code" value="{{formData.code}}"/>
         </view>
         <view class="code-text" bindtap="getCodeNum">
           <text>{{!codetime?'获取验证码':codetime+' s'}}</text>
@@ -27,7 +27,7 @@
         <image src="/images/login/login_pwd_close.png" mode=""></image>
         <view class="line"></view>
         <view class="forget-input">
-          <input placeholder-class="ph-class" type="password" placeholder="请设置您的登录密码" />
+          <input placeholder-class="ph-class" type="password" placeholder="请设置您的登录密码" name="password"  value="{{formData.password}}"/>
         </view>
       </view>
       <!-- 再次输入密码 -->
@@ -35,11 +35,11 @@
         <image src="/images/login/login_pwd_close.png" mode=""></image>
         <view class="line"></view>
         <view class="forget-input">
-          <input placeholder-class="ph-class" type="password" placeholder="再次输入您的登录密码" />
+          <input placeholder-class="ph-class" type="password" placeholder="再次输入您的登录密码" name="rePassword" value="{{formData.rePassword}}"/>
         </view>
       </view>
 
-      <view class="forget-btn" formType="submit">确定</view>   
+      <button class="forget-btn" formType="submit">确定</button>   
     </view>
 
   </form>

@@ -11,15 +11,15 @@
 
 var config = {
     yAxisWidth: 15,
-    yAxisSplit: 5,
+    yAxisSplit: 2,
     xAxisHeight: 15,
     xAxisLineHeight: 15,
     legendHeight: 15,
     yAxisTitleWidth: 15,
     padding: 12,
     columePadding: 3,
-    fontSize: 10,
-    dataPointShape: ['diamond', 'circle', 'triangle', 'rect'],
+    fontSize: 12,
+  dataPointShape: ['circle', 'diamond', 'triangle', 'rect'],
     colors: ['#7cb5ec', '#f7a35c', '#434348', '#90ed7d', '#f15c80', '#8085e9'],
     pieChartLinePadding: 25,
     pieChartTextPadding: 15,
@@ -1299,7 +1299,7 @@ function drawXAxis(categories, opts, config, context) {
     }
 
     context.beginPath();
-    context.setStrokeStyle(opts.xAxis.gridColor || "#cccccc");
+    context.setStrokeStyle(opts.xAxis.gridColor || "#EFEFEF");
 
     if (opts.xAxis.disableGrid !== true) {
         if (opts.xAxis.type === 'calibration') {
@@ -1377,7 +1377,7 @@ function drawYAxisGrid(opts, config, context) {
     points.push(config.padding + eachSpacing * config.yAxisSplit + 2);
 
     context.beginPath();
-    context.setStrokeStyle(opts.yAxis.gridColor || "#cccccc");
+    context.setStrokeStyle(opts.yAxis.gridColor || "#FFFFFF");
     context.setLineWidth(1);
     points.forEach(function (item, index) {
         context.moveTo(startX, item);
@@ -1592,7 +1592,7 @@ function drawRadarDataPoints(series, opts, config, context) {
     // draw grid
     context.beginPath();
     context.setLineWidth(1);
-    context.setStrokeStyle(radarOption.gridColor || "#cccccc");
+    context.setStrokeStyle(radarOption.gridColor || "#EFEFEF");
     coordinateAngle.forEach(function (angle) {
         var pos = convertCoordinateOrigin(radius * Math.cos(angle), radius * Math.sin(angle), centerPosition);
         context.moveTo(centerPosition.x, centerPosition.y);
@@ -1607,7 +1607,7 @@ function drawRadarDataPoints(series, opts, config, context) {
         var startPos = {};
         context.beginPath();
         context.setLineWidth(1);
-        context.setStrokeStyle(radarOption.gridColor || "#cccccc");
+        context.setStrokeStyle(radarOption.gridColor || "#EFEFEF");
         coordinateAngle.forEach(function (angle, index) {
             var pos = convertCoordinateOrigin(radius / config.radarGridCount * i * Math.cos(angle), radius / config.radarGridCount * i * Math.sin(angle), centerPosition);
             if (index === 0) {

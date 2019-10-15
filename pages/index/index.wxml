@@ -30,46 +30,11 @@
       <text bindtap="addModule">添加模块</text>
     </view>
     <view class="business-content">
-      <view class="business-item">
-        <image src="/images/index/chakan.png"></image>
+      <view wx:for="{{businessArray}}" class="business-item">
+        <image src="{{item.img}}"></image>
         <view class="business-item-text">
-          <text>查勘定损</text>
-          <text>科学的估损定价</text>
-        </view>
-      </view>
-      <view class="business-item">
-        <image src="/images/index/weixiu.png"></image>
-        <view class="business-item-text">
-          <text>车辆维修</text>
-          <text>汽车维护和修理</text>
-        </view>
-      </view>
-      <view class="business-item">
-        <image src="/images/index/tuoche.png"></image>
-        <view class="business-item-text">
-          <text>拖车</text>
-          <text>道路清障救援</text>
-        </view>
-      </view>
-      <view class="business-item">
-        <image src="/images/index/jiuyuan.png"></image>
-        <view class="business-item-text">
-          <text>紧急救援</text>
-          <text>道路紧急救援</text>
-        </view>
-      </view>
-      <view class="business-item">
-        <image src="/images/index/diaocha.png"></image>
-        <view class="business-item-text">
-          <text>调查</text>
-          <text>事故调查</text>
-        </view>
-      </view>
-      <view class="business-item">
-        <image src="/images/index/renshang.png"></image>
-        <view class="business-item-text">
-          <text>人伤</text>
-          <text>人伤调节</text>
+          <text>{{item.name}}</text>
+          <text>{{item.msg}}</text>
         </view>
       </view>
     </view>
@@ -97,5 +62,5 @@
     </view>
   </view>
   <!-- 添加模块components -->
-  <add-module isShow="{{isAddModule}}"/>
+  <add-module module="{{moduleArray}}" isShow="{{isAddModule}}" />
 </view>

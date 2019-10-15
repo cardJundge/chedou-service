@@ -2,7 +2,7 @@
 
 .login-common-title {
   width: 100%;
-  padding: 42rpx 0 118rpx;
+  padding: 42rpx 0 6rpx;
   display: flex;
   align-items: center;
   justify-content: center;

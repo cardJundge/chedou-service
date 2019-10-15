@@ -4,9 +4,18 @@
     <view class="chart-bg">
       <view class="chart-content-box">
         <view class="chart-content">
+         <view class="chart-option">
+          <view wx:for="{{timeArray}}" class="{{currentTab == index ? 'option-item-active':'option-item'}}" data-index="{{index}}" bindtap="changeTime">{{item.name}}</view>
+         </view>
           <canvas canvas-id="areaCanvas" disable-scroll="true" class="chart-content-canvas"></canvas>
         </view>
       </view>
+    </view>
+  </view>
+  <view class="task-num">
+    <view class="task-num-title">
+      <text>累计任务流</text>
+      <text>总数量50</text>
     </view>
   </view>
 </view>
