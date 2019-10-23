@@ -1,0 +1,4 @@
+<!--车辆推修-->
+<view>
+ <business-item typeKey="{{key}}"/>
+</view>

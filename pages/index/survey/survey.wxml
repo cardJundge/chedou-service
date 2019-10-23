@@ -1,0 +1,5 @@
+<!--从查勘定损-->
+
+<view>
+ <business-item typeKey="{{key}}"/>
+</view>

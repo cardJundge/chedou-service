@@ -1,0 +1,4 @@
+<!--救援-->
+<view>
+ <business-item typeKey="{{key}}"/>
+</view>

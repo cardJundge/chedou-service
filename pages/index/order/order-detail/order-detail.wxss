@@ -1,0 +1,353 @@
+/* 订单详情 */
+
+.order-detail-body {
+}
+
+.order-title {
+  width: 100%;
+  height: 136rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #1a65ff;
+  border-radius: 0 0 20rpx 20rpx;
+}
+
+.order-bg {
+  width: 100%;
+  height: 376rpx;
+  padding: 0 24rpx;
+  position: absolute;
+  bottom: -264rpx;
+  left: 0;
+}
+
+.order-box {
+  width: 702rpx;
+  height: 376rpx;
+  background: url('https://6368-chedou-service-1257955119.tcb.qcloud.la/images/detail_bg.png?sign=83dd2a5594c6da6ce29313a5b7a8c82b&t=1571381537') no-repeat center;
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24rpx;
+}
+
+.order-box-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-box-top text:first-child {
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium;
+}
+
+.order-box-top text:last-child {
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium;
+}
+
+.order-box-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-box-msg {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-box-msg text {
+  color: #898989;
+  margin-bottom: 6rpx;
+}
+
+.order-box-msg text:first-child {
+  font-size: 34rpx;
+  color: #242429;
+}
+
+.order-box-msg text:last-child {
+  margin-bottom: 0;
+}
+
+.order-box-img {
+  margin-right: 12rpx;
+}
+
+.order-box-img image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.order-content {
+  margin-top: 424rpx;
+}
+
+.order-content-text {
+  font-size: 36rpx;
+  margin-left: 24rpx;
+}
+
+.order-content-info {
+  padding: 24rpx;
+}
+
+.order-bottom {
+  width: 100%;
+  height: 80rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.order-btn {
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 36rpx;
+}
+
+.order-status-01 {
+  background: #1a65ff;
+  color: #fff;
+  border: 1rpx solid #1a65ff;
+}
+
+.order-status-02 {
+  display: flex;
+  align-items: center;
+}
+
+.order-status-02 view:first-child {
+  width: 50%;
+  background: #fff;
+  color: #1a65ff;
+  border: 1rpx solid #1a65ff;
+}
+
+.order-status-02 view:last-child {
+  width: 50%;
+  background: #1a65ff;
+  color: #fff;
+  border: 1rpx solid #1a65ff;
+}
+
+/* ---------------------------------- */
+
+/* 
+.user_infor {
+  background: #fff;
+  font-size: 0px;
+  padding: 15px 0px;
+  margin-bottom: 15px;
+}
+
+.user_avatar, .user_phone {
+  display: inline-block;
+  text-align: left;
+  width: 50%;
+}
+
+.user_avatar view {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.user_phone view {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.user_icon image {
+  width: 20px;
+  height: 20px;
+  margin: 0px 8px 0px 15px;
+}
+
+.nickname {
+  font-size: 15px;
+  color: #333;
+}
+
+.servicer_cell {
+  background: #fff;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.servicer_text {
+  color: #b3b3b3;
+  font-size: 12px;
+  line-height: 32px;
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.service_infor {
+  border-top: 1rpx solid #eee;
+  padding: 18px 12px 15px 16px;
+}
+
+.service_avatar, .order_infor, .right_icon {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.service_avatar image {
+  width: 70px;
+  height: 70px;
+  margin-right: 16px;
+}
+
+.order_infor {
+  width: 60%;
+}
+
+.service_name {
+  font-size: 15px;
+  color: #333;
+  margin-top: 14px;
+}
+
+.service_address, .service_num {
+  margin-top: 14px;
+  font-size: 12px;
+  color: #b3b3b3;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.right_icon {
+  float: right;
+}
+
+.right_icon image {
+  width: 15px;
+  height: 15px;
+  margin-top: 27px;
+}
+
+.service_item {
+  background: #fff;
+  text-align: left;
+  font-size: 0px;
+  margin-bottom: 10px;
+}
+
+.service_item .service_infor {
+  padding: 18px 0px 15px 0px;
+  margin: 0px 15px;
+  border-bottom: 1rpx solid #eee;
+}
+
+.service_item .service_name {
+  margin-top: 3px;
+}
+
+.service_item .service_num {
+  margin-top: 7px;
+}
+
+.service_price {
+  margin-top: 7px;
+  font-size: 14px;
+  color: #3891f8;
+  font-weight: bold;
+}
+
+.order_infor_order {
+  display: inline-block;
+  padding: 15px 0px 15px 15px;
+  font-size: 12px;
+  color: #b3b3b3;
+  line-height: 22px;
+}
+
+.copy_cell {
+  padding: 1px 6px;
+  border: 1rpx solid #b3b3b3;
+  margin-left: 26px;
+  border-radius: 2px;
+  font-size: 10px;
+}
+
+.bottom_cell {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+  background: #fff;
+  height: 60px;
+}
+
+.bottom_left, .bottom_right {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 60px;
+}
+
+.bottom_left {
+  margin-left: 15px;
+}
+
+.bottom_right {
+  float: right;
+}
+
+.bottom_right view {
+  display: inline-block;
+  width: 105px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+}
+
+.cancel_btn {
+  background: #ff9701;
+}
+
+.pay_btn {
+  background: #f15626;
+}
+
+.service_infor {
+  font-size: 12px;
+  color: #333;
+}
+
+.order_btn {
+  text-align: right;
+}
+
+.each_btn {
+  margin: 15px 0px;
+  font-size: 15px;
+  text-align: center;
+  margin-right: 15px;
+  display: inline-block;
+  border: 1rpx solid #b3b3b3;
+  color: #b3b3b3;
+  border-radius: 200px;
+}
+
+.each_btn:nth-child(2) {
+  background: #3891f8;
+  color: #fff;
+  border: 1rpx solid #3891f8;
+}
+
+.each_btn text {
+  display: inline-block;
+  margin: 7px 0px;
+  width: 100px;
+} */

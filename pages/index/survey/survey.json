@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "business-item": "/components/list/list"
+  },
+  "navigationBarTitleText": "查勘定损"
+}

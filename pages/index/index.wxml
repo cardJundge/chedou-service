@@ -1,23 +1,28 @@
 <!-- 首页 -->
+<view class="index-body" wx:if="{{spinShow}}">
+  <view class="spin-article">
+    <i-spin size="large" fix></i-spin>
+  </view>
+</view>
 <view class="index-body">
   <!-- 数据统计 -->
   <view class="data">
     <view class="data-bg">
-      <view class="data-title">
+      <!-- <view class="data-title">
         <text>数据统计</text>
         <text bindtap="toDataDetails">详情</text>
-      </view>
+      </view> -->
       <view class="data-content">
         <view class="data-item">
-          <text>0</text>
+          <text>{{dataStatisticsArray.today}}</text>
           <text>今日任务流</text>
         </view>
         <view class="data-item">
-          <text>0</text>
+          <text>{{dataStatisticsArray.week}}</text>
           <text>本周任务流</text>
         </view>
         <view class="data-item">
-          <text>0</text>
+          <text>{{dataStatisticsArray.total}}</text>
           <text>累计任务流</text>
         </view>
       </view>
@@ -30,11 +35,17 @@
       <text bindtap="addModule">添加模块</text>
     </view>
     <view class="business-content">
-      <view wx:for="{{businessArray}}" class="business-item">
+      <view wx:for="{{businessArray}}" class="business-item" bindtap="toItemList" data-key="{{item.key}}">
         <image src="{{item.img}}"></image>
         <view class="business-item-text">
-          <text>{{item.name}}</text>
-          <text>{{item.msg}}</text>
+          <text wx:if="{{serviceType == 2 || serviceType == 3}}">{{item.name}}</text>
+          <text wx:if="{{serviceType == 1 || serviceType == 4}}">{{item.name == '车辆维修' ? '车辆推修': item.name}}</text>
+          <text wx:if="{{item.key == 'survey'}}">科学的估损定价</text>
+          <text wx:if="{{item.key == 'push'}}">汽车维护和修理</text>
+          <text wx:if="{{item.key == 'trailer'}}">道路清障救援</text>
+          <text wx:if="{{item.key == 'rescue'}}">道路紧急救援</text>
+          <text wx:if="{{item.key == 'risk'}}">风险调查</text>
+          <text wx:if="{{item.key == 'hurt'}}">人伤调解</text>
         </view>
       </view>
     </view>
@@ -42,25 +53,32 @@
   <!-- 接单系统 -->
   <view class="order">
     <view class="order-title">
-       <text>接单系统</text>
+      <text>接单系统</text>
     </view>
     <view class="order-content">
-      <view class="order-item">
-        <image src="/images/index/xiche.png"></image>
+      <view class="order-item" wx:for="{{orderList}}" bindtap="toOrderDetail" data-id="{{item.id}}" data-img="{{item.img}}" data-name="{{item.name}}">
+        <image src="{{item.img}}"></image>
         <view class="order-item-content">
           <view class="order-item-content-left">
-            <text>非事故救援(搭电/换胎)</text>
-            <text>9月26日  15:26:30</text>
-            <text>2019092610056485</text>
+            <text>{{item.name}}</text>
+            <text>{{item.mobile?item.mobile : ''}}</text>
+            <text>{{item.add_time}}</text>
           </view>
           <view class="order-item-content-right">
-            <text>17621263537</text>
-            <view>接单</view>
+            <text>¥{{item.price}}</text>
+            <view class="state-btn state-color01" wx:if="{{item.status == 0}}">待支付</view>
+            <view class="state-btn state-color02" wx:if="{{item.status == 1 && item.work_status == 0}}">接单</view>
+            <view class="state-btn state-color02" wx:if="{{item.status == 1 && item.work_status == 1}}">待分配</view>
+            <view class="state-btn state-color03" wx:if="{{item.status == 1 && item.work_status == 2}}">已分配</view>
+            <view class="state-btn state-color04" wx:if="{{item.status == 1 && item.work_status == 3}}">进行中</view>
+            <view class="state-btn state-color05" wx:if="{{item.status == 1 && item.work_status == 4}}">已完成</view>
+            <view class="state-btn state-color05" wx:if="{{item.status == 1 && item.work_status == 5}}">已评价</view>
+            <view class="state-btn state-color05" wx:if="{{item.status == 1 && item.work_status == 6}}">已取消</view>
           </view>
         </view>
       </view>
     </view>
   </view>
   <!-- 添加模块components -->
-  <add-module module="{{moduleArray}}" isShow="{{isAddModule}}" />
+  <add-module module="{{moduleArray}}" isShow="{{isAddModule}}" bind:okEvent="okEvent" />
 </view>

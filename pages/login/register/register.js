@@ -98,7 +98,7 @@ Page({
           });
         } else {
           wx.showToast({
-            title: res.data.msg,
+            title: res.data.msg ? res.data.msg : '请求超时',
             icon: 'none'
           })
         }
@@ -140,7 +140,7 @@ Page({
          
         } else {
           wx.showToast({
-            title: res.data.msg,
+            title: res.data.msg ? res.data.msg : '请求超时',
             icon: 'none',
             success: res=> {
               this.setData({

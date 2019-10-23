@@ -23,8 +23,8 @@
         <view class="line"></view>
         <view class="register-input">
           <picker bindchange="bindCompanyChange" value="{{company}}" range="{{companyArray}}">
-            <input placeholder-class="ph-class" type="text" placeholder="请选择公司类型" name="companyType" value="{{companyArray[company]}}"></input>
-            <!-- <view>{{companyArray[company]}}</view> -->
+            <!-- <input placeholder-class="ph-class" type="text" placeholder="请选择公司类型"  value="{{companyArray[company]}}"></input> -->
+            <text name="companyType" class="{{companyArray[company] ? 'register-select' : 'register-select-text'}}">{{companyArray[company] ? companyArray[company] : '请选择公司类型'}}</text>
           </picker>
         </view>
         <i-icon class="icon" type="unfold" font-size="18" color="#A6A6A6"/>

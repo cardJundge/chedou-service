@@ -60,6 +60,22 @@ class LoginModel extends HTTP {
     }
     this.request(params)
   }
+
+  // 修改密码
+  modifyPwd(params, callback) {
+    var params = {
+      url: '/api/index/changePwd',
+      type: 'POST',
+      auth: true,
+      data: {
+        old_password: params.oldPassword,
+        password: params.password,
+        repeat_password: params.repeatPassword
+      },
+      sCallback: callback
+    }
+    this.request(params)
+  }
 }
 export {
   LoginModel

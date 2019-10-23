@@ -22,7 +22,7 @@
         <text decode="{{true}}">分组&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
         <picker bindchange="bindGroupChange" value="{{number}}" range="{{groupData}}">
           <!-- <input placeholder-class="ph-class" type="text" placeholder="请选择分组" value="{{groupData[number].name}}"></input> -->
-          <text class="select-text">{{groupData[number].name?groupData[number].name: '请选择分组'}}</text>
+          <text class="{{groupData[number].name ? 'select-text' : 'select-text-active'}}">{{groupData[number].name?groupData[number].name: '请选择分组'}}</text>
         </picker>
       </view>
       <view class="input-box leader-box">

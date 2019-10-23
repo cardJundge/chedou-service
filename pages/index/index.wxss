@@ -3,22 +3,26 @@
 .index-body {
 }
 
+.spin-article {
+  
+}
+
 /* 数据统计 */
 
 .data {
   width: 100%;
-  height: 300rpx;
+  height: 220rpx;
 }
 
 .data-bg {
   width: 100%;
-  height: 200rpx;
+  height: 120rpx;
   background: #1a65ff;
   border-radius: 0 0 30rpx 30rpx;
   position: relative;
 }
 
-.data-title {
+/* .data-title {
   width: 100%;
   padding: 24rpx;
   display: flex;
@@ -29,7 +33,7 @@
 
 .data-title text:first-child {
   font-size: 36rpx;
-}
+} */
 
 .data-content {
   width: 100%;
@@ -170,8 +174,7 @@
 }
 
 .order-item-content-left text:nth-child(2) {
-  font-size: 24rpx;
-  color: #898989;
+  color: #5b5b5b;
 }
 
 .order-item-content-left text:nth-child(3) {
@@ -186,18 +189,41 @@
 }
 
 .order-item-content-right text {
-  font-size: 24rpx;
-  color: #1a84ff;
-  margin-bottom: 24rpx;
+  font-size: 36rpx;
+  color: #1a65ff;
+  margin-bottom: 12rpx;
 }
 
-.order-item-content-right view {
+.state-btn {
   width: 180rpx;
   height: 50rpx;
-  background: #1a84ff;
   border-radius: 30rpx;
-  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.state-color01 {
+  color: #1a65ff;
+  border: 1rpx solid #1a65ff;
+}
+
+.state-color02 {
+  background: #1a65ff;
+  color: #fff;
+}
+
+.state-color03 {
+  background: #FFA91A;
+  color: #fff;
+}
+
+.state-color04 {
+  background: #14D680;
+  color: #fff;
+}
+
+.state-color05 {
+  background:  #D0D0D0;
+  color: #fff;
 }

@@ -1,0 +1,4 @@
+<!--人伤-->
+<view>
+ <business-item typeKey="{{key}}"/>
+</view>

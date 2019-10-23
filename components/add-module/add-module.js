@@ -15,21 +15,12 @@ Component({
   },
   data: {
     moduleItem: ''
-    // moduleArray: [
-    //   { name: '查勘定损', img: '/images/index/chakan.png', selected: true },
-    //   { name: '车辆维修', img: '/images/index/weixiu.png', selected: true },
-    //   { name: '拖车', img: '/images/index/tuoche.png', selected: false },
-    //   { name: '紧急救援', img: '/images/index/jiuyuan.png', selected: false },
-    //   { name: '调查', img: '/images/index/diaocha.png', selected: false },
-    //   { name: '人伤', img: '/images/index/renshang.png', selected: false }
-    // ]
   },
   methods: {
-    onConfirm() {
-      
+    onConfirm() {    
       indexModel.setSelfModule(this.data.moduleItem, res=> {
         if(res.data.status == 1) {
-
+          this.triggerEvent('okEvent')
         }
         this.setData({
           isShow: false

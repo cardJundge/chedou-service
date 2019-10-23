@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/login/login",
     "pages/index/index",
     "pages/login/register/register-next/register-next",
@@ -13,7 +14,24 @@
     "pages/personnel/add-quota/add-quota",
     "pages/mine/edit-info/edit-info",
     "pages/login/modify/modify",
-    "pages/mine/serverItemList/serverItemList"
+    "pages/mine/serverItemList/serverItemList",
+    "pages/mine/account/account",
+    "pages/mine/account/account-detail/account-detail",
+    "pages/index/push/push",
+    "pages/index/push/push-detail/push-detail",
+    "pages/index/rescue/rescue",
+    "pages/index/trailer/trailer",
+    "pages/index/hurt/hurt",
+    "pages/index/risk/risk",
+    "pages/index/risk/add-risk/add-risk",
+    "pages/index/risk/risk-detail/risk-detail",
+    "pages/index/rescue/rescue-detail/rescue-detail",
+    "pages/index/trailer/trailer-detail/trailer-detail",
+    "pages/index/hurt/hurtDetail/hurtDetail",    
+    "pages/index/order/order-detail/order-detail",   
+    "pages/index/survey/survey",
+    "pages/index/survey/add-survey/add-survey",
+    "pages/index/survey/survey-details/survey-details"
   ],
   "window": {
     "backgroundTextStyle": "light",

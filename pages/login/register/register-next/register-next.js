@@ -30,17 +30,11 @@ Page({
     const rules = {
       company: {
         required: true
-      },
-      companyType: {
-        required: true
       }
     }
     const messages = {
       company: {
         required: '请填写公司名称'
-      },
-      companyType: {
-        required: '请选择公司类型'
       }
     }
     this.WxValidate = new WxValidate(rules, messages)
@@ -66,20 +60,29 @@ Page({
       this.setData({
         isDisabled: true
       })
-      this.data.companyArray.forEach((item, index)=> {
-        if (item == params.companyType) {
-          this.data.otherData.companyType = index + 1
-        }
-      })
+      this.data.otherData.companyType = this.data.company
       this.data.otherData.company = params.company
       loginModel.postRegister(this.data.otherData, res=> {
-        console.log(res)
+        console.log(res,this.data.otherData)
         if(res.data.status == 1) {
           wx.showToast({
             title: '注册成功',
             success: res=> {
-              wx.redirectTo({
-                url: '../../login',
+              let data = {
+                phone: this.data.otherData.phone,
+                password: this.data.otherData.password
+              }
+              loginModel.postLogin(data, res=> {
+                if(res.data.status == 1) {
+                  wx.switchTab({
+                    url: '/pages/index/index',
+                  })
+                } else {
+                  wx.showToast({
+                    title: res.data.msg ? res.data.msg : '操作超时',
+                    icon: 'none'
+                  })
+                }
               })
               this.setData({
                 isDisabled: false
@@ -88,7 +91,7 @@ Page({
           })
         } else {
           wx.showToast({
-            title: res.data.msg,
+            title: res.data.msg ? res.data.msg : '请求超时',
             icon: 'none',
             success: res=> {
               this.setData({

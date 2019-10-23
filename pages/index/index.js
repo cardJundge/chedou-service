@@ -1,5 +1,6 @@
 //首页
 var test = getApp().globalData.hostName
+var app = getApp()
 import {
   PersonnelModel
 } from '../personnel/models/personnel.js'
@@ -11,31 +12,80 @@ var personnelModel = new PersonnelModel()
 var indexModel = new IndexModel()
 Page({
   data: {
+    dataStatisticsArray: [],
     work_status: '',
     status: '',
     page: 1,
     isAddModule: false,
     orderList: [],
     moduleArray: [],
-    businessArray: []
+    businessArray: [],
+    spinShow: true
   },
   onLoad() {
-    // this.data.sessionId = wx.getStorageSync('PHPSESSID')
-    // this.data.sessionId = '5ig1lq31b2kprkatmjpvv93b90'
-    // this.data.userId = wx.getStorageSync('userid')
-    // this.data.userId = '3941'
+    this.setData({
+      serviceType: app.globalData.userInfo.type
+    })
   },
   onReady() {
-    // this.getOrderList()
+    // this.getDataStatics()
+    this.getOrderList()
   },
   onShow() {
     this.getModule()
   },
+
+  // 添加模块按钮
+  okEvent() {
+    this.getModule()
+  },
+
+  // 首页获取数据统计
+  getDataStatics() {
+    indexModel.dataStatistics(res=> {
+      if(res.data.status == 1) {
+       this.setData({
+         dataStatisticsArray: res.data.data
+       })
+      }
+    })
+  },
+
   // 进入数据统计详情
   toDataDetails() {
     wx.navigateTo({
       url: './data-details/data-details',
     })
+  },
+
+  // 进入业务列表
+  toItemList(e) {
+    let key = e.currentTarget.dataset.key
+    if(key == 'survey') {
+      wx.navigateTo({
+        url: './survey/survey',
+      })
+    } else if(key == 'push') {
+      wx.navigateTo({
+        url: './push/push',
+      })
+    } else if(key == "rescue") {
+      wx.navigateTo({
+        url: './rescue/rescue',
+      })
+    } else if(key == 'trailer') {
+      wx.navigateTo({
+        url: './trailer/trailer',
+      })
+    } else if (key == 'hurt') {
+      wx.navigateTo({
+        url: './hurt/hurt',
+      })
+    } else if (key == 'risk') {
+      wx.navigateTo({
+        url: './risk/risk',
+      })
+    }
   },
 
   // 添加模块
@@ -66,47 +116,77 @@ Page({
   getModule() {
     personnelModel.getModule(res => {
       if (res.data.status == 1) {
+        let module = []
         res.data.data.forEach((item, index) => {
           item.img = '/images/index/' + item.key + '.png'
+          module.push(item.id)
         })
+        console.log(module)
+        wx.setStorageSync('module', module)
+        let modules = res.data.data.reverse()
+       
         this.setData({
-          businessArray: res.data.data
+          businessArray: modules
         })
 
       }
     })
   },
 
+  // 获取订单列表
   getOrderList() {
-    wx.request({
-      url: test + 'service/order/index',
-      method: 'GET',
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Cookie': 'PHPSESSID=' + this.data.sessionId
-      }, // 默认值
-      data: {
-        service_id: this.data.userId,
-        page: this.data.page,
-        status: this.data.status,
-        work_status: this.data.work_status
-      },
-      success: (res) => {
+    indexModel.getOrderList(res=> {
+      if(res.data.status == 1) {
         console.log(res)
-
-        if (res.data.status == 1) {
-          for (var i in res.data.data) {
-            this.data.orderList.push(res.data.data[i])
+        res.data.data.data.forEach((item, index)=> {
+          if (item.classify_id == 14) {
+            item.img = '/images/index/order/icon_daibannianshen.png'
+          } else if (item.classify_id == 15 || item.classify_id == 16) {
+            item.img = '/images/index/order/icon_daibanfuwu.png'
+          } else if (item.classify_id == 17) {
+            item.img = '/images/index/order/icon_cheliangjiance.png'
+          } else if (item.classify_id == 18) {
+            item.img = '/images/index/order/icon_daijia.png'
+          } else if (item.classify_id == 19 || item.classify_id == 22) {
+            item.img = '/images/index/order/icon_tuoche.png'
+          } else if (item.classify_id == 20 || item.classify_id == 31) {
+            item.img = '/images/index/order/icon_xiche.png'
+          } else {
+            item.img = '/images/index/order/icon_huantai.png'
           }
-          this.setData({
-            orderList: this.data.orderList
-          })
-        } else {
-          wx.showToast({
-            title: '订单获取失败',
-          })
-        }
+        })
+        this.data.orderList = res.data.data.data
+        this.getOrderClassify()
       }
+    })
+  },
+
+  // 获取项目分类
+  getOrderClassify() {
+    indexModel.orderClassify(res=> {
+      this.setData({
+        spinShow: false
+      })
+      if(res.data.status == 1) {
+        this.data.orderList.forEach((item, index) => {
+          res.data.data.forEach((its,ins) => {
+            if (item.classify_id == its.id) {
+              item.name = its.name
+            }
+          })
+        })
+        this.setData({
+          orderList: this.data.orderList,
+        })
+      }
+    })
+  },
+
+  // 进入订单详情
+  toOrderDetail(e) {
+    console.log(e)
+    wx.navigateTo({
+      url: './order/order-detail/order-detail?orderId=' + e.currentTarget.dataset.id + '&orderImg=' + e.currentTarget.dataset.img + '&orderName=' + e.currentTarget.dataset.name,
     })
   }
 })

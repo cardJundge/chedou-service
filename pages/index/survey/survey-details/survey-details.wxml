@@ -1,0 +1,61 @@
+<!--查勘定损详情-->
+<view class="survey-details-body">
+  <!-- 业务基本信息 -->
+  <view class="business">
+    <view class="business-title">
+      <text>业务基本信息</text>
+      <i-icon color="#1a65ff" type="more" size="24"/>
+    </view>
+    <view class="business-content">
+      <view class="business-item">
+        <text>业务编号</text>
+        <text>{{surveyList.survey_no}}</text>
+      </view>
+      <view class="business-item">
+        <text>查勘员</text>
+        <text>xx</text>
+      </view>
+      <view class="business-item">
+        <text>工号</text>
+        <text>S15</text>
+      </view>
+      <view class="business-item">
+        <text>案件号</text>
+        <text>{{surveyList.report_no}}</text>
+      </view>
+      <view class="business-item">
+        <text>车牌号码</text>
+        <text>{{surveyList.car_no}}</text>
+      </view>
+      <view class="business-item">
+        <text>保险公司</text>
+        <text>{{surveyList.insuranceName}}</text>
+      </view>
+      <view class="business-item">
+        <text>任务类型</text>
+        <text>{{surveyList.task_type}}</text>
+      </view>
+      <view class="business-item">
+        <text>派工时间</text>
+        <text>{{surveyList.send_time}}</text>
+      </view>
+      <view class="business-item">
+        <text>区域</text>
+        <text>{{surveyList.are}}</text>
+      </view>
+      <view class="business-item">
+        <text>状态</text>
+        <text>S1570675833</text>
+      </view>
+    </view>
+  </view>
+  <!-- 进度 -->
+  <view class="progress" wx:if="{{schedule}}">
+    <view class="progress-title">进度</view>
+    <view class="progress-content">
+      
+    </view>
+  </view>
+  <!-- 操作按钮 -->
+  <view class="operation">接单</view>
+</view>

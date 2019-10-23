@@ -14,8 +14,16 @@ Page({
       password: ''
     }
   },
-  onLoad: function (options) {
+  onLoad(options) {
     this.initValidate() // 验证规则函数
+  },
+  onShow() {
+   this.setData({
+     formData: {
+       phone: wx.getStorageSync('userMobile'),
+       password: wx.getStorageSync('userPwd')
+     }
+   })
   },
 
   initValidate() {
@@ -72,6 +80,8 @@ Page({
         console.log(res)
         if(res.data.status == 1) {
           app.globalData.userInfo = res.data.data
+          wx.setStorageSync('userMobile', res.data.data.mobile)
+          wx.setStorageSync('userPwd', params.password)
           wx.showToast({
             title: '登录成功',
             success: res=> {
@@ -85,7 +95,7 @@ Page({
           })
         } else {
           wx.showToast({
-            title: res.data.msg,
+            title: res.data.msg ? res.data.msg : '请求超时',
             icon: 'none',
             success: res=> {
               this.setData({

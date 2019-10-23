@@ -5,31 +5,62 @@
       <view class="mine-card-info">
         <view class="mine-avatar">
           <image class="mine-avatar-bg" src="/images/mine/avatar_bg.png"></image>
-          <image class="mine-avatar-img" src="/images/logo.png"></image>
+          <image class="mine-avatar-img" src="{{basicUserInfo.face ? basicUserInfo.face : 'cloud://chedou-service.6368-chedou-service/images/default_user.png'}}"></image>
         </view>
         <view class="mine-text">
-          <text>陕西兴胜公估</text>
-          <text>非会员</text>
+          <text>{{basicUserInfo.name}}</text>
+          <view class="vip-box">
+            <image src="/images/mine/icon_Vip.png"></image>
+            <text>非会员</text>
+          </view>
         </view>
       </view>
       <view class="mine-card-btn">
-        <i-icon bindtap="editInfo" type="brush_fill" size="14" color="#ffffff" />
+        <image bindtap="editInfo" src="/images/mine/icon_edit.png"></image>
       </view>
     </view>
 
   </view>
   <view class="mine-list">
-    <view class="mine-item">
+    <view class="mine-item" bindtap="toAccount">
       <image src="/images/mine/icon_money.png"></image>
       <view class="mine-item-text">
         <text>账户钱包</text>
         <i-icon type="enter" size="18" color="#E2E2E2" />
       </view>
     </view>
+    <view class="mine-item" bindtap="unbindWX" wx:if="{{basicUserInfo.openId_chedou}}">
+      <image src="/images/mine/icon_wx.png"></image>
+      <view class="mine-item-text">
+        <text>解绑微信</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view>
+    <view class="mine-item" bindtap="toBindWX" wx:if="{{!basicUserInfo.openId_chedou}}">
+      <image src="/images/mine/icon_wx.png"></image>
+      <view class="mine-item-text">
+        <text>绑定微信</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view>
     <view class="mine-item">
+      <image src="/images/mine/icon_data.png"></image>
+      <view class="mine-item-text">
+        <text>数据统计</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view>
+    <view class="mine-item" wx:if="{{basicUserInfo.type == 2 || basicUserInfo.type == 3}}">
       <image src="/images/mine/icon_program.png"></image>
       <view class="mine-item-text">
         <text>项目管理</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view>
+    <view class="mine-item" wx:if="{{basicUserInfo.type == 2 || basicUserInfo.type == 3}}">
+      <image src="/images/mine/icon_brand.png"></image>
+      <view class="mine-item-text">
+        <text>服务品牌</text>
         <i-icon type="enter" size="18" color="#E2E2E2" />
       </view>
     </view>

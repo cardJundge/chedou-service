@@ -1,9 +1,26 @@
 /**app.wxss**/
+
 page {
   font-size: 30rpx;
   color: #242429;
 }
 
-view {
+view, textarea {
   box-sizing: border-box;
+}
+
+.ph-class {
+  color: #a3a3a3;
+}
+
+/* radio默认样式 */
+radio .wx-radio-input {
+  height: 30rpx;
+  width: 30rpx;
+}
+
+/* 选中后按钮样式 */
+radio .wx-radio-input.wx-radio-input-checked {
+  background: #1a65ff;
+  border: 1rpx solid #1a65ff
 }

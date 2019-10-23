@@ -15,16 +15,19 @@ Page({
   data: {
     someone: true,
     personnelData: {},
-    personnel: []
+    personnel: [],
+    spinShow: true,
   },
+
   onLoad(options) {
 
   },
+
   onShow() {
     this.getTaskList('')
   },
-  rendering() {
-    
+
+  rendering() {  
     words.forEach((item, index) => {
       storeData[index] = {
         key: item,
@@ -54,19 +57,23 @@ Page({
   // 获取作业员列表
   getTaskList(flag) {
     personnelModel.getTaskList(flag, (res) => {
+      this.setData({
+        spinShow: false
+      })
       if (res.data.status == 1) {
         this.setData({
           personnelCount: res.data.count,
-          personnelData: res.data.data
+          personnelData: res.data.data,
+          someone: true
         })
         this.data.personnelData.forEach((item, index) => {
-          item.pinyin = py.getPinyin(item.nickname).toUpperCase()
-          console.log(item)      
+          item.pinyin = py.getPinyin(item.nickname).toUpperCase() 
         })
         this.rendering()
       } else if(res.data.status == 0) {
         this.setData({
-          personnelData: []
+          personnelData: [],
+          someone: false
         })
       }
     })
@@ -121,7 +128,7 @@ Page({
               this.getTaskList('')
             } else {
               wx.showToast({
-                title: res.data.msg,
+                title: res.data.msg ? res.data.msg : '请求超时',
                 icon: 'none'
               })
             }

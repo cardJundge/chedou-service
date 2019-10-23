@@ -55,7 +55,3 @@
   align-items: center;
   justify-content: center;
 }
-
-.ph-class {
-  color: #d9d9d9;
-}

@@ -2,15 +2,23 @@
 import {
   MineModel
 } from './models/mine.js'
+import {
+  LoginModel
+} from '../login/models/login.js'
 
+var app = getApp()
+var loginModel = new LoginModel()
 var mineModel = new MineModel()
 Page({
   data: {
-
+    basicUserInfo: {}
   },
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    this.setData({
+      basicUserInfo: app.globalData.userInfo
+    })
   },
+  onShow() {},
   editInfo() {
     wx.navigateTo({
       url: './edit-info/edit-info',
@@ -23,24 +31,122 @@ Page({
     })
   },
 
+  // 绑定微信
+  toBindWX() {
+    this.bindWX(data=> {})
+  },
+
+  bindWX(sCallback) {
+    wx.showLoading({
+      title: '绑定中...',
+    })
+    wx.login({
+      success: res => {
+        let params = {
+          js_code: res.code,
+          type: 'chedou'
+        }
+        mineModel.bindWx(params, response => {
+          wx.hideLoading()
+          if (response.data.status == 1) {
+            wx.showToast({
+              title: '绑定成功'
+            })
+            this.toGetUserInfo()
+            sCallback(true)
+          } else {
+            wx.showToast({
+              title: response.data.msg ? response.data.msg : '请求超时',
+              icon: 'none'
+            })
+          }
+        })
+      }
+    })
+  },
+
+  // 解绑微信
+  unbindWX() {
+    wx.showLoading({
+      title: '解绑中...',
+    })
+    mineModel.unTying(res => {
+      wx.hideLoading()
+      if (res.data.status == 1) {
+        wx.showToast({
+          title: '解绑成功',
+        })
+        this.toGetUserInfo()
+      } else {
+        wx.showToast({
+          title: res.data.msg ? res.data.msg : '请求超时',
+        })
+      }
+    })
+  },
+
+  // 账户钱包
+  toAccount() {
+    var openId = this.data.basicUserInfo.openId_chedou
+    if(!openId) {
+      wx.showModal({
+        title: '提示',
+        content: '微信绑定后才能执行此操作，是否进行微信绑定？',
+        success: res=> {
+          if (res.confirm) {
+            this.bindWX(data=> {
+              if(data) {
+                wx.navigateTo({
+                  url: './account/account',
+                })
+              }
+            })
+
+          } else if (res.cancel) {
+          }
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: './account/account',
+      })
+    }
+  },
+
+  // 绑定解绑之后重新请求用户信息（重新登录）
+  toGetUserInfo() {
+    let params = {
+      phone: wx.getStorageSync('userMobile'),
+      password: wx.getStorageSync('userPwd')
+    }
+    loginModel.postLogin(params, res => {
+      if (res.data.status == 1) {
+        app.globalData.userInfo = res.data.data
+        this.setData({
+          basicUserInfo: res.data.data
+        })
+      }
+    })
+  },
+
   toLogout() {
     wx.showModal({
       title: '提示',
       content: '确定退出登录吗',
-      success: function (res) {
-        if (res.cancel) {
-        } else {
-         mineModel.logout(res=> {
-           if(res.data.status == 1) {
-             wx.reLaunch({
-               url: '../login/login',
-             })
-           } else {
-             wx.showToast({
-               title: res.data.msg,
-             })
-           }
-         })
+      success: function(res) {
+        if (res.cancel) {} else {
+          mineModel.logout(res => {
+            if (res.data.status == 1) {
+              wx.reLaunch({
+                url: '../login/login',
+              })
+            } else {
+              wx.showToast({
+                title: res.data.msg ? res.data.msg : '请求超时',
+                icon: 'none'
+              })
+            }
+          })
         }
       }
     })

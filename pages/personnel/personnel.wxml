@@ -1,4 +1,9 @@
 <!--人员管理-->
+<view class="personnel-body" wx:if="{{spinShow}}">
+  <view class="spin-article">
+    <i-spin size="large" fix></i-spin>
+  </view>
+</view>
 <view class="personnel-body">
   <view class="personnel-top">
     <view class="search-bg">
@@ -16,7 +21,7 @@
     <view class="personnel-content-null">
       <image src="cloud://chedou-service.6368-chedou-service/images/someone_null_bg.png"></image>
       <text>暂无人员</text>
-      <view>立即添加</view>
+      <view bindtap="addStaff">立即添加</view>
     </view>
   </view>
   <view class="personnel-content" wx:if="{{someone}}">
@@ -29,7 +34,7 @@
         <i-index-item wx:for="{{ personnel }}" wx:for-index="index" wx:key="{{index}}" wx:for-item="item" name="{{item.key}}">
           <i-swipeout operateWidth="{{138}}" wx:for="{{item.list}}" wx:for-index="in" wx:key="{{in}}" wx:for-item="it">
             <view slot="content" class="personnel-content-item">
-              <image src="{{it.face ? it.face : '/images/logo.png'}}"></image>
+              <image src="{{it.face ? it.face : 'cloud://chedou-service.6368-chedou-service/images/task_default_avatar.png'}}"></image>
               <view class="personnel-content-item-text">
                 <text>{{it.name}}</text>
                 <view class="personnel-content-item-text-tag">

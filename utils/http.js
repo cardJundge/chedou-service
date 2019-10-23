@@ -18,8 +18,8 @@ class HTTP {
       success: res => {
         params.sCallback && params.sCallback(res)
       },
-      fail: res => {
-        params.sCallback && params.sCallback(res)
+      fail: err => {
+        params.sCallback && params.sCallback(err)
       }
     })
   }
