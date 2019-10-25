@@ -18,7 +18,9 @@
         <text wx:if="{{typeKey == 'push'}}">编号: {{item.push_no}}</text>
         <text wx:if="{{typeKey == 'rescue'}}">编号: {{item.rescue_no}}</text>
         <text wx:if="{{typeKey == 'risk'}}">编号: {{item.risk_no}}</text>
-        <text>{{item.recognizee}} | {{item.car_no}} | {{item.mobile}}</text>
+        <text wx:if="{{item.type == 0}}">查勘 {{item.car_no ? ('| ' + item.car_no) : ''}} {{item.send_user ? ('| ' + item.send_user) : ''}}</text>
+        <text wx:if="{{item.type == 1}}">三责 {{item.car_no ? ('| ' + item.car_no) : ''}} {{item.send_user ? ('| ' + item.send_user) : ''}}</text>
+        <text wx:if="{{item.type == 2}}">标的 {{item.car_no ? ('| ' + item.car_no) : ''}} {{item.send_user ? ('| ' + item.send_user) : ''}}</text>
       </view>
       <text class='list-item-right status01' wx:if='{{item.status==0}}'>待审核</text>
       <text class='list-item-right status02' wx:if='{{item.status==1}}'>审核失败</text>

@@ -1,0 +1,65 @@
+/* 添加明细 */
+
+.add-detailed-body {
+}
+
+.add-item {
+  width: 100%;
+}
+
+.add-item-title {
+  padding: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.add-item-title-right {
+  display: flex;
+  align-items: center;
+}
+
+.add-item-content {
+  width: 702rpx;
+  margin: 0 auto;
+  background: #f5f9fc;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 24rpx;
+}
+
+.add-pic {
+  width: 100rpx;
+  height: 100rpx;
+  border: 1px solid #ebebeb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 24rpx;
+}
+
+.add-pic image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.pic-box {
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0 24rpx;
+}
+
+.pic-box image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.icon {
+  position: absolute;
+  top: -18rpx;
+  right: -18rpx;
+}

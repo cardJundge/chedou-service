@@ -1,0 +1,23 @@
+<!--添加明细-->
+<view class="add-detailed-body">
+  <view class="add-item" wx:for="{{addList}}">
+    <view class="add-item-title">
+      <view>{{item.name}}</view>
+      <view class="add-item-title-right">
+        <text>添加</text>
+        <i-icon type="play_fill" />
+      </view>
+    </view>
+    <view class="add-item-content">
+      <view>
+        <view class="pic-box">
+          <image src="/images/cat.png"></image>
+          <i-icon class="icon" type="delete_fill" size="18"/>
+        </view>
+      </view>
+      <view class='add-pic' bindtap='addPic1' wx:if="{{imgbox.length<9}}">
+        <image src="/images/index/add.png"></image> 
+      </view>
+    </view>
+  </view>
+</view>

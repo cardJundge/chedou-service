@@ -4,6 +4,7 @@
     <i-spin size="large" fix></i-spin>
   </view>
 </view>
+
 <view class="personnel-body">
   <view class="personnel-top">
     <view class="search-bg">
@@ -24,6 +25,7 @@
       <view bindtap="addStaff">立即添加</view>
     </view>
   </view>
+
   <view class="personnel-content" wx:if="{{someone}}">
     <view class="personnel-content-title">
       <text>剩余人数： {{personnelCount}}</text>

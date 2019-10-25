@@ -1,5 +1,4 @@
 //首页
-var test = getApp().globalData.hostName
 var app = getApp()
 import {
   PersonnelModel

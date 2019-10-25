@@ -66,6 +66,7 @@
 
 .survey-item-input {
   width: 420rpx;
+  overflow: hidden;
 }
 
 .survey-item-textarea {

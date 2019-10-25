@@ -11,7 +11,7 @@ Page({
     taskPingan: false,
     regionPingan: false,
     isCarNo: false,
-    isTimeSlot: false, // 是否有派工时间段(平安)
+    isTimeSlot: false, // 派工时间段(平安有)
     isDispatchingTime: true, // 派工时间（太平没有)
     isDispatchedWorkers: true, // 派工人(太平、平安没有)
     isFixedLossAdd: false, //出险/定损地点(太平、平安有)
@@ -19,8 +19,8 @@ Page({
     isJobNo: false, // 工号(太平、平安有)
     isSurveyTime: false, // 查勘日期(平安有)
     isreportType: false, //案件类型（太平有）
-    isPolicyNo: true, // 保单号(平安、太平有)
-    isPolicyMechanism: true, // 承保机构（平安、太平有）
+    isPolicyNo: true, // 保单号(平安、太平没有)
+    isPolicyMechanism: true, // 承保机构（平安、太平没有）
     // -------------------------------------------------
     fixedLossAdd: '',
     carNo: '',
@@ -29,10 +29,13 @@ Page({
     policyNo: '',
     policyMechanism: '',
     // -------------------------------------------------
+    sendTimeFirst: true,
+    regionFirst: true,
     isAnalysis: true,
     insuranceList: [],
     insuranceIndex: 0,
     isThreeRes: false,
+    type: 0,
     dateTimeArray: null,
     dateTime: null,
     hasInsuranceName: '',
@@ -107,9 +110,10 @@ Page({
 
   // 区域选择
   regionChangePingan(e) {
-    console.log(e)
+    
     this.setData({
-      regionIndexPingan: e.detail.value
+      regionIndexPingan: e.detail.value,
+      regionFirst: false
     })
   },
 
@@ -140,6 +144,7 @@ Page({
   timeChangePingan(e) {
     console.log(e)
     this.setData({
+      sendTimeFirst: false,
       timeSlotIndexPingan: e.detail.value
     })
   },
@@ -197,8 +202,9 @@ Page({
   surveyRadioChange(e) {
     let data = e.detail.value
     if (data == 'survey') {
+      this.data.type = 0
       this.setData({
-        isThreeRes: false
+        isThreeRes: false,
       })
     } else {
       this.setData({
@@ -208,7 +214,12 @@ Page({
   },
 
   surveyRadioChange01(e) {
-
+    let data = e.detail.value
+    if (data == 'threeRes') {
+      this.data.type = 1
+    } else {
+      this.data.type = 2
+    }
   },
 
   // 获取保险公司列表
@@ -314,12 +325,20 @@ Page({
     this.data.fixedLossAdd = e.detail.value
   },
 
+  dispatchedWorkersInput(e) {
+    this.data.dispatchedWorkers = e.detail.value
+  },
+
   policyNoInput(e) {
     this.data.policyNo = e.detail.value
   },
 
   policyMechanismInput(e) {
     this.data.policyMechanism = e.detail.value
+  },
+
+  remarksInput(e) {
+    this.data.remarks = e.detail.value
   },
 
   // 表单提交案件添加
@@ -336,6 +355,13 @@ Page({
     if (this.data.isSurveyTime && !this.data.surveyTime) {
       return wx.showToast({
         title: '请选择查勘日期',
+        icon: 'none'
+      })
+    }
+
+    if (this.data.isDispatchedWorkers && !this.data.dispatchedWorkers) {
+      return wx.showToast({
+        title: '派工人不能为空',
         icon: 'none'
       })
     }
@@ -381,6 +407,117 @@ Page({
         icon: 'none'
       })
     }
+
+    if (((this.data.isRegion && !this.data.regionPingan) && !this.data.regionListOther[this.data.regionIndexOther]) || ((this.data.isRegion && this.data.regionPingan) && this.data.regionFirst)) {
+      return wx.showToast({
+        title: '请选择区域',
+        icon: 'none'
+      })
+    }
+
+    if (this.data.isTimeSlot && this.data.sendTimeFirst) {
+      return wx.showToast({
+        title: '请选择派工时间段',
+        icon: 'none'
+      })
+    }
+
+    if(!this.data.remarks) {
+      return wx.showToast({
+        title: '备注不能为空',
+        icon: 'none'
+      })
+    }
+
+    this.toAddSurvey()
+  },
+
+  toAddSurvey() {
+    wx.showLoading({
+      title: '添加中',
+    })
+    this.data.insuranceList.forEach((item, index) => {
+      if (item.name == this.data.hasInsuranceName) {
+        this.data.insuranceId = item.id
+      }
+    })
+    // 平安（区域参数）
+    let regionPingan = this.data.regionListPingan[0][this.data.regionIndexPingan[0]] + ' ' + this.data.regionListPingan[1][this.data.regionIndexPingan[1]]
+    // 其他保险公司（区域参数）
+    let regionOther = this.data.regionListOther[this.data.regionIndexOther]
+    // 平安（时间段参数）
+    let timeSlotPingan = this.data.timeSlotListPingan[0][this.data.timeSlotIndexPingan[0]] +
+      this.data.timeSlotListPingan[1][this.data.timeSlotIndexPingan[1]]
+    // 派工时间参数
+    let sendTime = this.data.dateTimeArray[0][this.data.dateTime[0]] + '-' + this.data.dateTimeArray[1][this.data.dateTime[1]] + '-' + this.data.dateTimeArray[2][this.data.dateTime[2]] + ' ' + this.data.dateTimeArray[3][this.data.dateTime[3]] + ':' + this.data.dateTimeArray[4][this.data.dateTime[4]]
+  
+    let params = {}
+    if(this.data.hasInsuranceName == '中国平安') {
+      params = {
+        key: 'survey',
+        type: this.data.type,
+        insurance_id: this.data.insuranceId,
+        survey_date: this.data.surveyTime,
+        report_no: this.data.reportNo,
+        car_no: this.data.carNo,
+        task_type: this.data.taskModesPingan[this.data.taskIndexPingan],
+        send_time: sendTime,
+        survey_address: this.data.fixedLossAdd,
+        are: regionPingan,
+        send_date: timeSlotPingan,
+        remark: this.data.remarks
+      }
+    } else if (this.data.hasInsuranceName == '中国太平') {
+      params = {
+        key: 'survey',
+        type: this.data.type,
+        insurance_id: this.data.insuranceId,
+        report_no: this.data.reportNo,
+        car_no: this.data.carNo,
+        task_type: this.data.taskModesOther[this.data.taskIndexOther],
+        report_date: this.data.reportTime,
+        survey_address: this.data.fixedLossAdd,
+        case_type: this.data.reportType[this.data.reportIndex],
+        remark: this.data.remarks
+      }
+    } else {
+      params = {
+        key: 'survey',
+        type: this.data.type,
+        insurance_id: this.data.insuranceId,
+        send_user: this.data.dispatchedWorkers,
+        report_no: this.data.reportNo,
+        task_type: this.data.taskModesOther[this.data.taskIndexOther],
+        send_time: sendTime,
+        are: regionOther,
+        policy_no: this.data.policyNo,
+        ins_org: this.data.policyMechanism,
+        remark: this.data.remarks
+      }
+    }
+    indexModel.addSurvey(params, res => {
+      wx.hideLoading()
+      if(res.data.status == 1) {
+        indexModel.getWorkList('survey', 1, res=> {
+          if (res.data.status == 1) {
+            console.log(res.data.data.data,res.data.data.data[0])
+            let listId = res.data.data.data[0].id
+            wx.redirectTo({
+              url: '../survey-details/survey-details?listId=' + listId,
+            })
+          } else {
+            wx.showToast({
+              title: res.data.msg ? res.data.msg : '请求超时',
+            })
+          }
+        })
+        
+      } else {
+        wx.showToast({
+          title: res.data.msg ? res.data.msg : '请求超时',
+        })
+      }
+    })
   },
 
   // 解析短信
@@ -437,7 +574,21 @@ Page({
 
     // 不同保险公司信息匹配
     if (this.data.hasInsuranceName == '中国平安') {
-      shortInfoData = shortInfoData.replace('【中国平安】', '')
+      // 匹配中国平安的报案号
+      var caseReg = /(\d){13,}/i
+      var caseReg01 = /%(\w+)-(\w+)/i
+      if (shortInfoData.match(caseReg)) {
+        this.setData({
+          reportNo: shortInfoData.match(caseReg)[0]
+        })
+      } else if (shortInfoData.match(caseReg01)) {
+        let reportNo = shortInfoData.match(caseReg01)[0]
+        reportNo = reportNo.replace('%', '')
+        this.setData({
+          reportNo: reportNo
+        })
+      }
+
       // 匹配中国平安出险地点
       let addressReg = /陕西省.[\u4e00-\u9fa5\\-\a-zA-Z0-9]+/i
       if (shortInfoData.match(addressReg)) {
@@ -447,20 +598,14 @@ Page({
       }
 
       // 匹配中国平安车牌号
-      if (shortInfoData.match(carReg)) {
-        console.log(shortInfoData.match(carReg)[0])
+      let shortInfoDataTemp = shortInfoData.replace('-', '')
+      if (shortInfoDataTemp.match(carReg)) {
+        console.log(shortInfoDataTemp.match(carReg))
         this.setData({
-          carNo: shortInfoData.match(carReg)[0]
+          carNo: shortInfoDataTemp.match(carReg)[0]
         })
       }
-
-      // 匹配中国平安的报案号
-      var caseReg = /(\d){13,}/i
-      if (shortInfoData.match(caseReg)) {
-        this.setData({
-          reportNo: shortInfoData.match(caseReg)[0]
-        })
-      }
+ 
     } else if (this.data.hasInsuranceName == '国任保险') {
       // 国任保险报案号解析
       var caseReg01 = /(\d){13,}/i

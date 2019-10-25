@@ -5,14 +5,12 @@ import {
 class PersonnelModel extends HTTP {
 
   // 获取作业员列表
-  getTaskList(keywords, callback) {
+  getTaskList(param, callback) {
     var params = {
       url: '/api/user/task',
       type: 'GET',
       auth: true,
-      data: {
-        keywords: keywords
-      },
+      data: param,
       sCallback: callback
     }
     this.request(params)

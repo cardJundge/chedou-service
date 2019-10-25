@@ -1,6 +1,6 @@
 {
   "pages": [
-    
+    "pages/index/survey/add-detailed/add-detailed",
     "pages/login/login",
     "pages/index/index",
     "pages/login/register/register-next/register-next",
@@ -27,11 +27,13 @@
     "pages/index/risk/risk-detail/risk-detail",
     "pages/index/rescue/rescue-detail/rescue-detail",
     "pages/index/trailer/trailer-detail/trailer-detail",
-    "pages/index/hurt/hurtDetail/hurtDetail",    
-    "pages/index/order/order-detail/order-detail",   
+    "pages/index/hurt/hurtDetail/hurtDetail",
+    "pages/index/order/order-detail/order-detail",
     "pages/index/survey/survey",
     "pages/index/survey/add-survey/add-survey",
-    "pages/index/survey/survey-details/survey-details"
+    "pages/index/survey/survey-details/survey-details",
+    "pages/personnel/assignment/assignment"
+   
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -93,12 +93,77 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
+  // 评价二维码生成
+  generateQrCode(id, callback) {
+    var params = {
+      url: '/api/work/QRCode',
+      type: 'GET',
+      auth: true,
+      data: {
+        id: id
+      },
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
   // 获取保险公司
   getInsurance(callback) {
     var params = {
       url: '/api/index/insurance',
       type: 'GET',
       auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 增加业务
+  addSurvey(param, callback) {    
+    var params = {
+      url: '/api/work/increase',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 接单
+  businessReceipt(id, key, callback) {
+    var params = {
+      url: '/api/work/accept',
+      type: 'GET',
+      auth: true,
+      data: {
+        id: id,
+        key: key
+      },
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 分配作业员
+  assignmentTask(param, callback) {
+    var params = {
+      url: '/api/work/allot',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 到达现场
+  toScene(param, callback) {
+    var params = {
+      url: '/api/work/arrive',
+      type: 'GET',
+      auth: true,
+      data: param,
       sCallback: callback
     }
     this.request(params)

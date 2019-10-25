@@ -56,7 +56,10 @@ Page({
 
   // 获取作业员列表
   getTaskList(flag) {
-    personnelModel.getTaskList(flag, (res) => {
+    let params = {
+      keyWords: flag
+    }
+    personnelModel.getTaskList(params, (res) => {
       this.setData({
         spinShow: false
       })
