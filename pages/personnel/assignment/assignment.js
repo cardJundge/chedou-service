@@ -10,11 +10,15 @@ var indexModel = new IndexModel()
 var personnelModel = new PersonnelModel()
 Page({
   data: {
-    taskList: []
+    taskList: [],
+    someone: true
   },
   onLoad: function (options) {
     this.data.listId = options.listId
     this.data.keyName = options.keyName
+  },
+
+  onShow() {
     this.getAllModule()
   },
 
@@ -40,9 +44,20 @@ Page({
     personnelModel.getTaskList(params, res=> {
       if(res.data.status == 1) {
         this.setData({
-          taskList: res.data.data
+          taskList: res.data.data,
+          someone: true
+        })
+      } else {
+        this.setData({
+          someone: false
         })
       }
+    })
+  },
+
+  addStaff() {
+    wx.navigateTo({
+      url: '../add-personnel/add-personnel',
     })
   },
 
@@ -57,7 +72,16 @@ Page({
       id: this.data.listId
     }
     indexModel.assignmentTask(params, res=> {
-
+      if(res.data.status == 1) {
+        wx.navigateBack({
+          delta: 1
+        })
+      } else {
+        wx.showToast({
+          title: res.data.msg ? res.data.msg : '操作超时',
+          icon: 'none'
+        })
+      }
     })
   },
 

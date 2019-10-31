@@ -1,0 +1,64 @@
+/* 添加服务项目 */
+
+.add-server-body {
+}
+
+.server-form {
+  width: 702rpx;
+  margin: 0 auto;
+}
+
+.server-item {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #efefef;
+}
+
+.server-item input {
+  text-align: right;
+}
+
+.server-item-icon {
+  display: flex;
+  align-items: center;
+}
+
+.server-item-icon text {
+  margin-right: 12rpx;
+}
+
+.item-image {
+  height: 176rpx;
+  border-bottom: 0;
+}
+
+.image-box {
+  width: 128rpx;
+  height: 128rpx;
+  border: 1px solid #ebebeb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-box image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.server-btn {
+  width: 100%;
+  height: 80rpx;
+  border-radius: 0;
+  background: #1a65ff;
+  color: #fff;
+  line-height: 80rpx;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

@@ -66,6 +66,18 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
+  // 获取订单详情
+  getOrderDetails(param, callback) {
+    var params = {
+      url: '/api/order/info',
+      type: 'GET',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
   // 订单分类列表
   orderClassify(callback) {
     var params = {
@@ -119,7 +131,7 @@ class IndexModel extends HTTP {
   }
 
   // 增加业务
-  addSurvey(param, callback) {    
+  addBusiness(param, callback) {  
     var params = {
       url: '/api/work/increase',
       type: 'POST',
@@ -130,7 +142,19 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
-  // 接单
+  // 编辑业务
+  editBusiness(param, callback) {
+    var params = {
+      url: '/api/work/edit',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 业务---》接单
   businessReceipt(id, key, callback) {
     var params = {
       url: '/api/work/accept',
@@ -169,6 +193,41 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
+  // 完成结案
+  finishCase(param, callback) {
+    var params = {
+      url: '/api/work/finish',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 查勘定损---》添加明细
+  addDetailed(param, callback) {
+    var params = {
+      url: '/api/work/schedule',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 删除业务
+  delBusiness(param, callback) {
+    var params = {
+      url: '/api/work/remove',
+      type: 'GET',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
 }
 export {
   IndexModel

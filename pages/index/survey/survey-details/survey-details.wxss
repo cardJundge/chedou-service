@@ -40,8 +40,7 @@
 
 .progress {
   width: 100%;
-  padding: 0 24rpx;
-  margin-bottom: 104rpx;
+  padding: 0 24rpx 104rpx;
 }
 
 .progress-title {
@@ -80,7 +79,6 @@
 }
 
 .progress-right text:nth-child(1) {
-  height: 40rpx;
   line-height: 40rpx;
 }
 
@@ -96,9 +94,6 @@
 }
 
 .progress-image-item {
-  width: 120rpx;
-  height: 120rpx;
-  margin: 12rpx;
 }
 
 .progress-image-item:nth-child(4) {
@@ -108,7 +103,9 @@
 .progress-image-item image {
   width: 120rpx;
   height: 120rpx;
+  margin: 12rpx;
 }
+
 
 /* 操作 */
 

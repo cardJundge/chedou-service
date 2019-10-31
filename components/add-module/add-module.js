@@ -11,6 +11,9 @@ Component({
     },
     module: {
       type: Array
+    },
+    bottomSpin: {
+      type: Boolean
     }
   },
   data: {
@@ -21,21 +24,23 @@ Component({
       indexModel.setSelfModule(this.data.moduleItem, res=> {
         if(res.data.status == 1) {
           this.triggerEvent('okEvent')
+        } else {
+          wx.showToast({
+            title: res.data.msg ? res.data.msg : '请求超时',
+          })
         }
         this.setData({
           isShow: false
         })
       })
     },
+
     selectModule(e) {
-      console.log(e)
       let string = "module[" + e.currentTarget.dataset.index + "].selected"
-      console.log(string)
       this.setData({
         [string]: !this.data.module[e.currentTarget.dataset.index].selected
       })
       let detailValue = this.data.module.filter(it => it.selected).map(it => it.id)
-      console.log('所有选中的值为：', detailValue)
       this.data.moduleItem = ''
       detailValue.map((item, index) => {
         if (index == 0) {
@@ -43,7 +48,6 @@ Component({
         } else {
           this.data.moduleItem = this.data.moduleItem.concat(',' + item)
         }
-        console.log(this.data.moduleItem)
       })
     },
 

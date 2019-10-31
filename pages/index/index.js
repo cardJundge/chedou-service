@@ -19,7 +19,8 @@ Page({
     orderList: [],
     moduleArray: [],
     businessArray: [],
-    spinShow: true
+    spinShow: true,
+    bottomSpin: true,
   },
   onLoad() {
     this.setData({
@@ -27,7 +28,7 @@ Page({
     })
   },
   onReady() {
-    // this.getDataStatics()
+    this.getDataStatics()
     this.getOrderList()
   },
   onShow() {
@@ -84,6 +85,10 @@ Page({
       wx.navigateTo({
         url: './risk/risk',
       })
+    } else if (key == 'sickness') {
+      wx.navigateTo({
+        url: './sickness/sickness',
+      })
     }
   },
 
@@ -94,6 +99,9 @@ Page({
     })
     indexModel.getAllModule(res => {
       if (res.data.status == 1) {
+        this.setData({
+          bottomSpin: false
+        })
         res.data.data.forEach((item, index) => {
           item.selected = false
           item.img = '/images/index/' + item.key + '.png'

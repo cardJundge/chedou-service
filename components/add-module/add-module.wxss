@@ -17,13 +17,27 @@
 
 .module-content {
   width: 670rpx;
-  height: 750rpx;
+  height: 780rpx;
   background-color: #fff;
   border-radius: 20rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
- 
+}
+
+.loading-img {
+  width: 670rpx;
+  height: 780rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-img image{
+  width: 240rpx;
+  height: 240rpx;
+  margin-bottom: 24rpx;
 }
 
 .close-icon {
@@ -36,16 +50,21 @@
   width: 100%;
   text-align: center;
   font-size: 36rpx;
-  margin: 24rpx 0 56rpx;
+  margin: 24rpx 0 24rpx;
   position: relative;
 }
 
 .module-list {
-  padding: 0 40rpx;
+  padding: 24rpx 40rpx;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
+}
+
+.module-list-scroll {
+  overflow: hidden;
 }
 
 .module-item {
@@ -74,7 +93,7 @@
   border-radius: 50%;
   border: 2rpx solid #979797;
   z-index: 999;
-  background: #ffffff;
+  background: #fff;
   position: absolute;
   top: -20rpx;
   right: -20rpx;
@@ -89,9 +108,10 @@
 .module-btn {
   width: 630rpx;
   height: 80rpx;
-  background: #1A84FF;
+  margin: 24rpx auto;
+  background: #1a84ff;
   border-radius: 60rpx;
-  color: #ffffff;
+  color: #fff;
   font-size: 36rpx;
   font-family: PingFangSC-Medium;
   text-align: center;

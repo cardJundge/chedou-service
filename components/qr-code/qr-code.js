@@ -9,7 +9,7 @@ Component({
     isShow: {
       type: Boolean
     },
-    imgUrl: {
+    qrImg: {
       type: String
     }
   },

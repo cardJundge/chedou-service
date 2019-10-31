@@ -50,7 +50,8 @@
         <i-icon type="enter" size="18" color="#E2E2E2" />
       </view>
     </view>
-    <view class="mine-item" wx:if="{{basicUserInfo.type == 2 || basicUserInfo.type == 3}}">
+    <view class="mine-item" wx:if="{{basicUserInfo.type == 2 || basicUserInfo.type == 3}}" bindtap="toServer">
+    <!-- <view class="mine-item" bindtap="toServer"> -->
       <image src="/images/mine/icon_program.png"></image>
       <view class="mine-item-text">
         <text>项目管理</text>

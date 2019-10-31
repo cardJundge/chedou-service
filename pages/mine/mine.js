@@ -17,6 +17,7 @@ Page({
     this.setData({
       basicUserInfo: app.globalData.userInfo
     })
+    console.log(this.data.basicUserInfo)
   },
   onShow() {},
   editInfo() {
@@ -129,6 +130,14 @@ Page({
     })
   },
 
+  // 项目管理
+  toServer() {
+    wx.navigateTo({
+      url: './server/server'
+    })
+  },
+
+  // 退出登录
   toLogout() {
     wx.showModal({
       title: '提示',

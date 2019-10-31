@@ -30,6 +30,7 @@ class PersonnelModel extends HTTP {
         module: params.module,
         type: params.type,
         group_id: params.groupId,
+        service_id: params.serviceId
       },
       sCallback: callback
     }
@@ -61,7 +62,8 @@ class PersonnelModel extends HTTP {
         module: params.module,
         type: params.type,
         group_id: params.groupId,
-        id: params.id
+        id: params.id,
+        service_id: params.serviceId
       },
       sCallback: callback
     }

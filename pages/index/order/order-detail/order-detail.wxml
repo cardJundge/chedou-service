@@ -21,14 +21,20 @@
       </view>
     </view>
   </view>
-  <view class="order-content">
-    <import src="../../../template/step/step.wxml" />
-    <view class='order-content-text'>进度</view>
-    <view class='order-content-info'>
-      <view class="zan-panel">
-        <view class="zan-cell zan-cell" style='padding:0'>
-          <view class="zan-cell__bd">
-            <template is="zan-steps" data="{{ type: 'vertical', hasDesc: true, steps }}"></template>
+    <!-- 进度 -->
+  <!-- <view class="progress" wx:if="{{schedule.length !== 0}}"> -->
+  <view class="progress">
+    <view class="progress-title">进度</view>
+    <view class="progress-content">
+      <view class="progress-item">
+        <view class="progress-left">
+          <image src="/images/index/icon_light.png"></image>
+        </view>
+        <view class="progress-right">
+          <text>服务商接单</text>
+          <text>2019-10-30</text>
+          <view class="progress-image" wx:if="{{item.picture}}">
+            
           </view>
         </view>
       </view>
@@ -37,77 +43,9 @@
 
   <view class="order-bottom">
     <view class="order-btn order-status-01" wx:if="{{detailData.status == 1 && detailData.work_status == 0}}">接单</view>
-     <view class="order-btn order-status-02" wx:if="{{detailData.status == 1 && detailData.work_status == 1}}">
+    <view class="order-btn order-status-02" wx:if="{{detailData.status == 1 && detailData.work_status == 1}}">
       <view>添加进度</view>
       <view>去分配</view>
-     </view>
+    </view>
   </view>
-  <!-- <view class='order-content'>
-    <view class='user_infor'>
-      <view class='user_avatar'>
-        <view class='nickname'>{{detailData.user.nickname}}</view>
-      </view>
-      <view class='user_phone'>
-        <view class='nickname' data-num='{{detailData.user.mobile}}' bindtap='link'>{{detailData.user.mobile}}</view>
-      </view>
-    </view>
-    <view class='service_item'>
-      <view class='servicer_text'>服务</view>
-      <view class='service_infor'>
-        <view class='service_avatar'>
-          <image src="{{orderImg}}"></image>
-        </view>
-        <view class='order_infor'>
-          <view class='service_name'>{{orderName}}</view>
-          <view class='service_num'>x1</view>
-          <view class='service_price'>￥{{detailData.price}}</view>
-        </view>
-
-      </view>
-      <view class='order_infor_order'>
-        <view class=''>
-          <text>订单编号：{{detailData.order_no}}</text>
-          <text class='copy_cell' bindtap="copyTBL" id='{{detailData.server.order_no}}'>复制</text>
-        </view>
-
-        <view>订单时间：{{detailData.add_time}}</view>
-        <view>支付方式：线上支付</view>
-      </view>
-    </view>
-    <import src="../../template/step/step.wxml" />
-    <view class='service_item'>
-      <view class='servicer_text'>时效</view>
-      <view class='service_infor' style='border-top:none'>
-        <view class="zan-panel">
-          <view class="zan-cell zan-cell" style='padding:0px'>
-            <view class="zan-cell__bd">
-              <template is="zan-steps" data="{{ type: 'vertical', hasDesc: true, steps }}"></template>
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-    <view style='background:#fff;'>
-      <view class='order_btn' wx:if='{{detailData.server.work_status==0&&detailData.server.status==1}}'>
-        <view class='each_btn' bindtap='cancelOrder'>
-          <text>取消订单</text>
-        </view>
-        <view class='each_btn' bindtap='accept'>
-          <text>接 单</text>
-        </view>
-      </view>
-      <view class='order_btn' wx:if='{{detailData.server.work_status==1&&detailData.server.status==1}}'>
-
-        <view class='each_btn' bindtap='toAllot'>
-          <text>去分配</text>
-        </view>
-      </view>
-      <view class='order_btn' wx:if='{{1<detailData.server.work_status&&detailData.server.work_status<4&&detailData.server.status==1}}'>
-        <view class='each_btn'>
-          <text bindtap='addProgress'>添加进度</text>
-        </view>
-      </view>
-    </view>
-
-  </view> -->
 </view>

@@ -46,6 +46,7 @@
           <text wx:if="{{item.key == 'rescue'}}">道路紧急救援</text>
           <text wx:if="{{item.key == 'risk'}}">风险调查</text>
           <text wx:if="{{item.key == 'hurt'}}">人伤调解</text>
+          <text wx:if="{{item.key == 'sickness'}}">疾病调查</text>
         </view>
       </view>
     </view>
@@ -80,5 +81,5 @@
     </view>
   </view>
   <!-- 添加模块components -->
-  <add-module module="{{moduleArray}}" isShow="{{isAddModule}}" bind:okEvent="okEvent" />
+  <add-module module="{{moduleArray}}" bottomSpin="{{bottomSpin}}" isShow="{{isAddModule}}" bind:okEvent="okEvent" />
 </view>

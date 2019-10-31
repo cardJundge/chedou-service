@@ -2,5 +2,5 @@
   "usingComponents": {
     "i-icon": "/dist/icon/index"
   },
-  "navigationBarTitleText": "查勘明细"
+  "navigationBarTitleText": "添加查勘明细"
 }

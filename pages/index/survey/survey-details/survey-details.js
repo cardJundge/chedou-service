@@ -10,7 +10,6 @@ Page({
     isJobNo: false,
     isSurveyTime: false, // 查勘日期(平安有)
     isDispatchedWorkers: true, // 派工人(太平、平安没有)
-    isCarNo: false, // (平安、太平有)
     isDispatchingTime: true, // 派工时间（太平没有)
     isReportTime: false, // 报案时间(太平有)
     isFixedLossAdd: false, //出险/定损地点(太平、平安有)
@@ -26,7 +25,13 @@ Page({
     serviceOperation: false,
   },
   onLoad: function(options) {
+    this.setData({
+      imgUrl: app.globalData.imgUrl
+    })
     this.data.listId = options.listId
+  },
+
+  onShow() {
     this.getDetails()
   },
 
@@ -36,11 +41,12 @@ Page({
     let id = this.data.listId
     indexModel.businessReceipt(id, key, res=> {
       if(res.data.status == 1) {
-        let surveyList = this.data.surveyList
-        let string = 'surveyList.status'
-        this.setData({
-          [string]: 4
-        })
+        // let surveyList = this.data.surveyList
+        // let string = 'surveyList.status'
+        // this.setData({
+        //   [string]: 4
+        // })
+        this.getDetails()
       } else {
         wx.showToast({
           title: res.data.msg ? res.data.msg : '请求超时',
@@ -57,7 +63,7 @@ Page({
       if (res.data.status == 1) {
         this.setData({
           surveyList: res.data.data,
-          schedule: res.data.schedule
+          schedule: res.data.schedule.reverse()
         })
         res.data.schedule.forEach((item, index) => {
           if(item.title.match('到达现场')) {
@@ -86,7 +92,6 @@ Page({
                 isJobNo: true,
                 isSurveyTime: true,
                 isDispatchedWorkers: false,
-                isCarNo: true,
                 isDispatchingTime: true,
                 isReportTime: false,
                 isFixedLossAdd: true,
@@ -101,7 +106,6 @@ Page({
                 isJobNo: true,
                 isSurveyTime: false,
                 isDispatchedWorkers: false,
-                isCarNo: true,
                 isDispatchingTime: false,
                 isReportTime: true,
                 isFixedLossAdd: true,
@@ -116,7 +120,6 @@ Page({
                 isJobNo: false,
                 isSurveyTime: false,
                 isDispatchedWorkers: true,
-                isCarNo: false,
                 isDispatchingTime: true,
                 isReportTime: false,
                 isFixedLossAdd: false,
@@ -163,7 +166,7 @@ Page({
       responseType: 'arraybuffer',
       success: (res)=> {      
         this.setData({
-          imgUrl: wx.arrayBufferToBase64(res.data)
+          qrImg: wx.arrayBufferToBase64(res.data)
         })
       }
     })
@@ -197,9 +200,73 @@ Page({
     })
   },
 
+  // 结案
+  toFinishCase() {
+    wx.showLoading({
+      title: '结案中...',
+    })
+    let params = {
+      key: 'survey',
+      id: this.data.listId
+    }
+    indexModel.finishCase(params, res=> {
+      wx.hideLoading()
+      if(res.data.status == 1) {
+        this.getDetails()
+      } else {
+        wx.showToast({
+          title: res.data.msg ? res.data.msg : '请求超时',
+        })
+      }
+    })
+  },
+
+  // 操作---》编辑案件
+  editEvent() {
+    this.setData({
+      showBottomOperation: false
+    })
+    let data = JSON.stringify(this.data.surveyList)
+    wx.navigateTo({
+      url: '../add-survey/add-survey?data=' + data,
+    })
+  },
+
+  // 操作---->删除案件
+  delEvent() {
+    wx.showModal({
+      title: '提示',
+      content: '确定删除该案件吗？',
+      success: res=> {
+        if(res.confirm) {
+          let params = {
+            key: 'survey',
+            id: this.data.listId
+          }
+          indexModel.delBusiness(params, res=> {
+            if(res.data.status == 1) {
+              this.setData({
+                showBottomOperation: false
+              })
+              wx.navigateBack({
+                delta: 1
+              }) 
+            } else {
+              wx.showToast({
+                title: res.data.msg ? res.data.msg : '操作超时',
+              })
+            }
+          })
+        }
+      }
+    })
+  },
+
   // 添加进度
   toAddDetails() {
-    
+    wx.navigateTo({
+      url: '../add-detailed/add-detailed?id=' + this.data.listId,
+    })
   }
 
 })

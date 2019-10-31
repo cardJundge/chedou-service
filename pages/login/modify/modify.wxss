@@ -9,7 +9,7 @@
   height: 90rpx;
   display: flex;
   align-items: center;
-  border-bottom: 1rpx solid #C6C6C6;
+  border-bottom: 1rpx solid #E2E2E2;
 }
 
 .modify-input text {

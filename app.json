@@ -1,11 +1,10 @@
 {
   "pages": [
-    "pages/index/survey/add-detailed/add-detailed",
     "pages/login/login",
     "pages/index/index",
+    "pages/mine/mine",
     "pages/login/register/register-next/register-next",
     "pages/login/register/register",
-    "pages/mine/mine",
     "pages/personnel/personnel",
     "pages/logs/logs",
     "pages/login/forget/forget",
@@ -14,9 +13,10 @@
     "pages/personnel/add-quota/add-quota",
     "pages/mine/edit-info/edit-info",
     "pages/login/modify/modify",
-    "pages/mine/serverItemList/serverItemList",
     "pages/mine/account/account",
     "pages/mine/account/account-detail/account-detail",
+    "pages/mine/server/server",
+    "pages/mine/server/add-server/add-server",
     "pages/index/push/push",
     "pages/index/push/push-detail/push-detail",
     "pages/index/rescue/rescue",
@@ -32,14 +32,21 @@
     "pages/index/survey/survey",
     "pages/index/survey/add-survey/add-survey",
     "pages/index/survey/survey-details/survey-details",
-    "pages/personnel/assignment/assignment"
-   
+    "pages/personnel/assignment/assignment",
+    "pages/index/survey/add-detailed/add-detailed",
+    "pages/index/survey/survey-location/survey-location",
+    "pages/index/sickness/sickness"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#1A65FF",
     "navigationBarTitleText": "商户端",
     "navigationBarTextStyle": "white"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "根据地理位置将为您提供最佳服务"
+    }
   },
   "tabBar": {
     "color": "#616161",

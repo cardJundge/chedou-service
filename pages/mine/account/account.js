@@ -1,6 +1,11 @@
 // pages/index/updateData/Account/Account.js
 var test = getApp().globalData.hostName
 var app = getApp()
+import {
+  MineModel
+} from '../models/mine.js'
+
+var mineModel = new MineModel()
 Page({
 
   /**
@@ -19,22 +24,13 @@ Page({
     this.setData({
       openId: app.globalData.userInfo.openId_chedou
     })
-    wx.request({
-      url: test + '/api/index/bean',
-      method: 'GET',
-      header: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + app.globalData.userInfo.api_token 
-      }, // 默认值
-      success: res=> {
-        if (res.data.status == 1) {
-          this.setData({
-            cashData: res.data.data.gold
-          })
-        }
+    mineModel.getBean(res=> {
+      if (res.data.status == 1) {
+        this.setData({
+          cashData: res.data.data.gold
+        })
       }
     })
-
   },
 
   // 提现明细
@@ -92,42 +88,34 @@ Page({
       withdrawalLoding: true,
       btnTrigger: false
     })
-    wx.request({
-      url: test + '/api/index/withdrawal',
-      method: 'POST',
-      header: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + app.globalData.userInfo.api_token 
-      },
-      data: {
-        type: 'chedou',
-        bean: that.data.cashNum,
-        openid: that.data.openId,
-        true_name: that.data.name
-      },
-      success: function (res) {
-        if (res.data.status == 1) {
-          that.setData({
-            showSuccess: true
-          })
-        } else {
-          wx.showToast({
-            title: res.data.msg,
-            icon: 'none',
-            duration: 1500,
-            success: res => {
-              setTimeout(function () {
-                //要延时执行的代码
-                that.setData({
-                  name: '',
-                  cashNum: '',
-                  withdrawalLoding: false
-                });
-                that.onLoad()
-              }, 1500)
-            }
-          })
-        }
+    let params = {
+      type: 'chedou',
+      bean: that.data.cashNum,
+      openid: that.data.openId,
+      true_name: that.data.name
+    }
+    mineModel.toWithdrawal(params, res=> {
+      if (res.data.status == 1) {
+        that.setData({
+          showSuccess: true
+        })
+      } else {
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none',
+          duration: 1500,
+          success: res => {
+            setTimeout(function () {
+              //要延时执行的代码
+              that.setData({
+                name: '',
+                cashNum: '',
+                withdrawalLoding: false
+              });
+              that.onLoad()
+            }, 1500)
+          }
+        })
       }
     })
 

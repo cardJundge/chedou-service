@@ -1,7 +1,7 @@
 <!--查勘定损详情-->
 <view class="survey-details-body">
   <!-- 业务基本信息 -->
-  <view class="business">
+  <view class="business" style="{{schedule.length == 0 ? 'padding-bottom: 104rpx' : ''}}">
     <view class="business-title">
       <text>业务基本信息</text>
       <i-icon color="#1a65ff" type="more" bindtap="operation" size="24" />
@@ -37,8 +37,8 @@
         <text>案件号</text>
         <text>{{surveyList.report_no}}</text>
       </view>
-      <!-- 车牌号（平安、太平有） -->
-      <view class="business-item" wx:if="{{isCarNo}}">
+      <!-- 车牌号 -->
+      <view class="business-item">
         <text>车牌号码</text>
         <text>{{surveyList.car_no}}</text>
       </view>
@@ -99,12 +99,13 @@
       </view>
       <view class="business-item" wx:if="{{surveyList.status > 3}}">
         <text>评价</text>
-        <text class="business-item-code" bindtap="showQrCode">二维码</text>
+        <text class="business-item-code" bindtap="showQrCode" wx:if="{{surveyList.is_comment == '未评价'}}">二维码</text>
+        <text wx:if="{{surveyList.is_comment == '已评价'}}">已评价</text>
       </view>
     </view>
   </view>
   <!-- 进度 -->
-  <view class="progress" wx:if="{{schedule}}">
+  <view class="progress" wx:if="{{schedule.length !== 0}}">
     <view class="progress-title">进度</view>
     <view class="progress-content">
       <view class="progress-item" wx:for="{{schedule}}">
@@ -114,25 +115,22 @@
         <view class="progress-right">
           <text>{{item.title}}</text>
           <text>{{item.date}}</text>
-          <!-- <view wx:if="{{item.picture}}" class=""></view> -->
-          <view class="progress-image">
-            <view class="progress-image-item">
-              <image src="/images/cat.png"></image>
+          <view class="progress-image" wx:if="{{item.picture}}">
+            <view class="progress-image-item" wx:for="{{item.picture.ckzp}}" wx:for-item="ckzpitem">
+              <image src="{{imgUrl}}{{ckzpitem}}"></image>
             </view>
-            <view class="progress-image-item">
-              <image src="/images/cat.png"></image>
+            <view class="progress-image-item" wx:for="{{item.picture.gydz}}" wx:for-item="gydzitem">
+              <image src="{{imgUrl}}{{gydzitem}}"></image>
             </view>
-            <view class="progress-image-item">
-              <image src="/images/cat.png"></image>
-            </view>
-            <view class="progress-image-item">
-              <image src="/images/cat.png"></image>
+            <view class="progress-image-item" wx:for="{{item.picture.zfdz}}" wx:for-item="zfdzitem">
+              <image src="{{imgUrl}}{{zfdzitem}}"></image>
             </view>
           </view>
         </view>
       </view>
     </view>
   </view>
+
   <!-- 操作按钮 -->
   <view class="operation" wx:if="{{surveyList.status < 4}}" bindtap="toReceipt">
     <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
@@ -147,11 +145,11 @@
       <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
       <text>分配作业员</text>
     </view>
-    <view class="operation-item" wx:if="{{surveyList.is_push == 0}}" bindtap="toPush">
+    <view class="operation-item" wx:if="{{surveyList.is_push == 0 && surveyList.type == 0}}" bindtap="toPush">
       <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
       <text>推修</text>
     </view>
-    <view class="operation-item" wx:if="{{surveyList.is_push == 1}}">
+    <view class="operation-item" wx:if="{{surveyList.is_push == 1 && surveyList.type == 0}}">
       <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
       <text>已推修</text>
     </view>
@@ -161,15 +159,29 @@
       <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
       <text>添加明细</text>
     </view>
-    <view class="operation-item">
+    <view class="operation-item" bindtap="toFinishCase">
       <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
       <text>结案</text>
     </view>
-    <view class="operation-item" wx:if="{{surveyList.is_push == 0}}" bindtap="toPush">
+    <view class="operation-item" wx:if="{{surveyList.is_push == 0 && surveyList.type == 0}}" bindtap="toPush">
       <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
       <text>推修</text>
     </view>
-    <view class="operation-item" wx:if="{{surveyList.is_push == 1}}">
+    <view class="operation-item" wx:if="{{surveyList.is_push == 1 && surveyList.type == 0}}">
+      <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
+      <text>已推修</text>
+    </view>
+  </view>
+  <view class="operation" wx:if="{{serviceOperation && surveyList.status == 6 && !surveyList.task_id}}">
+    <view class="operation-item" bindtap="toAddDetails">
+      <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
+      <text>添加明细</text>
+    </view>
+    <view class="operation-item" wx:if="{{surveyList.is_push == 0 && surveyList.type == 0}}" bindtap="toPush">
+      <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
+      <text>推修</text>
+    </view>
+    <view class="operation-item" wx:if="{{surveyList.is_push == 1 && surveyList.type == 0}}">
       <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
       <text>已推修</text>
     </view>
@@ -179,6 +191,6 @@
   </view>
 </view>
 <!-- 底部操作按钮 -->
-<bottom-modal isShow="{{showBottomOperation}}" />
+<bottom-modal isShow="{{showBottomOperation}}" status="{{surveyList.status}}" bind:editEvent="editEvent" bind:delEvent="delEvent"/>
 <!-- 评价二维码 -->
-<qr-code isShow= "{{showQrCode}}" imgUrl="{{imgUrl}}"/>
+<qr-code isShow="{{showQrCode}}" qrImg="{{qrImg}}" />

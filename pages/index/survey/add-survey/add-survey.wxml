@@ -61,8 +61,8 @@
           <label>案件号</label>
           <input name="reportNo" value="{{reportNo}}" bindinput="reportNoInput" class="survey-item-input" placeholder-class="ph-class" placeholder="请输入案件号"></input>
         </view>
-        <!-- 车牌号（平安、太平有） -->
-        <view class="survey-item" wx:if="{{isCarNo}}">
+        <!-- 车牌号 -->
+        <view class="survey-item">
           <label>车牌号</label>
           <input name="carNo" value="{{carNo}}" bindinput="carNoInput" placeholder-class="ph-class" placeholder="请输入车牌号"></input>
         </view>
@@ -70,21 +70,27 @@
         <view class="survey-item" wx:if="{{!taskPingan}}">
           <label>任务类型</label>
           <picker bindchange="taskChangeOther" value="{{taskIndexOther}}" range="{{taskModesOther}}">
-            <view class="survey-item-picker">{{taskModesOther[taskIndexOther]?taskModesOther[taskIndexOther]:'请选择任务类型'}}</view>
+            <view class="survey-item-picker">{{taskModesOther[taskIndexOther]?taskModesOther[taskIndexOther]: (taskModesOtherName ? taskModesOtherName :'请选择任务类型')}}</view>
           </picker>
         </view>
         <!-- 任务类型（平安） -->
         <view class="survey-item" wx:if="{{taskPingan}}">
           <label>任务类型</label>
           <picker bindchange="taskChangePingan" value="{{taskIndexPingan}}" range="{{taskModesPingan}}">
-            <view class="survey-item-picker">{{taskModesPingan[taskIndexPingan]?taskModesPingan[taskIndexPingan]:'请选择任务类型'}}</view>
+            <view class="survey-item-picker">{{taskModesPingan[taskIndexPingan]?taskModesPingan[taskIndexPingan]:(taskModesPinganName ? taskModesPinganName :'请选择任务类型')}}</view>
           </picker>
         </view>
         <!-- 派工时间(太平没有) -->
         <view class="survey-item" wx:if="{{isDispatchingTime}}">
           <label>派工时间</label>
           <picker mode="multiSelector" value="{{dateTime}}" bindchange="changedateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
-            <view class="survey-item-picker">
+            <view class="survey-item-picker" wx:if="{{sendTimeFirst && !sendTimeName}}">
+              请选择派工时间
+            </view>
+            <view class="survey-item-picker" wx:if="{{sendTimeFirst && sendTimeName}}">
+              {{sendTimeName}}
+            </view>
+            <view class="survey-item-picker" wx:if="{{!sendTimeFirst}}">
               {{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}
             </view>
           </picker>
@@ -97,22 +103,26 @@
           </picker>
         </view>
         <!-- 出险/定损地点（平安、太平有） -->
-        <view class="survey-item" wx:if="{{isFixedLossAdd}}">
+        <view class="survey-item survey-item-address" wx:if="{{isFixedLossAdd}}">
           <label>出险/定损地点</label>
           <input name="fixedLossAdd" value="{{fixedLossAdd}}" bindinput="fixedLossAddInput" class="survey-item-input" placeholder-class="ph-class" placeholder="请输入出险/定损地点"></input>
+          <view class="survey-item-address-img" bindtap="selectAddress">
+            <image src="/images/index/address.png"></image>
+          </view>
         </view>
         <!-- 案件类型（太平有） -->
         <view class="survey-item" wx:if="{{isreportType}}">
           <label>案件类型</label>
           <picker mode="selector" range="{{reportType}}" value="{{reportIndex}}" bindchange="reportTypeChange">
-            <view class="survey-item-picker">{{reportType[reportIndex]?reportType[reportIndex]:'请选择案件类型'}}</view>
+            <view class="survey-item-picker">{{reportType[reportIndex]?reportType[reportIndex]:(reportTypeName ? reportTypeName :'请选择案件类型')}}</view>
           </picker>
         </view>
         <!-- 区域（平安） -->
         <view class="survey-item" wx:if="{{isRegion && regionPingan}}">
           <label>区域</label>
           <picker mode="multiSelector" value="{{regionIndexPingan}}" bindchange="regionChangePingan" bindcolumnchange="regionChangeColumnPingan" range="{{regionListPingan}}">
-            <view wx:if="{{regionFirst}}">请选择区域</view>
+            <view wx:if="{{regionFirst && !areName}}">请选择区域</view>
+            <view wx:if="{{regionFirst && areName}}">{{areName}}</view>
             <view wx:if="{{!regionFirst}}" class="survey-item-picker">{{regionListPingan[0][regionIndexPingan[0]]}} {{regionListPingan[1][regionIndexPingan[1]]}}</view>
           </picker>
         </view>
@@ -120,15 +130,16 @@
         <view class="survey-item" wx:if="{{isRegion && !regionPingan}}">
           <label>区域</label>
           <picker bindchange="regionChangeOther" value="{{regionIndexOther}}" range="{{regionListOther}}">
-            <view class="survey-item-picker">{{regionListOther[regionIndexOther]?regionListOther[regionIndexOther]:'请选择区域'}}</view>
+            <view class="survey-item-picker">{{regionListOther[regionIndexOther]?regionListOther[regionIndexOther]:(areName ? areName : '请选择区域')}}</view>
           </picker>
         </view>
         <!-- 派工时间段（平安有） -->
         <view class="survey-item" wx:if="{{isTimeSlot}}">
           <label>派工时间段</label>
           <picker mode="multiSelector" value="{{timeSlotIndexPingan}}" bindchange="timeChangePingan" bindcolumnchange="timeChangeColumnPingan" range="{{timeSlotListPingan}}">
-            <view class="survey-item-picker" wx:if="{{sendTimeFirst}}">请选择派工时间段</view>
-            <view class="survey-item-picker" wx:if="{{!sendTimeFirst}}">{{timeSlotListPingan[0][timeSlotIndexPingan[0]]}} {{timeSlotListPingan[1][timeSlotIndexPingan[1]]}}</view>
+            <view class="survey-item-picker" wx:if="{{sendDataFirst && !sendDataName}}">请选择派工时间段</view>
+            <view class="survey-item-picker" wx:if="{{sendDataFirst && sendDataName}}">{{sendDataName}}</view>
+            <view class="survey-item-picker" wx:if="{{!sendDataFirst}}">{{timeSlotListPingan[0][timeSlotIndexPingan[0]]}} {{timeSlotListPingan[1][timeSlotIndexPingan[1]]}}</view>
           </picker>
         </view>
         <!-- 保单号(太平、平安没有) -->

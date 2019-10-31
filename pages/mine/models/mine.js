@@ -59,6 +59,51 @@ class MineModel extends HTTP {
     this.request(params)
   }
 
+  // 账户豆子数
+  getBean(callback) {
+    var params = {
+      url: '/api/index/bean',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 去提现
+  toWithdrawal(param, callback) {
+    var params = {
+      url: '/api/index/withdrawal',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 账户明细
+  beanDetails(callback) {
+    var params = {
+      url: '/api/index/detail',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 获取服务项目列表
+  getServerList(callback) {
+    var params = {
+      url: '/api/index/classify',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
 }
 export {
   MineModel

@@ -158,6 +158,7 @@ Page({
       params.module = this.data.module
       params.type = this.data.isLeader
       params.groupId = this.data.number ? groupData[number].id : 0
+      params.serviceId = app.globalData.userInfo.id
       console.log(params)
       if(this.data.isEdit) {
         params.id = this.data.taskId
@@ -166,8 +167,8 @@ Page({
             wx.showToast({
               title: '修改成功',
               success: res => {
-                wx.switchTab({
-                  url: '../personnel',
+                wx.navigateBack({
+                  delta: 1
                 })
               }
             })
@@ -184,8 +185,8 @@ Page({
             wx.showToast({
               title: '添加成功',
               success: res => {
-                wx.switchTab({
-                  url: '../personnel',
+                wx.navigateBack({
+                  delta: 1
                 })
               }
             })

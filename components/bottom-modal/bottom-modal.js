@@ -3,19 +3,27 @@ Component({
   properties: {
     isShow: {
       type: Boolean
+    },
+    status: {
+      type: String
     }
   },
   data: {
 
   },
   methods: {
-    // 二维码生成
-    
-
     closeModal() {
       this.setData({
         isShow: false
       })
+    },
+
+    toEdit() {
+      this.triggerEvent('editEvent')
+    },
+
+    toDel() {
+      this.triggerEvent('delEvent')
     }
   }
 })

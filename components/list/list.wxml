@@ -1,4 +1,10 @@
-<view class="list-body">
+
+<view class="list-body" wx:if="{{spinShow}}">
+   <view class="spin-article">
+    <i-spin size="large" fix></i-spin>
+  </view>
+</view>
+<view class="list-body" wx:if="{{!spinShow}}">
   <view class="list-top">
     <view class="search-bg">
       <view class="search-box">
@@ -28,7 +34,7 @@
       <text class='list-item-right status04' wx:if='{{item.status==3}}'>已分配</text>
       <text class='list-item-right status05' wx:if='{{item.status==4}}'>进行中</text>
       <text class='list-item-right status06' wx:if='{{item.status==5}}'>已取消</text>
-      <text class='list-item-right status07' wx:if='{{item.status==6}}'>已完成</text>
+      <text class='list-item-right status06' wx:if='{{item.status==6}}'>已完成</text>
     </view>
     <view class="more-data" wx:if="{{hasMoreData}}" bindtap="getMoreData">点击加载更多...</view>
   </view>

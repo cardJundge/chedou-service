@@ -8,16 +8,21 @@ Component({
   properties: {
     typeKey: {
       type: String
+    },
+    businessList: {
+      type: Array
+    },
+    page: {
+      type: Number
     }
   },
-  data: {
-    page: 1,
-    pageSize: 20,
-    businessList: [],
-    hasNoData: true
+  data: {   
+    pageSize: 15,
+    hasNoData: false,
+    spinShow: true,
   },
   ready() {
-    this.getBusinessList()
+    // this.getBusinessList()
   },
   methods: {
     getBusinessList() {
@@ -27,14 +32,16 @@ Component({
           let businessInfo = res.data.data.data
           if (this.data.page == 1 && businessInfo.length == 0) {
             return this.setData({
-              hasNoData: true
+              hasNoData: true,
+              spinShow: false,
             })
           }
           this.setData({
-            hasNoData: false
+            hasNoData: false,
+            spinShow: false,
           })
+          
           if (businessInfo.length < this.data.pageSize) {
-
             this.setData({
               businessList: businessList.concat(businessInfo),
               hasMoreData: false
@@ -42,7 +49,6 @@ Component({
           } else {
             this.setData({
               businessList: businessList.concat(businessInfo),
-              page: this.data.page + 1,
               hasMoreData: true
             })
           }
@@ -63,6 +69,9 @@ Component({
     },
 
     getMoreData() {
+      this.setData({
+        page: this.data.page + 1
+      })
       this.getBusinessList()
     },
 
@@ -84,6 +93,11 @@ Component({
           url: '/pages/index/rescue/rescue-detail/rescue-detail?listId=' + e.currentTarget.dataset.listid
         })
       }
+    },
+
+    // 搜索
+    search(e) {
+      console.log(e.detail.value)
     }
   }
 })

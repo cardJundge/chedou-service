@@ -10,7 +10,6 @@ Page({
     isRegion: true,
     taskPingan: false,
     regionPingan: false,
-    isCarNo: false,
     isTimeSlot: false, // 派工时间段(平安有)
     isDispatchingTime: true, // 派工时间（太平没有)
     isDispatchedWorkers: true, // 派工人(太平、平安没有)
@@ -29,6 +28,7 @@ Page({
     policyNo: '',
     policyMechanism: '',
     // -------------------------------------------------
+    sendDataFirst: true,
     sendTimeFirst: true,
     regionFirst: true,
     isAnalysis: true,
@@ -62,12 +62,57 @@ Page({
   },
 
   onLoad: function(options) {
+    this.data.isEdit = false
     this.getInsuranceList()
     var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear)
     this.setData({
       dateTimeArray: obj.dateTimeArray,
       dateTime: obj.dateTime
     })
+    // 从编辑进来
+    if (options.data) {
+      this.data.isEdit =  true
+      let data = JSON.parse(options.data)
+      console.log(data)
+      this.changeShow(data.insuranceName)
+      if(data.type == 0) {
+        this.setData({
+          isThreeRes: false
+        })
+      } else if (data.type == 1) {
+        this.setData({
+          isThreeRes: true,
+          targetChecked: false
+        })
+      } else {
+        this.setData({
+          isThreeRes: true,
+          targetChecked: true
+        })
+      }
+      this.setData({
+        reportId: data.id,
+        hasInsuranceName: data.insuranceName,
+        type: data.type,
+        isAnalysis: false,
+        surveyTime: data.survey_date ? data.survey_date: '',
+        dispatchedWorkers: data.send_user ? data.send_user: '',
+        reportNo: data.report_no ? data.report_no: '',
+        carNo: data.car_no ? data.car_no: '',
+        fixedLossAdd: data.survey_address ? data.survey_address: '',
+        policyNo: data.policy_no ? data.policy_no: '',
+        policyMechanism: data.ins_org ? data.ins_org: '',
+        taskModesOtherName: data.task_type ? data.task_type: '',
+        taskModesPinganName: data.task_type ? data.task_type : '',
+        reportTime: data.report_date ? data.report_date : '',
+        reportTypeName: data.case_type ? data.case_type : '',
+        regionFirst: data.are ? false : true,
+        areName: data.are ? data.are : '',
+        sendTimeName: data.send_time ? data.send_time : '',
+        sendDataName: data.send_date ? data.send_date : '',
+        remarks: data.remark ? data.remark : ''
+      })     
+    }
   },
 
   taskChangeOther(e) {
@@ -90,7 +135,8 @@ Page({
 
   changedateTime(e) {
     this.setData({
-      dateTime: e.detail.value
+      dateTime: e.detail.value,
+      sendTimeFirst: false
     })
   },
 
@@ -144,7 +190,7 @@ Page({
   timeChangePingan(e) {
     console.log(e)
     this.setData({
-      sendTimeFirst: false,
+      sendDataFirst: false,
       timeSlotIndexPingan: e.detail.value
     })
   },
@@ -259,7 +305,6 @@ Page({
         isRegion: true,
         taskPingan: true,
         regionPingan: true,
-        isCarNo: true,
         isTimeSlot: true,
         isDispatchingTime: true,
         isDispatchedWorkers: false,
@@ -275,7 +320,6 @@ Page({
       this.setData({
         isRegion: false,
         taskPingan: false,
-        isCarNo: true,
         isTimeSlot: false,
         isDispatchingTime: false,
         isDispatchedWorkers: false,
@@ -292,7 +336,6 @@ Page({
         isRegion: true,
         taskPingan: false,
         regionPingan: false,
-        isCarNo: false,
         isTimeSlot: false,
         isDispatchingTime: true,
         isDispatchedWorkers: true,
@@ -305,6 +348,13 @@ Page({
         isPolicyMechanism: true
       })
     }
+  },
+
+  // 去选择地址
+  selectAddress() {
+    wx.navigateTo({
+      url: '../survey-location/survey-location',
+    })
   },
 
   toHandWriting() {
@@ -343,7 +393,7 @@ Page({
 
   // 表单提交案件添加
   formSubmit(e) {
-    console.log(e.detail.value)
+    // console.log(e.detail.value)
     const params = e.detail.value
     if (!this.data.hasInsuranceName) {
       return wx.showToast({
@@ -373,14 +423,14 @@ Page({
       })
     }
 
-    if (this.data.isCarNo && !this.data.carNo) {
+    if (!this.data.carNo) {
       return wx.showToast({
         title: '车牌号不能为空',
         icon: 'none'
       })
     }
 
-    if ((!this.data.taskPingan && !this.data.taskModesOther[this.data.taskIndexOther]) || (this.data.taskPingan && !this.data.taskModesPingan[this.data.taskIndexPingan])) {
+    if ((!this.data.taskPingan && (!this.data.taskModesOtherName && !this.data.taskModesOther[this.data.taskIndexOther])) || (this.data.taskPingan && (!this.data.taskModesPinganName && !this.data.taskModesPingan[this.data.taskIndexPingan]))) {
       return wx.showToast({
         title: '请选择任务类型',
         icon: 'none'
@@ -401,40 +451,48 @@ Page({
       })
     }
 
-    if (this.data.isreportType && !this.data.reportType[this.data.reportIndex]) {
+    if (this.data.isreportType && (!this.data.reportTypeName && !this.data.reportType[this.data.reportIndex])) {
       return wx.showToast({
         title: '请选择案件类型',
         icon: 'none'
       })
     }
 
-    if (((this.data.isRegion && !this.data.regionPingan) && !this.data.regionListOther[this.data.regionIndexOther]) || ((this.data.isRegion && this.data.regionPingan) && this.data.regionFirst)) {
+    if (this.data.isDispatchingTime && (this.data.sendTimeFirst && !this.data.sendTimeName)) {
+      return wx.showToast({
+        title: '请选择派工时间',
+        icon: 'none'
+      })
+    }
+
+    if (((this.data.isRegion && !this.data.regionPingan) && (!this.data.areName && !this.data.regionListOther[this.data.regionIndexOther])) || ((this.data.isRegion && this.data.regionPingan) && (!this.data.areName && this.data.regionFirst))) {
       return wx.showToast({
         title: '请选择区域',
         icon: 'none'
       })
     }
 
-    if (this.data.isTimeSlot && this.data.sendTimeFirst) {
+
+    if (this.data.isTimeSlot && (!this.data.sendDataName && this.data.sendDataFirst)) {
       return wx.showToast({
         title: '请选择派工时间段',
         icon: 'none'
       })
     }
 
-    if(!this.data.remarks) {
-      return wx.showToast({
-        title: '备注不能为空',
-        icon: 'none'
-      })
-    }
+    // if(!this.data.remarks) {
+    //   return wx.showToast({
+    //     title: '备注不能为空',
+    //     icon: 'none'
+    //   })
+    // }
 
     this.toAddSurvey()
   },
 
   toAddSurvey() {
     wx.showLoading({
-      title: '添加中',
+      title: '操作中...',
     })
     this.data.insuranceList.forEach((item, index) => {
       if (item.name == this.data.hasInsuranceName) {
@@ -460,11 +518,11 @@ Page({
         survey_date: this.data.surveyTime,
         report_no: this.data.reportNo,
         car_no: this.data.carNo,
-        task_type: this.data.taskModesPingan[this.data.taskIndexPingan],
-        send_time: sendTime,
+        task_type: this.data.taskModesPingan[this.data.taskIndexPingan] ? this.data.taskModesPingan[this.data.taskIndexPingan] : this.data.taskModesPinganName,
+        send_time: sendTime ? sendTime : this.data.sendTimeName,
         survey_address: this.data.fixedLossAdd,
-        are: regionPingan,
-        send_date: timeSlotPingan,
+        are: regionPingan ? regionPingan : this.data.areName,
+        send_date: timeSlotPingan ? timeSlotPingan : this.data.sendDataName,
         remark: this.data.remarks
       }
     } else if (this.data.hasInsuranceName == '中国太平') {
@@ -474,10 +532,10 @@ Page({
         insurance_id: this.data.insuranceId,
         report_no: this.data.reportNo,
         car_no: this.data.carNo,
-        task_type: this.data.taskModesOther[this.data.taskIndexOther],
+        task_type: this.data.taskModesOther[this.data.taskIndexOther] ? this.data.taskModesOther[this.data.taskIndexOther] : this.data.taskModesOtherName,
         report_date: this.data.reportTime,
         survey_address: this.data.fixedLossAdd,
-        case_type: this.data.reportType[this.data.reportIndex],
+        case_type: this.data.reportType[this.data.reportIndex] ? this.data.reportType[this.data.reportIndex] : this.data.reportTypeName,
         remark: this.data.remarks
       }
     } else {
@@ -487,37 +545,57 @@ Page({
         insurance_id: this.data.insuranceId,
         send_user: this.data.dispatchedWorkers,
         report_no: this.data.reportNo,
-        task_type: this.data.taskModesOther[this.data.taskIndexOther],
-        send_time: sendTime,
-        are: regionOther,
+        car_no: this.data.carNo,
+        task_type: this.data.taskModesOther[this.data.taskIndexOther] ? this.data.taskModesOther[this.data.taskIndexOther] : this.data.taskModesOtherName,
+        send_time: sendTime ? sendTime : this.data.sendTimeName,
+        are: regionOther ? regionOther : this.data.areName,
         policy_no: this.data.policyNo,
         ins_org: this.data.policyMechanism,
         remark: this.data.remarks
       }
     }
-    indexModel.addSurvey(params, res => {
-      wx.hideLoading()
-      if(res.data.status == 1) {
-        indexModel.getWorkList('survey', 1, res=> {
-          if (res.data.status == 1) {
-            console.log(res.data.data.data,res.data.data.data[0])
-            let listId = res.data.data.data[0].id
-            wx.redirectTo({
-              url: '../survey-details/survey-details?listId=' + listId,
-            })
-          } else {
-            wx.showToast({
-              title: res.data.msg ? res.data.msg : '请求超时',
-            })
-          }
-        })
-        
-      } else {
-        wx.showToast({
-          title: res.data.msg ? res.data.msg : '请求超时',
-        })
-      }
-    })
+    if(this.data.isEdit) {
+      params.id = this.data.reportId
+      indexModel.editBusiness(params, res=> {
+        wx.hideLoading()
+        if(res.data.status == 1) {
+          wx.redirectTo({
+            url: '../survey-details/survey-details?listId=' + params.id,
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg ? res.data.msg : '请求超时',
+            icon: 'none'
+          })
+        }
+      })
+    } else {
+      indexModel.addBusiness(params, res => {
+        wx.hideLoading()
+        if (res.data.status == 1) {
+          indexModel.getWorkList('survey', 1, res => {
+            if (res.data.status == 1) {
+              console.log(res.data.data.data, res.data.data.data[0])
+              let listId = res.data.data.data[0].id
+              wx.redirectTo({
+                url: '../survey-details/survey-details?listId=' + listId,
+              })
+            } else {
+              wx.showToast({
+                title: res.data.msg ? res.data.msg : '请求超时',
+                icon: 'none'
+              })
+            }
+          })
+
+        } else {
+          wx.showToast({
+            title: res.data.msg ? res.data.msg : '请求超时',
+          })
+        }
+      })
+    }
+    
   },
 
   // 解析短信

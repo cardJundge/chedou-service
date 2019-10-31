@@ -5,7 +5,6 @@ import {
 
 var mineModel = new MineModel()
 var app = getApp()
-var test = getApp().globalData.hostName
 
 Page({
   data: {
@@ -34,13 +33,13 @@ Page({
       success(res) {
         const tempFilePaths = res.tempFilePaths
         wx.uploadFile({
-          url: test + '/api/auth/upload',
+          url: app.globalData.hostName + '/api/auth/upload',
           filePath: tempFilePaths[0],
           name: 'file',
           success(res1) {
             let data = JSON.parse(res1.data)
             that.setData({
-              avatarUrl: test + '/' + data.data.filename,
+              avatarUrl: app.globalData.imgUrl + data.data.filename,
               avatar: data.data.filename
             })
           }
