@@ -76,6 +76,18 @@ class LoginModel extends HTTP {
     }
     this.request(params)
   }
+
+  // 忘记密码
+  forgetPwd(param, callback) {
+    var params = {
+      url: '/api/auth/forget',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
 }
 export {
   LoginModel

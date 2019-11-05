@@ -34,11 +34,10 @@ Page({
         list: []
       }
     }) 
-    console.log(storeData)
+  
     this.data.personnelData.forEach((item) => {
       let firstName = item.pinyin.substring(0, 1)
       let index = words.indexOf(firstName)
-      console.log(firstName, index)
       storeData[index].list.push({
         id: item.id,
         name: item.nickname,
@@ -51,7 +50,6 @@ Page({
     this.setData({
       personnel: this.data.personnel
     })
-    console.log(this.data.personnel)
   },
 
   // 获取作业员列表
@@ -102,9 +100,7 @@ Page({
 
   // 编辑
   toEditTask(e) {
-    console.log(e, this.data.personnelData)
     this.data.personnelData.forEach((item, index)=> {
-      console.log(item)
       if (item.id == e.currentTarget.dataset.id) {
         let data = JSON.stringify(item)
         wx.navigateTo({
@@ -146,8 +142,6 @@ Page({
     if (e.detail.value == '') {
       return
     }
-    console.log(e.detail.value)
     this.getTaskList(e.detail.value)
-
   }
 })

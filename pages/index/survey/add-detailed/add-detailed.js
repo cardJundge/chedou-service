@@ -145,7 +145,6 @@ Page({
      let params,temp,imgs
     this.data.addList.forEach((item, index)=> {
       if (item.imageList.length !== 0) {
-        console.log(temp)
         if(item.key == 'ckzp') {
           params = {
             key: 'survey',
@@ -157,7 +156,6 @@ Page({
             gydz: '',
             zfdz: ''
           }
-          console.log(params)
           this.addDetailedFun(params)
         } else if (item.key == 'gydz') {
           params = {
@@ -170,7 +168,6 @@ Page({
             gydz: JSON.stringify(item.imageList),
             zfdz: ''
           }
-          console.log(params)
           this.addDetailedFun(params)
         } else {
           params = {
@@ -183,7 +180,6 @@ Page({
             gydz: '',
             zfdz: JSON.stringify(item.imageList)
           }
-          console.log(params)
           this.addDetailedFun(params)
         }
       }

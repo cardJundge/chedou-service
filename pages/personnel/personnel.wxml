@@ -40,7 +40,7 @@
               <view class="personnel-content-item-text">
                 <text>{{it.name}}</text>
                 <view class="personnel-content-item-text-tag">
-                  <view wx:for="{{it.module}}" wx:for-item="modules">{{modules.name}}</view>
+                  <view wx:for="{{it.module}}" wx:for-item="modules" wx:key="">{{modules.name}}</view>
                 </view>
               </view>
             </view>

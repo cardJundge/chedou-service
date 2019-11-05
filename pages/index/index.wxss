@@ -145,6 +145,23 @@
 
 }
 
+.order-null {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 78rpx 0;
+}
+
+.order-null image {
+  width: 150rpx;
+  height: 150rpx;
+  margin-bottom: 24rpx;
+}
+
+.order-null text {
+ color: #aeaeae;
+}
+
 .order-item {
   width: 100%;
   height: 155rpx;

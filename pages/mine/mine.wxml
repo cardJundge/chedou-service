@@ -5,7 +5,8 @@
       <view class="mine-card-info">
         <view class="mine-avatar">
           <image class="mine-avatar-bg" src="/images/mine/avatar_bg.png"></image>
-          <image class="mine-avatar-img" src="{{basicUserInfo.face ? basicUserInfo.face : 'cloud://chedou-service.6368-chedou-service/images/default_user.png'}}"></image>
+          <image class="mine-avatar-img" src="{{avatarUrl ? avatarUrl : 'cloud://chedou-service.6368-chedou-service/images/default_user.png'}}"></image>
+           <!-- <image class="mine-avatar-img" src="{{avatarUrl}}"></image> -->
         </view>
         <view class="mine-text">
           <text>{{basicUserInfo.name}}</text>
@@ -43,7 +44,7 @@
         <i-icon type="enter" size="18" color="#E2E2E2" />
       </view>
     </view>
-    <view class="mine-item">
+    <view class="mine-item" bindtap="toDataDetails">
       <image src="/images/mine/icon_data.png"></image>
       <view class="mine-item-text">
         <text>数据统计</text>

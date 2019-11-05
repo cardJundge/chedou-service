@@ -34,7 +34,7 @@
   justify-content: center;
 }
 
-.loading-img image{
+.loading-img image {
   width: 240rpx;
   height: 240rpx;
   margin-bottom: 24rpx;
@@ -60,11 +60,12 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  overflow: hidden;
 }
 
 .module-list-scroll {
-  overflow: hidden;
+  width: 100%;
+  height: 556rpx;
+  overflow: scroll;
 }
 
 .module-item {

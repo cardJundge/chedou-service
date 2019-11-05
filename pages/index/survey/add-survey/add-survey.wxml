@@ -35,15 +35,15 @@
             <view class="survey-item-picker">{{hasInsuranceName?hasInsuranceName:'请选择保险公司'}}</view>
           </picker>
         </view>
-        <view class="survey-item">
+        <!-- <view class="survey-item">
           <label>查勘员</label>
           <input name="" placeholder-class="ph-class" placeholder="请输入查勘员姓名"></input>
-        </view>
+        </view> -->
         <!-- 工号(太平、平安有) -->
-        <view class="survey-item" wx:if="{{isJobNo}}">
+        <!-- <view class="survey-item" wx:if="{{isJobNo}}">
           <label>工号</label>
-          <input name="" placeholder-class="ph-class" placeholder="请输入查勘员工号"></input>
-        </view>
+          <input name="" placeholder-class="ph-class" placeholder="请输入查勘员工号"></input> -->
+        <!-- </view> -->
         <!-- 查勘日期(平安有) -->
         <view class="survey-item" wx:if="{{isSurveyTime}}">
           <label>查勘日期</label>

@@ -15,7 +15,7 @@ Page({
     isDispatchedWorkers: true, // 派工人(太平、平安没有)
     isFixedLossAdd: false, //出险/定损地点(太平、平安有)
     isReportTime: false, // 报案时间(太平有)
-    isJobNo: false, // 工号(太平、平安有)
+    // isJobNo: false, // 工号(太平、平安有)
     isSurveyTime: false, // 查勘日期(平安有)
     isreportType: false, //案件类型（太平有）
     isPolicyNo: true, // 保单号(平安、太平没有)
@@ -73,7 +73,6 @@ Page({
     if (options.data) {
       this.data.isEdit =  true
       let data = JSON.parse(options.data)
-      console.log(data)
       this.changeShow(data.insuranceName)
       if(data.type == 0) {
         this.setData({
@@ -141,7 +140,6 @@ Page({
   },
 
   changeDateTimeColumn(e) {
-    console.log(e)
     var arr = this.data.dateTime,
       dateArr = this.data.dateTimeArray
 
@@ -164,7 +162,6 @@ Page({
   },
 
   regionChangeColumnPingan(e) {
-    console.log(e.detail.column, e.detail.value)
     var data = {
       regionListPingan: this.data.regionListPingan,
       regionIndexPingan: this.data.regionIndexPingan
@@ -188,7 +185,6 @@ Page({
 
   // 时间段选择（平安）
   timeChangePingan(e) {
-    console.log(e)
     this.setData({
       sendDataFirst: false,
       timeSlotIndexPingan: e.detail.value
@@ -196,7 +192,6 @@ Page({
   },
 
   timeChangeColumnPingan(e) {
-    console.log(e.detail.column, e.detail.value)
     var data = {
       timeSlotListPingan: this.data.timeSlotListPingan,
       timeSlotIndexPingan: this.data.timeSlotIndexPingan
@@ -224,7 +219,6 @@ Page({
 
   // 选择报案时间
   reportTimeChange(e) {
-    console.log(e)
     this.setData({
       reportTime: e.detail.value
     })
@@ -232,7 +226,6 @@ Page({
 
   // 选择查勘时间
   surveyTimeChange(e) {
-    console.log(e)
     this.setData({
       surveyTime: e.detail.value
     })
@@ -310,7 +303,7 @@ Page({
         isDispatchedWorkers: false,
         isFixedLossAdd: true,
         isReportTime: false,
-        isJobNo: true,
+        // isJobNo: true,
         isSurveyTime: true,
         isreportType: false,
         isPolicyNo: false,
@@ -325,7 +318,7 @@ Page({
         isDispatchedWorkers: false,
         isFixedLossAdd: true,
         isReportTime: true,
-        isJobNo: true,
+        // isJobNo: true,
         isSurveyTime: false,
         isreportType: true,
         isPolicyNo: false,
@@ -341,7 +334,7 @@ Page({
         isDispatchedWorkers: true,
         isFixedLossAdd: false,
         isReportTime: false,
-        isJobNo: false,
+        // isJobNo: false,
         isSurveyTime: false,
         isreportType: false,
         isPolicyNo: true,
@@ -575,7 +568,6 @@ Page({
         if (res.data.status == 1) {
           indexModel.getWorkList('survey', 1, res => {
             if (res.data.status == 1) {
-              console.log(res.data.data.data, res.data.data.data[0])
               let listId = res.data.data.data[0].id
               wx.redirectTo({
                 url: '../survey-details/survey-details?listId=' + listId,
@@ -678,7 +670,6 @@ Page({
       // 匹配中国平安车牌号
       let shortInfoDataTemp = shortInfoData.replace('-', '')
       if (shortInfoDataTemp.match(carReg)) {
-        console.log(shortInfoDataTemp.match(carReg))
         this.setData({
           carNo: shortInfoDataTemp.match(carReg)[0]
         })

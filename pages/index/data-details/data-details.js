@@ -1,49 +1,120 @@
-// 数据统计详情
-import Charts from '../../../dist/wxcharts.js'
-var areaChart = null
+import * as echarts from '../../../components/ec-canvas/echarts.min.js'
+
+const app = getApp()
+
+function initChart(canvas, width, height) {
+  const chart = echarts.init(canvas, null, {
+    width: width,
+    height: height
+  })
+  canvas.setChart(chart)
+
+  var option = {
+    legend: {},
+    grid: {
+      containLabel: true,
+      left: 0,
+      right: 10,
+      // borderColor:"#1a65ff"
+    },
+    tooltip: {
+      show: true,
+      trigger: 'axis',
+    },
+    xAxis: {
+      type: 'category',
+      boundaryGap: false,
+      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日', '周四', '周五', '周六', '周日'],
+      axisLine: {
+        show: false
+      },
+      axisTick: {
+        show: true,
+        inside: true,
+        length: 3
+      },
+      splitNumber: 4,
+      axisLabel: {
+        rotate: 45,
+        interval: 1,
+        // padding:4
+      },
+      min: 1
+      // position:bottom,
+      // offset:10
+      // show: false
+    },
+    yAxis: {
+      x: 'center',
+      type: 'value',
+      axisTick: {
+        show: false
+      },
+      splitLine: {     //分割线
+        show: false
+      },
+      show: true,
+      min: 0,
+      axisLine: {
+        show: false
+      },
+      axisLabel: {
+        show: false
+      }
+    },
+    series: [{
+      // name: 'A',
+      type: 'line',
+      smooth: true,
+      data: [18, 36, 65, 55, 78, 40, 33, 56, 58, 36, 20],
+      areaStyle: {},
+      itemStyle: {
+        normal: {   //颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+            offset: 0, color: '#92b5ff' // 0% 处的颜色
+          }, {
+            offset: 0.5, color: '#b5cdff' // 100% 处的颜色
+          }, {
+            offset: 1, color: '#fff' // 100% 处的颜色
+          }]
+          )
+        }
+  
+      }
+    }
+    ]
+  }
+
+  chart.setOption(option)
+  return chart
+}
 
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    timeArray:[
-      {name: '今日'},
-      {name: '昨日'},
-      {name: '本周'},
-      {name: '本月'},
-    ],
-    currentTab: 0
+    ec: {
+      onInit: initChart
+    },
+    taskCategory: [{ text: '车辆维修', num: 10 }, { text: '车辆维修', num: 10 }, { text: '车辆维修', num: 10 }, { text: '车辆维修', num: 10 }, { text: '车辆维修', num: 10 }],
+    chartDate: ['今日', '昨日', '本周', '本月'],
+    dataIndex: 0
   },
-  onLoad: function(options) {
-    areaChart = new Charts({
-      canvasId: 'areaCanvas',
-      type: 'area',
-      legend: false,
-      dataLabel: false,
-      categories: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00'],
-      series: [{
-        name: '任务流',
-        data: [0, 18],
-        format: function(val) {
-          return val
-        }
-      }],
-      xAxis: {
-       
-      },
-      yAxis: {
-        min: 0,
-        max: 10,
-        format: function(val) {
-          return val
-        }
-      },
-      width: 350,
-      height: 117
+
+  backPage: function () {
+    wx.navigateBack({
+      delta: 1
     })
   },
-  changeTime(e) {
-    console.log(e)
-    this.setData({
-      currentTab: e.currentTarget.dataset.index
+
+  selectDate: function (e) {
+    var that = this
+    that.setData({
+      dataIndex: e.currentTarget.dataset.index
     })
   }
+
+
 })

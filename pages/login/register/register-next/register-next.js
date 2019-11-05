@@ -21,8 +21,7 @@ Page({
     ]
   },
   onLoad: function (options) {
-    this.data.otherData = JSON.parse(options.params)
-    
+    this.data.otherData = JSON.parse(options.params)   
     this.initValidate() // 验证规则函数
   },
 
@@ -63,7 +62,6 @@ Page({
       this.data.otherData.companyType = this.data.company
       this.data.otherData.company = params.company
       loginModel.postRegister(this.data.otherData, res=> {
-        console.log(res,this.data.otherData)
         if(res.data.status == 1) {
           wx.showToast({
             title: '注册成功',
@@ -74,6 +72,7 @@ Page({
               }
               loginModel.postLogin(data, res=> {
                 if(res.data.status == 1) {
+                  app.globalData.userInfo = res.data.data
                   wx.switchTab({
                     url: '/pages/index/index',
                   })

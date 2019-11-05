@@ -35,7 +35,10 @@
     "pages/personnel/assignment/assignment",
     "pages/index/survey/add-detailed/add-detailed",
     "pages/index/survey/survey-location/survey-location",
-    "pages/index/sickness/sickness"
+    "pages/index/sickness/sickness",
+    "pages/index/sickness/sickness-details/sickness-details",
+    "pages/index/repair/repair",
+    "pages/index/repair/repair-detail/repair-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

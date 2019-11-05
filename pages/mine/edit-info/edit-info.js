@@ -2,8 +2,12 @@
 import {
   MineModel
 } from '../models/mine.js'
+import {
+  LoginModel
+} from '../../login/models/login.js'
 
 var mineModel = new MineModel()
+var loginModel = new LoginModel()
 var app = getApp()
 
 Page({
@@ -14,12 +18,13 @@ Page({
   },
   onLoad: function (options) {
     this.setData({
-      basicUserInfo: app.globalData.userInfo
+      basicUserInfo: app.globalData.userInfo,
+      avatarUrl: app.globalData.userInfo.face ? app.globalData.imgUrl + app.globalData.userInfo.face : '',
+      companyName: app.globalData.userInfo.name
     })
   },
 
   companyInput(e) {
-
     this.setData({
       companyName: e.detail.value
     })
@@ -50,10 +55,21 @@ Page({
 
   // 确定==》修改信息
   onConfirm() {
+    wx.showLoading({
+      title: '修改中...',
+    })
     mineModel.modifyInfo(this.data.avatar, this.data.companyName, res=> {
       if(res.data.status == 1) {
-        wx.showToast({
-          title: '修改成功',
+        let params = {
+          phone: wx.getStorageSync('userMobile'),
+          password: wx.getStorageSync('userPwd')
+        }
+        loginModel.postLogin(params, res=> {
+          wx.hideLoading()
+          app.globalData.userInfo = res.data.data
+          wx.navigateBack({
+            delta: 1
+          })
         })
       } else {
         wx.showToast({
@@ -61,6 +77,11 @@ Page({
           icon: 'none'
         })
       }
+      setTimeout(() => {
+        this.setData({
+          isDisabled: false
+        })
+      }, 10000)
     })
   }
 })

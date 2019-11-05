@@ -77,7 +77,6 @@ Page({
         isDisabled: true
       })
       loginModel.postLogin(params, res=> {
-        console.log(res)
         if(res.data.status == 1) {
           app.globalData.userInfo = res.data.data
           wx.setStorageSync('userMobile', res.data.data.mobile)

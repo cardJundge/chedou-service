@@ -7,7 +7,7 @@ import {
 var indexModel = new IndexModel()
 Page({
   data: {
-    isJobNo: false,
+    // isJobNo: false,
     isSurveyTime: false, // 查勘日期(平安有)
     isDispatchedWorkers: true, // 派工人(太平、平安没有)
     isDispatchingTime: true, // 派工时间（太平没有)
@@ -89,7 +89,7 @@ Page({
             })
             if (item.name == '中国平安') {
               this.setData({
-                isJobNo: true,
+                // isJobNo: true,
                 isSurveyTime: true,
                 isDispatchedWorkers: false,
                 isDispatchingTime: true,
@@ -103,7 +103,7 @@ Page({
               })
             } else if (item.name == '中国太平') {
               this.setData({
-                isJobNo: true,
+                // isJobNo: true,
                 isSurveyTime: false,
                 isDispatchedWorkers: false,
                 isDispatchingTime: false,
@@ -117,7 +117,7 @@ Page({
               })
             } else {
               this.setData({
-                isJobNo: false,
+                // isJobNo: false,
                 isSurveyTime: false,
                 isDispatchedWorkers: true,
                 isDispatchingTime: true,

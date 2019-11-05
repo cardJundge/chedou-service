@@ -17,7 +17,7 @@
     </view>
   </view>
   <view class="list-content" wx:if="{{!hasNoData}}">
-    <view class="list-item" wx:for="{{businessList}}" bindtap="toBusinessDetail" data-listId="{{item.id}}">
+    <view class="list-item" wx:for="{{businessList}}" wx:key="" bindtap="toBusinessDetail" data-listId="{{item.id}}">
       <view class="list-item-left">
         <text wx:if="{{typeKey == 'survey'}}">编号: {{item.survey_no}}</text>
         <text wx:if="{{typeKey == 'trailer'}}">编号: {{item.trailer_no}}</text>

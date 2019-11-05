@@ -107,5 +107,12 @@ Page({
     this.setData({
       sickList: tempList
     })
+  },
+
+  toSicknessDetails(e) {
+    console.log(e.currentTarget.dataset.id)
+    wx.navigateTo({
+      url: './sickness-details/sickness-details?listId=' + e.currentTarget.dataset.id,
+    })
   }
 })

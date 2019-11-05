@@ -13,22 +13,33 @@ Page({
   data: {
     basicUserInfo: {}
   },
-  onLoad: function(options) {
-    this.setData({
-      basicUserInfo: app.globalData.userInfo
-    })
-    console.log(this.data.basicUserInfo)
+  onLoad: function() {
   },
-  onShow() {},
+  onShow() {
+    this.setData({
+      basicUserInfo: app.globalData.userInfo,
+      avatarUrl: app.globalData.userInfo.face?app.globalData.imgUrl + app.globalData.userInfo.face:'',
+    })
+    console.log(this.data.avatarUrl)
+  },
+
   editInfo() {
     wx.navigateTo({
       url: './edit-info/edit-info',
     })
   },
 
+  // 修改密码
   modifyPwd() {
     wx.navigateTo({
       url: '../login/modify/modify',
+    })
+  },
+
+  // 数据统计详情
+  toDataDetails() {
+    wx.navigateTo({
+      url: '../index/data-details/data-details',
     })
   },
 

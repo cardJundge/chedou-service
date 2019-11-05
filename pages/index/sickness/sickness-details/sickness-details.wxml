@@ -1,0 +1,205 @@
+<!--pages/businessmode/diseasesurvey/diseasesurvey.wxml-->
+<view class="diseasestep">
+  <block wx:for="{{diseasestep}}" wx:key="">
+    <text wx:if='{{index==first}}' style="color:#fff;background:#1a65ff" bindtap="selectdiseasestep" id="{{index}}">{{item}}</text>
+    <text wx:else bindtap="selectdiseasestep" id="{{index}}">{{item}}</text>
+  </block>
+</view>
+
+<view class="diseasecontent">
+  <!-- <block wx:for="{{diseaselist}}" wx:key=""> -->
+  <view class="diseaseitem">
+    <text>案件号</text>
+    <text>{{diseaselist.report_no}}</text>
+  </view>
+  <view class="diseaseitem">
+    <text>对接人</text>
+    <text>{{diseaselist.proposer}}</text>
+  </view>
+  <view class="diseaseitem">
+    <text>联系电话</text>
+    <text>{{diseaselist.proposer_mobile}}</text>
+  </view>
+  <view class="diseaseitem">
+    <text>调查员</text>
+    <text>{{taskinfo.nickname}}</text>
+  </view>
+  <view class="diseaseitem">
+    <text>联系电话</text>
+    <text>{{taskinfo.mobile}}</text>
+  </view>
+  <!-- </block> -->
+</view>
+
+<view class="wholetask" wx:if="{{first == 0}}">
+  <view class="wholetasktip">全部任务</view>
+  <view class="line"></view>
+  <view class="tasklist" wx:for="{{tasklist}}" wx:key="">
+    <view class="item-content">
+      <text>{{index+1}}、面访患病成员及申请人</text>
+      <text class="address">陕西省-西安市-雁塔区</text>
+    </view>
+    <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
+
+    <view class="item-result" wx:else>未完成</view>
+  </view>
+</view>
+
+<view class="wholetask" wx:if='{{first == 1}}'>
+  <view class="wholebasetip">
+    <view wx:for="{{basetitle}}" wx:key="index" class="base {{currentTab==index ? 'active' : ''}}" bindtap='switchnav' data-index='{{index}}'>
+      <view>{{item}}</view>
+      <view class="{{currentTab==index ? 'line' : ''}}"></view>
+    </view>
+  </view>
+
+  <view class="baseinfor">
+
+    <!-- 患者信息 -->
+    <view class="tasklist baseitem" wx:if="{{currentTab == 0}}">
+      <text>成员姓名:</text>
+      <text>{{diseaselist.sick}}</text>
+    </view>
+
+    <view class="tasklist baseitem" wx:if="{{currentTab == 0}}">
+      <text>证件类型:</text>
+      <text>{{diseaselist.sick_id_type}}</text>
+    </view>
+
+    <view class="tasklist baseitem" wx:if="{{currentTab == 0}}">
+      <text>证件号码:</text>
+      <text>{{diseaselist.sick_id_no}}</text>
+    </view>
+
+    <view class="tasklist baseitem" wx:if="{{currentTab == 0}}">
+      <text>保障产品:</text>
+      <text>{{diseaselist.product}}</text>
+    </view>
+
+    <view class="tasklist baseitem" wx:if="{{currentTab == 0}}">
+      <text>常驻地址:</text>
+      <text>{{diseaselist.sick_address}}</text>
+    </view>
+
+    <view class="tasklist baseitem" wx:if="{{currentTab == 0}}">
+      <text>确诊医院:</text>
+      <text>{{diseaselist.sick_hospital}}</text>
+    </view>
+
+    <view class="tasklist baseitem" wx:if="{{currentTab == 0}}">
+      <text>确诊疾病:</text>
+      <text>{{diseaselist.sick_sickness}}</text>
+    </view>
+
+    <view class="tasklist baseitem" wx:if="{{currentTab == 0}}">
+      <text>出险时间:</text>
+      <text>{{diseaselist.out_time}}</text>
+    </view>
+
+    <view class="tasklist baseitem" wx:if="{{currentTab == 0}}">
+      <text>生效时间:</text>
+      <text>{{diseaselist.effect_time}}</text>
+    </view>
+
+    <view class="accidentstyle" wx:if="{{currentTab == 0}}">
+      <text>事故说明:</text>
+      <text>{{diseaselist.remark}}</text>
+    </view>
+
+    <!-- 申请人信息 -->
+    <view class="tasklist baseitem" wx:if="{{currentTab == 1}}">
+      <text>申请人姓名:</text>
+      <text>{{diseaselist.proposer}}</text>
+    </view>
+
+    <view class="tasklist baseitem" wx:if="{{currentTab == 1}}">
+      <text>证件类型:</text>
+      <text>{{diseaselist.proposer_id_type}}</text>
+    </view>
+
+    <view class="tasklist baseitem" wx:if="{{currentTab == 1}}">
+      <text>证件号码:</text>
+      <text>{{diseaselist.proposer_id_no}}</text>
+    </view>
+
+    <view class="tasklist baseitem" wx:if="{{currentTab == 1}}">
+      <text>常驻地址:</text>
+      <text>{{diseaselist.sick_address}}</text>
+    </view>
+
+    <view class="tasklist baseitem" wx:if="{{currentTab == 1}}">
+      <text>联系电话:</text>
+      <text>{{diseaselist.proposer_mobile}}</text>
+    </view>
+
+    <view class="tasklist baseitem" wx:if="{{currentTab == 1}}">
+      <text>与成员的关系:</text>
+      <text>{{diseaselist.proposer_relation}}</text>
+    </view>
+
+  </view>
+</view>
+
+<view class="wholetask" wx:if="{{first == 2 && imgdatalist}}">
+  <view class="wholetasktip">相关资料</view>
+  <view class="line"></view>
+
+  <view class="pic-mode">
+    <text>照片</text>
+    <view class="wholedataimg">
+      <view class="datalist" wx:for="{{imgdatalist}}" wx:key="" bindtap="todetail">
+        <image src="{{imgUrl}}{{item}}"></image>
+        <text>资料</text>
+        <view wx:if="{{index<9}}">0{{index+1}}</view>
+        <view wx:else>{{index+1}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="pic-mode">
+    <text>录音</text>
+    <view class="wholedataimg">
+      <view class="datalist voicestyle" wx:for="{{voicedatalist}}" wx:key="" bindtap="todetail">
+        <image src="/images/index/voice.png"></image>
+        <view wx:if="{{index<9}}">资料 0{{index+1}}</view>
+        <view wx:else>{{index+1}}</view>
+      </view>
+    </view>
+
+    <view class="recording-whole" wx:if="{{voiceIsshow}}">
+      <view class="recording" catchtouchstart="startvoice" catchtouchend='endvoice' style="background:{{bg}}">
+        <image src="/images/icon_yuyin@2x.png"></image>
+        <view>{{voicetext}}</view>
+      </view>
+      <image src="/images/cloud.png" class="shangchuan" bindtap="uploadvoice"></image>
+    </view>
+  </view>
+</view>
+
+<view class="wholetask" wx:if='{{first == 3}}'>
+  <view class="wholetasktip">机构回复</view>
+  <view class="line"></view>
+
+  <view class="baseinfor">
+    <view class="tasklist baseitem">
+      <text>阳性疑点:</text>
+      <text>{{diseaselist.suspects?diseaselist.suspects:''}}</text>
+    </view>
+    <view class="tasklist baseitem">
+      <text>涉及省份:</text>
+      <text>{{diseaselist.province?diseaselist.province:''}}</text>
+    </view>
+    <view class="tasklist baseitem">
+      <text>调查金额:</text>
+      <text>{{diseaselist.money?diseaselist.money:''}}</text>
+    </view>
+    <view class="tasklist baseitem">
+      <text>客户放弃申领:</text>
+      <text>{{diseaselist.give_up?diseaselist.give_up:''}}</text>
+    </view>
+    <view class="accidentstyle">
+      <text>调查问题反馈:</text>
+      <text>{{diseaselist.feedback?diseaselist.feedback:''}}</text>
+    </view>
+  </view>
+</view>

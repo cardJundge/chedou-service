@@ -1,89 +1,84 @@
-/* 数据统计详情 */
+/* pages/mine/datastatistics/datastatistics.wxss */
+ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.defalut{
+  width: 100%;
+  height: 260rpx;
+  background: #1a65ff;
+  position: fixed;
+  top: 0rpx;
+  z-index: -1;
+}
 
 .data-details-body {
-}
-
-/* 图标 */
-
-.chart {
-  width: 100%;
-  height: 388rpx;
-}
-
-.chart-bg {
-  width: 100%;
-  height: 245rpx;
-  background: #1a65ff;
-  position: relative;
-}
-
-.chart-content-box {
-  width: 100%;
-  height: 364rpx;
   position: absolute;
-  left: 0;
-  bottom: -143rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.chart-content {
+  top: 30rpx;
   width: 702rpx;
-  height: 364rpx;
-  background: #fff;
-  box-shadow: 0 0 6rpx 2rpx rgba(0, 0, 0, 0.10);
+  height: 400rpx;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  background: white;
   border-radius: 20rpx;
+  z-index: 100;
+  border: 1rpx solid rgba(216, 216, 216, 0.5);
+  box-shadow: 0 0 2rpx 2rpx rgba(216, 216, 216, 0.5);
+} 
+
+.chart-date{
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 24rpx 0;
+  z-index: 100;
 }
 
-.chart-content-canvas {
-  /* width: 702rpx;
-  height: 258rpx; */
-}
-
-.chart-option {
-  display: flex;
-  align-items: center;
-}
-
-.option-item {
-  width: 120rpx;
-  height: 52rpx;
-  line-height: 52rpx;
+.chart-date text{
+  width: 130rpx;
+  padding: 8rpx 0;
+  border: 1rpx solid rgba(216, 216, 216, 0.5);
   text-align: center;
+  margin-right: 20rpx;
   color: #1a65ff;
-  box-shadow: 0 0 4rpx 0 rgba(0, 0, 0, 0.10);
-  border-radius: 26rpx;
-  margin-left: 24rpx;
+  border-radius: 50rpx;
+  font-size: 28rpx;
+  background: white;
 }
 
-.option-item-active {
-  width: 120rpx;
-  height: 52rpx;
-  line-height: 52rpx;
-  text-align: center;
-  color: #ffffff;
-  background: #1a65ff;
-  border-radius: 26rpx;
-  margin-left: 24rpx;
-}
-
-.task-num {
-}
-
-.task-num-title {
-  width: 100%;
-  padding: 24rpx;
-  font-size: 36rpx;
+.task-total{
+  width: 702rpx;
+  margin: 24rpx;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  font-size: 34rpx;
+  position: relative;
+  top: 480rpx;
 }
 
-.task-num-title text:last-child {
-  color: #7F7F7F;
+.task-total text:last-child{
+  color: #a7a7a7;
+}
+
+.task-whole-mode{
+  width: 702rpx;
+  margin: 0 auto;
+  padding: 0 24rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid rgba(216, 216, 216, 0.5);
+  box-shadow: 0 0 2rpx 2rpx rgba(216, 216, 216, 0.5);
+  position: relative;
+  top: 480rpx;
+}
+
+.task-category{
+  display: flex;
+  justify-content: space-between;
+  height: 90rpx;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1rpx solid rgba(216, 216, 216, 0.5);
 }

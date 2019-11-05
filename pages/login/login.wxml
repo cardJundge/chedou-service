@@ -9,7 +9,7 @@
         <!-- 账号 -->
         <view class="input-box">
           <image src="/images/login/login_account.png"></image>
-          <input placeholder-class="ph-class" type='text' name="phone" value ="{{formData.phone}}" placeholder='请输入您的账号' />
+          <input placeholder-class="ph-class" type='text' name="phone" value ="{{formData.phone}}" placeholder='请输入您的手机号' />
         </view>
         <!-- 密码 -->
         <view class="input-box">

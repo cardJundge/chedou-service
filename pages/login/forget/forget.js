@@ -105,6 +105,7 @@ Page({
     }
   },
   formSubmit(e) {
+    console.log(e)
     const params = e.detail.value
     if (!this.WxValidate.checkForm(params)) {
       const error = this.WxValidate.errorList[0]
@@ -120,7 +121,26 @@ Page({
       })
       return false
     } else {
-
+      let param = {
+        mobile: params.phone,
+        code: params.code,
+        password: params.password,
+        repeat_password: params.rePassword
+      }
+      loginModel.forgetPwd(param, res=> {
+        if(res.data.status == 1) {
+          wx.showToast({
+            title: '修改成功'
+          })
+          wx.redirectTo({
+            url: '../login',
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg? res.data.msg : '操作超时',
+          })
+        }
+      })
     }
   }
 })

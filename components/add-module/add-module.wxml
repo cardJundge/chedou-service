@@ -1,5 +1,5 @@
 <!--添加模块-->
-<view class="module-body" wx:if="{{isShow}}" catchtap="toCloseModule">
+<view class="module-body" catchtouchmove="true"  wx:if="{{isShow}}" catchtap="toCloseModule">
   <view class="module-content" wx:if="{{bottomSpin}}">
     <view class="loading-img">
       <image src="/images/index/code.gif"></image>
@@ -17,7 +17,7 @@
           <view class="circle" wx:if="{{!item.selected}}"></view>
           <i-icon class="icon" wx:if="{{item.selected}}" type="success_fill" size="22" color="#1A65FF" />
           <image src="{{item.img}}"></image>
-          <text>{{item.name}}</text>
+          <text>{{item.name == '调查' ? '风险调查' : item.name}}</text>
         </view>
       </view>
     </scroll-view>

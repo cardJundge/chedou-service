@@ -98,7 +98,7 @@ view {
   position: absolute;
   right: 0;
   bottom: 24rpx;
-  color: #1a84ff;
+  color: #1a65ff;
 }
 
 .container-cash .input-holder {
@@ -136,7 +136,7 @@ view {
   height: 80rpx;
   line-height: 80rpx;
   text-align: center;
-  background: #1a84ff;
+  background: #1a65ff;
   border-radius: 40rpx;
   font-family: PingFangSC-Medium;
   font-size: 40rpx;
@@ -160,7 +160,7 @@ view {
 .container-success .title-text {
   font-family: PingFangSC-Medium;
   font-size: 50rpx;
-  color: #1A84FF;
+  color: #1a65ff;
 }
 .container-success .img {
   margin: 109rpx 0 38rpx;
@@ -170,7 +170,7 @@ view {
   height: 317rpx;
 }
 .container-success .message {
-  color: #1A84FF;
+  color: #1a65ff;
   font-size: 30rpx;
 }
 .container-success .btn-bar {
@@ -193,5 +193,5 @@ view {
   background: #CBCBCB;
 }
 .container-success .continue-btn {
-  background: #1A84FF;
+  background: #1a65ff;
 }

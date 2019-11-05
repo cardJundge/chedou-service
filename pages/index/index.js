@@ -114,7 +114,6 @@ Page({
         this.setData({
           moduleArray: res.data.data
         })
-        console.log(this.data.moduleArray)
       }
     })
   },
@@ -128,7 +127,6 @@ Page({
           item.img = '/images/index/' + item.key + '.png'
           module.push(item.id)
         })
-        console.log(module)
         wx.setStorageSync('module', module)
         let modules = res.data.data.reverse()
        
@@ -144,7 +142,6 @@ Page({
   getOrderList() {
     indexModel.getOrderList(res=> {
       if(res.data.status == 1) {
-        console.log(res)
         res.data.data.data.forEach((item, index)=> {
           if (item.classify_id == 14) {
             item.img = '/images/index/order/icon_daibannianshen.png'
@@ -191,7 +188,6 @@ Page({
 
   // 进入订单详情
   toOrderDetail(e) {
-    console.log(e)
     wx.navigateTo({
       url: './order/order-detail/order-detail?orderId=' + e.currentTarget.dataset.id + '&orderImg=' + e.currentTarget.dataset.img + '&orderName=' + e.currentTarget.dataset.name,
     })

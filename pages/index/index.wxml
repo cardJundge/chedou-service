@@ -13,15 +13,15 @@
         <text bindtap="toDataDetails">详情</text>
       </view> -->
       <view class="data-content">
-        <view class="data-item">
+        <view class="data-item" bindtap="toDataDetails">
           <text>{{dataStatisticsArray.today}}</text>
           <text>今日任务流</text>
         </view>
-        <view class="data-item">
+        <view class="data-item" bindtap="toDataDetails">
           <text>{{dataStatisticsArray.week}}</text>
           <text>本周任务流</text>
         </view>
-        <view class="data-item">
+        <view class="data-item" bindtap="toDataDetails">
           <text>{{dataStatisticsArray.total}}</text>
           <text>累计任务流</text>
         </view>
@@ -35,7 +35,7 @@
       <text bindtap="addModule">添加模块</text>
     </view>
     <view class="business-content">
-      <view wx:for="{{businessArray}}" class="business-item" bindtap="toItemList" data-key="{{item.key}}">
+      <view wx:for="{{businessArray}}" wx:key="" class="business-item" bindtap="toItemList" data-key="{{item.key}}">
         <image src="{{item.img}}"></image>
         <view class="business-item-text">
           <text wx:if="{{serviceType == 2 || serviceType == 3}}">{{item.name}}</text>
@@ -56,8 +56,12 @@
     <view class="order-title">
       <text>接单系统</text>
     </view>
-    <view class="order-content">
-      <view class="order-item" wx:for="{{orderList}}" bindtap="toOrderDetail" data-id="{{item.id}}" data-img="{{item.img}}" data-name="{{item.name}}">
+    <view class="order-null" wx:if="{{!orderList}}">
+      <image src="/images/index/order_null.png"></image>
+      <text>您还没有订单哦~</text>
+    </view>
+    <view class="order-content" wx:if="{{orderList}}">
+      <view class="order-item" wx:for="{{orderList}}" wx:key="" bindtap="toOrderDetail" data-id="{{item.id}}" data-img="{{item.img}}" data-name="{{item.name}}">
         <image src="{{item.img}}"></image>
         <view class="order-item-content">
           <view class="order-item-content-left">

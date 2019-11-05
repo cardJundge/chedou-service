@@ -142,7 +142,6 @@
 
 .personnel-content-item-text-tag view {
   height: 28rpx;
-  line-height: 28rpx;
   padding: 0 12rpx;
   color: #fff;
   font-size: 18rpx;
