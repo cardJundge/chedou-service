@@ -43,10 +43,12 @@ Page({
         name: item.nickname,
         module: item.module,
         face: item.face,
-        key: firstName
+        key: firstName,
+        mobile: item.mobile
       })
     })
     this.data.personnel = storeData
+    console.log(this.data.personnel)
     this.setData({
       personnel: this.data.personnel
     })
@@ -125,6 +127,8 @@ Page({
                 title: '删除成功',
               })
               this.getTaskList('')
+            } else if (res.data.status == -1) {
+
             } else {
               wx.showToast({
                 title: res.data.msg ? res.data.msg : '请求超时',
@@ -136,6 +140,40 @@ Page({
       }
     })
     
+  },
+
+  // 电话拨打
+  phoneCall(e) {
+    wx.getSystemInfo({
+      success: res=> {
+        console.log(res)
+        if(res.platform == 'ios') {
+          wx.makePhoneCall({
+            phoneNumber: e.currentTarget.dataset.phone,
+            success: res => {
+
+            }
+          })
+        } else if (res.platform == 'android') {
+          wx.showModal({
+            title: '提示',
+            content: e.currentTarget.dataset.phone,
+            confirmText: "呼叫",
+            success: res=> {
+              if(res.confirm) {
+                wx.makePhoneCall({
+                  phoneNumber: e.currentTarget.dataset.phone,
+                  success: res => {
+
+                  }
+                })
+              }
+            }
+          })
+        }
+      }
+    })
+   
   },
 
   search(e) {

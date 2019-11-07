@@ -97,6 +97,9 @@ Page({
                   icon: 'none'
                 })
               }
+            },
+            fail: (err)=> {
+              wx.hideLoading()
             }
           })
         }
@@ -189,8 +192,18 @@ Page({
   addDetailedFun(params) {
      indexModel.addDetailed(params, res=> {
       if(res.data.status == 1) {
+        wx.showToast({
+          title: '添加成功',
+        })
         wx.navigateBack({
           delta: 1
+        })
+      } else if(res.data.status == -1) {
+
+      } else {
+        wx.showToast({
+          title: res.data.msg ? res.data.msg: '请求超时',
+          icon: 'none'
         })
       }
     })

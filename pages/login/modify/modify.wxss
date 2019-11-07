@@ -13,6 +13,7 @@
 }
 
 .modify-input text {
+  width: 128rpx;
   margin-right: 78rpx;
 }
 

@@ -17,9 +17,28 @@ class HTTP {
       data: params.data,
       success: res => {
         params.sCallback && params.sCallback(res)
+        wx.hideLoading()
+        if(res.data.status == -1) {
+          wx.showModal({
+            title: '提示',
+            content: 'token过期或已失效，请前往登录页面重新登录',
+            success: res=> {
+              if(res.confirm) {
+                wx.reLaunch({
+                  url: '/pages/login/login',
+                })
+              }
+            }
+          })
+        }
       },
       fail: err => {
         params.sCallback && params.sCallback(err)
+        wx.hideLoading()
+        wx.showToast({
+          title: '请求超时',
+          icon: 'none'
+        })
       }
     })
   }

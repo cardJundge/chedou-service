@@ -59,13 +59,14 @@ Page({
           type: 'chedou'
         }
         mineModel.bindWx(params, response => {
-          wx.hideLoading()
           if (response.data.status == 1) {
             wx.showToast({
               title: '绑定成功'
             })
             this.toGetUserInfo()
             sCallback(true)
+          } else if (response.data.status == -1) {
+
           } else {
             wx.showToast({
               title: response.data.msg ? response.data.msg : '请求超时',
@@ -83,15 +84,17 @@ Page({
       title: '解绑中...',
     })
     mineModel.unTying(res => {
-      wx.hideLoading()
       if (res.data.status == 1) {
         wx.showToast({
           title: '解绑成功',
         })
         this.toGetUserInfo()
+      } else if (res.data.status == -1) {
+
       } else {
         wx.showToast({
           title: res.data.msg ? res.data.msg : '请求超时',
+          icon: 'none'
         })
       }
     })
@@ -148,6 +151,13 @@ Page({
     })
   },
 
+  // 购买商业版本
+  toBuyBusiness() {
+    wx.navigateTo({
+      url: '/pages/personnel/add-quota/add-quota',
+    })
+  },
+
   // 退出登录
   toLogout() {
     wx.showModal({
@@ -160,6 +170,8 @@ Page({
               wx.reLaunch({
                 url: '../login/login',
               })
+            } else if (res.data.status == -1) {
+
             } else {
               wx.showToast({
                 title: res.data.msg ? res.data.msg : '请求超时',

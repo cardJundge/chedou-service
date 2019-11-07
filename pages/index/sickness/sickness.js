@@ -61,7 +61,11 @@ Page({
         }
         this.data.sickTempList = this.data.sickList
         
+      } else if(res.data.status == -1) {
       } else {
+        this.setData({
+          hasNoData: true
+        })
         wx.showToast({
           title: res.data.msg ? res.data.msg : '操作超时',
           icon: 'none'

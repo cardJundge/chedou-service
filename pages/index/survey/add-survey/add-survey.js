@@ -550,11 +550,12 @@ Page({
     if(this.data.isEdit) {
       params.id = this.data.reportId
       indexModel.editBusiness(params, res=> {
-        wx.hideLoading()
         if(res.data.status == 1) {
           wx.redirectTo({
             url: '../survey-details/survey-details?listId=' + params.id,
           })
+        } else if (res.data.status == -1) {
+
         } else {
           wx.showToast({
             title: res.data.msg ? res.data.msg : '请求超时',
@@ -564,7 +565,6 @@ Page({
       })
     } else {
       indexModel.addBusiness(params, res => {
-        wx.hideLoading()
         if (res.data.status == 1) {
           indexModel.getWorkList('survey', 1, res => {
             if (res.data.status == 1) {
@@ -572,6 +572,8 @@ Page({
               wx.redirectTo({
                 url: '../survey-details/survey-details?listId=' + listId,
               })
+            } else if (res.data.status == -1) {
+
             } else {
               wx.showToast({
                 title: res.data.msg ? res.data.msg : '请求超时',
@@ -579,6 +581,8 @@ Page({
               })
             }
           })
+
+        } else if (res.data.status == -1) {
 
         } else {
           wx.showToast({

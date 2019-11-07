@@ -80,7 +80,6 @@ Page({
           filePath: res.tempFilePaths[0],
           name: 'file',
           success: (res) => {
-            wx.hideLoading()
             let data = JSON.parse(res.data)
             if (data.status == 1) {
               this.setData({

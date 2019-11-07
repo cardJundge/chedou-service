@@ -36,24 +36,23 @@ Page({
   },
 
   // 接单
-  toReceipt() {
-    let key = 'survey'
-    let id = this.data.listId
-    indexModel.businessReceipt(id, key, res=> {
-      if(res.data.status == 1) {
-        // let surveyList = this.data.surveyList
-        // let string = 'surveyList.status'
-        // this.setData({
-        //   [string]: 4
-        // })
-        this.getDetails()
-      } else {
-        wx.showToast({
-          title: res.data.msg ? res.data.msg : '请求超时',
-        })
-      }
-    })
-  },
+  // toReceipt() {
+  //   wx.showLoading({
+  //     title: '接单中...',
+  //   })
+  //   let key = 'survey'
+  //   let id = this.data.listId
+  //   indexModel.businessReceipt(id, key, res=> {
+  //     if(res.data.status == 1) {
+  //       this.getDetails()
+  //     } else if (res.data.status == -1) {
+  //     } else {
+  //       wx.showToast({
+  //         title: res.data.msg ? res.data.msg : '请求超时',
+  //       })
+  //     }
+  //   })
+  // },
 
   // 查勘定损详情请求
   getDetails() {
@@ -189,12 +188,15 @@ Page({
       id: this.data.listId
     }
     indexModel.toScene(params, res=> {
-      wx.hideLoading()
       if(res.data.status == 1) {
         this.getDetails()
+        this.toAddDetails()
+      } else if (res.data.status == -1) {
+        
       } else {
         wx.showToast({
           title: res.data.msg ? res.data.msg : '请求超时',
+          icon: 'none'
         })
       }
     })
@@ -210,12 +212,14 @@ Page({
       id: this.data.listId
     }
     indexModel.finishCase(params, res=> {
-      wx.hideLoading()
       if(res.data.status == 1) {
         this.getDetails()
+      } else if (res.data.status == -1) {
+
       } else {
         wx.showToast({
           title: res.data.msg ? res.data.msg : '请求超时',
+          icon: 'none'
         })
       }
     })
@@ -251,9 +255,12 @@ Page({
               wx.navigateBack({
                 delta: 1
               }) 
+            } else if (res.data.status == -1) {
+
             } else {
               wx.showToast({
                 title: res.data.msg ? res.data.msg : '操作超时',
+                icon: 'none'
               })
             }
           })

@@ -42,11 +42,11 @@ Page({
 
   // 首页获取数据统计
   getDataStatics() {
-    indexModel.dataStatistics(res=> {
-      if(res.data.status == 1) {
-       this.setData({
-         dataStatisticsArray: res.data.data
-       })
+    indexModel.dataStatistics(res => {
+      if (res.data.status == 1) {
+        this.setData({
+          dataStatisticsArray: res.data.data
+        })
       }
     })
   },
@@ -61,19 +61,25 @@ Page({
   // 进入业务列表
   toItemList(e) {
     let key = e.currentTarget.dataset.key
-    if(key == 'survey') {
+    if (key == 'survey') {
       wx.navigateTo({
         url: './survey/survey',
       })
-    } else if(key == 'push') {
-      wx.navigateTo({
-        url: './push/push',
-      })
-    } else if(key == "rescue") {
+    } else if (key == 'push') {
+      if (this.data.serviceType == 1 || this.data.serviceType == 4) {
+        wx.navigateTo({
+          url: './push/push',
+        })
+      } else if (this.data.serviceType == 2 || this.data.serviceType == 3) {
+        wx.navigateTo({
+          url: './repair/repair',
+        })
+      }
+    } else if (key == "rescue") {
       wx.navigateTo({
         url: './rescue/rescue',
       })
-    } else if(key == 'trailer') {
+    } else if (key == 'trailer') {
       wx.navigateTo({
         url: './trailer/trailer',
       })
@@ -105,8 +111,8 @@ Page({
         res.data.data.forEach((item, index) => {
           item.selected = false
           item.img = '/images/index/' + item.key + '.png'
-          this.data.businessArray.forEach((its, ins)=> {
-            if(item.id == its.id) {
+          this.data.businessArray.forEach((its, ins) => {
+            if (item.id == its.id) {
               item.selected = true
             }
           })
@@ -129,7 +135,7 @@ Page({
         })
         wx.setStorageSync('module', module)
         let modules = res.data.data.reverse()
-       
+
         this.setData({
           businessArray: modules
         })
@@ -140,9 +146,9 @@ Page({
 
   // 获取订单列表
   getOrderList() {
-    indexModel.getOrderList(res=> {
-      if(res.data.status == 1) {
-        res.data.data.data.forEach((item, index)=> {
+    indexModel.getOrderList(res => {
+      if (res.data.status == 1) {
+        res.data.data.data.forEach((item, index) => {
           if (item.classify_id == 14) {
             item.img = '/images/index/order/icon_daibannianshen.png'
           } else if (item.classify_id == 15 || item.classify_id == 16) {
@@ -167,13 +173,13 @@ Page({
 
   // 获取项目分类
   getOrderClassify() {
-    indexModel.orderClassify(res=> {
+    indexModel.orderClassify(res => {
       this.setData({
         spinShow: false
       })
-      if(res.data.status == 1) {
+      if (res.data.status == 1) {
         this.data.orderList.forEach((item, index) => {
-          res.data.data.forEach((its,ins) => {
+          res.data.data.forEach((its, ins) => {
             if (item.classify_id == its.id) {
               item.name = its.name
             }

@@ -28,7 +28,6 @@ Page({
     this.setData({
       companyName: e.detail.value
     })
-    console.log(e.detail.value, this.data.companyName)
   },
 
   // 上传图片
@@ -58,6 +57,12 @@ Page({
     wx.showLoading({
       title: '修改中...',
     })
+    if (!this.data.avatar) {
+      return wx.showToast({
+        title: '请选择上传头像',
+        icon: 'none'
+      })
+    }
     mineModel.modifyInfo(this.data.avatar, this.data.companyName, res=> {
       if(res.data.status == 1) {
         let params = {
@@ -65,12 +70,15 @@ Page({
           password: wx.getStorageSync('userPwd')
         }
         loginModel.postLogin(params, res=> {
-          wx.hideLoading()
           app.globalData.userInfo = res.data.data
+          wx.showToast({
+            title: '修改成功',
+          })
           wx.navigateBack({
             delta: 1
           })
         })
+      } else if (res.data.status == -1) {
       } else {
         wx.showToast({
           title: res.data.msg ? res.data.msg : '请求超时',

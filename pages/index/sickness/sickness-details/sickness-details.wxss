@@ -275,3 +275,20 @@ input{
   letter-spacing: 1rpx;
 }
 
+.no-info {
+  padding: 78rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .no-info image {
+  width: 150rpx;
+  height: 150rpx;
+  margin-bottom: 24rpx;
+} */
+
+.no-info text {
+ color: #aeaeae;
+}
+

@@ -14,13 +14,6 @@ page {
   align-items: center;
 }
 
-.register-msg {
-  position: absolute;
-  top: 128rpx;
-  right: 36rpx;
-  color: #ffffff;
-}
-
 .login-content {
   width: 600rpx;
   height: 788rpx;
@@ -66,11 +59,12 @@ page {
   
 }
 
-.forget-msg {
+.operation-bar {
   width: 450rpx;
   height: 42rpx;
-  line-height: 42rpx;
-  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   color: #1A84FF;
   margin-bottom: 42rpx;
 }

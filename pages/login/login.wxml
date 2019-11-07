@@ -1,6 +1,5 @@
 <!--登录-->
 <view class="login-body">
-  <view class="register-msg" bindtap="toRegister">注册</view>
   <view class="login-content">
     <image class="login-content-logo" src="/images/logo.png"></image>
     <view class="login-content-title">车豆商户端</view>
@@ -17,7 +16,10 @@
           <input placeholder-class="ph-class" type='password' name="password" value ="{{formData.password}}" placeholder='请输入您的密码' />
         </view>
         <!-- 忘记密码 -->
-        <view class="forget-msg" bindtap="toForget">忘记密码</view>
+        <view class="operation-bar">
+          <text bindtap="toRegister">注册</text>
+          <text bindtap="toForget">忘记密码</text>
+        </view>
         <!-- 登录按钮 -->
         <button class="btn-box" formType="submit" wx:if="{{!isDisabled}}">登录</button>
         <button class="btn-box" wx:if="{{isDisabled}}">登录中...</button>

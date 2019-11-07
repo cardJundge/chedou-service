@@ -76,6 +76,8 @@ Page({
         wx.navigateBack({
           delta: 1
         })
+      } else if (res.data.status == -1) {
+
       } else {
         wx.showToast({
           title: res.data.msg ? res.data.msg : '操作超时',

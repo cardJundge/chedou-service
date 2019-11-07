@@ -73,6 +73,8 @@ Page({
               })
             }
           })
+        } else if(res.data.status == -1) {
+
         } else {
           wx.showToast({
             title: res.data.msg ? res.data.msg : '请求超时',

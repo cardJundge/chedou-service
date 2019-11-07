@@ -139,6 +139,7 @@ Page({
             wx.showToast({
               title: '添加成功',
             })
+          } else if (res.data.status == -1) {
           } else {
             wx.showToast({
               title: res.data.msg ? res.data.msg : '请求超时',

@@ -1,2 +1,4 @@
-<!--pages/index/repair/repair.wxml-->
-<text>pages/index/repair/repair.wxml</text>
+<!--维修列表-->
+<view>
+ <business-item typeKey="{{key}}" page="{{page}}" businessList="{{businessList}}" id="businessListId"/>
+</view>

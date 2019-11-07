@@ -116,7 +116,7 @@
           <text>{{item.title}}</text>
           <text>{{item.date}}</text>
           <view class="progress-image" wx:if="{{item.picture}}">
-            <view class="progress-image-item" wx:for="{{item.picture.ckzp}}" wx:for-item="ckzpitem">
+            <!-- <view class="progress-image-item" wx:for="{{item.picture.ckzp}}" wx:for-item="ckzpitem">
               <image src="{{imgUrl}}{{ckzpitem}}"></image>
             </view>
             <view class="progress-image-item" wx:for="{{item.picture.gydz}}" wx:for-item="gydzitem">
@@ -124,65 +124,68 @@
             </view>
             <view class="progress-image-item" wx:for="{{item.picture.zfdz}}" wx:for-item="zfdzitem">
               <image src="{{imgUrl}}{{zfdzitem}}"></image>
-            </view>
+            </view> -->
           </view>
         </view>
       </view>
     </view>
   </view>
 
+  <!-- 明细 -->
+  <view class="detailed"></view>
+
   <!-- 操作按钮 -->
-  <view class="operation" wx:if="{{surveyList.status < 4}}" bindtap="toReceipt">
-    <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
+  <!-- <view class="operation" wx:if="{{surveyList.status < 4}}" bindtap="toReceipt">
+    <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
     <text>接单</text>
-  </view>
-  <view class="operation" wx:if="{{!serviceOperation && surveyList.status == 4 && !surveyList.task_id}}">
+  </view> -->
+  <view class="operation" wx:if="{{!serviceOperation && surveyList.status <5 && !surveyList.task_id}}">
     <view class="operation-item" bindtap="toScene">
-      <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
-      <text>到达现场</text>
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>添加明细</text>
     </view>
     <view class="operation-item" bindtap="toAssignmentTask">
-      <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>分配作业员</text>
     </view>
     <view class="operation-item" wx:if="{{surveyList.is_push == 0 && surveyList.type == 0}}" bindtap="toPush">
-      <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>推修</text>
     </view>
     <view class="operation-item" wx:if="{{surveyList.is_push == 1 && surveyList.type == 0}}">
-      <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>已推修</text>
     </view>
   </view>
   <view class="operation" wx:if="{{serviceOperation && surveyList.status == 4 && !surveyList.task_id}}">
     <view class="operation-item" bindtap="toAddDetails">
-      <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>添加明细</text>
     </view>
     <view class="operation-item" bindtap="toFinishCase">
-      <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>结案</text>
     </view>
     <view class="operation-item" wx:if="{{surveyList.is_push == 0 && surveyList.type == 0}}" bindtap="toPush">
-      <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>推修</text>
     </view>
     <view class="operation-item" wx:if="{{surveyList.is_push == 1 && surveyList.type == 0}}">
-      <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>已推修</text>
     </view>
   </view>
   <view class="operation" wx:if="{{serviceOperation && surveyList.status == 6 && !surveyList.task_id}}">
     <view class="operation-item" bindtap="toAddDetails">
-      <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>添加明细</text>
     </view>
     <view class="operation-item" wx:if="{{surveyList.is_push == 0 && surveyList.type == 0}}" bindtap="toPush">
-      <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>推修</text>
     </view>
     <view class="operation-item" wx:if="{{surveyList.is_push == 1 && surveyList.type == 0}}">
-      <i-icon class="icon" type="keyboard" size="22" color="#eeeeee" />
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>已推修</text>
     </view>
   </view>

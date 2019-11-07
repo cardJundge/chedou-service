@@ -1,8 +1,8 @@
 <!--pages/businessmode/diseasesurvey/diseasesurvey.wxml-->
 <view class="diseasestep">
-  <block wx:for="{{diseasestep}}" wx:key="">
-    <text wx:if='{{index==first}}' style="color:#fff;background:#1a65ff" bindtap="selectdiseasestep" id="{{index}}">{{item}}</text>
-    <text wx:else bindtap="selectdiseasestep" id="{{index}}">{{item}}</text>
+  <block wx:for="{{diseasestep}}" wx:key="" wx:for-item="step">
+    <text wx:if='{{index==first}}' style="color:#fff;background:#1a65ff" bindtap="selectdiseasestep" id="{{index}}">{{step}}</text>
+    <text wx:else bindtap="selectdiseasestep" id="{{index}}">{{step}}</text>
   </block>
 </view>
 
@@ -14,17 +14,17 @@
   </view>
   <view class="diseaseitem">
     <text>对接人</text>
-    <text>{{diseaselist.proposer}}</text>
+    <text>{{diseaselist.docking}}</text>
   </view>
-  <view class="diseaseitem">
+  <view class="diseaseitem" bindtap="phoneCall" data-phone="{{diseaselist.docking_mobile}}">
     <text>联系电话</text>
-    <text>{{diseaselist.proposer_mobile}}</text>
+    <text>{{diseaselist.docking_mobile}}</text>
   </view>
   <view class="diseaseitem">
     <text>调查员</text>
     <text>{{taskinfo.nickname}}</text>
   </view>
-  <view class="diseaseitem">
+  <view class="diseaseitem" bindtap="phoneCall" data-phone="{{taskinfo.mobile}}">
     <text>联系电话</text>
     <text>{{taskinfo.mobile}}</text>
   </view>
@@ -34,15 +34,82 @@
 <view class="wholetask" wx:if="{{first == 0}}">
   <view class="wholetasktip">全部任务</view>
   <view class="line"></view>
-  <view class="tasklist" wx:for="{{tasklist}}" wx:key="">
-    <view class="item-content">
-      <text>{{index+1}}、面访患病成员及申请人</text>
-      <text class="address">陕西省-西安市-雁塔区</text>
-    </view>
-    <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
+  <block wx:for="{{tasklist}}" wx:key="" wx:for-item="item">
 
-    <view class="item-result" wx:else>未完成</view>
-  </view>
+    <view class="tasklist" bindtap="todetail" id="{{index}}" wx:if="{{index == 0}}" data-item="{{item}}">
+      <view class="item-content">
+        <text>{{index+1}}、面访患病成员及申请人</text>
+        <text class="address">{{diseaselist.sick_address}}</text>
+      </view>
+      <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
+      <view class="item-result" wx:else>未完成</view>
+    </view>
+
+    <view class="tasklist" bindtap="todetail" id="{{index}}" wx:if="{{index == 1}}" data-item="{{item}}">
+      <view class="item-content">
+        <text>{{index+1}}、核查医院</text>
+        <text class="address">{{diseaselist.sick_address}}</text>
+      </view>
+      <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
+      <view class="item-result" wx:else>未完成</view>
+    </view>
+
+    <view class="tasklist" bindtap="todetail" id="{{index}}" wx:if="{{index == 2}}" data-item="{{item}}">
+      <view class="item-content">
+        <text>{{index+1}}、医保排查</text>
+        <text class="address">{{diseaselist.sick_address}}</text>
+      </view>
+      <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
+      <view class="item-result" wx:else>未完成</view>
+    </view>
+
+    <view class="tasklist" bindtap="todetail" id="{{index}}" wx:if="{{index == 3}}" data-item="{{item}}">
+      <view class="item-content">
+        <text>{{index+1}}、排查医院</text>
+        <text class="address">{{diseaselist.sick_address}}</text>
+      </view>
+      <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
+      <view class="item-result" wx:else>未完成</view>
+    </view>
+
+    <view class="tasklist" bindtap="todetail" id="{{index}}" wx:if="{{index == 4}}" data-item="{{item}}">
+      <view class="item-content">
+        <text>{{index+1}}、邻居/单位走访</text>
+        <text class="address">{{diseaselist.sick_address}}</text>
+      </view>
+      <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
+      <view class="item-result" wx:else>未完成</view>
+    </view>
+
+    <view class="tasklist" bindtap="todetail" id="{{index}}" wx:if="{{index == 5}}" data-item="{{item}}">
+      <view class="item-content">
+        <text>{{index+1}}、体检报告</text>
+        <text class="address">{{diseaselist.sick_address}}</text>
+      </view>
+      <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
+      <view class="item-result" wx:else>未完成</view>
+    </view>
+
+    <view class="tasklist" bindtap="todetail" id="{{index}}" wx:if="{{index == 6}}" data-item="{{item}}">
+      <view class="item-content">
+        <text>{{index+1}}、商保排查</text>
+        <text class="address">{{diseaselist.sick_address}}</text>
+      </view>
+      <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
+      <view class="item-result" wx:else>未完成</view>
+    </view>
+
+    <view class="tasklist" bindtap="todetail" id="{{index}}" wx:if="{{index == 7}}" data-item="{{item}}">
+      <view class="item-content">
+        <text>{{index+1}}、药房排查</text>
+        <text class="address">{{diseaselist.sick_address}}</text>
+      </view>
+      <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
+      <view class="item-result" wx:else>未完成</view>
+    </view>
+
+  </block>
+
 </view>
 
 <view class="wholetask" wx:if='{{first == 1}}'>
@@ -77,7 +144,7 @@
     </view>
 
     <view class="tasklist baseitem" wx:if="{{currentTab == 0}}">
-      <text>常驻地址:</text>
+      <text>常住地址:</text>
       <text>{{diseaselist.sick_address}}</text>
     </view>
 
@@ -123,11 +190,11 @@
     </view>
 
     <view class="tasklist baseitem" wx:if="{{currentTab == 1}}">
-      <text>常驻地址:</text>
-      <text>{{diseaselist.sick_address}}</text>
+      <text>常住地址:</text>
+      <text>{{diseaselist.proposer_address}}</text>
     </view>
 
-    <view class="tasklist baseitem" wx:if="{{currentTab == 1}}">
+    <view class="tasklist baseitem" wx:if="{{currentTab == 1}}" bindtap="phoneCall" data-phone="{{diseaselist.proposer_mobile}}">
       <text>联系电话:</text>
       <text>{{diseaselist.proposer_mobile}}</text>
     </view>
@@ -179,27 +246,30 @@
 <view class="wholetask" wx:if='{{first == 3}}'>
   <view class="wholetasktip">机构回复</view>
   <view class="line"></view>
-
-  <view class="baseinfor">
+  <view class="no-info" wx:if="{{!diseaselist.suspects}}">
+    <!-- <image src="/images/index/order_null.png"></image> -->
+    <text>暂无机构回复</text>
+  </view>
+  <view class="baseinfor" wx:if="{{diseaselist.suspects}}">
     <view class="tasklist baseitem">
       <text>阳性疑点:</text>
-      <text>{{diseaselist.suspects?diseaselist.suspects:''}}</text>
+      <text>{{diseaselist.suspects}}</text>
     </view>
     <view class="tasklist baseitem">
       <text>涉及省份:</text>
-      <text>{{diseaselist.province?diseaselist.province:''}}</text>
+      <text>{{diseaselist.province}}</text>
     </view>
     <view class="tasklist baseitem">
       <text>调查金额:</text>
-      <text>{{diseaselist.money?diseaselist.money:''}}</text>
+      <text>{{diseaselist.money}}</text>
     </view>
     <view class="tasklist baseitem">
       <text>客户放弃申领:</text>
-      <text>{{diseaselist.give_up?diseaselist.give_up:''}}</text>
+      <text>{{diseaselist.give_up}}</text>
     </view>
     <view class="accidentstyle">
       <text>调查问题反馈:</text>
-      <text>{{diseaselist.feedback?diseaselist.feedback:''}}</text>
+      <text>{{diseaselist.feedback}}</text>
     </view>
   </view>
 </view>

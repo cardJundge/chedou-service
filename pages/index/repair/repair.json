@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "business-item": "/components/list/list"
+  },
   "navigationBarTitleText": "车辆维修"
 }

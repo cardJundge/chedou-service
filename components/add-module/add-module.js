@@ -24,6 +24,8 @@ Component({
       indexModel.setSelfModule(this.data.moduleItem, res=> {
         if(res.data.status == 1) {
           this.triggerEvent('okEvent')
+        } else if (res.data.status == -1) {
+
         } else {
           wx.showToast({
             title: res.data.msg ? res.data.msg : '请求超时',

@@ -21,7 +21,7 @@ Page({
     currentTab: 0,
     baselist: ['', '', '', '', '', '', '', '', '', ''],
     imgdatalist: [],
-    voicedatalist: ['', ''],
+    voicedatalist: [''],
     giveup: true,
     giveupresult: '',
     voiceIsshow: false,
@@ -30,7 +30,7 @@ Page({
   },
 
 
-  onLoad: function (options) {
+  onLoad(options) {
     console.log(options)
     this.data.listId = options.listId
     this.getSickDetailsList()
@@ -47,6 +47,7 @@ Page({
       if(res.data.status == 1) {
         this.setData({
           diseaselist: res.data.data,
+          tasklist: res.data.step,
           imgdatalist: res.data.data.data.split(',')
         })
        
@@ -74,14 +75,14 @@ Page({
   },
 
   //顶部选项卡
-  selectdiseasestep: function (e) {
+  selectdiseasestep(e) {
     this.setData({
       first: e.currentTarget.id
     })
   },
 
   //基本资料选项卡
-  switchnav: function (e) {
+  switchnav(e) {
     var that = this
 
     that.setData({
@@ -89,14 +90,44 @@ Page({
     })
   },
 
-  //选择照片
-
-
   //语音模块显示
-  openvoice: function () {
+  openvoice() {
     var that = this
     that.setData({
       voiceIsshow: true
+    })
+  },
+
+  // 电话拨打
+  phoneCall(e) {
+    wx.getSystemInfo({
+      success: res => {
+        console.log(res)
+        if (res.platform == 'ios') {
+          wx.makePhoneCall({
+            phoneNumber: e.currentTarget.dataset.phone,
+            success: res => {
+
+            }
+          })
+        } else if (res.platform == 'android') {
+          wx.showModal({
+            title: '提示',
+            content: e.currentTarget.dataset.phone,
+            confirmText: "呼叫",
+            success: res => {
+              if (res.confirm) {
+                wx.makePhoneCall({
+                  phoneNumber: e.currentTarget.dataset.phone,
+                  success: res => {
+
+                  }
+                })
+              }
+            }
+          })
+        }
+      }
     })
   }
 })

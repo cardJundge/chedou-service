@@ -10,9 +10,9 @@
         <view class="order-box-content">
           <view class="order-box-msg">
             <text>{{orderName}}</text>
-            <text>订单时间:{{detailData.add_time}}</text>
-            <text>订单编号:{{detailData.order_no}}</text>
-            <text>支付方式:线上支付</text>
+            <text>订单时间: {{detailData.add_time}}</text>
+            <text>订单编号: {{detailData.order_no}}</text>
+            <text>支付方式: 线上支付</text>
           </view>
           <view class="order-box-img">
             <image src="{{orderImg}}"></image>
