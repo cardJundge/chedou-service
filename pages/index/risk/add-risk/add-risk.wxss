@@ -42,8 +42,8 @@
 
 .risk-btn {
   width: 100%;
-  height: 80rpx;
-  line-height: 80rpx;
+  height: 90rpx;
+  line-height: 90rpx;
   text-align: center;
   font-size: 36rpx;
   color: #fff;

@@ -67,35 +67,32 @@ Page({
     var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/
     let params = this.data.formData.phone
     if (!myreg.test(params)) {
-      wx.showToast({
+      return wx.showToast({
         title: '请填写正确的手机号',
         icon: 'none'
       })
-      return false
     } else {
       if (this.data.codetime > 0) return
+      this.setData({
+        codetime: 120
+      })
+      let timer = setInterval(() => {
+        this.setData({
+          codetime: this.data.codetime - 1
+        })
+        if (this.data.codetime < 1) {
+          clearInterval(timer)
+          this.setData({
+            codetime: 0
+          })
+        }
+      }, 1000)
       loginModel.getSms(params, res => {
         if (res.data.status == 1) {
           wx.showToast({
             title: '验证码已发送',
-            icon: "none",
-            success: () => {
-              this.setData({
-                codetime: 120
-              })
-              let timer = setInterval(() => {
-                this.setData({
-                  codetime: this.data.codetime - 1
-                })
-                if (this.data.codetime < 1) {
-                  clearInterval(timer)
-                  this.setData({
-                    codetime: 0
-                  })
-                }
-              }, 1000)
-            }
-          });
+            icon: 'none',
+          })        
         } else {
           wx.showToast({
             title: res.data.msg ? res.data.msg : '请求超时',

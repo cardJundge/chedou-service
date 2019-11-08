@@ -23,6 +23,9 @@ Page({
     showBottomOperation: false,
     showQrCode: false,
     serviceOperation: false,
+    steps: [],
+    detailed: [], //人车合一
+    showDetailed: false
   },
   onLoad: function(options) {
     this.setData({
@@ -36,28 +39,48 @@ Page({
   },
 
   // 接单
-  // toReceipt() {
-  //   wx.showLoading({
-  //     title: '接单中...',
-  //   })
-  //   let key = 'survey'
-  //   let id = this.data.listId
-  //   indexModel.businessReceipt(id, key, res=> {
-  //     if(res.data.status == 1) {
-  //       this.getDetails()
-  //     } else if (res.data.status == -1) {
-  //     } else {
-  //       wx.showToast({
-  //         title: res.data.msg ? res.data.msg : '请求超时',
-  //       })
-  //     }
-  //   })
-  // },
+  toReceipt() {
+    wx.showLoading({
+      title: '接单中...',
+    })
+    let key = 'survey'
+    let id = this.data.listId
+    indexModel.businessReceipt(id, key, res=> {
+      if(res.data.status == 1) {
+        this.toScene()
+      } else if (res.data.status == -1) {
+      } else {
+        wx.showToast({
+          title: res.data.msg ? res.data.msg : '请求超时',
+        })
+      }
+    })
+  },
 
   // 查勘定损详情请求
   getDetails() {
     let key = 'survey'
     let id = 1
+    let steps = []
+    let ckzp01 = { title: '', picture: [] }, // 人车合一
+        ckzp02 = { title: '', picture: [] }, //车架号
+        ckzp03 = { title: '', picture: [] }, // 环境照片
+        ckzp04 = { title: '', picture: [] }, // 验车照片
+        ckzp05 = { title: '', picture: [] }, // 车损照片
+        ckzp06 = { title: '', picture: [] }, // 旧伤确认
+        gydz01 = { title: '', picture: [] }, // 事故证明
+        gydz02 = { title: '', picture: [] }, // 索赔申请书
+        gydz03 = { title: '', picture: [] }, // 行驶证
+        gydz04 = { title: '', picture: [] }, // 驾驶证
+        gydz05 = { title: '', picture: [] }, // 查看报告
+        gydz06 = { title: '', picture: [] }, // 个案签报
+        gydz07 = { title: '', picture: [] }, // 拒赔材料
+        gydz08 = { title: '', picture: [] }, // 从民资格证
+        gydz09 = { title: '', picture: [] }, // 法院判决书
+        gydz10 = { title: '', picture: [] }, // 调查单证
+        zfdz01 = { title: '', picture: [] }, // 收款方账户信息
+        zfdz02 = { title: '', picture: [] } // 收款方身份证明
+    this.data.detailed = []
     indexModel.getBusinessDetail(key, this.data.listId, id, res => {
       if (res.data.status == 1) {
         this.setData({
@@ -70,10 +93,89 @@ Page({
               serviceOperation: true
             })
           }
+          if (item.title.match('接单') || item.title.match('到达现场') || item.title.match('分配') || item.title.match('完成')) {
+            steps.push(item)
+            this.setData({
+              steps: steps
+            })
+          }
+
+          // 明细        
+          if (item.title.match('人车合一')) {
+            ckzp01.title = item.title
+            ckzp01.picture.push(item.picture.ckzp)                  
+          } else if (item.title.match('车架号')) {
+            ckzp02.title = item.title
+            ckzp02.picture.push(item.picture.ckzp)  
+          } else if (item.title.match('环境照片')) {
+            ckzp03.title = item.title
+            ckzp03.picture.push(item.picture.ckzp)
+          } else if (item.title.match('验车照片')) {
+            ckzp04.title = item.title
+            ckzp04.picture.push(item.picture.ckzp)
+          } else if (item.title.match('车损照片')) {
+            ckzp05.title = item.title
+            ckzp05.picture.push(item.picture.ckzp)
+          } else if (item.title.match('旧伤确认')) {
+            ckzp06.title = item.title
+            ckzp06.picture.push(item.picture.ckzp)
+          } else if (item.title.match('事故证明')) {
+            gydz01.title = item.title
+            gydz01.picture.push(item.picture.gydz)
+          } else if (item.title.match('索赔申请书')) {
+            gydz02.title = item.title
+            gydz02.picture.push(item.picture.gydz)
+          } else if (item.title.match('行驶证')) {
+            gydz03.title = item.title
+            gydz03.picture.push(item.picture.gydz)
+          } else if (item.title.match('驾驶证')) {
+            gydz04.title = item.title
+            gydz04.picture.push(item.picture.gydz)
+          } else if (item.title.match('查勘报告')) {
+            gydz05.title = item.title
+            gydz05.picture.push(item.picture.gydz)
+          } else if (item.title.match('个案签报')) {
+            gydz06.title = item.title
+            gydz06.picture.push(item.picture.gydz)
+          } else if (item.title.match('拒赔材料')) {
+            gydz07.title = item.title
+            gydz07.picture.push(item.picture.gydz)
+          } else if (item.title.match('从民资格证')) {
+            gydz08.title = item.title
+            gydz08.picture.push(item.picture.gydz)
+          } else if (item.title.match('法院判决书')) {
+            gydz09.title = item.title
+            gydz09.picture.push(item.picture.gydz)
+          } else if (item.title.match('调查单证')) {
+            gydz10.title = item.title
+            gydz10.picture.push(item.picture.gydz)
+          } else if (item.title.match('收款方账户信息')) {
+            zfdz01.title = item.title
+            zfdz01.picture.push(item.picture.zfdz)
+          } else if (item.title.match('收款方身份证明')) {
+            zfdz02.title = item.title
+            zfdz02.picture.push(item.picture.zfdz)
+          }
+        })
+        this.data.detailed.push(ckzp01, ckzp02, ckzp03, ckzp04, ckzp05, ckzp06, gydz01, gydz02, gydz03, gydz04, gydz05, gydz06, gydz07, gydz08, gydz09, gydz10, zfdz01, zfdz02)
+        this.data.detailed.forEach((item, index) => {
+          if(item.picture.length !== 0) {
+            this.setData({
+              showDetailed: true
+            })
+          }
+        })
+        this.setData({
+          detailed: this.data.detailed
         })
         this.getInsuranceList()
       }
     })
+  },
+
+  // 添加明细分类
+  detailedClassify() {
+    
   },
 
   // 获取保险公司列表

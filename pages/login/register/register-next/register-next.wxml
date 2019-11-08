@@ -9,12 +9,20 @@
   </view>
   <form bindsubmit="formSubmit">
     <view class="register-form">
-      <!-- 公司名称 -->
+      <!-- 公司全称 -->
       <view class="register-item">
         <image src="/images/login/login_name.png" mode=""></image>
         <view class="line"></view>
         <view class="register-input">
-          <input placeholder-class="ph-class" type="text" placeholder="请输入公司名称" name="company" value="{{formData.company}}" />
+          <input placeholder-class="ph-class" type="text" placeholder="请输入公司全称" name="company" value="{{formData.company}}" />
+        </view>
+      </view>
+      <!-- 公司简称 -->
+      <view class="register-item">
+        <image src="/images/login/login_name.png" mode=""></image>
+        <view class="line"></view>
+        <view class="register-input">
+          <input placeholder-class="ph-class" type="text" placeholder="请输入公司简称" name="shortName" value="{{formData.shortName}}" />
         </view>
       </view>
       <!-- 选择公司类型 -->

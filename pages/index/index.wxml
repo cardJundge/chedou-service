@@ -68,10 +68,10 @@
             <text>{{item.name}}</text>
             <!-- <text>{{item.mobile?item.mobile : ''}}</text> -->
             <text>{{item.add_time}}</text>
-            <text>2019092610056485</text>
+            <text>2019xxxxxxxx0485</text>
           </view>
           <view class="order-item-content-right">
-            <text>{{item.mobile?item.mobile: '17635372126'}}</text>
+            <text>{{item.mobile?item.mobile: '176xxxxx426'}}</text>
             <view class="state-btn state-color01" wx:if="{{item.status == 0}}">待支付</view>
             <view class="state-btn state-color02" wx:if="{{item.status == 1 && item.work_status == 0}}">接单</view>
             <view class="state-btn state-color02" wx:if="{{item.status == 1 && item.work_status == 1}}">待分配</view>

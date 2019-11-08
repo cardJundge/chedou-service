@@ -13,6 +13,7 @@
           <input placeholder-class="ph-class" type='text' placeholder="搜索人员" bindinput="search"></input>
           <image src="/images/personnel/icon_search.png"></image>
         </view>
+        <image bindtap="addGroup" class="add" src="/images/personnel/group.png"></image>
         <image bindtap="addStaff" class="add" src="/images/personnel/icon_add.png"></image>
       </view>
     </view>

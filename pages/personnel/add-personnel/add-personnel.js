@@ -96,6 +96,15 @@ Page({
         this.setData({
           groupData: res.data.data
         })
+        let groupDataName = []
+        this.data.groupData.forEach((item, index) => {
+          groupDataName.push(item.name)
+        })
+        this.setData({
+          groupDataName: groupDataName
+        })
+
+        console.log()
       }
     })
   },
@@ -157,7 +166,7 @@ Page({
     } else {
       params.module = this.data.module
       params.type = this.data.isLeader
-      params.groupId = this.data.number ? groupData[number].id : 0
+      params.groupId = this.data.number ? this.data.groupData[this.data.number].id : 0
       params.serviceId = app.globalData.userInfo.id
       console.log(params)
       if(this.data.isEdit) {

@@ -40,7 +40,8 @@ class LoginModel extends HTTP {
         repeat_password: params.rePassword,
         code: params.code,
         type: params.companyType,
-        name: params.company
+        name: params.company,
+        short_name: params.shortName
       },
       sCallback: callback
     }

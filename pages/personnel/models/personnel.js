@@ -48,6 +48,29 @@ class PersonnelModel extends HTTP {
     this.request(params)
   }
 
+  // 编辑分组
+  editGroupList(param, callback) {
+    var params = {
+      url: '/api/group/edit',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 删除分组
+  delGroupList(id, callback) {
+    var params = {
+      url: '/api/'+ id + '/delete',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
   // 编辑人员
   editTask(params, callback) {
     var params = {
@@ -87,6 +110,18 @@ class PersonnelModel extends HTTP {
       url: '/api/user/module',
       type: 'GET',
       auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 增加分组
+  addGroup(param, callback) {
+    var params = {
+      url: '/api/group/add',
+      type: 'POST',
+      auth: true,
+      data: param,
       sCallback: callback
     }
     this.request(params)

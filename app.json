@@ -38,7 +38,8 @@
     "pages/index/sickness/sickness",
     "pages/index/sickness/sickness-details/sickness-details",
     "pages/index/repair/repair",
-    "pages/index/repair/repair-detail/repair-detail"
+    "pages/index/repair/repair-detail/repair-detail",
+    "pages/personnel/add-group/add-group"
   ],
   "window": {
     "backgroundTextStyle": "light",

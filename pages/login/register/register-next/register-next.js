@@ -12,6 +12,7 @@ Page({
     },
     formData: {
       company: '',
+      shortName: '',
       companyType: ''
     },
     otherData: [],
@@ -29,11 +30,17 @@ Page({
     const rules = {
       company: {
         required: true
+      },
+      shortName: {
+        required: true
       }
     }
     const messages = {
       company: {
-        required: '请填写公司名称'
+        required: '请填写公司全称'
+      },
+      shortName: {
+        required: '请填写公司简称'
       }
     }
     this.WxValidate = new WxValidate(rules, messages)
@@ -47,6 +54,9 @@ Page({
   },
 
   formSubmit(e) {
+    wx.showLoading({
+      title: '注册中...',
+    })
     let params = e.detail.value
     if (!this.WxValidate.checkForm(params)) {
       const error = this.WxValidate.errorList[0]
@@ -61,6 +71,7 @@ Page({
       })
       this.data.otherData.companyType = this.data.company
       this.data.otherData.company = params.company
+      this.data.otherData.shortName = params.shortName
       loginModel.postRegister(this.data.otherData, res=> {
         if(res.data.status == 1) {
           wx.showToast({

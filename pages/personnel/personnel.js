@@ -93,6 +93,25 @@ Page({
     })
   },
 
+  // 添加分组
+  addGroup() {
+    wx.showActionSheet({
+      itemList: ['添加分组', '编辑分组'],
+      success: res => {
+        console.log(res)
+        if (res.tapIndex == 0) {
+          wx.navigateTo({
+            url: './add-group/add-group?isEdit=' + 1,
+          })
+        } else if (res.tapIndex == 1) {
+          wx.navigateTo({
+            url: './add-group/add-group?isEdit=' + 2,
+          })
+        }
+      }
+    })
+  },
+
   // 增加名额
   addQuota() {
     wx.navigateTo({
@@ -157,7 +176,7 @@ Page({
         } else if (res.platform == 'android') {
           wx.showModal({
             title: '提示',
-            content: e.currentTarget.dataset.phone,
+            content: '作业员手机号码 ' + e.currentTarget.dataset.phone,
             confirmText: "呼叫",
             success: res=> {
               if(res.confirm) {

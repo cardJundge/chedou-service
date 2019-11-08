@@ -42,7 +42,6 @@ Page({
   selectAdd(e) {
     wx.showActionSheet({
       itemList: ['打开相册','拍照'],
-      itemColor: '#1a65ff',
       success: res=> {
         if (res.tapIndex === 0) {
           this.data.selectName = 'album'

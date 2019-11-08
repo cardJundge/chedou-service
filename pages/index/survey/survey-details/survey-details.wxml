@@ -1,7 +1,7 @@
 <!--查勘定损详情-->
 <view class="survey-details-body">
   <!-- 业务基本信息 -->
-  <view class="business" style="{{schedule.length == 0 ? 'padding-bottom: 104rpx' : ''}}">
+  <view class="business" style="{{steps.length == 0 ? 'padding-bottom: 114rpx' : ''}}">
     <view class="business-title">
       <text>业务基本信息</text>
       <i-icon color="#1a65ff" type="more" bindtap="operation" size="24" />
@@ -105,10 +105,10 @@
     </view>
   </view>
   <!-- 进度 -->
-  <view class="progress" wx:if="{{schedule.length !== 0}}">
+  <view class="progress" style="{{!showDetailed ? 'padding-bottom: 114rpx' : ''}}" wx:if="{{steps.length !== 0}}">
     <view class="progress-title">进度</view>
     <view class="progress-content">
-      <view class="progress-item" wx:for="{{schedule}}">
+      <view class="progress-item" wx:for="{{steps}}">
         <view class="progress-left">
           <image src="/images/index/icon_light.png"></image>
         </view>
@@ -116,15 +116,7 @@
           <text>{{item.title}}</text>
           <text>{{item.date}}</text>
           <view class="progress-image" wx:if="{{item.picture}}">
-            <!-- <view class="progress-image-item" wx:for="{{item.picture.ckzp}}" wx:for-item="ckzpitem">
-              <image src="{{imgUrl}}{{ckzpitem}}"></image>
-            </view>
-            <view class="progress-image-item" wx:for="{{item.picture.gydz}}" wx:for-item="gydzitem">
-              <image src="{{imgUrl}}{{gydzitem}}"></image>
-            </view>
-            <view class="progress-image-item" wx:for="{{item.picture.zfdz}}" wx:for-item="zfdzitem">
-              <image src="{{imgUrl}}{{zfdzitem}}"></image>
-            </view> -->
+
           </view>
         </view>
       </view>
@@ -132,7 +124,24 @@
   </view>
 
   <!-- 明细 -->
-  <view class="detailed"></view>
+  <view class="progress detailed" wx:if="{{showDetailed}}">
+    <view class="progress-title">明细</view>
+    <view class="progress-content">
+      <view class="progress-item" wx:for="{{detailed}}" wx:if="{{item.title}}">
+        <view class="progress-left">
+          <image src="/images/index/icon_light.png"></image>
+        </view>
+        <view class="progress-right">
+          <text>{{item.title}}</text>
+          <view class="progress-image">
+            <view class="progress-image-item" wx:for="{{item.picture}}" wx:for-item="ckzpitem">
+              <image src="{{imgUrl}}{{ckzpitem}}"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
 
   <!-- 操作按钮 -->
   <!-- <view class="operation" wx:if="{{surveyList.status < 4}}" bindtap="toReceipt">
@@ -140,7 +149,7 @@
     <text>接单</text>
   </view> -->
   <view class="operation" wx:if="{{!serviceOperation && surveyList.status <5 && !surveyList.task_id}}">
-    <view class="operation-item" bindtap="toScene">
+    <view class="operation-item" bindtap="toReceipt">
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>添加明细</text>
     </view>
@@ -194,6 +203,6 @@
   </view>
 </view>
 <!-- 底部操作按钮 -->
-<bottom-modal isShow="{{showBottomOperation}}" status="{{surveyList.status}}" bind:editEvent="editEvent" bind:delEvent="delEvent"/>
+<bottom-modal isShow="{{showBottomOperation}}" status="{{surveyList.status}}" bind:editEvent="editEvent" bind:delEvent="delEvent" />
 <!-- 评价二维码 -->
 <qr-code isShow="{{showQrCode}}" qrImg="{{qrImg}}" />
