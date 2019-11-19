@@ -15,8 +15,8 @@
     "pages/login/modify/modify",
     "pages/mine/account/account",
     "pages/mine/account/account-detail/account-detail",
-    "pages/mine/server/server",
-    "pages/mine/server/add-server/add-server",
+    "pages/mine/project/project",
+    "pages/mine/project/add-project/add-project",
     "pages/index/push/push",
     "pages/index/push/push-detail/push-detail",
     "pages/index/rescue/rescue",
@@ -39,7 +39,9 @@
     "pages/index/sickness/sickness-details/sickness-details",
     "pages/index/repair/repair",
     "pages/index/repair/repair-detail/repair-detail",
-    "pages/personnel/add-group/add-group"
+    "pages/personnel/add-group/add-group",
+    "pages/mine/service-brand/service-brand",
+    "pages/index/sickness/task-details/task-details"
   ],
   "window": {
     "backgroundTextStyle": "light",

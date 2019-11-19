@@ -1,4 +1,5 @@
 // 增加名额
+var app = getApp()
 Page({
   data: {
     currentTab: 0,
@@ -28,8 +29,11 @@ Page({
   },
   onLoad: function(options) {
     this.setData({
-      total: this.data.pckageData[this.data.currentTab].money
+      total: this.data.pckageData[this.data.currentTab].money,
+      basicUserInfo: app.globalData.userInfo,
+      avatarUrl: app.globalData.userInfo.face ? app.globalData.imgUrl + app.globalData.userInfo.face : '',
     })
+    console.log(this.data.avatarUrl)
   },
   changeTab(e) {
     console.log(e)
@@ -50,7 +54,7 @@ Page({
   },
   releaseMoney() {
     let time = "pckageData[" + this.data.currentTab + "].time"
-    if(this.data.number > 1) {
+    if (this.data.number > 1) {
       this.setData({
         number: this.data.number - 1,
         [time]: this.data.number - 1

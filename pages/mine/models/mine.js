@@ -7,7 +7,7 @@ class MineModel extends HTTP {
   // 退出登录
   logout(callback) {
     var params = {
-      url: '/api/index/logout',
+      url: '/api/ser/index/logout',
       type: 'GET',
       auth: true,
       sCallback: callback
@@ -18,7 +18,7 @@ class MineModel extends HTTP {
   // 修改信息
   modifyInfo(face, name, callback) {
     var params = {
-      url: '/api/index/modify',
+      url: '/api/ser/index/modify',
       type: 'POST',
       auth: true,
       data: {
@@ -33,7 +33,7 @@ class MineModel extends HTTP {
   // 绑定微信
   bindWx(params, callback) {
     var params = {
-      url: '/api/index/bind',
+      url: '/api/ser/index/bind',
       type: 'POST',
       auth: true,
       data: {
@@ -48,7 +48,7 @@ class MineModel extends HTTP {
   // 解绑
   unTying(callback) {
     var params = {
-      url: '/api/index/unbind',
+      url: '/api/ser/index/unbind',
       type: 'POST',
       auth: true,
       data: {
@@ -62,7 +62,7 @@ class MineModel extends HTTP {
   // 账户豆子数
   getBean(callback) {
     var params = {
-      url: '/api/index/bean',
+      url: '/api/ser/index/bean',
       type: 'GET',
       auth: true,
       sCallback: callback
@@ -73,7 +73,7 @@ class MineModel extends HTTP {
   // 去提现
   toWithdrawal(param, callback) {
     var params = {
-      url: '/api/index/withdrawal',
+      url: '/api/ser/index/withdrawal',
       type: 'POST',
       auth: true,
       data: param,
@@ -85,7 +85,7 @@ class MineModel extends HTTP {
   // 账户明细
   beanDetails(callback) {
     var params = {
-      url: '/api/index/detail',
+      url: '/api/ser/index/detail',
       type: 'GET',
       auth: true,
       sCallback: callback
@@ -94,9 +94,9 @@ class MineModel extends HTTP {
   }
 
   // 获取服务项目列表
-  getServerList(callback) {
+  getprojectList(callback) {
     var params = {
-      url: '/api/index/classify',
+      url: '/api/auth/classify',
       type: 'GET',
       auth: true,
       sCallback: callback

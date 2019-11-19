@@ -94,6 +94,9 @@ Page({
             icon: 'none',
           })        
         } else {
+          this.setData({
+            codetime: 0
+          })
           wx.showToast({
             title: res.data.msg ? res.data.msg : '请求超时',
             icon: 'none'

@@ -10,7 +10,8 @@ Page({
   onShow() {
     this.setData({
       businessList: [],
-      page: 1
+      page: 1,
+      spinShow: true
     })
     this.selectComponent("#businessListId").getBusinessList()
   }

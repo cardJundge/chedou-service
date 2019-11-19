@@ -40,7 +40,12 @@
 }
 
 .code-text {
+  width: 150rpx;
+  height: 40rpx;
   color: #1a84ff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .forget-btn {

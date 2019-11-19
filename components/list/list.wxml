@@ -1,10 +1,5 @@
-
-<view class="list-body" wx:if="{{spinShow}}">
-   <view class="spin-article">
-    <i-spin size="large" fix></i-spin>
-  </view>
-</view>
-<view class="list-body" wx:if="{{!spinShow}}">
+<!-- 业务模块列表 -->
+<view class="list-body">
   <view class="list-top">
     <view class="search-bg">
       <view class="search-box">
@@ -16,17 +11,21 @@
       </view>
     </view>
   </view>
-  <view class="list-content" wx:if="{{!hasNoData}}">
+  <view class="loading-img" wx:if="{{spinShow}}">
+    <image src="/images/loading.gif"></image>
+  </view>
+  <view class="list-content" wx:if="{{!spinShow && !hasNoData}}">
     <view class="list-item" wx:for="{{businessList}}" wx:key="" bindtap="toBusinessDetail" data-listId="{{item.id}}">
       <view class="list-item-left">
-        <text wx:if="{{typeKey == 'survey'}}">案件号: {{item.report_no}}</text>
+        <text>案件号: {{item.report_no}}</text>
         <!-- <text wx:if="{{typeKey == 'trailer'}}">编号: {{item.trailer_no}}</text>
         <text wx:if="{{typeKey == 'push'}}">编号: {{item.push_no}}</text>
         <text wx:if="{{typeKey == 'rescue'}}">编号: {{item.rescue_no}}</text>
         <text wx:if="{{typeKey == 'risk'}}">编号: {{item.risk_no}}</text> -->
-        <text wx:if="{{item.type == 0}}">查勘 {{item.car_no ? ('| ' + item.car_no) : ''}} {{item.send_user ? ('| ' + item.send_user) : ''}}</text>
-        <text wx:if="{{item.type == 1}}">三责 {{item.car_no ? ('| ' + item.car_no) : ''}} {{item.send_user ? ('| ' + item.send_user) : ''}}</text>
-        <text wx:if="{{item.type == 2}}">标的 {{item.car_no ? ('| ' + item.car_no) : ''}} {{item.send_user ? ('| ' + item.send_user) : ''}}</text>
+        <text wx:if="{{typeKey == 'risk'}}">{{item.car_no ? item.car_no : ''}} {{item.mobile ? ('| ' + item.mobile) : ''}}</text>
+        <text wx:if="{{typeKey == 'survey' && item.type == 0}}">查勘 {{item.car_no ? ('| ' + item.car_no) : ''}} {{item.send_user ? ('| ' + item.send_user) : ''}}</text>
+        <text wx:if="{{typeKey == 'survey' && item.type == 1}}">三责 {{item.car_no ? ('| ' + item.car_no) : ''}} {{item.send_user ? ('| ' + item.send_user) : ''}}</text>
+        <text wx:if="{{typeKey == 'survey' && item.type == 2}}">标的 {{item.car_no ? ('| ' + item.car_no) : ''}} {{item.send_user ? ('| ' + item.send_user) : ''}}</text>
       </view>
       <text class='list-item-right status01' wx:if='{{item.status==0}}'>待审核</text>
       <text class='list-item-right status02' wx:if='{{item.status==1}}'>审核失败</text>
@@ -38,7 +37,7 @@
     </view>
     <view class="more-data" wx:if="{{hasMoreData}}" bindtap="getMoreData">点击加载更多...</view>
   </view>
-  <view class="no-data" wx:if="{{hasNoData}}">
+  <view class="no-data" wx:if="{{!spinShow && hasNoData}}">
     暂无数据
   </view>
 </view>

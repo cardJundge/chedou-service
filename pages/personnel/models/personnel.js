@@ -7,7 +7,7 @@ class PersonnelModel extends HTTP {
   // 获取作业员列表
   getTaskList(param, callback) {
     var params = {
-      url: '/api/user/task',
+      url: '/api/ser/user/task',
       type: 'GET',
       auth: true,
       data: param,
@@ -19,7 +19,7 @@ class PersonnelModel extends HTTP {
   // 添加人员
   addTask(params, callback) {
     var params = {
-      url: '/api/user/increase',
+      url: '/api/ser/user/increase',
       type: 'POST',
       auth: true,
       data: {
@@ -40,7 +40,7 @@ class PersonnelModel extends HTTP {
   // 获取分组
   getGroupList(callback) {
     var params = {
-      url: '/api/user/group',
+      url: '/api/ser/user/group',
       type: 'GET',
       auth: true,
       sCallback: callback
@@ -51,7 +51,7 @@ class PersonnelModel extends HTTP {
   // 编辑分组
   editGroupList(param, callback) {
     var params = {
-      url: '/api/group/edit',
+      url: '/api/ser/group/edit',
       type: 'POST',
       auth: true,
       data: param,
@@ -63,7 +63,7 @@ class PersonnelModel extends HTTP {
   // 删除分组
   delGroupList(id, callback) {
     var params = {
-      url: '/api/'+ id + '/delete',
+      url: '/api/ser/group/'+ id + '/delete',
       type: 'GET',
       auth: true,
       sCallback: callback
@@ -74,7 +74,7 @@ class PersonnelModel extends HTTP {
   // 编辑人员
   editTask(params, callback) {
     var params = {
-      url: '/api/user/store',
+      url: '/api/ser/user/store',
       type: 'POST',
       auth: true,
       data: {
@@ -96,7 +96,7 @@ class PersonnelModel extends HTTP {
   // 删除作业员
   delTask(id, callback) {
     var params = {
-      url: '/api/user/remove/' + id,
+      url: '/api/ser/user/remove/' + id,
       type: 'GET',
       auth: true,
       sCallback: callback
@@ -107,7 +107,7 @@ class PersonnelModel extends HTTP {
   // 获取服务商拥有的模块
   getModule(callback) {
     var params = {
-      url: '/api/user/module',
+      url: '/api/ser/user/module',
       type: 'GET',
       auth: true,
       sCallback: callback
@@ -118,7 +118,7 @@ class PersonnelModel extends HTTP {
   // 增加分组
   addGroup(param, callback) {
     var params = {
-      url: '/api/group/add',
+      url: '/api/ser/group/add',
       type: 'POST',
       auth: true,
       data: param,

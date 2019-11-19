@@ -1,14 +1,14 @@
 /* 添加服务项目 */
 
-.add-server-body {
+.add-project-body {
 }
 
-.server-form {
+.project-form {
   width: 702rpx;
   margin: 0 auto;
 }
 
-.server-item {
+.project-item {
   width: 100%;
   height: 90rpx;
   display: flex;
@@ -17,16 +17,16 @@
   border-bottom: 1rpx solid #efefef;
 }
 
-.server-item input {
+.project-item input {
   text-align: right;
 }
 
-.server-item-icon {
+.project-item-icon {
   display: flex;
   align-items: center;
 }
 
-.server-item-icon text {
+.project-item-icon text {
   margin-right: 12rpx;
 }
 
@@ -49,7 +49,7 @@
   height: 80rpx;
 }
 
-.server-btn {
+.project-btn {
   width: 100%;
   height: 80rpx;
   border-radius: 0;

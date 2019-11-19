@@ -74,6 +74,13 @@ Page({
     })
   },
 
+  // 去到任务详情
+  todetail() {
+    wx.navigateTo({
+      url: '../task-details/task-details',
+    })
+  },
+
   //顶部选项卡
   selectdiseasestep(e) {
     this.setData({

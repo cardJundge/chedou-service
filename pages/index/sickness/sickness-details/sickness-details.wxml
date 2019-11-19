@@ -35,7 +35,6 @@
   <view class="wholetasktip">全部任务</view>
   <view class="line"></view>
   <block wx:for="{{tasklist}}" wx:key="" wx:for-item="item">
-
     <view class="tasklist" bindtap="todetail" id="{{index}}" wx:if="{{index == 0}}" data-item="{{item}}">
       <view class="item-content">
         <text>{{index+1}}、面访患病成员及申请人</text>
@@ -44,72 +43,7 @@
       <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
       <view class="item-result" wx:else>未完成</view>
     </view>
-
-    <view class="tasklist" bindtap="todetail" id="{{index}}" wx:if="{{index == 1}}" data-item="{{item}}">
-      <view class="item-content">
-        <text>{{index+1}}、核查医院</text>
-        <text class="address">{{diseaselist.sick_address}}</text>
-      </view>
-      <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
-      <view class="item-result" wx:else>未完成</view>
-    </view>
-
-    <view class="tasklist" bindtap="todetail" id="{{index}}" wx:if="{{index == 2}}" data-item="{{item}}">
-      <view class="item-content">
-        <text>{{index+1}}、医保排查</text>
-        <text class="address">{{diseaselist.sick_address}}</text>
-      </view>
-      <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
-      <view class="item-result" wx:else>未完成</view>
-    </view>
-
-    <view class="tasklist" bindtap="todetail" id="{{index}}" wx:if="{{index == 3}}" data-item="{{item}}">
-      <view class="item-content">
-        <text>{{index+1}}、排查医院</text>
-        <text class="address">{{diseaselist.sick_address}}</text>
-      </view>
-      <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
-      <view class="item-result" wx:else>未完成</view>
-    </view>
-
-    <view class="tasklist" bindtap="todetail" id="{{index}}" wx:if="{{index == 4}}" data-item="{{item}}">
-      <view class="item-content">
-        <text>{{index+1}}、邻居/单位走访</text>
-        <text class="address">{{diseaselist.sick_address}}</text>
-      </view>
-      <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
-      <view class="item-result" wx:else>未完成</view>
-    </view>
-
-    <view class="tasklist" bindtap="todetail" id="{{index}}" wx:if="{{index == 5}}" data-item="{{item}}">
-      <view class="item-content">
-        <text>{{index+1}}、体检报告</text>
-        <text class="address">{{diseaselist.sick_address}}</text>
-      </view>
-      <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
-      <view class="item-result" wx:else>未完成</view>
-    </view>
-
-    <view class="tasklist" bindtap="todetail" id="{{index}}" wx:if="{{index == 6}}" data-item="{{item}}">
-      <view class="item-content">
-        <text>{{index+1}}、商保排查</text>
-        <text class="address">{{diseaselist.sick_address}}</text>
-      </view>
-      <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
-      <view class="item-result" wx:else>未完成</view>
-    </view>
-
-    <view class="tasklist" bindtap="todetail" id="{{index}}" wx:if="{{index == 7}}" data-item="{{item}}">
-      <view class="item-content">
-        <text>{{index+1}}、药房排查</text>
-        <text class="address">{{diseaselist.sick_address}}</text>
-      </view>
-      <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
-      <view class="item-result" wx:else>未完成</view>
-    </view>
-
   </block>
-
 </view>
 
 <view class="wholetask" wx:if='{{first == 1}}'>

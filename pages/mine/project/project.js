@@ -7,16 +7,16 @@ Page({
 
   },
 
-  toAddServer() {
+  toAddProject() {
     wx.navigateTo({
-      url: './add-server/add-server',
+      url: './add-project/add-project',
     })
   },
 
   // 编辑
   toEdit() {
     wx.navigateTo({
-      url: './add-server/add-server',
+      url: './add-project/add-project',
     })
   },
 

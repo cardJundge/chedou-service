@@ -1,6 +1,6 @@
 // 调查详情
 var app = getApp()
-var test = getApp().globalData.hostName
+
 import WxValidate from '../../../../dist/WxValidate.js'
 import util from '../../../../utils/util.js'
 Page({
@@ -112,7 +112,7 @@ Page({
       return false
     } else {
       wx.request({
-        url: test + '/api/work/increase',
+        url: app.globalData.hostName + '/work/increase',
         method: 'POST',
         data: {
           report_no: params.reportNo,      
@@ -139,11 +139,14 @@ Page({
             wx.showToast({
               title: '添加成功',
             })
-          } else if (res.data.status == -1) {
           } else {
-            wx.showToast({
-              title: res.data.msg ? res.data.msg : '请求超时',
-            })
+            if (res.data.msg.match('token过期或已失效')) {
+            } else {
+              wx.showToast({
+                title: res.data.msg ? res.data.msg : '请求超时',
+                icon: 'none'
+              })
+            }
           }
         }
       })

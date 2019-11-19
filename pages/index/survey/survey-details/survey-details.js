@@ -48,11 +48,14 @@ Page({
     indexModel.businessReceipt(id, key, res=> {
       if(res.data.status == 1) {
         this.toScene()
-      } else if (res.data.status == -1) {
-      } else {
-        wx.showToast({
-          title: res.data.msg ? res.data.msg : '请求超时',
-        })
+      }else {
+        if (res.data.msg.match('token过期或已失效')) {
+        } else {
+          wx.showToast({
+            title: res.data.msg ? res.data.msg : '请求超时',
+            icon: 'none'
+          })
+        }
       }
     })
   },
@@ -255,7 +258,7 @@ Page({
   // 生成评价二维码
   generateQrCode() {
     wx.request({
-      url: app.globalData.hostName + '/api/work/QRCode',
+      url: app.globalData.hostName + '/api/auth/QRCode',
       method: 'GET',
       header: {
         'Accept': 'application/json',
@@ -293,13 +296,14 @@ Page({
       if(res.data.status == 1) {
         this.getDetails()
         this.toAddDetails()
-      } else if (res.data.status == -1) {
-        
       } else {
-        wx.showToast({
-          title: res.data.msg ? res.data.msg : '请求超时',
-          icon: 'none'
-        })
+        if (res.data.msg.match('token过期或已失效')) {
+        } else {
+          wx.showToast({
+            title: res.data.msg ? res.data.msg : '请求超时',
+            icon: 'none'
+          })
+        }
       }
     })
   },
@@ -316,13 +320,14 @@ Page({
     indexModel.finishCase(params, res=> {
       if(res.data.status == 1) {
         this.getDetails()
-      } else if (res.data.status == -1) {
-
-      } else {
-        wx.showToast({
-          title: res.data.msg ? res.data.msg : '请求超时',
-          icon: 'none'
-        })
+      }else {
+        if (res.data.msg.match('token过期或已失效')) {
+        } else {
+          wx.showToast({
+            title: res.data.msg ? res.data.msg : '请求超时',
+            icon: 'none'
+          })
+        }
       }
     })
   },
@@ -357,13 +362,14 @@ Page({
               wx.navigateBack({
                 delta: 1
               }) 
-            } else if (res.data.status == -1) {
-
-            } else {
-              wx.showToast({
-                title: res.data.msg ? res.data.msg : '操作超时',
-                icon: 'none'
-              })
+            }else {
+              if (res.data.msg.match('token过期或已失效')) {
+              } else {
+                wx.showToast({
+                  title: res.data.msg ? res.data.msg : '请求超时',
+                  icon: 'none'
+                })
+              }
             }
           })
         }

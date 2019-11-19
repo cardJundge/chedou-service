@@ -18,7 +18,7 @@ class HTTP {
       success: res => {
         params.sCallback && params.sCallback(res)
         wx.hideLoading()
-        if(res.data.status == -1) {
+        if (res.data.msg.match('token过期')) {
           wx.showModal({
             title: '提示',
             content: 'token过期或已失效，请前往登录页面重新登录',

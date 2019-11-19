@@ -15,12 +15,14 @@ Component({
     },
     page: {
       type: Number
+    },
+    spinShow: {
+      type: Boolean
     }
   },
   data: {   
     pageSize: 15,
-    hasNoData: false,
-    spinShow: true,
+    hasNoData: false
   },
   ready() {
     // this.getBusinessList()
@@ -53,15 +55,19 @@ Component({
               hasMoreData: true
             })
           }
-        } else if (res.data.status == -1) {         
+
+          // console.log(this.data.businessList)
         } else {
           this.setData({
             hasNoData: true
           })
-          wx.showToast({
-            title: res.data.msg?res.data.msg: '操作超时',
-            icon: 'none'
-          })
+          if (res.data.msg.match('token过期或已失效')) {
+          } else {
+            wx.showToast({
+              title: res.data.msg ? res.data.msg : '请求超时',
+              icon: 'none'
+            })
+          }
         }
       })
     },
@@ -118,7 +124,7 @@ Component({
 
     // 搜索
     search(e) {
-      console.log(e.detail.value)
+      // console.log(e.detail.value)
     }
   }
 })

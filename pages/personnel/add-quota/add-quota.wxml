@@ -4,9 +4,12 @@
     <view class="commpany-bg">
       <view class="commpany-info">
         <view class="commpany-info-card">
-          <image src="/images/logo.png"></image>
+          <image class="mine-avatar-img" src="{{avatarUrl ? avatarUrl : 'cloud://chedou-service.6368-chedou-service/images/default_user.png'}}"></image>
           <view class="commpany-info-card-text">
-            <text>公司名称</text>
+            <text wx:if="{{basicUserInfo.type == 1}}">{{basicUserInfo.name}}公估公司</text>
+            <text wx:if="{{basicUserInfo.type == 2}}">{{basicUserInfo.name}}4S店</text>
+            <text wx:if="{{basicUserInfo.type == 3}}">{{basicUserInfo.name}}维修公司</text>
+            <text wx:if="{{basicUserInfo.type == 4}}">{{basicUserInfo.name}}保险公司</text>
             <text>当前人数: 3人</text>
           </view>
         </view>

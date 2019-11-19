@@ -4,8 +4,8 @@
     <view class="order-bg">
       <view class="order-box">
         <view class="order-box-top">
-          <text>{{detailData.car_no}}</text>
-          <text>{{detailData.mobile}}</text>
+          <text>{{detailData.car_no ? detailData.car_no : '陕Axxxxx'}}</text>
+          <text>{{detailData.mobile ? detailData.mobile : '176xxxxx426'}}</text>
         </view>
         <view class="order-box-content">
           <view class="order-box-msg">

@@ -1,4 +1,4 @@
 <!--调查-->
 <view>
- <business-item typeKey="{{key}}" page="{{page}}" businessList="{{businessList}}" id="businessListId"/>
+ <business-item typeKey="{{key}}" page="{{page}}" spinShow="{{spinShow}}" businessList="{{businessList}}" id="businessListId"/>
 </view>

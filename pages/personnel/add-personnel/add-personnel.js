@@ -40,6 +40,7 @@ Page({
           mobile: data.mobile,
           jobNo: data.job_no,
         },
+        groupId:data.group_id,
         taskId: data.id,
         isLeader: data.type,
         moduleSelect: data.module
@@ -99,12 +100,15 @@ Page({
         let groupDataName = []
         this.data.groupData.forEach((item, index) => {
           groupDataName.push(item.name)
+          if(item.id == this.data.groupId) {
+            this.setData({
+              number: index
+            })
+          }
         })
         this.setData({
           groupDataName: groupDataName
         })
-
-        console.log()
       }
     })
   },
@@ -145,7 +149,6 @@ Page({
       }
 
     })
-    console.log(this.data.module)
   },
 
   // 提交添加人员表单
@@ -168,7 +171,6 @@ Page({
       params.type = this.data.isLeader
       params.groupId = this.data.number ? this.data.groupData[this.data.number].id : 0
       params.serviceId = app.globalData.userInfo.id
-      console.log(params)
       if(this.data.isEdit) {
         params.id = this.data.taskId
         personnelModel.editTask(params, res=> {
@@ -181,13 +183,14 @@ Page({
                 })
               }
             })
-          } else if (res.data.status == -1) {
-
           } else {
-            wx.showToast({
-              title: res.data.msg ? res.data.msg : '请求超时',
-              icon: 'none'
-            })
+            if (res.data.msg.match('token过期或已失效')) {
+            } else {
+              wx.showToast({
+                title: res.data.msg ? res.data.msg : '请求超时',
+                icon: 'none'
+              })
+            }
           }
         })
       } else {
@@ -201,13 +204,14 @@ Page({
                 })
               }
             })
-          } else if(res.data.status == -1) {
-            
           } else {
-            wx.showToast({
-              title: res.data.msg ? res.data.msg : '请求超时',
-              icon: 'none'
-            })
+            if (res.data.msg.match('token过期或已失效')) {
+            } else {
+              wx.showToast({
+                title: res.data.msg ? res.data.msg : '请求超时',
+                icon: 'none'
+              })
+            }
           }
         })
       }

@@ -25,7 +25,8 @@ Page({
   onShow() {
     this.setData({
       sickList: [],
-      page: 1
+      page: 1,
+      spinShow: true
     })
     this.getSickList()
   },
@@ -42,11 +43,13 @@ Page({
         })
         if (this.data.page == 1 && sickInfo.length == 0) {
           return this.setData({
-            hasNoData: true
+            hasNoData: true,
+            spinShow: false
           })
         }
         this.setData({
-          hasNoData: false
+          hasNoData: false,
+          spinShow: false
         })
         if (sickInfo.length < this.data.pageSize) { 
           this.setData({
@@ -61,15 +64,17 @@ Page({
         }
         this.data.sickTempList = this.data.sickList
         
-      } else if(res.data.status == -1) {
       } else {
         this.setData({
           hasNoData: true
         })
-        wx.showToast({
-          title: res.data.msg ? res.data.msg : '操作超时',
-          icon: 'none'
-        })
+        if (res.data.msg.match('token过期或已失效')) {
+        } else {
+          wx.showToast({
+            title: res.data.msg ? res.data.msg : '请求超时',
+            icon: 'none'
+          })
+        }
       }
     })
   },
@@ -85,7 +90,7 @@ Page({
     this.setData({
       selected: e.target.dataset.index
     })
-    console.log(this.data.selected)
+    // console.log(this.data.selected)
     let tempList = []
     if (this.data.selected === 1) {
       tempList = this.data.sickTempList
@@ -114,7 +119,7 @@ Page({
   },
 
   toSicknessDetails(e) {
-    console.log(e.currentTarget.dataset.id)
+    // console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
       url: './sickness-details/sickness-details?listId=' + e.currentTarget.dataset.id,
     })

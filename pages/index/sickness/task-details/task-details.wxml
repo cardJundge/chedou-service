@@ -1,0 +1,444 @@
+<!--调查任务-->
+<view class="task-details-body">
+  <view class="title">面访患病成员及申请人</view>
+
+  <!-- 第一个样式 (面访病患) -->
+  <view>
+    <view class="recordwhole">
+      <i-collapse name="{{name}}">
+        <i-collapse-item title="记录1" name="name1">
+          <view slot="content">
+            <view>
+              <view class="interviewtime">
+                <label>面访时间:</label>
+                <view>2018-11-18</view>
+              </view>
+
+              <view class="interviewtime">
+                <label>面访地址:</label>
+                <view>陕西省-西安市-雁塔区</view>
+              </view>
+
+              <view class="interviewtime">
+                <label>公估人姓名:</label>
+                <view></view>
+              </view>
+
+              <view class="interviewtime">
+                <label>面访对象与患病成员关系:</label>
+                <view>父母</view>
+              </view>
+
+              <view class="interviewtime">
+                <label>面访对象姓名:</label>
+                <view></view>
+              </view>
+
+              <view class="interviewtime">
+                <label>是否阳性:</label>
+                <view>是</view>
+              </view>
+
+              <view class="interviewtime modestyle">
+                <label>阳性说明:</label>
+                <view>阳性说明阳性说明阳性说明阳性说明阳性说明</view>
+              </view>
+
+              <view class="interviewtime modestyle">
+                <label>面访经过说明:</label>
+                <view>面访经过说明面访经过说明面访经过说明面访经过说明面访经过说明</view>
+              </view>
+
+              <view class="investigation">
+                <label>调查材料:</label>
+                <view class="imagecell">
+                  <view class="imagecell">
+                    <view wx:for="{{imagecell}}" wx:key="" class="imageitem" catchtap="previewImage" data-index="{{index}}">
+                      <image src="{{item.path}}" class="pic"></image>
+                      <image src="/images/del_icon1.png" class="del" catchtap="deleteimg" id="{{item.id}}"></image>
+                    </view>
+                  </view>
+                  <view class="voice">
+                    <image src="/images/icon_yuyin@2x.png"></image>
+                  </view>
+                </view>
+              </view>
+
+            </view>
+          </view>
+        </i-collapse-item>
+      </i-collapse>
+
+    </view>
+  </view>
+
+
+  <!-- 第二个样式(排查) -->
+  <view>
+    <view class="recordwhole">
+      <i-collapse name="{{name}}">
+        <i-collapse-item title="记录1" name="name1">
+          <view slot="content">
+            <view>
+              <view class="interviewtime">
+                <label>医院名称:</label>
+                <view>西京医院</view>
+              </view>
+
+              <view class="interviewtime">
+                <label>排查时间:</label>
+                <view>2018-11-18</view>
+              </view>
+
+              <view class="interviewtime">
+                <label>排查类型:</label>
+                <view>xx</view>
+              </view>
+
+              <view class="interviewtime">
+                <label>排查科室:</label>
+                <view>科室</view>
+              </view>
+
+              <view class="interviewtime">
+                <label>是否阳性:</label>
+                <view>是</view>
+              </view>
+
+              <view class="interviewtime modestyle">
+                <label>阳性说明:</label>
+                <view>说明说明说明说明说明说明说明说明</view>
+              </view>
+
+              <view class="interviewtime modestyle">
+                <label>医院排查结论:</label>
+                <view>结论结论结论结论结论结论</view>
+              </view>
+
+              <view class="investigation">
+                <label>调查材料:</label>
+                <view class="imagecell">
+                  <view class="imagecell">
+                    <view wx:for="{{imagecell}}" wx:key="" class="imageitem" catchtap="previewImage" data-index="{{index}}">
+                      <image src="{{item.path}}" class="pic"></image>
+                      <image src="/images/del_icon1.png" class="del" catchtap="deleteimg" id="{{item.id}}"></image>
+                    </view>
+                  </view>
+                  <view class="voice">
+                    <image src="/images/icon_yuyin@2x.png"></image>
+                  </view>
+                </view>
+              </view>
+
+            </view>
+          </view>
+        </i-collapse-item>
+      </i-collapse>
+    </view>
+  </view>
+
+  <!-- 第三个样式(走访) -->
+  <view>
+    <view class="recordwhole">
+      <i-collapse name="{{name}}">
+        <i-collapse-item title="记录1" name="name1">
+          <view slot="content">
+            <view>
+              <view class="interviewtime">
+                <label>走访对象:</label>
+                <view>走访对象</view>
+              </view>
+
+              <view class="interviewtime">
+                <label>走访时间:</label>
+                <view>2018-11-18</view>
+              </view>
+
+              <view class="interviewtime">
+                <label>走访地址:</label>
+                <view></view>
+              </view>
+
+              <view class="interviewtime">
+                <label>是否阳性:</label>
+                <view>是</view>
+              </view>
+
+              <view class="interviewtime modestyle">
+                <label>阳性说明:</label>
+                <view></view>
+              </view>
+
+              <view class="interviewtime modestyle">
+                <label>走访结论:</label>
+                <view></view>
+              </view>
+
+              <view class="investigation">
+                <label>调查材料:</label>
+                <view class="imagecell">
+                  <view class="imagecell">
+                    <view wx:for="{{imagecell}}" wx:key="" class="imageitem" catchtap="previewImage" data-index="{{index}}">
+                      <image src="{{item.path}}" class="pic"></image>
+                      <image src="/images/del_icon1.png" class="del" catchtap="deleteimg" id="{{item.id}}"></image>
+                    </view>
+                  </view>
+                  <view class="voice">
+                    <image src="/images/icon_yuyin@2x.png"></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </i-collapse-item>
+      </i-collapse>
+    </view>
+  </view>
+
+  <!-- 第四个样式 (商保排查)-->
+  <view>
+    <view class="recordwhole">
+      <i-collapse name="{{name}}">
+        <i-collapse-item title="记录1" name="name1">
+          <view slot="content">
+            <view>
+              <view class="interviewtime">
+                <label>公司名称:</label>
+                <view></view>
+              </view>
+
+              <view class="interviewtime modestyle">
+                <label>商保排查结论:</label>
+                <view></view>
+              </view>
+
+              <view class="interviewtime">
+                <label>互助排查名称:</label>
+                <view></view>
+              </view>
+
+              <view class="interviewtime modestyle">
+                <label>互助排查结论:</label>
+                <view></view>
+              </view>
+
+              <view class="investigation">
+                <label>调查材料:</label>
+                <view class="imagecell">
+                  <view class="imagecell">
+                    <view wx:for="{{imagecell}}" wx:key="" class="imageitem" catchtap="previewImage" data-index="{{index}}">
+                      <image src="{{item.path}}" class="pic"></image>
+                      <image src="/images/del_icon1.png" class="del" catchtap="deleteimg" id="{{item.id}}"></image>
+                    </view>
+                  </view>
+                  <view class="voice">
+                    <image src="/images/icon_yuyin@2x.png"></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </i-collapse-item>
+      </i-collapse>
+
+    </view>
+  </view>
+
+  <!-- 第五个样式 (社保排查) -->
+  <view>
+    <view class="recordwhole">
+      <i-collapse name="{{name}}">
+        <i-collapse-item title="记录1" name="name1">
+          <view slot="content">
+            <view>
+              <view class="interviewtime">
+                <label>社保局名称:</label>
+                <view></view>
+              </view>
+
+              <view class="interviewtime">
+                <label>排查时间:</label>
+                <view>2018-11-18</view>
+              </view>
+
+              <view class="interviewtime">
+                <label>是否阳性:</label>
+                <view>是</view>
+              </view>
+
+              <view class="interviewtime modestyle">
+                <label>阳性说明:</label>
+                <view>阳性说明阳性说明阳性说明阳性说明阳性说明</view>
+              </view>
+
+              <view class="interviewtime modestyle">
+                <label>社保排查结论:</label>
+                <view></view>
+              </view>
+
+              <view class="investigation">
+                <label>调查材料:</label>
+                <view class="imagecell">
+                  <view class="imagecell">
+                    <view wx:for="{{imagecell}}" wx:key="" class="imageitem" catchtap="previewImage" data-index="{{index}}">
+                      <image src="{{item.path}}" class="pic"></image>
+                      <image src="/images/del_icon1.png" class="del" catchtap="deleteimg" id="{{item.id}}"></image>
+                    </view>
+                  </view>
+                  <view class="voice">
+                    <image src="/images/icon_yuyin@2x.png"></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </i-collapse-item>
+      </i-collapse>
+    </view>
+  </view>
+
+  <!-- 第六个样式(体检机构排查) -->
+  <view>
+    <view class="recordwhole">
+      <i-collapse name="{{name}}">
+        <i-collapse-item title="记录1" name="name1">
+          <view slot="content">
+            <view>
+              <view class="interviewtime">
+                <label>体检机构名称:</label>
+                <view>体检机构名称</view>
+              </view>
+
+              <view class="interviewtime">
+                <label>排查时间:</label>
+                <view>2018-11-18</view>
+              </view>
+              <view class="interviewtime">
+                <label>是否阳性:</label>
+                <view>是</view>
+              </view>
+
+              <view class="interviewtime modestyle">
+                <label>阳性说明:</label>
+                <view>阳性说明阳性说明阳性说明阳性说明阳性说明</view>
+              </view>
+
+              <view class="interviewtime modestyle">
+                <label>体检排查结论:</label>
+                <view>结论</view>
+              </view>
+
+              <view class="investigation">
+                <label>调查材料:</label>
+                <view class="imagecell">
+                  <view class="imagecell">
+                    <view wx:for="{{imagecell}}" wx:key="" class="imageitem" catchtap="previewImage" data-index="{{index}}">
+                      <image src="{{item.path}}" class="pic"></image>
+                      <image src="/images/del_icon1.png" class="del" catchtap="deleteimg" id="{{item.id}}"></image>
+                    </view>
+                  </view>
+                  <view class="voice">
+                    <image src="/images/icon_yuyin@2x.png"></image>
+                  </view>
+                </view>
+              </view>
+
+            </view>
+          </view>
+        </i-collapse-item>
+      </i-collapse>
+    </view>
+  </view>
+
+  <!-- 第七个样式(事故地点排查) -->
+  <view>
+    <view class="recordwhole">
+      <i-collapse name="{{name}}">
+        <i-collapse-item title="记录1" name="name1">
+          <view slot="content">
+            <view>
+              <view class="interviewtime">
+                <label>排查时间:</label>
+                <view>2018-11-18</view>
+              </view>
+
+              <view class="interviewtime">
+                <label>事故地址:</label>
+                <view></view>
+              </view>
+
+              <view class="interviewtime modestyle">
+                <label>排查结论:</label>
+                <view></view>
+              </view>
+
+              <view class="investigation">
+                <label>调查材料:</label>
+                <view class="imagecell">
+                  <view class="imagecell">
+                    <view wx:for="{{imagecell}}" wx:key="" class="imageitem" catchtap="previewImage" data-index="{{index}}">
+                      <image src="{{item.path}}" class="pic"></image>
+                      <image src="/images/del_icon1.png" class="del" catchtap="deleteimg" id="{{item.id}}"></image>
+                    </view>
+                  </view>
+                  <view class="voice">
+                    <image src="/images/icon_yuyin@2x.png"></image>
+                  </view>
+                </view>
+              </view>
+
+            </view>
+          </view>
+        </i-collapse-item>
+      </i-collapse>
+    </view>
+  </view>
+
+  <!-- 第八个样式(事故处理机构排查) -->
+  <view>
+    <view class="recordwhole">
+      <i-collapse name="{{name}}">
+        <i-collapse-item title="记录1" name="name1">
+          <view slot="content">
+            <view>
+              <view class="interviewtime">
+                <label>排查时间:</label>
+                <view>2018-11-18</view>
+              </view>
+
+              <view class="interviewtime">
+                <label>处理机构:</label>
+                <view></view>
+              </view>
+
+              <view class="interviewtime modestyle">
+                <label>排查结论:</label>
+                <view></view>
+              </view>
+
+              <view class="investigation">
+                <label>调查材料:</label>
+                <view class="imagecell">
+                  <view class="imagecell">
+                    <view wx:for="{{imagecell}}" wx:key="" class="imageitem" catchtap="previewImage" data-index="{{index}}">
+                      <image src="{{item.path}}" class="pic"></image>
+                      <image src="/images/del_icon1.png" class="del" catchtap="deleteimg" id="{{item.id}}"></image>
+                    </view>
+                  </view>
+                  <view class="voice">
+                    <image src="/images/icon_yuyin@2x.png"></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </i-collapse-item>
+      </i-collapse>
+    </view>
+  </view>
+
+  <view class="rejectmode">
+    <text>驳回意见:</text>
+    <text>无</text>
+  </view>
+</view>

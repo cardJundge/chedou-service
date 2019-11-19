@@ -69,7 +69,7 @@
 .register-select-text {
   width: 210rpx;
   height: 42rpx;
-  color: #d9d9d9;
+  color: #a3a3a3;
 }
 
 .icon {
@@ -86,10 +86,6 @@
 
 .code-input {
   width: 240rpx;
-}
-
-.code-text {
-  color: #1a84ff;
 }
 
 .register-btn {

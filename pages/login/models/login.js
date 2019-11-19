@@ -18,7 +18,7 @@ class LoginModel extends HTTP {
 
   postVerify(mobile, code, callback) {
     var params = {
-      url: '/api/auth/verify',
+      url: '/api/ser/auth/verify',
       type: 'POST',
       data: {
         mobile: mobile,
@@ -32,7 +32,7 @@ class LoginModel extends HTTP {
   // 注册
   postRegister(params, callback) {
     var params = {
-      url: '/api/auth/register',
+      url: '/api/ser/auth/register',
       type: 'POST',
       data: {
         mobile: params.phone,
@@ -51,7 +51,7 @@ class LoginModel extends HTTP {
   // 登录
   postLogin(params, callback) {
     var params = {
-      url: '/api/auth/login',
+      url: '/api/ser/auth/login',
       type: 'POST',
       data: {
         mobile: params.phone,
@@ -65,7 +65,7 @@ class LoginModel extends HTTP {
   // 修改密码
   modifyPwd(params, callback) {
     var params = {
-      url: '/api/index/changePwd',
+      url: '/api/ser/index/changePwd',
       type: 'POST',
       auth: true,
       data: {
@@ -81,9 +81,8 @@ class LoginModel extends HTTP {
   // 忘记密码
   forgetPwd(param, callback) {
     var params = {
-      url: '/api/auth/forget',
+      url: '/api/ser/auth/forget',
       type: 'POST',
-      auth: true,
       data: param,
       sCallback: callback
     }

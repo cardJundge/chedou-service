@@ -20,7 +20,10 @@ Page({
   },
 
   onLoad(options) {
-
+    this.setData({
+      imgUrl: app.globalData.imgUrl
+    })
+    
   },
 
   onShow() {
@@ -48,7 +51,6 @@ Page({
       })
     })
     this.data.personnel = storeData
-    console.log(this.data.personnel)
     this.setData({
       personnel: this.data.personnel
     })
@@ -57,7 +59,7 @@ Page({
   // 获取作业员列表
   getTaskList(flag) {
     let params = {
-      keyWords: flag
+      keywords: flag
     }
     personnelModel.getTaskList(params, (res) => {
       this.setData({
@@ -98,7 +100,6 @@ Page({
     wx.showActionSheet({
       itemList: ['添加分组', '编辑分组'],
       success: res => {
-        console.log(res)
         if (res.tapIndex == 0) {
           wx.navigateTo({
             url: './add-group/add-group?isEdit=' + 1,
@@ -146,13 +147,14 @@ Page({
                 title: '删除成功',
               })
               this.getTaskList('')
-            } else if (res.data.status == -1) {
-
             } else {
-              wx.showToast({
-                title: res.data.msg ? res.data.msg : '请求超时',
-                icon: 'none'
-              })
+              if (res.data.msg.match('token过期或已失效')) {
+              } else {
+                wx.showToast({
+                  title: res.data.msg ? res.data.msg : '请求超时',
+                  icon: 'none'
+                })
+              }
             }
           })
         }
@@ -165,7 +167,6 @@ Page({
   phoneCall(e) {
     wx.getSystemInfo({
       success: res=> {
-        console.log(res)
         if(res.platform == 'ios') {
           wx.makePhoneCall({
             phoneNumber: e.currentTarget.dataset.phone,
@@ -191,14 +192,10 @@ Page({
           })
         }
       }
-    })
-   
+    }) 
   },
 
   search(e) {
-    if (e.detail.value == '') {
-      return
-    }
     this.getTaskList(e.detail.value)
   }
 })

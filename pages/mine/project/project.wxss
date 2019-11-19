@@ -1,9 +1,9 @@
 /* 服务项目列表 */
 
-.server-body {
+.project-body {
 }
 
-.server-title {
+.project-title {
   width: 100%;
   height: 80rpx;
   padding: 0 24rpx;
@@ -12,13 +12,13 @@
   line-height: 80rpx;
 }
 
-.server-content {
+.project-content {
 }
 
-.server-list {
+.project-list {
 }
 
-.server-item {
+.project-item {
   width: 100%;
   padding: 0 24rpx;
   height: 160rpx;
@@ -28,23 +28,23 @@
   justify-content: space-between;
 }
 
-.server-left {
+.project-left {
   display: flex;
   align-items: center;
 }
 
-.server-left image{
+.project-left image{
  width: 80rpx;
  height: 80rpx;
  margin-right: 24rpx;
 }
 
-.server-right {
+.project-right {
   display: flex;
   align-items: center;
 }
 
-.server-right-btn {
+.project-right-btn {
   width: 140rpx;
   height: 60rpx;
   line-height: 60rpx;
@@ -55,7 +55,7 @@
 }
 
 
-.server-right-btn-del {
+.project-right-btn-del {
   color: #fff;
   border: 1rpx solid #1a65ff;
   background: #1a65ff;

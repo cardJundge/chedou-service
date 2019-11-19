@@ -20,16 +20,18 @@ Component({
     moduleItem: ''
   },
   methods: {
-    onConfirm() {    
+    onConfirm() {
       indexModel.setSelfModule(this.data.moduleItem, res=> {
         if(res.data.status == 1) {
           this.triggerEvent('okEvent')
-        } else if (res.data.status == -1) {
-
         } else {
-          wx.showToast({
-            title: res.data.msg ? res.data.msg : '请求超时',
-          })
+          if (res.data.msg.match('token过期或已失效')) {
+          } else {
+            wx.showToast({
+              title: res.data.msg ? res.data.msg : '请求超时',
+              icon: 'none'
+            })
+          }
         }
         this.setData({
           isShow: false

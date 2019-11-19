@@ -554,13 +554,14 @@ Page({
           wx.redirectTo({
             url: '../survey-details/survey-details?listId=' + params.id,
           })
-        } else if (res.data.status == -1) {
-
         } else {
-          wx.showToast({
-            title: res.data.msg ? res.data.msg : '请求超时',
-            icon: 'none'
-          })
+          if (res.data.msg.match('token过期或已失效')) {
+          } else {
+            wx.showToast({
+              title: res.data.msg ? res.data.msg : '请求超时',
+              icon: 'none'
+            })
+          }
         }
       })
     } else {
@@ -572,22 +573,25 @@ Page({
               wx.redirectTo({
                 url: '../survey-details/survey-details?listId=' + listId,
               })
-            } else if (res.data.status == -1) {
-
             } else {
-              wx.showToast({
-                title: res.data.msg ? res.data.msg : '请求超时',
-                icon: 'none'
-              })
+              if (res.data.msg.match('token过期或已失效')) {
+              } else {
+                wx.showToast({
+                  title: res.data.msg ? res.data.msg : '请求超时',
+                  icon: 'none'
+                })
+              }
             }
           })
 
-        } else if (res.data.status == -1) {
-
-        } else {
-          wx.showToast({
-            title: res.data.msg ? res.data.msg : '请求超时',
-          })
+        }else {
+          if (res.data.msg.match('token过期或已失效')) {
+          } else {
+            wx.showToast({
+              title: res.data.msg ? res.data.msg : '请求超时',
+              icon: 'none'
+            })
+          }
         }
       })
     }

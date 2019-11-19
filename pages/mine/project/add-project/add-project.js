@@ -9,12 +9,12 @@ var hostName = getApp().globalData.hostName
 var app = getApp()
 Page({
   data: {
-    serverList: [],
+    projectList: [],
     marketPrice: '',
     truePrice: ''
   },
   onLoad: function(options) {
-    this.getServerList()
+    this.getprojectList()
     var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear)
     this.setData({
       dateTimeArray: obj.dateTimeArray,
@@ -24,16 +24,16 @@ Page({
   },
 
   // 获取服务项目列表
-  getServerList() {
-    mineModel.getServerList(res => {
+  getprojectList() {
+    mineModel.getprojectList(res => {
       if (res.data.status == 1) {
         let array = []
         res.data.data.forEach((item, index) => {
           array.push(item.name)
         })
-        this.data.serverList = res.data.data
+        this.data.projectList = res.data.data
         this.setData({
-          serverNameList: array
+          projectNameList: array
         })
       }
     })
@@ -61,9 +61,9 @@ Page({
 
 
   // 服务项目picker
-  serverChange(e) {
+  projectChange(e) {
     this.setData({
-      serverName: this.data.serverNameList[e.detail.value]
+      projectName: this.data.projectNameList[e.detail.value]
     })
   },
 
@@ -107,7 +107,7 @@ Page({
   },
 
   formSubmit(e) {
-    if (!this.data.serverName) {
+    if (!this.data.projectName) {
       return wx.showToast({
         title: '请选择分类！',
       })

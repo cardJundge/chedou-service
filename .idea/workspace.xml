@@ -2,67 +2,54 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c35a2726-368c-4175-b887-e6304481fb55" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change beforePath="$PROJECT_DIR$/app.json" afterPath="$PROJECT_DIR$/app.json" />
       <change beforePath="$PROJECT_DIR$/components/add-module/add-module.js" afterPath="$PROJECT_DIR$/components/add-module/add-module.js" />
-      <change beforePath="$PROJECT_DIR$/components/add-module/add-module.wxml" afterPath="$PROJECT_DIR$/components/add-module/add-module.wxml" />
-      <change beforePath="$PROJECT_DIR$/components/add-module/add-module.wxss" afterPath="$PROJECT_DIR$/components/add-module/add-module.wxss" />
-      <change beforePath="$PROJECT_DIR$/components/bottom-modal/bottom-modal.js" afterPath="$PROJECT_DIR$/components/bottom-modal/bottom-modal.js" />
-      <change beforePath="$PROJECT_DIR$/components/bottom-modal/bottom-modal.wxml" afterPath="$PROJECT_DIR$/components/bottom-modal/bottom-modal.wxml" />
       <change beforePath="$PROJECT_DIR$/components/list/list.js" afterPath="$PROJECT_DIR$/components/list/list.js" />
       <change beforePath="$PROJECT_DIR$/components/list/list.wxml" afterPath="$PROJECT_DIR$/components/list/list.wxml" />
       <change beforePath="$PROJECT_DIR$/components/list/list.wxss" afterPath="$PROJECT_DIR$/components/list/list.wxss" />
-      <change beforePath="$PROJECT_DIR$/components/qr-code/qr-code.js" afterPath="$PROJECT_DIR$/components/qr-code/qr-code.js" />
-      <change beforePath="$PROJECT_DIR$/components/qr-code/qr-code.wxml" afterPath="$PROJECT_DIR$/components/qr-code/qr-code.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/index/hurt/hurt.js" afterPath="$PROJECT_DIR$/pages/index/hurt/hurt.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/hurt/hurt.wxml" afterPath="$PROJECT_DIR$/pages/index/hurt/hurt.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/index/index.js" afterPath="$PROJECT_DIR$/pages/index/index.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/index.wxml" afterPath="$PROJECT_DIR$/pages/index/index.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/index/models/index.js" afterPath="$PROJECT_DIR$/pages/index/models/index.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/order/order-detail/order-detail.js" afterPath="$PROJECT_DIR$/pages/index/order/order-detail/order-detail.js" />
+      <change beforePath="$PROJECT_DIR$/dist/index-item/index.wxss" afterPath="$PROJECT_DIR$/dist/index-item/index.wxss" />
+      <change beforePath="$PROJECT_DIR$/images/mine/icon_vip.png" afterPath="$PROJECT_DIR$/images/mine/icon_vip.png" />
+      <change beforePath="$PROJECT_DIR$/pages/index/index.wxss" afterPath="$PROJECT_DIR$/pages/index/index.wxss" />
       <change beforePath="$PROJECT_DIR$/pages/index/order/order-detail/order-detail.wxml" afterPath="$PROJECT_DIR$/pages/index/order/order-detail/order-detail.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/index/order/order-detail/order-detail.wxss" afterPath="$PROJECT_DIR$/pages/index/order/order-detail/order-detail.wxss" />
-      <change beforePath="$PROJECT_DIR$/pages/index/push/push.js" afterPath="$PROJECT_DIR$/pages/index/push/push.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/push/push.wxml" afterPath="$PROJECT_DIR$/pages/index/push/push.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/index/rescue/rescue.js" afterPath="$PROJECT_DIR$/pages/index/rescue/rescue.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/rescue/rescue.wxml" afterPath="$PROJECT_DIR$/pages/index/rescue/rescue.wxml" />
+      <change beforePath="$PROJECT_DIR$/pages/index/risk/add-risk/add-risk.js" afterPath="$PROJECT_DIR$/pages/index/risk/add-risk/add-risk.js" />
       <change beforePath="$PROJECT_DIR$/pages/index/risk/risk.js" afterPath="$PROJECT_DIR$/pages/index/risk/risk.js" />
       <change beforePath="$PROJECT_DIR$/pages/index/risk/risk.wxml" afterPath="$PROJECT_DIR$/pages/index/risk/risk.wxml" />
+      <change beforePath="$PROJECT_DIR$/pages/index/sickness/sickness.js" afterPath="$PROJECT_DIR$/pages/index/sickness/sickness.js" />
+      <change beforePath="$PROJECT_DIR$/pages/index/sickness/sickness.wxml" afterPath="$PROJECT_DIR$/pages/index/sickness/sickness.wxml" />
+      <change beforePath="$PROJECT_DIR$/pages/index/sickness/sickness.wxss" afterPath="$PROJECT_DIR$/pages/index/sickness/sickness.wxss" />
       <change beforePath="$PROJECT_DIR$/pages/index/survey/add-detailed/add-detailed.js" afterPath="$PROJECT_DIR$/pages/index/survey/add-detailed/add-detailed.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/survey/add-detailed/add-detailed.json" afterPath="$PROJECT_DIR$/pages/index/survey/add-detailed/add-detailed.json" />
-      <change beforePath="$PROJECT_DIR$/pages/index/survey/add-detailed/add-detailed.wxml" afterPath="$PROJECT_DIR$/pages/index/survey/add-detailed/add-detailed.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/index/survey/add-detailed/add-detailed.wxss" afterPath="$PROJECT_DIR$/pages/index/survey/add-detailed/add-detailed.wxss" />
       <change beforePath="$PROJECT_DIR$/pages/index/survey/add-survey/add-survey.js" afterPath="$PROJECT_DIR$/pages/index/survey/add-survey/add-survey.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/survey/add-survey/add-survey.wxml" afterPath="$PROJECT_DIR$/pages/index/survey/add-survey/add-survey.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/index/survey/add-survey/add-survey.wxss" afterPath="$PROJECT_DIR$/pages/index/survey/add-survey/add-survey.wxss" />
       <change beforePath="$PROJECT_DIR$/pages/index/survey/survey-details/survey-details.js" afterPath="$PROJECT_DIR$/pages/index/survey/survey-details/survey-details.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/survey/survey-details/survey-details.wxml" afterPath="$PROJECT_DIR$/pages/index/survey/survey-details/survey-details.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/index/survey/survey-details/survey-details.wxss" afterPath="$PROJECT_DIR$/pages/index/survey/survey-details/survey-details.wxss" />
       <change beforePath="$PROJECT_DIR$/pages/index/survey/survey.js" afterPath="$PROJECT_DIR$/pages/index/survey/survey.js" />
       <change beforePath="$PROJECT_DIR$/pages/index/survey/survey.wxml" afterPath="$PROJECT_DIR$/pages/index/survey/survey.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/index/trailer/trailer.js" afterPath="$PROJECT_DIR$/pages/index/trailer/trailer.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/trailer/trailer.wxml" afterPath="$PROJECT_DIR$/pages/index/trailer/trailer.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/login/modify/modify.wxss" afterPath="$PROJECT_DIR$/pages/login/modify/modify.wxss" />
-      <change beforePath="$PROJECT_DIR$/pages/mine/account/account-detail/account-detail.js" afterPath="$PROJECT_DIR$/pages/mine/account/account-detail/account-detail.js" />
-      <change beforePath="$PROJECT_DIR$/pages/mine/account/account.js" afterPath="$PROJECT_DIR$/pages/mine/account/account.js" />
+      <change beforePath="$PROJECT_DIR$/pages/login/forget/forget.wxss" afterPath="$PROJECT_DIR$/pages/login/forget/forget.wxss" />
+      <change beforePath="$PROJECT_DIR$/pages/login/modify/modify.js" afterPath="$PROJECT_DIR$/pages/login/modify/modify.js" />
+      <change beforePath="$PROJECT_DIR$/pages/login/register/register-next/register-next.wxss" afterPath="$PROJECT_DIR$/pages/login/register/register-next/register-next.wxss" />
+      <change beforePath="$PROJECT_DIR$/pages/login/register/register.js" afterPath="$PROJECT_DIR$/pages/login/register/register.js" />
+      <change beforePath="$PROJECT_DIR$/pages/login/register/register.wxml" afterPath="$PROJECT_DIR$/pages/login/register/register.wxml" />
+      <change beforePath="$PROJECT_DIR$/pages/login/register/register.wxss" afterPath="$PROJECT_DIR$/pages/login/register/register.wxss" />
       <change beforePath="$PROJECT_DIR$/pages/mine/edit-info/edit-info.js" afterPath="$PROJECT_DIR$/pages/mine/edit-info/edit-info.js" />
       <change beforePath="$PROJECT_DIR$/pages/mine/mine.js" afterPath="$PROJECT_DIR$/pages/mine/mine.js" />
       <change beforePath="$PROJECT_DIR$/pages/mine/mine.wxml" afterPath="$PROJECT_DIR$/pages/mine/mine.wxml" />
       <change beforePath="$PROJECT_DIR$/pages/mine/models/mine.js" afterPath="$PROJECT_DIR$/pages/mine/models/mine.js" />
-      <change beforePath="$PROJECT_DIR$/pages/mine/serverItemList/serverItemList.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/pages/mine/serverItemList/serverItemList.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/pages/mine/serverItemList/serverItemList.wxml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/pages/mine/serverItemList/serverItemList.wxss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pages/mine/server/add-server/add-server.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pages/mine/server/add-server/add-server.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pages/mine/server/add-server/add-server.wxml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pages/mine/server/add-server/add-server.wxss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pages/mine/server/server.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pages/mine/server/server.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pages/mine/server/server.wxml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pages/mine/server/server.wxss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pages/personnel/add-group/add-group.js" afterPath="$PROJECT_DIR$/pages/personnel/add-group/add-group.js" />
       <change beforePath="$PROJECT_DIR$/pages/personnel/add-personnel/add-personnel.js" afterPath="$PROJECT_DIR$/pages/personnel/add-personnel/add-personnel.js" />
+      <change beforePath="$PROJECT_DIR$/pages/personnel/add-quota/add-quota.js" afterPath="$PROJECT_DIR$/pages/personnel/add-quota/add-quota.js" />
+      <change beforePath="$PROJECT_DIR$/pages/personnel/add-quota/add-quota.wxml" afterPath="$PROJECT_DIR$/pages/personnel/add-quota/add-quota.wxml" />
       <change beforePath="$PROJECT_DIR$/pages/personnel/assignment/assignment.js" afterPath="$PROJECT_DIR$/pages/personnel/assignment/assignment.js" />
-      <change beforePath="$PROJECT_DIR$/pages/personnel/assignment/assignment.wxml" afterPath="$PROJECT_DIR$/pages/personnel/assignment/assignment.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/personnel/assignment/assignment.wxss" afterPath="$PROJECT_DIR$/pages/personnel/assignment/assignment.wxss" />
       <change beforePath="$PROJECT_DIR$/pages/personnel/models/personnel.js" afterPath="$PROJECT_DIR$/pages/personnel/models/personnel.js" />
-      <change beforePath="$PROJECT_DIR$/pages/template/step/step.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/pages/template/step/step.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/pages/template/step/step.wxml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/pages/template/step/step.wxss" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pages/personnel/personnel.js" afterPath="$PROJECT_DIR$/pages/personnel/personnel.js" />
+      <change beforePath="$PROJECT_DIR$/pages/personnel/personnel.wxml" afterPath="$PROJECT_DIR$/pages/personnel/personnel.wxml" />
+      <change beforePath="$PROJECT_DIR$/utils/http.js" afterPath="$PROJECT_DIR$/utils/http.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -82,9 +69,10 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1572415360806" expanded="true" signature="19305:19370" ph="{...}" />
-                <marker date="1572415360806" expanded="true" signature="19444:19509" ph="{...}" />
-                <marker date="1572415360806" expanded="true" signature="19738:19854" ph="{...}" />
+                <marker date="1573454418544" expanded="true" signature="18971:19034" ph="{...}" />
+                <marker date="1573454418544" expanded="true" signature="19253:19318" ph="{...}" />
+                <marker date="1573454418544" expanded="true" signature="19392:19457" ph="{...}" />
+                <marker date="1573454418544" expanded="true" signature="19686:19802" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -93,7 +81,7 @@
       <file leaf-file-name="add-survey.wxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/index/survey/add-survey/add-survey.wxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-864">
+            <state relative-caret-position="1485">
               <caret line="55" column="22" lean-forward="false" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
               <folding />
             </state>
@@ -103,8 +91,8 @@
       <file leaf-file-name="list.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/list/list.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="18" column="12" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+            <state relative-caret-position="540">
+              <caret line="22" column="12" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -113,10 +101,11 @@
       <file leaf-file-name="list.wxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/list/list.wxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="19" column="106" lean-forward="false" selection-start-line="19" selection-start-column="106" selection-end-line="19" selection-end-column="106" />
+            <state relative-caret-position="378">
+              <caret line="14" column="45" lean-forward="false" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
               <folding>
-                <element signature="n#view#0;n#view#1;n#view#1;n#!!top" expanded="false" />
+                <marker date="1573456143464" expanded="true" signature="2544:2583" ph="..." />
+                <marker date="1573456143464" expanded="true" signature="2556:2575" ph="..." />
               </folding>
             </state>
           </provider>
@@ -125,8 +114,8 @@
       <file leaf-file-name="list.wxss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/list/list.wxss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="96" column="4" lean-forward="false" selection-start-line="96" selection-start-column="4" selection-end-line="96" selection-end-column="4" />
+            <state relative-caret-position="2592">
+              <caret line="109" column="4" lean-forward="false" selection-start-line="109" selection-start-column="4" selection-end-line="109" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -150,8 +139,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-3" />
-    <option name="y" value="61" />
+    <option name="x" value="17" />
+    <option name="y" value="11" />
     <option name="width" value="1726" />
     <option name="height" value="1036" />
   </component>
@@ -171,7 +160,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -220,11 +208,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ds-app/dou-said-app" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
   </component>
   <component name="RunDashboard">
@@ -254,25 +243,27 @@
       <updated>1571883802546</updated>
       <workItem from="1571883809894" duration="1522000" />
       <workItem from="1572511493428" duration="1154000" />
+      <workItem from="1573609793365" duration="22000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2676000" />
+    <option name="totallyTimeSpent" value="2698000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-3" y="61" width="1726" height="1036" extended-state="0" />
+    <frame x="17" y="11" width="1726" height="1036" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21461989" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -298,9 +289,58 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1572415360806" expanded="true" signature="19305:19370" ph="{...}" />
-            <marker date="1572415360806" expanded="true" signature="19444:19509" ph="{...}" />
-            <marker date="1572415360806" expanded="true" signature="19738:19854" ph="{...}" />
+            <marker date="1573454418544" expanded="true" signature="18971:19034" ph="{...}" />
+            <marker date="1573454418544" expanded="true" signature="19253:19318" ph="{...}" />
+            <marker date="1573454418544" expanded="true" signature="19392:19457" ph="{...}" />
+            <marker date="1573454418544" expanded="true" signature="19686:19802" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/index/survey/add-survey/add-survey.wxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1485">
+          <caret line="55" column="22" lean-forward="false" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/list/list.wxss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2592">
+          <caret line="96" column="4" lean-forward="false" selection-start-line="96" selection-start-column="4" selection-end-line="96" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/list/list.wxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="19" column="106" lean-forward="false" selection-start-line="19" selection-start-column="106" selection-end-line="19" selection-end-column="106" />
+          <folding>
+            <marker date="1573456143464" expanded="true" signature="2544:2583" ph="..." />
+            <marker date="1573456143464" expanded="true" signature="2556:2575" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/list/list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="18" column="12" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/index/survey/add-survey/add-survey.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1573454418544" expanded="true" signature="18971:19034" ph="{...}" />
+            <marker date="1573454418544" expanded="true" signature="19253:19318" ph="{...}" />
+            <marker date="1573454418544" expanded="true" signature="19392:19457" ph="{...}" />
+            <marker date="1573454418544" expanded="true" signature="19686:19802" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -318,16 +358,17 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1572415360806" expanded="true" signature="19305:19370" ph="{...}" />
-            <marker date="1572415360806" expanded="true" signature="19444:19509" ph="{...}" />
-            <marker date="1572415360806" expanded="true" signature="19738:19854" ph="{...}" />
+            <marker date="1573454418544" expanded="true" signature="18971:19034" ph="{...}" />
+            <marker date="1573454418544" expanded="true" signature="19253:19318" ph="{...}" />
+            <marker date="1573454418544" expanded="true" signature="19392:19457" ph="{...}" />
+            <marker date="1573454418544" expanded="true" signature="19686:19802" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/index/survey/add-survey/add-survey.wxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-864">
+        <state relative-caret-position="1485">
           <caret line="55" column="22" lean-forward="false" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
           <folding />
         </state>
@@ -335,26 +376,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/list/list.wxss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="96" column="4" lean-forward="false" selection-start-line="96" selection-start-column="4" selection-end-line="96" selection-end-column="4" />
+        <state relative-caret-position="2592">
+          <caret line="109" column="4" lean-forward="false" selection-start-line="109" selection-start-column="4" selection-end-line="109" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/list/list.wxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="19" column="106" lean-forward="false" selection-start-line="19" selection-start-column="106" selection-end-line="19" selection-end-column="106" />
+        <state relative-caret-position="378">
+          <caret line="14" column="45" lean-forward="false" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
           <folding>
-            <element signature="n#view#0;n#view#1;n#view#1;n#!!top" expanded="false" />
+            <marker date="1573456143464" expanded="true" signature="2544:2583" ph="..." />
+            <marker date="1573456143464" expanded="true" signature="2556:2575" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/list/list.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="18" column="12" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+        <state relative-caret-position="540">
+          <caret line="22" column="12" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
           <folding />
         </state>
       </provider>
