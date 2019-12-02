@@ -13,6 +13,7 @@
           <text wx:if="{{basicUserInfo.type == 2}}">{{basicUserInfo.name}}4S店</text>
           <text wx:if="{{basicUserInfo.type == 3}}">{{basicUserInfo.name}}维修公司</text>
           <text wx:if="{{basicUserInfo.type == 4}}">{{basicUserInfo.name}}保险公司</text>
+          <text wx:if="{{basicUserInfo.type !== 4 && basicUserInfo.type !== 3 && basicUserInfo.type !== 2 && basicUserInfo.type !== 1}}">{{basicUserInfo.name}}</text>
           <view class="vip-box">
             <image src="/images/mine/icon_vip.png"></image>
             <text>非会员</text>

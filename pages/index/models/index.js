@@ -105,6 +105,17 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
+  // 获取任务记录
+  getRecordList(param, callback) {
+    var params = {
+      url: '/api/sick/task/'+ param.id + '/record',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
   // 评价二维码生成
   // generateQrCode(id, callback) {
   //   var params = {
@@ -224,6 +235,17 @@ class IndexModel extends HTTP {
       type: 'GET',
       auth: true,
       data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 疾病调查相关资料
+  getSicknessData(param, callback) {
+    var params = {
+      url: '/api/sick/' + param.listId + '/data',
+      type: 'GET',
+      auth: true,
       sCallback: callback
     }
     this.request(params)

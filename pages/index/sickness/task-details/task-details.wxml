@@ -1,131 +1,141 @@
 <!--调查任务-->
 <view class="task-details-body">
-  <view class="title">面访患病成员及申请人</view>
+  <view class="title">{{stName}}</view>
 
   <!-- 第一个样式 (面访病患) -->
-  <view>
-    <view class="recordwhole">
+  <view wx:if="{{style == 'firstStyle'}}">
+    <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
       <i-collapse name="{{name}}">
-        <i-collapse-item title="记录1" name="name1">
+        <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
           <view slot="content">
             <view>
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>面访时间:</label>
-                <view>2018-11-18</view>
+                <view>{{task.face_date}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>面访地址:</label>
-                <view>陕西省-西安市-雁塔区</view>
+                <view>{{task.face_address}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>公估人姓名:</label>
-                <view></view>
+                <view>{{task.task_name}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>面访对象与患病成员关系:</label>
-                <view>父母</view>
+                <view>{{task.face_relation}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>面访对象姓名:</label>
-                <view></view>
+                <view>{{task.face_name}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>是否阳性:</label>
-                <view>是</view>
+                <view>{{task.is_positive == 1 ? '是':'否'}}</view>
               </view>
 
-              <view class="interviewtime modestyle">
+              <view class="form-item mode-style">
                 <label>阳性说明:</label>
-                <view>阳性说明阳性说明阳性说明阳性说明阳性说明</view>
+                <view>{{task.positive_state}}</view>
               </view>
 
-              <view class="interviewtime modestyle">
+              <view class="form-item mode-style">
                 <label>面访经过说明:</label>
-                <view>面访经过说明面访经过说明面访经过说明面访经过说明面访经过说明</view>
+                <view>{{task.face_state}}</view>
               </view>
 
-              <view class="investigation">
+              <view class="investigation" wx:if="{{task.image.length !== 0 || task.audio.length !== 0}}">
                 <label>调查材料:</label>
-                <view class="imagecell">
-                  <view class="imagecell">
-                    <view wx:for="{{imagecell}}" wx:key="" class="imageitem" catchtap="previewImage" data-index="{{index}}">
-                      <image src="{{item.path}}" class="pic"></image>
-                      <image src="/images/del_icon1.png" class="del" catchtap="deleteimg" id="{{item.id}}"></image>
-                    </view>
+                <view class="image-cell">
+                  <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                    <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                   </view>
-                  <view class="voice">
-                    <image src="/images/icon_yuyin@2x.png"></image>
+                </view>
+                <view class="image-cell">
+                  <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                    <image src="/images/index/voice.png"></image>
                   </view>
                 </view>
               </view>
-
+              <view class="investigation" wx:if="{{task.image.length == 0 && task.audio.length == 0}}">
+                暂无调查材料
+              </view>
             </view>
           </view>
         </i-collapse-item>
       </i-collapse>
-
+    </view>
+    <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+      <view class="no-data">暂无记录</view>
     </view>
   </view>
 
 
   <!-- 第二个样式(排查) -->
-  <view>
-    <view class="recordwhole">
+  <view wx:if="{{style == 'secondStyle'}}">
+    <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
       <i-collapse name="{{name}}">
-        <i-collapse-item title="记录1" name="name1">
+        <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
           <view slot="content">
             <view>
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>医院名称:</label>
-                <view>西京医院</view>
+                <view>{{task.hospital}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>排查时间:</label>
-                <view>2018-11-18</view>
+                <view>{{task.screen_date}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item" wx:if="{{task.screen_type == 1}}">
                 <label>排查类型:</label>
-                <view>xx</view>
+                <view>门诊</view>
+              </view>
+              <view class="form-item" wx:if="{{task.screen_type == 2}}">
+                <label>排查类型:</label>
+                <view>住院</view>
+              </view>
+              <view class="form-item" wx:if="{{task.screen_type == 3}}">
+                <label>排查类型:</label>
+                <view>门诊及医院</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>排查科室:</label>
-                <view>科室</view>
+                <view>{{task.screen_department}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>是否阳性:</label>
-                <view>是</view>
+                <view>{{task.is_positive == 1 ? '是' : '否'}}</view>
               </view>
 
-              <view class="interviewtime modestyle">
+              <view class="form-item mode-style">
                 <label>阳性说明:</label>
-                <view>说明说明说明说明说明说明说明说明</view>
+                <view>{{task.positive_state}}</view>
               </view>
 
-              <view class="interviewtime modestyle">
+              <view class="form-item mode-style">
                 <label>医院排查结论:</label>
-                <view>结论结论结论结论结论结论</view>
+                <view>{{task.screen_conclusion}}</view>
               </view>
 
               <view class="investigation">
                 <label>调查材料:</label>
-                <view class="imagecell">
-                  <view class="imagecell">
-                    <view wx:for="{{imagecell}}" wx:key="" class="imageitem" catchtap="previewImage" data-index="{{index}}">
-                      <image src="{{item.path}}" class="pic"></image>
-                      <image src="/images/del_icon1.png" class="del" catchtap="deleteimg" id="{{item.id}}"></image>
-                    </view>
+                <view class="image-cell">
+                  <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                    <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                   </view>
-                  <view class="voice">
-                    <image src="/images/icon_yuyin@2x.png"></image>
+                </view>
+                <view class="image-cell">
+                  <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                    <image src="/images/index/voice.png"></image>
                   </view>
                 </view>
               </view>
@@ -134,57 +144,59 @@
           </view>
         </i-collapse-item>
       </i-collapse>
+    </view>
+    <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+      <view class="no-data">暂无记录</view>
     </view>
   </view>
 
   <!-- 第三个样式(走访) -->
-  <view>
-    <view class="recordwhole">
+  <view wx:if="{{style == 'thirdStyle'}}">
+    <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
       <i-collapse name="{{name}}">
-        <i-collapse-item title="记录1" name="name1">
+        <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
           <view slot="content">
             <view>
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>走访对象:</label>
-                <view>走访对象</view>
+                <view>{{task.visit_name}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>走访时间:</label>
-                <view>2018-11-18</view>
+                <view>{{task.visit_date}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>走访地址:</label>
-                <view></view>
+                <view>{{task.visit_address}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>是否阳性:</label>
-                <view>是</view>
+                <view>{{task.is_positive == 1 ? '是': '否'}}</view>
               </view>
 
-              <view class="interviewtime modestyle">
+              <view class="form-item mode-style">
                 <label>阳性说明:</label>
-                <view></view>
+                <text>{{task.positive_state}}</text>
               </view>
 
-              <view class="interviewtime modestyle">
+              <view class="form-item mode-style">
                 <label>走访结论:</label>
-                <view></view>
+                <text>{{task.visit_conclusion}}</text>
               </view>
 
               <view class="investigation">
                 <label>调查材料:</label>
-                <view class="imagecell">
-                  <view class="imagecell">
-                    <view wx:for="{{imagecell}}" wx:key="" class="imageitem" catchtap="previewImage" data-index="{{index}}">
-                      <image src="{{item.path}}" class="pic"></image>
-                      <image src="/images/del_icon1.png" class="del" catchtap="deleteimg" id="{{item.id}}"></image>
-                    </view>
+                <view class="image-cell">
+                  <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                    <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                   </view>
-                  <view class="voice">
-                    <image src="/images/icon_yuyin@2x.png"></image>
+                </view>
+                <view class="image-cell">
+                  <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                    <image src="/images/index/voice.png"></image>
                   </view>
                 </view>
               </view>
@@ -192,47 +204,49 @@
           </view>
         </i-collapse-item>
       </i-collapse>
+    </view>
+    <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+      <view class="no-data">暂无记录</view>
     </view>
   </view>
 
   <!-- 第四个样式 (商保排查)-->
-  <view>
-    <view class="recordwhole">
+  <view wx:if="{{style == 'fourthStyle'}}">
+    <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
       <i-collapse name="{{name}}">
-        <i-collapse-item title="记录1" name="name1">
+        <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
           <view slot="content">
             <view>
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>公司名称:</label>
-                <view></view>
+                <view>{{task.company}}</view>
               </view>
 
-              <view class="interviewtime modestyle">
+              <view class="form-item mode-style">
                 <label>商保排查结论:</label>
-                <view></view>
+                <view>{{task.screen_conclusion}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>互助排查名称:</label>
-                <view></view>
+                <view>{{task.help_screen_name}}</view>
               </view>
 
-              <view class="interviewtime modestyle">
+              <view class="form-item mode-style">
                 <label>互助排查结论:</label>
-                <view></view>
+                <view>{{task.help_screen_conclusion}}</view>
               </view>
 
               <view class="investigation">
                 <label>调查材料:</label>
-                <view class="imagecell">
-                  <view class="imagecell">
-                    <view wx:for="{{imagecell}}" wx:key="" class="imageitem" catchtap="previewImage" data-index="{{index}}">
-                      <image src="{{item.path}}" class="pic"></image>
-                      <image src="/images/del_icon1.png" class="del" catchtap="deleteimg" id="{{item.id}}"></image>
-                    </view>
+                <view class="image-cell">
+                  <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                    <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                   </view>
-                  <view class="voice">
-                    <image src="/images/icon_yuyin@2x.png"></image>
+                </view>
+                <view class="image-cell">
+                  <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                    <image src="/images/index/voice.png"></image>
                   </view>
                 </view>
               </view>
@@ -241,52 +255,54 @@
         </i-collapse-item>
       </i-collapse>
 
+    </view>
+    <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+      <view class="no-data">暂无记录</view>
     </view>
   </view>
 
   <!-- 第五个样式 (社保排查) -->
-  <view>
-    <view class="recordwhole">
+  <view wx:if="{{style == 'fifthStyle'}}">
+    <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
       <i-collapse name="{{name}}">
-        <i-collapse-item title="记录1" name="name1">
+        <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
           <view slot="content">
             <view>
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>社保局名称:</label>
-                <view></view>
+                <view>{{task.social_security}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>排查时间:</label>
-                <view>2018-11-18</view>
+                <view>{{task.screen_date}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>是否阳性:</label>
-                <view>是</view>
+                <view>{{task.is_positive == 1 ? '是':'否'}}</view>
               </view>
 
-              <view class="interviewtime modestyle">
+              <view class="form-item mode-style">
                 <label>阳性说明:</label>
-                <view>阳性说明阳性说明阳性说明阳性说明阳性说明</view>
+                <view>{{task.positive_state}}</view>
               </view>
 
-              <view class="interviewtime modestyle">
+              <view class="form-item mode-style">
                 <label>社保排查结论:</label>
-                <view></view>
+                <view>{{task.social_security_screen_conclusion}}</view>
               </view>
 
               <view class="investigation">
                 <label>调查材料:</label>
-                <view class="imagecell">
-                  <view class="imagecell">
-                    <view wx:for="{{imagecell}}" wx:key="" class="imageitem" catchtap="previewImage" data-index="{{index}}">
-                      <image src="{{item.path}}" class="pic"></image>
-                      <image src="/images/del_icon1.png" class="del" catchtap="deleteimg" id="{{item.id}}"></image>
-                    </view>
+                <view class="image-cell">
+                  <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                    <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                   </view>
-                  <view class="voice">
-                    <image src="/images/icon_yuyin@2x.png"></image>
+                </view>
+                <view class="image-cell">
+                  <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                    <image src="/images/index/voice.png"></image>
                   </view>
                 </view>
               </view>
@@ -294,51 +310,53 @@
           </view>
         </i-collapse-item>
       </i-collapse>
+    </view>
+    <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+      <view class="no-data">暂无记录</view>
     </view>
   </view>
 
   <!-- 第六个样式(体检机构排查) -->
-  <view>
-    <view class="recordwhole">
+  <view wx:if="{{style == 'sixthStyle'}}">
+    <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
       <i-collapse name="{{name}}">
-        <i-collapse-item title="记录1" name="name1">
+        <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
           <view slot="content">
             <view>
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>体检机构名称:</label>
-                <view>体检机构名称</view>
+                <view>{{task.medical_screen}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>排查时间:</label>
-                <view>2018-11-18</view>
+                <view>{{task.screen_date}}</view>
               </view>
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>是否阳性:</label>
-                <view>是</view>
+                <view>{{task.is_positive == 1 ? '是' : '否'}}</view>
               </view>
 
-              <view class="interviewtime modestyle">
+              <view class="form-item mode-style">
                 <label>阳性说明:</label>
-                <view>阳性说明阳性说明阳性说明阳性说明阳性说明</view>
+                <view>{{task.positive_state}}</view>
               </view>
 
-              <view class="interviewtime modestyle">
+              <view class="form-item mode-style">
                 <label>体检排查结论:</label>
-                <view>结论</view>
+                <view>{{task.medical_screen_conclusion}}</view>
               </view>
 
               <view class="investigation">
                 <label>调查材料:</label>
-                <view class="imagecell">
-                  <view class="imagecell">
-                    <view wx:for="{{imagecell}}" wx:key="" class="imageitem" catchtap="previewImage" data-index="{{index}}">
-                      <image src="{{item.path}}" class="pic"></image>
-                      <image src="/images/del_icon1.png" class="del" catchtap="deleteimg" id="{{item.id}}"></image>
-                    </view>
+                <view class="image-cell">
+                  <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                    <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                   </view>
-                  <view class="voice">
-                    <image src="/images/icon_yuyin@2x.png"></image>
+                </view>
+                <view class="image-cell">
+                  <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                    <image src="/images/index/voice.png"></image>
                   </view>
                 </view>
               </view>
@@ -347,42 +365,44 @@
           </view>
         </i-collapse-item>
       </i-collapse>
+    </view>
+    <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+      <view class="no-data">暂无记录</view>
     </view>
   </view>
 
   <!-- 第七个样式(事故地点排查) -->
-  <view>
-    <view class="recordwhole">
+  <view wx:if="{{style == 'seventhStyle'}}">
+    <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
       <i-collapse name="{{name}}">
-        <i-collapse-item title="记录1" name="name1">
+        <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
           <view slot="content">
             <view>
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>排查时间:</label>
-                <view>2018-11-18</view>
+                <view>{{task.screen_date}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>事故地址:</label>
-                <view></view>
+                <view>{{task.accident_address}}</view>
               </view>
 
-              <view class="interviewtime modestyle">
+              <view class="form-item mode-style">
                 <label>排查结论:</label>
-                <view></view>
+                <view>{{task.screen_conclusion}}</view>
               </view>
 
               <view class="investigation">
                 <label>调查材料:</label>
-                <view class="imagecell">
-                  <view class="imagecell">
-                    <view wx:for="{{imagecell}}" wx:key="" class="imageitem" catchtap="previewImage" data-index="{{index}}">
-                      <image src="{{item.path}}" class="pic"></image>
-                      <image src="/images/del_icon1.png" class="del" catchtap="deleteimg" id="{{item.id}}"></image>
-                    </view>
+                <view class="image-cell">
+                  <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                    <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                   </view>
-                  <view class="voice">
-                    <image src="/images/icon_yuyin@2x.png"></image>
+                </view>
+                <view class="image-cell">
+                  <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                    <image src="/images/index/voice.png"></image>
                   </view>
                 </view>
               </view>
@@ -391,42 +411,44 @@
           </view>
         </i-collapse-item>
       </i-collapse>
+    </view>
+    <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+      <view class="no-data">暂无记录</view>
     </view>
   </view>
 
   <!-- 第八个样式(事故处理机构排查) -->
-  <view>
-    <view class="recordwhole">
+  <view wx:if="{{style == 'eighthStyle'}}">
+    <view class="record-whole" wx:for="{{taskRecord}}" wx:for-item="task" wx:for-index="index" wx:if="{{taskRecord.length !== 0}}">
       <i-collapse name="{{name}}">
-        <i-collapse-item title="记录1" name="name1">
+        <i-collapse-item title="记录{{index + 1}}" name="name{{index + 1}}">
           <view slot="content">
             <view>
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>排查时间:</label>
-                <view>2018-11-18</view>
+                <view>{{task.screen_date}}</view>
               </view>
 
-              <view class="interviewtime">
+              <view class="form-item">
                 <label>处理机构:</label>
-                <view></view>
+                <view>{{task.accident_address}}</view>
               </view>
 
-              <view class="interviewtime modestyle">
+              <view class="form-item mode-style">
                 <label>排查结论:</label>
-                <view></view>
+                <view>{{task.screen_conclusion}}</view>
               </view>
 
               <view class="investigation">
                 <label>调查材料:</label>
-                <view class="imagecell">
-                  <view class="imagecell">
-                    <view wx:for="{{imagecell}}" wx:key="" class="imageitem" catchtap="previewImage" data-index="{{index}}">
-                      <image src="{{item.path}}" class="pic"></image>
-                      <image src="/images/del_icon1.png" class="del" catchtap="deleteimg" id="{{item.id}}"></image>
-                    </view>
+                <view class="image-cell">
+                  <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
+                    <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                   </view>
-                  <view class="voice">
-                    <image src="/images/icon_yuyin@2x.png"></image>
+                </view>
+                <view class="image-cell">
+                  <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                    <image src="/images/index/voice.png"></image>
                   </view>
                 </view>
               </view>
@@ -435,9 +457,12 @@
         </i-collapse-item>
       </i-collapse>
     </view>
+    <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
+      <view class="no-data">暂无记录</view>
+    </view>
   </view>
 
-  <view class="rejectmode">
+  <view class="reject-mode">
     <text>驳回意见:</text>
     <text>无</text>
   </view>

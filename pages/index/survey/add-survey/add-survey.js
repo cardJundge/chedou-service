@@ -555,7 +555,7 @@ Page({
             url: '../survey-details/survey-details?listId=' + params.id,
           })
         } else {
-          if (res.data.msg.match('token过期或已失效')) {
+          if (res.data.msg.match('Token已过期或失效')) {
           } else {
             wx.showToast({
               title: res.data.msg ? res.data.msg : '请求超时',
@@ -574,7 +574,7 @@ Page({
                 url: '../survey-details/survey-details?listId=' + listId,
               })
             } else {
-              if (res.data.msg.match('token过期或已失效')) {
+              if (res.data.msg.match('Token已过期或失效')) {
               } else {
                 wx.showToast({
                   title: res.data.msg ? res.data.msg : '请求超时',
@@ -585,7 +585,7 @@ Page({
           })
 
         }else {
-          if (res.data.msg.match('token过期或已失效')) {
+          if (res.data.msg.match('Token已过期或失效')) {
           } else {
             wx.showToast({
               title: res.data.msg ? res.data.msg : '请求超时',

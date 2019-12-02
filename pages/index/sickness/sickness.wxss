@@ -152,6 +152,11 @@
   background: #D0D0D0;
 }
 
+.status05 {
+  color: #1a65ff;
+  border: 1rpx solid #1a65ff;
+}
+
 .more-data {
   width: 100%;
   line-height: 80rpx;

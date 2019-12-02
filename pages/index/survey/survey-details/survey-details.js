@@ -49,7 +49,7 @@ Page({
       if(res.data.status == 1) {
         this.toScene()
       }else {
-        if (res.data.msg.match('token过期或已失效')) {
+        if (res.data.msg.match('Token已过期或失效')) {
         } else {
           wx.showToast({
             title: res.data.msg ? res.data.msg : '请求超时',
@@ -297,7 +297,7 @@ Page({
         this.getDetails()
         this.toAddDetails()
       } else {
-        if (res.data.msg.match('token过期或已失效')) {
+        if (res.data.msg.match('Token已过期或失效')) {
         } else {
           wx.showToast({
             title: res.data.msg ? res.data.msg : '请求超时',
@@ -321,7 +321,7 @@ Page({
       if(res.data.status == 1) {
         this.getDetails()
       }else {
-        if (res.data.msg.match('token过期或已失效')) {
+        if (res.data.msg.match('Token已过期或失效')) {
         } else {
           wx.showToast({
             title: res.data.msg ? res.data.msg : '请求超时',
@@ -363,7 +363,7 @@ Page({
                 delta: 1
               }) 
             }else {
-              if (res.data.msg.match('token过期或已失效')) {
+              if (res.data.msg.match('Token已过期或失效')) {
               } else {
                 wx.showToast({
                   title: res.data.msg ? res.data.msg : '请求超时',
@@ -381,6 +381,21 @@ Page({
   toAddDetails() {
     wx.navigateTo({
       url: '../add-detailed/add-detailed?id=' + this.data.listId,
+    })
+  },
+
+  // 图片预览
+  previewImg(e) {
+    console.log(e.currentTarget.dataset.srclist)
+    let imgArr = []
+    let imgIndex = e.currentTarget.dataset.index
+    let pictures = e.currentTarget.dataset.srclist
+    pictures.forEach((item, index) => {
+      imgArr.push(this.data.imgUrl + item)
+    })
+    wx.previewImage({
+      urls: imgArr,
+      current: imgArr[imgIndex]
     })
   }
 

@@ -11,17 +11,16 @@ var app = getApp()
 
 var personnelModel = new PersonnelModel()
 var indexModel = new IndexModel()
+const myAudio = wx.createInnerAudioContext()
+myAudio.obeyMuteSwitch = false  // 是否遵循系统静音开关,当此参数为 false 时，即使用户打开了静音开关，也能继续发出声音
 Page({
   data: {
     first: 0,
-    diseasestep: ['全部任务', '基本信息', '相关资料', '机构回复'],
-    diseaselist: [],
-    tasklist: ["", "", "", "", "", "", "", ""],
-    basetitle: ['患者成员信息', '申请人信息'],
+    diseaseStep: ['全部任务', '基本信息', '相关资料', '机构回复'],
+    diseaseList: [],
+    baseTitle: ['患者成员信息', '申请人信息'],
     currentTab: 0,
-    baselist: ['', '', '', '', '', '', '', '', '', ''],
-    imgdatalist: [],
-    voicedatalist: [''],
+    voiceDataList: [''],
     giveup: true,
     giveupresult: '',
     voiceIsshow: false,
@@ -46,14 +45,33 @@ Page({
     indexModel.getBusinessDetail(key, id, type, res => {
       if(res.data.status == 1) {
         this.setData({
-          diseaselist: res.data.data,
-          tasklist: res.data.step,
-          imgdatalist: res.data.data.data.split(',')
+          diseaseList: res.data.data,
+          sickTaskList: res.data.sickTask
         })
-       
-        console.log(this.data.imgdatalist)
+        this.data.diseaseList.sick_address = this.data.diseaseList.sick_address.substring('市')
+        // console.log(this.data.diseaseList.suspects,this.data.diseaseList.sick_address)
+        if (this.data.diseaseList.suspects) {
+          var doubt = JSON.parse(this.data.diseaseList.suspects)
+          console.log(doubt)
+          doubt.forEach((item, index) => {
+            this.data.doubttext += (',' + item)
+          })
+          this.setData({
+            doubttext: this.data.doubttext.substring(1)
+          })
+        }
+      
         this.data.taskId =  res.data.data.task_id
         this.getTaskList()
+        this.getSicknessData()
+      } else {
+        if (res.data.msg.match('Token已过期或失效')) {
+        } else {
+          wx.showToast({
+            title: res.data.msg ? res.data.msg : '请求超时',
+            icon: 'none'
+          })
+        }
       }
     })
   },
@@ -74,15 +92,37 @@ Page({
     })
   },
 
+  // 获取疾病调查相关资料
+  getSicknessData() {
+    let params = {
+      listId: this.data.listId
+    }
+    indexModel.getSicknessData(params, res=> {
+      if(res.data.status == 1) {
+        res.data.data.forEach((item, index) => {
+            item.picture = item.picture.split(',')
+        })
+        this.setData({
+          sicknessData: res.data.data
+        })
+        console.log(this.data.sicknessData)
+      }
+    })
+  },
+
   // 去到任务详情
-  todetail() {
+  toDetail(e) {
+    console.log(e)
+    let stId = e.currentTarget.dataset.id
+    let sicknessTaskId = e.currentTarget.dataset.sickid
+    let stName = e.currentTarget.dataset.name
     wx.navigateTo({
-      url: '../task-details/task-details',
+      url: '../task-details/task-details?stId=' + stId + '&sicknessTaskId=' + sicknessTaskId + '&stName=' + stName,
     })
   },
 
   //顶部选项卡
-  selectdiseasestep(e) {
+  selectDiseaseStep(e) {
     this.setData({
       first: e.currentTarget.id
     })
@@ -136,5 +176,19 @@ Page({
         }
       }
     })
+  },
+
+  previewImage(e) {
+    let imgArr = []
+    let imgIndex = e.currentTarget.dataset.index
+    let listId = e.currentTarget.dataset.id
+    this.data.sicknessData[listId].picture.forEach((item, index) => {
+      imgArr.push(this.data.imgUrl + item)
+    })
+    wx.previewImage({
+      urls: imgArr,
+      current: imgArr[imgIndex]
+    })
+    console.log(imgArr, imgArr[imgIndex])
   }
 })

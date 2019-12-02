@@ -134,8 +134,8 @@
         <view class="progress-right">
           <text>{{item.title}}</text>
           <view class="progress-image">
-            <view class="progress-image-item" wx:for="{{item.picture}}" wx:for-item="ckzpitem">
-              <image src="{{imgUrl}}{{ckzpitem}}"></image>
+            <view class="progress-image-item" wx:for="{{item.picture[0]}}" wx:for-item="ckzpitem" wx:for-index="ckzpindex">
+              <image src="{{imgUrl}}{{ckzpitem}}" catchtap="previewImg" data-index="{{ckzpindex}}" data-srclist="{{item.picture[0]}}"></image>
             </view>
           </view>
         </view>

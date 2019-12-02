@@ -24,7 +24,9 @@
         <text>{{item.report_no}}</text>
         <text>{{item.sick}} | {{item.sick_address}} | {{item.proposer_mobile}}</text>
       </view>
+      <view wx:if="{{item.status == 0}}" class='list-item-right status05'>待分配</view>
       <view wx:if="{{item.status == 1}}" class='list-item-right status01'>已分配</view>
+      <view wx:if="{{item.status == 2}}" class='list-item-right status02'>已接单</view>
       <view wx:if="{{item.status == 3}}" class='list-item-right status02'>进行中</view>
       <view wx:if="{{item.status == 4}}" class='list-item-right status03'>待审核</view>
       <view wx:if="{{item.status == 5}}" class='list-item-right status04'>已结案</view>

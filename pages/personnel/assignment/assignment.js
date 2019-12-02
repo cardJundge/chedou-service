@@ -77,7 +77,7 @@ Page({
           delta: 1
         })
       } else {
-        if (res.data.msg.match('token过期或已失效')) {
+        if (res.data.msg.match('Token已过期或失效')) {
         } else {
           wx.showToast({
             title: res.data.msg ? res.data.msg : '请求超时',

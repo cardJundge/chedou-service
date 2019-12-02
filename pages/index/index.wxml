@@ -40,6 +40,7 @@
         <view class="business-item-text">
           <text wx:if="{{serviceType == 2 || serviceType == 3}}">{{item.name}}</text>
           <text wx:if="{{serviceType == 1 || serviceType == 4}}">{{item.name == '车辆维修' ? '车辆推修': item.name}}</text>
+          <text wx:else>{{item.name}}</text>
           <text wx:if="{{item.key == 'survey'}}">科学的估损定价</text>
           <text wx:if="{{item.key == 'push'}}">汽车维护和修理</text>
           <text wx:if="{{item.key == 'trailer'}}">道路清障救援</text>

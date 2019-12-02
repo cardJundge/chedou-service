@@ -108,14 +108,16 @@ Page({
 
   // 图片预览
   openImg(e) {
+    console.log(e)
     let imageId = e.currentTarget.dataset.id, imageList = [], imageIndex = e.currentTarget.dataset.index
     this.data.addList.forEach((item, index) => {
       if (imageId == item.id) {
         imageList = item.imageList
         wx.previewImage({
-          current: imageList[imageIndex], // 当前显示图片的http链接
+          current: this.data.imgUrl + imageList[imageIndex], // 当前显示图片的http链接
           urls: imageList // 需要预览的图片http链接列表
         })
+        console.log(this.data.imgUrl + imageList[imageIndex], imageList)
       }
     })
   },
@@ -198,7 +200,7 @@ Page({
           delta: 1
         })
       } else {
-        if (res.data.msg.match('token过期或已失效')) {
+        if (res.data.msg.match('Token已过期或失效')) {
         } else {
           wx.showToast({
             title: res.data.msg ? res.data.msg : '请求超时',

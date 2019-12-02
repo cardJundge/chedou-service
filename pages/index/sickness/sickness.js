@@ -39,7 +39,7 @@ Page({
       let sickInfo = res.data.data.data
       if(res.data.status == 1) {
         res.data.data.data.forEach((item, index) => {
-          item.sick_address = item.sick_address.substring(0, 3)
+          item.sick_address = item.sick_address?item.sick_address.substring(0, 3): ''
         })
         if (this.data.page == 1 && sickInfo.length == 0) {
           return this.setData({
@@ -68,7 +68,7 @@ Page({
         this.setData({
           hasNoData: true
         })
-        if (res.data.msg.match('token过期或已失效')) {
+        if (res.data.msg.match('Token已过期或失效')) {
         } else {
           wx.showToast({
             title: res.data.msg ? res.data.msg : '请求超时',
