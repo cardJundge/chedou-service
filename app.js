@@ -18,8 +18,8 @@ App({
   },
   globalData: {
     userInfo: null,
-    // hostName: 'http://192.168.1.108',
-    hostName: 'https://api.feecgo.com',
+    hostName: 'http://192.168.1.108',
+    // hostName: 'https://api.feecgo.com',
     // imgUrl: 'https://feecgo.com/uploads/',
     imgUrl: 'https://cdn.feecgo.com/uploads/',
     clound: "https://6368-chedou-service-1257955119/images/"

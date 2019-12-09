@@ -8,7 +8,7 @@
 }
 
 .disease-step text{
-  width: 160rpx;
+  width: 220rpx;
   height: 58rpx;
   display: flex;
   justify-content: center;

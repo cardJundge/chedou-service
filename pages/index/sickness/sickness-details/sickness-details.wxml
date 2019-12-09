@@ -18,7 +18,7 @@
   </view>
   <view class="disease-item" bindtap="phoneCall" data-phone="{{diseaseList.docking_mobile}}">
     <text>联系电话</text>
-    <text>{{diseaseList.docking_mobile}}</text>
+    <text style="color: #1a65ff">{{diseaseList.docking_mobile}}</text>
   </view>
   <view class="disease-item">
     <text>调查员</text>
@@ -26,7 +26,7 @@
   </view>
   <view class="disease-item" bindtap="phoneCall" data-phone="{{taskinfo.mobile}}">
     <text>联系电话</text>
-    <text>{{taskinfo.mobile}}</text>
+    <text style="color: #1a65ff">{{taskinfo.mobile}}</text>
   </view>
   <!-- </block> -->
 </view>
@@ -38,7 +38,7 @@
     <view class="task-list" bindtap="toDetail" id="{{index}}" data-id="{{item.id}}" data-sickid="{{item.sickness_task_id}}" data-name="{{item.name}}">
       <view class="item-content">
         <text>{{index+1}}、{{item.name}}</text>
-        <text class="address">{{sickAddressList}}市</text>
+        <text class="address">{{sickAddressList}}</text>
       </view>
       <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
       <view class="item-result" wx:else>未完成</view>
@@ -130,7 +130,7 @@
 
     <view class="task-list base-item" wx:if="{{currentTab == 1}}" bindtap="phoneCall" data-phone="{{diseaseList.proposer_mobile}}">
       <text>联系电话:</text>
-      <text>{{diseaseList.proposer_mobile}}</text>
+      <text style="color: #1a65ff">{{diseaseList.proposer_mobile}}</text>
     </view>
 
     <view class="task-list base-item" wx:if="{{currentTab == 1}}">

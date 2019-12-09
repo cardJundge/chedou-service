@@ -462,8 +462,8 @@
     </view>
   </view>
 
-  <view class="reject-mode">
+  <view class="reject-mode" wx:if="{{taskReject.reason}}">
     <text>驳回意见:</text>
-    <text>无</text>
+    <text>{{taskReject.reason}}</text>
   </view>
 </view>

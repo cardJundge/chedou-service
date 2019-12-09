@@ -72,7 +72,8 @@ Page({
         })
        
         this.setData({
-          taskRecord: this.data.taskRecord
+          taskRecord: this.data.taskRecord,
+          taskReject: res.data.reject
         })
         console.log(this.data.taskRecord)
       }

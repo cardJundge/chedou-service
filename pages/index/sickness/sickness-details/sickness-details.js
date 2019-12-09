@@ -16,7 +16,7 @@ myAudio.obeyMuteSwitch = false  // 是否遵循系统静音开关,当此参数�
 Page({
   data: {
     first: 0,
-    diseaseStep: ['全部任务', '基本信息', '相关资料', '机构回复'],
+    diseaseStep: ['全部任务', '基本信息', '相关资料'],
     diseaseList: [],
     baseTitle: ['患者成员信息', '申请人信息'],
     currentTab: 0,
@@ -49,6 +49,10 @@ Page({
           sickTaskList: res.data.sickTask
         })
         this.data.diseaseList.sick_address = this.data.diseaseList.sick_address.substring('市')
+        this.setData({
+          sickAddressList: this.data.diseaseList.sick_address
+        })
+        console.log(this.data.diseaseList.sick_address)
         // console.log(this.data.diseaseList.suspects,this.data.diseaseList.sick_address)
         if (this.data.diseaseList.suspects) {
           var doubt = JSON.parse(this.data.diseaseList.suspects)
