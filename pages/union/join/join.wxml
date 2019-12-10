@@ -1,0 +1,24 @@
+<!--加入联盟-->
+<view class="union-join-body">
+  <view class="union-join-list">
+    <view class="union-join-item" bindtap="toJoin">
+      <view class="item-left">
+        <view class="item-left-img">
+          <image src=""></image>
+        </view>
+        <view class="item-left-info">
+          <view>
+            <text>联盟名称</text>
+            <text>50人</text>
+          </view>
+          <view class="item-left-info-module">
+            <view>疾病调查</view>
+            <view>查勘定损</view>
+          </view>
+          <view>联盟简介简介简介简介简介简介简介简介…</view>
+        </view>
+      </view>
+      <view class="item-right status01">申请</view>
+    </view>
+  </view>
+</view>

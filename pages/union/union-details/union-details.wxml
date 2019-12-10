@@ -1,0 +1,62 @@
+<!--联盟详情-->
+<view class="union-details-body">
+  <view class="union-details-top">
+    <view class="top-bg">
+      <view class="top-box">
+        <view class="top-card">
+          <view class="top-card-left">
+            <image src=""></image>
+          </view>
+          <view class="top-card-right">
+            联盟名称
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="union-details-content">
+    <!-- 联盟成员 -->
+    <view class="union-member">
+      <view class="union-member-top">
+        <text>联盟成员</text>
+        <view bindtap="toMemberList">
+          <text>查看50名成员</text>
+          <i-icon type="enter" size="20" />
+        </view>
+      </view>
+      <view class="union-member-bottom">
+        <view class="member-item">
+          <image src=""></image>
+          <text>公司名称</text>
+        </view>
+      </view>
+    </view>
+    <!-- 联盟简介 -->
+    <view class="union-introduce">
+      <text>联盟简介</text>
+      <view class="union-introduce-content">简介联盟简介联盟简介联盟简介联盟简介联盟简介联盟简介联盟简介联盟简介</view>
+    </view>
+    <!-- 主导业务 -->
+    <view class="union-business">
+      <text>主导业务</text>
+      <view class="union-business-content">
+        <view class="union-business-item">查勘定损</view>
+        <view class="union-business-item">疾病调查</view>
+      </view>
+    </view>
+    <!-- 加入联盟方式 -->
+    <view class="union-mode">
+      <view class="union-mode-top">
+        <text>联盟成员</text>
+        <view bindtap="toExamine">
+          <text>需要审核</text>
+          <i-icon type="enter" size="20" />
+        </view>
+      </view>
+    </view>
+    <!-- 退出按钮 -->
+    <view class="union-btn-box">
+      <view class="union-btn">删除并退出</view>
+    </view>
+  </view>
+</view>

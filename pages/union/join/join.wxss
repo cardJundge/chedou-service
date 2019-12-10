@@ -1,0 +1,93 @@
+/* 加入联盟 */
+
+.union-join-body {
+}
+
+.union-join-list {
+}
+
+.union-join-item {
+  padding: 24rpx;
+  border-bottom: 2rpx solid #fbfbfb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item-left {
+  display: flex;
+  align-items: center;
+}
+
+.item-left-img {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 12rpx;
+}
+
+.item-left-img image {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.item-left-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-left-info>view:first-child text:first-child {
+  font-size: 26rpx;
+  color: #030303;
+}
+
+.item-left-info>view:first-child text:last-child {
+  font-size: 22rpx;
+  color: #b3b3b3;
+}
+
+.item-left-info>view:last-child {
+  font-size: 22rpx;
+  color: #b3b3b3;
+}
+
+.item-left-info-module {
+  display: flex;
+  align-items: center;
+  margin: 6rpx 0;
+}
+
+.item-left-info-module view {
+  height: 30rpx;
+  line-height: 30rpx;
+  padding: 0 8rpx;
+  background: #1a65ff;
+  color: #fff;
+  margin-right: 12rpx;
+  border-radius: 6rpx;
+  font-size: 18rpx;
+}
+
+.item-right {
+  width: 120rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+}
+
+.status01 {
+  background: #1a65ff;
+  color: #fff;
+}
+
+.status02 {
+  background: #FF811A;
+  color: #fff;
+}
+
+.status03 {
+  background: #DEDEDE;
+  color: #3C3C3C;
+}

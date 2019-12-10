@@ -1,0 +1,33 @@
+<!--联盟成员-->
+<view class="union-member-body">
+  <view class="member-top">
+    <view class="search-bg">
+      <view class="search-box">
+        <view class="search">
+          <input placeholder-class="ph-class" type='text' placeholder="请输入联盟名称进行搜索" bindinput="search"></input>
+          <image src="/images/personnel/icon_search.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="member-content">
+    <view class="member-content-list">
+      <i-index height="100%" bind:change="onChange">
+        <i-index-item wx:for="{{ member }}" wx:for-index="index" wx:key="{{index}}" wx:for-item="item" name="{{item.key}}" keyList="{{item.list}}">
+          <view wx:for="{{item.list}}" wx:for-index="in" wx:key="{{in}}" wx:for-item="it">
+            <view slot="content" class="member-content-item">
+              <view class="member-content-item-left">
+                <image src="{{it.face ? imgUrl + it.face : 'cloud://chedou-service.6368-chedou-service/images/task_default_avatar.png'}}"></image>
+                <view class="member-content-item-text">
+                  <text>{{it.name}}</text>
+                </view>
+              </view>
+              <view class="member-content-item-btn">移除</view>
+            </view>
+          </view>
+        </i-index-item>
+      </i-index>
+    </view>
+  </view>
+
+</view>

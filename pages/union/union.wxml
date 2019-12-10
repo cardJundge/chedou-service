@@ -1,0 +1,52 @@
+<!--联盟-->
+<view class="union-body">
+  <view class="union-top">
+    <view class="search-bg">
+      <view class="search-box">
+        <view class="search">
+          <input placeholder-class="ph-class" type='text' placeholder="请输入联盟名称进行搜索" bindinput="search"></input>
+          <image src="/images/personnel/icon_search.png"></image>
+        </view>
+        <image bindtap="openUnionSheet" class="add" src="/images/personnel/icon_add.png"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="union-content" wx:if="{{!someUnion}}">
+    <view class="union-content-null">
+      <image src="cloud://chedou-service.6368-chedou-service/images/someone_null_bg.png"></image>
+      <text>暂无联盟</text>
+      <view class="union-content-null-btn">
+        <view bindtap="applyUnion">申请加入</view>
+        <view bindtap="establishUnion">创建联盟</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="union-content" wx:if="{{someUnion}}">
+    <view class="uniopn-notice" bindtap="toNoticeList">
+      <view class="notice-left">
+        <image src="/images/union/notice.png"></image>
+      </view>
+      <view class="notice-right">
+        <text>联盟通知</text>
+        <text>有5人申请加入联盟</text>
+      </view>
+    </view>
+    <view class="union-list">
+      <view class="union-item" bindtap="toUnionDetails">
+        <view class="union-item-left">
+          <image src=""></image>
+        </view>
+        <view class="union-item-right">
+          <view>联盟名称</view>
+          <view class="union-item-right-module">
+            <view>查勘定损</view>
+            <view>车险调查</view>
+          </view>
+          <view>联盟简介简介简介简介简介简介简介简介简介简介简介简介</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

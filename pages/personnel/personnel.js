@@ -9,7 +9,7 @@ import {
 var app = getApp()
 
 var personnelModel = new PersonnelModel()
-let storeData = new Array(26);
+let storeData = new Array(26)
 const words = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 Page({
   data: {
@@ -30,7 +30,7 @@ Page({
     this.getTaskList('')
   },
 
-  rendering() {  
+  rendering() { 
     words.forEach((item, index) => {
       storeData[index] = {
         key: item,

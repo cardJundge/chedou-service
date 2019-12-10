@@ -1,0 +1,18 @@
+<!--联盟通知-->
+<view class="notice-body">
+  <view class="notice-list">
+    <view class="notice-item">
+      <view class="item-left">
+        <image src=""></image>
+        <view class="item-left-info">
+          <text>联盟名称</text>
+          <text>某某某申请加入</text>
+        </view>
+      </view>
+      <view class="item-right">
+        <view>拒绝</view>
+        <view>同意</view>
+      </view>
+    </view>
+  </view>
+</view>

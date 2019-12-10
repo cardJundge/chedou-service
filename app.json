@@ -41,7 +41,14 @@
     "pages/index/repair/repair-detail/repair-detail",
     "pages/personnel/add-group/add-group",
     "pages/mine/service-brand/service-brand",
-    "pages/index/sickness/task-details/task-details"
+    "pages/index/sickness/task-details/task-details",
+    "pages/union/union",
+    "pages/union/establish/establish",
+    "pages/union/union-details/union-details",
+    "pages/union/member/member",
+    "pages/union/join/join",
+    "pages/union/join/join-details/join-details",
+    "pages/union/notice/notice"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -72,6 +79,12 @@
         "iconPath": "/images/tabbar/personnel.png",
         "selectedIconPath": "/images/tabbar/personneled.png",
         "text": "人员"
+      },
+      {
+        "pagePath": "pages/union/union",
+        "iconPath": "/images/tabbar/union.png",
+        "selectedIconPath": "/images/tabbar/unioned.png",
+        "text": "联盟"
       },
       {
         "pagePath": "pages/mine/mine",
