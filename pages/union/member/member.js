@@ -5,8 +5,12 @@ import {
 import {
   PersonnelModel
 } from '../../personnel/models/personnel.js'
+import {
+  UnionModel
+} from '../models/union.js'
 var app = getApp()
 
+var unionModel = new UnionModel()
 var personnelModel = new PersonnelModel()
 let storeData = new Array(26)
 const words = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]

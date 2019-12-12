@@ -76,28 +76,26 @@ Page({
         if(res.data.status == 1) {
           wx.showToast({
             title: '注册成功',
-            success: res=> {
-              let data = {
-                phone: this.data.otherData.phone,
-                password: this.data.otherData.password
-              }
-              loginModel.postLogin(data, res=> {
-                if(res.data.status == 1) {
-                  app.globalData.userInfo = res.data.data
-                  wx.switchTab({
-                    url: '/pages/index/index',
-                  })
-                } else {
-                  wx.showToast({
-                    title: res.data.msg ? res.data.msg : '操作超时',
-                    icon: 'none'
-                  })
-                }
+          })
+          let data = {
+            phone: this.data.otherData.phone,
+            password: this.data.otherData.password
+          }
+          loginModel.postLogin(data, res1 => {
+            if (res1.data.status == 1) {
+              app.globalData.userInfo = res1.data.data
+              wx.switchTab({
+                url: '/pages/index/index',
               })
-              this.setData({
-                isDisabled: false
+            } else {
+              wx.showToast({
+                title: res1.data.msg ? res1.data.msg : '操作超时',
+                icon: 'none'
               })
             }
+          })
+          this.setData({
+            isDisabled: false
           })
         } else {
           wx.showToast({

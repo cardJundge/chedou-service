@@ -1,0 +1,40 @@
+<!--转单-->
+<view class="transfer-body">
+  <form bindsubmit='formSubmit'>
+    <view class="transfer-form">
+      <view class="form-item">
+        <label>案件编号</label>
+        <text>P1541989480</text>
+      </view>
+      <view class="form-item">
+        <label>案件分类</label>
+        <text>人伤调查</text>
+      </view>
+      <view class="form-item">
+        <label>转单时间</label>
+        <text>2019-06-28 14:50</text>
+      </view>
+      <view class="form-item">
+        <label>转单公司</label>
+        <text>公司名称</text>
+      </view>
+      <view class="form-item form-item-textarea">
+        <label>备注</label>
+        <textarea placeholder="请输入备注" placeholder-class="ph-class"></textarea>
+      </view>
+      <view class="form-item">
+        <label>转单金额</label>
+        <input placeholder="请输入转单金额" placeholder-class="ph-class"></input>
+      </view>
+      <view class="form-item">
+        <label>支付方式</label>
+         <picker value="{{payment}}" range="{{paymentList}}" bindchange="paymentChange">
+            <view>{{payment ? payment : '请选择支付方式'}}</view>
+          </picker>
+      </view>
+      <view class="form-item">
+         <button class="transfer-btn" formType="submit">确 定</button>
+      </view>
+    </view>
+  </form>
+</view>

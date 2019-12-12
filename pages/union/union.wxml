@@ -1,4 +1,9 @@
 <!--联盟-->
+<view class="union-body" wx:if="{{spinShow}}">
+  <view class="spin-article">
+    <i-spin size="large" fix></i-spin>
+  </view>
+</view>
 <view class="union-body">
   <view class="union-top">
     <view class="search-bg">
@@ -34,17 +39,17 @@
       </view>
     </view>
     <view class="union-list">
-      <view class="union-item" bindtap="toUnionDetails">
+      <view class="union-item" wx:for="{{myUnionList}}" bindtap="toUnionDetails" data-item="{{item}}">
         <view class="union-item-left">
-          <image src=""></image>
+          <image wx:if="{{item.logo}}" src="{{imgUrl}}{{item.logo}}"></image>
+          <image wx:if="{{!item.logo}}" src="cloud://chedou-service.6368-chedou-service/images/default_user.png"></image>
         </view>
         <view class="union-item-right">
-          <view>联盟名称</view>
+          <view>{{item.name}}</view>
           <view class="union-item-right-module">
-            <view>查勘定损</view>
-            <view>车险调查</view>
+            <view wx:for="{{item.module}}" wx:for-item="it">{{it}}</view>
           </view>
-          <view>联盟简介简介简介简介简介简介简介简介简介简介简介简介</view>
+          <view>{{item.intro}}</view>
         </view>
       </view>
     </view>

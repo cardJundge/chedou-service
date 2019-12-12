@@ -3,22 +3,46 @@ import {
   UnionModel
 } from './models/union.js'
 var unionModel = new UnionModel()
+var app = getApp()
 Page({
   data: {
-    someUnion: true
+    someUnion: true,
+    myUnionList: [],
+    spinShow: true,
   },
   onLoad: function(options) {
+    this.setData({
+      imgUrl: app.globalData.imgUrl
+    })
   },
 
   onShow: function() {
     this.getMyUnionList()
   },
 
-  // 获取联盟列表
+  // 获取我的联盟列表
   getMyUnionList() {
-    unionModel.myUnionList(res=> {
+    let params = {
+      type: 1
+    }
+    unionModel.getUnionList(params, res=> {
+      this.setData({
+        spinShow: false
+      })
       if(res.data.status == 1) {
-
+        if (res.data.data.length == 0) {
+          this.setData({
+            someUnion: false
+          })
+        } else {
+          res.data.data.forEach((item, index) => {
+            item.module = item.module.split(',')
+          })
+          this.setData({
+            myUnionList: res.data.data,
+            someUnion: true
+          })
+        }
       } else {
 
       }
@@ -55,9 +79,10 @@ Page({
   },
 
   // 进入联盟详情
-  toUnionDetails() {
+  toUnionDetails(e) {
+    let items = JSON.stringify(e.currentTarget.dataset.item)
     wx.navigateTo({
-      url: './union-details/union-details'
+      url: './union-details/union-details?data=' + items
     })
   },
 

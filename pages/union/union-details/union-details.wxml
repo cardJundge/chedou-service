@@ -5,10 +5,11 @@
       <view class="top-box">
         <view class="top-card">
           <view class="top-card-left">
-            <image src=""></image>
+            <image wx:if="{{unionInfo.logo}}" src="{{imgUrl}}{{unionInfo.logo}}"></image>
+             <image wx:if="{{!unionInfo.logo}}" src="cloud://chedou-service.6368-chedou-service/images/default_user.png"></image>
           </view>
           <view class="top-card-right">
-            联盟名称
+            {{unionInfo.name}}
           </view>
         </view>
       </view>
@@ -20,13 +21,14 @@
       <view class="union-member-top">
         <text>联盟成员</text>
         <view bindtap="toMemberList">
-          <text>查看50名成员</text>
+          <text>查看{{unionInfo.number}}名成员</text>
           <i-icon type="enter" size="20" />
         </view>
       </view>
       <view class="union-member-bottom">
         <view class="member-item">
           <image src=""></image>
+          <image class="leader-icon" src="/images/union/leader.png"></image>
           <text>公司名称</text>
         </view>
       </view>
@@ -34,14 +36,13 @@
     <!-- 联盟简介 -->
     <view class="union-introduce">
       <text>联盟简介</text>
-      <view class="union-introduce-content">简介联盟简介联盟简介联盟简介联盟简介联盟简介联盟简介联盟简介联盟简介</view>
+      <view class="union-introduce-content">{{unionInfo.intro}}</view>
     </view>
     <!-- 主导业务 -->
     <view class="union-business">
       <text>主导业务</text>
       <view class="union-business-content">
-        <view class="union-business-item">查勘定损</view>
-        <view class="union-business-item">疾病调查</view>
+        <view class="union-business-item" wx:for="{{unionInfo.module}}" wx:for-item="it">{{it}}</view>
       </view>
     </view>
     <!-- 加入联盟方式 -->
@@ -49,7 +50,8 @@
       <view class="union-mode-top">
         <text>联盟成员</text>
         <view bindtap="toExamine">
-          <text>需要审核</text>
+          <text wx:if="{{unionInfo.audit == 0}}">无需审核直接加入</text>
+          <text wx:if="{{unionInfo.audit == 1}}">需要审核</text>
           <i-icon type="enter" size="20" />
         </view>
       </view>

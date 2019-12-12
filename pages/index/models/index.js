@@ -243,7 +243,7 @@ class IndexModel extends HTTP {
   // 疾病调查相关资料
   getSicknessData(param, callback) {
     var params = {
-      url: '/api/sick/' + param.listId + '/data',
+      url: '/api/work/' + param.listId + '/data/' + param.type,
       type: 'GET',
       auth: true,
       sCallback: callback

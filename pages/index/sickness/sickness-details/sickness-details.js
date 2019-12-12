@@ -45,18 +45,18 @@ Page({
     indexModel.getBusinessDetail(key, id, type, res => {
       if(res.data.status == 1) {
         this.setData({
-          diseaseList: res.data.data,
-          sickTaskList: res.data.sickTask
+          diseaseList: res.data.data
         })
+        this.data.sickTaskList = res.data.sickTask
         this.data.diseaseList.sick_address = this.data.diseaseList.sick_address.substring('市')
         this.setData({
           sickAddressList: this.data.diseaseList.sick_address
         })
-        console.log(this.data.diseaseList.sick_address)
+        // console.log(this.data.diseaseList.sick_address)
         // console.log(this.data.diseaseList.suspects,this.data.diseaseList.sick_address)
         if (this.data.diseaseList.suspects) {
           var doubt = JSON.parse(this.data.diseaseList.suspects)
-          console.log(doubt)
+          // console.log(doubt)
           doubt.forEach((item, index) => {
             this.data.doubttext += (',' + item)
           })
@@ -64,8 +64,6 @@ Page({
             doubttext: this.data.doubttext.substring(1)
           })
         }
-      
-        this.data.taskId =  res.data.data.task_id
         this.getTaskList()
         this.getSicknessData()
       } else {
@@ -85,12 +83,17 @@ Page({
     let params = {}
     personnelModel.getTaskList(params, res=> {
       if(res.data.status == 1) {
-        res.data.data.forEach((item, index) => {
-          if (item.id == this.data.taskId) {
-            this.setData({
-              taskinfo: item
-            })
-          }
+        this.data.sickTaskList.forEach((taskitem, taskindex) => {
+          res.data.data.forEach((item, index) => {
+            if (item.id == taskitem.task_id) {
+              taskitem.taskname = item.nickname
+              taskitem.taskmobile = item.mobile
+            }
+          })
+        })
+        console.log(this.data.sickTaskList)
+        this.setData({
+          sickTaskList: this.data.sickTaskList
         })
       }
     })
@@ -99,7 +102,8 @@ Page({
   // 获取疾病调查相关资料
   getSicknessData() {
     let params = {
-      listId: this.data.listId
+      listId: this.data.listId,
+      type: 0
     }
     indexModel.getSicknessData(params, res=> {
       if(res.data.status == 1) {

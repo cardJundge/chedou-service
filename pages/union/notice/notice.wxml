@@ -10,8 +10,8 @@
         </view>
       </view>
       <view class="item-right">
-        <view>拒绝</view>
-        <view>同意</view>
+        <view bindtap="toReject">拒绝</view>
+        <view bindtap="toAgree">同意</view>
       </view>
     </view>
   </view>

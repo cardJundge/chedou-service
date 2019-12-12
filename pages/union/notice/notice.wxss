@@ -33,7 +33,7 @@
 
 .item-left-info text:last-child {
   font-size: 26rpx;
-  color: #696969;
+  color: #b3b3b3;
 }
 
 .item-right {

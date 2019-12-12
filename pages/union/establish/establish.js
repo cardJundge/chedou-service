@@ -158,7 +158,7 @@ Page({
       name: this.data.unionName,
       logo: this.data.imgLogo,
       intro: this.data.unionIntro,
-      audit: 0,
+      audit: 1,
       module: this.data.module
     }
 

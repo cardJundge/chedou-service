@@ -17,11 +17,12 @@ class UnionModel extends HTTP {
   }
 
   // 联盟列表
-  getUnionList(callback) {
+  getUnionList(param, callback) {
     var params = {
       url: '/api/ser/league/list',
       type: 'GET',
       auth: true,
+      data: param,
       sCallback: callback
     }
     this.request(params)
@@ -39,10 +40,10 @@ class UnionModel extends HTTP {
     this.request(params)
   }
 
-  // 我的联盟
-  myUnionList(callback) {
+  // 获取联盟成员列表
+  getMemberList(param, callback) {
     var params = {
-      url: '/api/ser/league/myLeague',
+      url: '/api/ser/league/' + param + '/user',
       type: 'GET',
       auth: true,
       sCallback: callback

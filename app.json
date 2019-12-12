@@ -48,7 +48,9 @@
     "pages/union/member/member",
     "pages/union/join/join",
     "pages/union/join/join-details/join-details",
-    "pages/union/notice/notice"
+    "pages/union/notice/notice",
+    "pages/index/transfer/transfer",
+    "pages/index/transfer/company/company"
   ],
   "window": {
     "backgroundTextStyle": "light",

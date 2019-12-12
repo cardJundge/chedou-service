@@ -20,14 +20,6 @@
     <text>联系电话</text>
     <text style="color: #1a65ff">{{diseaseList.docking_mobile}}</text>
   </view>
-  <view class="disease-item">
-    <text>调查员</text>
-    <text>{{taskinfo.nickname}}</text>
-  </view>
-  <view class="disease-item" bindtap="phoneCall" data-phone="{{taskinfo.mobile}}">
-    <text>联系电话</text>
-    <text style="color: #1a65ff">{{taskinfo.mobile}}</text>
-  </view>
   <!-- </block> -->
 </view>
 
@@ -38,9 +30,12 @@
     <view class="task-list" bindtap="toDetail" id="{{index}}" data-id="{{item.id}}" data-sickid="{{item.sickness_task_id}}" data-name="{{item.name}}">
       <view class="item-content">
         <text>{{index+1}}、{{item.name}}</text>
+        <view class="task-info" catchtap="stopBubble">{{item.taskname}}-
+          <text style="color: #1a65ff" bindtap="phoneCall" data-phone="{{item.taskmobile}}">{{item.taskmobile}}</text>
+        </view>
         <text class="address">{{sickAddressList}}</text>
       </view>
-      <view class="item-result" wx:if="{{item.status == 1}}">已完成</view>
+      <view class="item-result" wx:if="{{item.status == 3}}">已完成</view>
       <view class="item-result" wx:else>未完成</view>
     </view>
   </block>
@@ -149,7 +144,7 @@
     <view wx:if="{{sicknessData.length !== 0}}" wx:for="{{sicknessData}}" wx:for-item="data" wx:for-index="index">
       <text>{{data.title}}（{{data.picture.length}}份）</text>
       <view class="whole-data-img">
-        <view class="data-list" wx:for="{{data.picture}}" wx:for-item="item" wx:for-index="ind" wx:key="" >
+        <view class="data-list" wx:for="{{data.picture}}" wx:for-item="item" wx:for-index="ind" wx:key="">
           <image src="{{imgUrl}}{{item}}" bindtap="previewImage" data-index="{{ind}}" data-id="{{index}}"></image>
           <!-- <text>资料</text>
           <view wx:if="{{index<9}}">0{{index+1}}</view>
@@ -158,9 +153,9 @@
       </view>
     </view>
     <view class="no-info" wx:if="{{sicknessData.length == 0}}">
-    <!-- <image src="/images/index/order_null.png"></image> -->
-    <text>暂无资料</text>
-  </view>
+      <!-- <image src="/images/index/order_null.png"></image> -->
+      <text>暂无资料</text>
+    </view>
   </view>
   <!-- <view class="pic-mode">
     <text>录音</text>
@@ -181,7 +176,7 @@
     </view>
   </view> -->
 </view>
-  
+
 <view class="whole-task" wx:if='{{first == 3}}'>
   <view class="whole-task-tip">机构回复</view>
   <view class="line"></view>
@@ -210,7 +205,7 @@
       <text>调查问题反馈:</text>
       <text>{{diseaseList.feedback}}</text>
     </view>
-     <view class="accidentstyle" style="border-bottom: 0">
+    <view class="accidentstyle" style="border-bottom: 0">
       <text>调查整体说明:</text>
       <text>{{diseaseList.all_remark}}</text>
     </view>

@@ -1,10 +1,36 @@
 // 联盟详情
+import {
+  UnionModel
+} from './../models/union.js'
+var unionModel = new UnionModel()
+var app = getApp()
 Page({
   data: {
-
+    unionInfo: [],
+    memberList: []
   },
   onLoad: function (options) {
+    let unionInfo = JSON.parse(options.data)
+    this.setData({
+      unionInfo: unionInfo,
+      imgUrl: app.globalData.imgUrl
+    })
+    if(unionInfo) {
+      this.getMemberList(unionInfo.id)
+    }
+  },
 
+  // 获取联盟成员列表
+  getMemberList(params) {
+    unionModel.getMemberList(params, res=> {
+      if(res.data.status == 1) {
+        this.setData({
+          memberList: res.data.dta
+        })
+      } else {
+
+      }
+    })
   },
 
   // 进入成员详细信息

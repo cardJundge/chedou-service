@@ -5,10 +5,11 @@
       <view class="top-box">
         <view class="top-card">
           <view class="top-card-left">
-            <image src=""></image>
+            <image wx:if="{{unionInfo.logo}}" src="{{imgUrl}}{{unionInfo.logo}}"></image>
+             <image wx:if="{{!unionInfo.logo}}" src="cloud://chedou-service.6368-chedou-service/images/default_user.png"></image>
           </view>
           <view class="top-card-right">
-            联盟名称
+            {{unionInfo.name}}
           </view>
         </view>
       </view>
@@ -18,7 +19,7 @@
     <!-- 联盟简介 -->
     <view class="union-introduce">
       <text>联盟简介</text>
-      <view class="union-introduce-content">简介联盟简介联盟简介联盟简介联盟简介联盟简介联盟简介联盟简介联盟简介</view>
+      <view class="union-introduce-content">{{unionInfo.intro}}</view>
     </view>
     <!-- 盟主 -->
     <view class="union-leader">
@@ -31,14 +32,13 @@
     <!-- 联盟成员 -->
     <view class="union-member">
       <view>联盟成员</view>
-      <view>50人</view>
+      <view>{{unionInfo.number}}人</view>
     </view>
     <!-- 主导业务 -->
     <view class="union-business">
       <text>主导业务</text>
       <view class="union-business-content">
-        <view class="union-business-item">查勘定损</view>
-        <view class="union-business-item">疾病调查</view>
+        <view class="union-business-item" wx:for="{{unionInfo.module}}" wx:for-item="it">{{it}}</view>
       </view>
     </view>
     <!-- 按钮 -->
