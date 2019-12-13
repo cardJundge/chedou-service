@@ -55,14 +55,29 @@
 }
 
 .member-content-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18rpx 24rpx;
+  padding: 12rpx 24rpx 0;
+  font-size: 24rpx;
+  color: #686868;
 }
 
 .member-content-list {
   width: 100%;
+}
+
+.member-content-leader>view:last-child {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+}
+
+.member-content-leader>view:last-child image {
+  width: 70rpx;
+  height: 70rpx;
+  margin-right: 12rpx;
+}
+
+.member-content-leader>view:last-child text {
+  font-size: 28rpx;
 }
 
 .member-content-item {

@@ -29,17 +29,17 @@
   </view>
 
   <view class="union-content" wx:if="{{someUnion}}">
-    <view class="uniopn-notice" bindtap="toNoticeList">
+    <view class="uniopn-notice" bindtap="toNoticeList" wx:if="{{noticeList.length !== 0}}">
       <view class="notice-left">
         <image src="/images/union/notice.png"></image>
       </view>
       <view class="notice-right">
         <text>联盟通知</text>
-        <text>有5人申请加入联盟</text>
+        <text>有{{noticeList.length}}人申请加入联盟</text>
       </view>
     </view>
     <view class="union-list">
-      <view class="union-item" wx:for="{{myUnionList}}" bindtap="toUnionDetails" data-item="{{item}}">
+      <view class="union-item" wx:for="{{myUnionList}}" bindtap="toUnionDetails" data-id="{{item.id}}">
         <view class="union-item-left">
           <image wx:if="{{item.logo}}" src="{{imgUrl}}{{item.logo}}"></image>
           <image wx:if="{{!item.logo}}" src="cloud://chedou-service.6368-chedou-service/images/default_user.png"></image>

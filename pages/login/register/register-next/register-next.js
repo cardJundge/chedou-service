@@ -4,6 +4,7 @@ import {
   LoginModel
 } from '../../models/login.js'
 
+var app = getApp()
 var loginModel = new LoginModel()
 Page({
   data: {

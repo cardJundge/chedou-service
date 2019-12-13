@@ -10,13 +10,13 @@ Page({
     memberList: []
   },
   onLoad: function (options) {
-    let unionInfo = JSON.parse(options.data)
     this.setData({
-      unionInfo: unionInfo,
-      imgUrl: app.globalData.imgUrl
+      imgUrl: app.globalData.imgUrl,
+      serviceId: app.globalData.userInfo.id
     })
-    if(unionInfo) {
-      this.getMemberList(unionInfo.id)
+    if (options.data) {
+      this.getMemberList(options.data)
+      this.data.unionId = options.data
     }
   },
 
@@ -24,8 +24,10 @@ Page({
   getMemberList(params) {
     unionModel.getMemberList(params, res=> {
       if(res.data.status == 1) {
+        res.data.data.module = res.data.data.module.split(',')
         this.setData({
-          memberList: res.data.dta
+          unionInfo: res.data.data,
+          memberList: res.data.data.service
         })
       } else {
 
@@ -36,7 +38,7 @@ Page({
   // 进入成员详细信息
   toMemberList() {
     wx.navigateTo({
-      url: '../member/member',
+      url: '../member/member?data=' + this.data.unionId,
     })
   },
 
@@ -50,6 +52,32 @@ Page({
           this.establishUnion()
         } else if (res.tapIndex === 1) {
           this.applyUnion()
+        }
+      }
+    })
+  },
+
+  // 删除或退出联盟
+  signOutUnion() {
+    let params = {
+      league_id: this.data.unionInfo.id,
+      service_id: app.globalData.userInfo.id
+    }
+    unionModel.signOutUnion(params, res=> {
+      if(res.data.status == 1) {
+        wx.showToast({
+          title: '退出成功',
+        })
+        wx.navigateBack({
+          delta: 1
+        })
+      } else {
+        if (res.data.msg.match('Token已过期或失效')) {
+        } else {
+          wx.showToast({
+            title: res.data.msg ? res.data.msg : '请求超时',
+            icon: 'none'
+          })
         }
       }
     })

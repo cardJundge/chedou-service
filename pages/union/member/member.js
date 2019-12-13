@@ -21,12 +21,16 @@ Page({
   
   onLoad: function(options) {
     this.setData({
-      imgUrl: app.globalData.imgUrl
+      imgUrl: app.globalData.imgUrl,
+      serviceId: app.globalData.userInfo.id
     })
+    if(options.data) {
+      this.data.unionId = options.data
+    }
   },
 
   onShow: function() {
-    this.getMemberList('')
+    this.getMemberList()
   },
   
   rendering() {
@@ -42,7 +46,7 @@ Page({
       let index = words.indexOf(firstName)
       storeData[index].list.push({
         id: item.id,
-        name: item.nickname,
+        name: item.name,
         face: item.face,
         key: firstName
       })
@@ -51,27 +55,53 @@ Page({
     this.setData({
       member: this.data.member
     })
+    console.log(this.data.member)
   },
 
   // 获取作业员列表
-  getMemberList(flag) {
-    let params = {
-      keywords: flag
-    }
-    personnelModel.getTaskList(params, (res) => {
+  getMemberList() {
+    let params = this.data.unionId
+    unionModel.getMemberList(params, res => {
       if (res.data.status == 1) {
         this.setData({
-          memberData: res.data.data
+          memberData: res.data.data.service
         })
         this.data.memberData.forEach((item, index) => {
-          item.pinyin = py.getPinyin(item.nickname).toUpperCase()
+          item.pinyin = py.getPinyin(item.name).toUpperCase()
+          if (this.data.serviceId == item.id) {
+            this.setData({
+              leaderInfo: item
+            })
+          }
         })
         this.rendering()
-      } else if (res.data.status == 0) {
-        this.setData({
-          memberData: []
-        })
+      } else {
+
       }
+    })
+    // personnelModel.getTaskList(params, (res) => {
+    //   if (res.data.status == 1) {
+    //     this.setData({
+    //       memberData: res.data.data
+    //     })
+    //     this.data.memberData.forEach((item, index) => {
+    //       item.pinyin = py.getPinyin(item.nickname).toUpperCase()
+    //     })
+    //     this.rendering()
+    //   } else if (res.data.status == 0) {
+    //     this.setData({
+    //       memberData: []
+    //     })
+    //   }
+    // })
+  },
+
+  // 移除成员
+  delMember(e) {
+    console.log(e)
+    wx.showModal({
+      title: '提示',
+      content: '确定移除该成员吗'
     })
   },
 

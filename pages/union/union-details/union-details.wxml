@@ -6,7 +6,7 @@
         <view class="top-card">
           <view class="top-card-left">
             <image wx:if="{{unionInfo.logo}}" src="{{imgUrl}}{{unionInfo.logo}}"></image>
-             <image wx:if="{{!unionInfo.logo}}" src="cloud://chedou-service.6368-chedou-service/images/default_user.png"></image>
+            <image wx:if="{{!unionInfo.logo}}" src="cloud://chedou-service.6368-chedou-service/images/default_user.png"></image>
           </view>
           <view class="top-card-right">
             {{unionInfo.name}}
@@ -26,17 +26,18 @@
         </view>
       </view>
       <view class="union-member-bottom">
-        <view class="member-item">
-          <image src=""></image>
-          <image class="leader-icon" src="/images/union/leader.png"></image>
-          <text>公司名称</text>
+        <view class="member-item" wx:for="{{memberList}}" wx:for-item="memberitem">
+          <image wx:if="{{!memberitem.face}}" src="cloud://chedou-service.6368-chedou-service/images/task_default_avatar.png"></image>
+          <image wx:if="{{memberitem.face}}" src="{{imgUrl}}{{memberitem.face}}"></image>
+          <image class="leader-icon" src="/images/union/leader.png" wx:if="{{serviceId == memberitem.id}}"></image>
+          <text>{{memberitem.name}}</text>
         </view>
       </view>
     </view>
     <!-- 联盟简介 -->
     <view class="union-introduce">
       <text>联盟简介</text>
-      <view class="union-introduce-content">{{unionInfo.intro}}</view>
+      <textarea class="union-introduce-content" value="{{unionInfo.intro}}" disabled="disabled"></textarea>
     </view>
     <!-- 主导业务 -->
     <view class="union-business">
@@ -58,7 +59,7 @@
     </view>
     <!-- 退出按钮 -->
     <view class="union-btn-box">
-      <view class="union-btn">删除并退出</view>
+      <view class="union-btn" bindtap="signOutUnion">删除并退出</view>
     </view>
   </view>
 </view>

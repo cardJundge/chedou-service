@@ -18,6 +18,30 @@ Page({
 
   onShow: function() {
     this.getMyUnionList()
+    this.getNotice()
+  },
+
+  // 获取通知
+  getNotice() {
+    unionModel.applyNotice(res=> {
+      let noticeList = []
+      if(res.data.status == 1) {
+        this.setData({
+          spinShow: false
+        })
+        res.data.data.forEach((item, index) => {
+          if(item.status == 0) {
+            noticeList.push(item)
+          }
+        })
+
+        this.setData({
+          noticeList: noticeList
+        })
+      } else {
+
+      }
+    })
   },
 
   // 获取我的联盟列表
@@ -26,9 +50,6 @@ Page({
       type: 1
     }
     unionModel.getUnionList(params, res=> {
-      this.setData({
-        spinShow: false
-      })
       if(res.data.status == 1) {
         if (res.data.data.length == 0) {
           this.setData({
@@ -80,9 +101,9 @@ Page({
 
   // 进入联盟详情
   toUnionDetails(e) {
-    let items = JSON.stringify(e.currentTarget.dataset.item)
+    let id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: './union-details/union-details?data=' + items
+      url: './union-details/union-details?data=' + id
     })
   },
 

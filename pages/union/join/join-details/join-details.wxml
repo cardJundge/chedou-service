@@ -5,7 +5,7 @@
       <view class="top-box">
         <view class="top-card">
           <view class="top-card-left">
-            <image wx:if="{{unionInfo.logo}}" src="{{imgUrl}}{{unionInfo.logo}}"></image>
+            <image src="{{imgUrl}}{{unionInfo.logo}}"></image>
              <image wx:if="{{!unionInfo.logo}}" src="cloud://chedou-service.6368-chedou-service/images/default_user.png"></image>
           </view>
           <view class="top-card-right">
@@ -19,7 +19,7 @@
     <!-- 联盟简介 -->
     <view class="union-introduce">
       <text>联盟简介</text>
-      <view class="union-introduce-content">{{unionInfo.intro}}</view>
+      <textarea class="union-introduce-content" value="{{unionInfo.intro}}" disabled="disabled"></textarea>
     </view>
     <!-- 盟主 -->
     <view class="union-leader">
@@ -43,7 +43,7 @@
     </view>
     <!-- 按钮 -->
     <view class="union-btn-box">
-      <view class="union-btn">申请加入</view>
+      <view class="union-btn" bindtap="toApply">申请加入</view>
     </view>
   </view>
 </view>

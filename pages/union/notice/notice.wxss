@@ -42,6 +42,13 @@
   font-size: 22rpx;
 }
 
+.item-right-text {
+  color: #b3b3b3;
+  width: 252rpx;
+  display: flex;
+  justify-content: center;
+}
+
 .item-right view {
   width: 120rpx;
   height: 40rpx;
