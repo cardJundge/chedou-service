@@ -1,0 +1,41 @@
+<!--车务调查-->
+<view class="vehicle-body">
+  <view class="vehicle-top">
+    <view class="search-bg">
+      <view class="search-box">
+        <view class="search">
+          <input placeholder-class="ph-class" type='text' placeholder="搜索业务" bindinput="search"></input>
+          <image src="/images/personnel/icon_search.png"></image>
+        </view>
+        <image bindtap="addVehicle" src="/images/personnel/icon_add.png" class="add"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 状态选择 -->
+
+  <scroll-view scroll-x class="status-box">
+    <view bindtap="changeStatus" wx:for="{{statusList}}" wx:key="" data-index="{{item.id}}" class="{{item.id == selected? 'select-active': 'status-item'}}">{{item.name}}</view>
+  </scroll-view>
+
+  <view class="loading-img" wx:if="{{spinShow}}">
+    <image src="/images/loading.gif"></image>
+  </view>
+  <!-- 疾病列表 -->
+  <view class="vehicle-list" wx:if="{{!spinShow && !hasNoData}}">
+    <view class="list-item" wx:for="{{vehicleList}}" bindtap="toVehicleDetails" data-id="{{item.id}}">
+      <view class="list-item-left">
+        <text>{{item.report_no}}</text>
+        <text>{{item.car_no}} | {{item.driver}} | {{item.mobile}}</text>
+      </view>
+      <view wx:if="{{item.status == 0}}" class='list-item-right status05'>待分配</view>
+      <view wx:if="{{item.status == 1}}" class='list-item-right status01'>已分配</view>
+      <view wx:if="{{item.status == 2}}" class='list-item-right status02'>进行中</view>
+      <view wx:if="{{item.status == 3}}" class='list-item-right status04'>已结案</view>
+    </view>
+    <view class="more-data" wx:if="{{hasMoreData}}" bindtap="getMoreData">点击加载更多...</view>
+  </view>
+
+  <view class="no-data" wx:if="{{!spinShow && hasNoData}}">
+    暂无数据
+  </view>
+</view>

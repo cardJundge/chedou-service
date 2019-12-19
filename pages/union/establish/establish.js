@@ -21,7 +21,7 @@ Page({
     businessArray: [],
     unionName: ''
   },
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.getModule()
     this.data.hostName = app.globalData.hostName
     this.setData({
@@ -31,27 +31,24 @@ Page({
 
   // 获取服务商拥有的模块
   getModule() {
-    personnelModel.getModule(res => {
-      if (res.data.status == 1) {
-        let module = []
-        res.data.data.forEach((item, index) => {
-          item.img = '/images/index/' + item.key + '.png'
+    let module = []
+    this.data.moduleArray.forEach((item, index) => {
+      this.data.moduleItem.forEach((its, ins) => {
+        if (its == item.id) {
           module.push(item.name)
-        })
-        module = module.join(',')
-        let modules = res.data.data.reverse()
-        this.setData({
-          businessArray: modules,
-          module: module
-        })
-
-
-      }
+        }
+      })
     })
+    this.setData({
+      businessArray: module
+    })
+    this.data.module = module.join(',')
+    console.log(this.data.module, this.data.businessArray)
   },
 
   // 添加模块按钮
-  okEvent() {
+  okEvent(e) {
+    this.data.moduleItem = e.detail.moduleItem.split(',')
     this.getModule()
   },
 
@@ -92,30 +89,30 @@ Page({
           title: '上传中...',
         })
         const tempFilePaths = res.tempFilePaths
-          // this.upload()
-          wx.uploadFile({
-            url: this.data.hostName + '/api/auth/upload',
-            filePath: tempFilePaths[0],
-            name: 'file',
-            success: (res) => {
-              console.log('联盟logo上传',res)
-              wx.hideLoading()
-              let data = JSON.parse(res.data)
-              if (data.status == 1) {
-                this.setData({
-                  imgLogo: data.data.filename
-                })
-              } else {
-                wx.showToast({
-                  title: data.msg ? data.msg : '操作超时',
-                  icon: 'none'
-                })
-              }
-            },
-            fail: (err) => {
-              wx.hideLoading()
+        // this.upload()
+        wx.uploadFile({
+          url: this.data.hostName + '/api/auth/upload',
+          filePath: tempFilePaths[0],
+          name: 'file',
+          success: (res) => {
+            console.log('联盟logo上传', res)
+            wx.hideLoading()
+            let data = JSON.parse(res.data)
+            if (data.status == 1) {
+              this.setData({
+                imgLogo: data.data.filename
+              })
+            } else {
+              wx.showToast({
+                title: data.msg ? data.msg : '操作超时',
+                icon: 'none'
+              })
             }
-          })
+          },
+          fail: (err) => {
+            wx.hideLoading()
+          }
+        })
       },
     })
   },
@@ -138,7 +135,7 @@ Page({
         title: '联盟logo不能为空',
         icon: 'none'
       })
-    }else if (!this.data.unionName) {
+    } else if (!this.data.unionName) {
       return wx.showToast({
         title: '联盟名称不能为空',
         icon: 'none'
@@ -162,14 +159,13 @@ Page({
       module: this.data.module
     }
 
-    unionModel.createUnion(params, res=> {
-      if(res.data.status == 1) {
+    unionModel.createUnion(params, res => {
+      if (res.data.status == 1) {
         wx.navigateBack({
           delta: 1
         })
       } else {
-        if (res.data.msg.match('Token已过期或失效')) {
-        } else {
+        if (res.data.msg.match('Token已过期或失效')) {} else {
           wx.showToast({
             title: res.data.msg ? res.data.msg : '请求超时',
             icon: 'none'

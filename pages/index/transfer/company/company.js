@@ -52,6 +52,8 @@ Page({
   },
 
   onLoad: function(options) {
+    console.log(options)
+    this.data.businessInfo = options
     let sysInfo = wx.getSystemInfoSync()
     this.setData({
       currentUnion: this.data.unionData[0].id,
@@ -76,7 +78,9 @@ Page({
   onConfirm() {
     console.log(this.data.currentCompany)
     if (this.data.currentCompany) {
-      
+      wx.navigateTo({
+        url: '../transfer?company=' + this.data.currentCompany + '&businessType=' + this.data.businessInfo.businessType + '&businessNo=' + this.data.businessInfo.businessNo,
+      })
     }
   }
 

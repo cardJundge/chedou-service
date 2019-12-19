@@ -93,11 +93,12 @@ Component({
 
     toBusinessDetail(e) {
       let serviceType = app.globalData.userInfo.type
-      if (this.data.typeKey == 'survey') {
-        wx.navigateTo({
-          url: '/pages/index/survey/survey-details/survey-details?listId=' + e.currentTarget.dataset.listid
-        })
-      } else if (this.data.typeKey == 'push') {
+      // if (this.data.typeKey == 'survey') {
+      //   wx.navigateTo({
+      //     url: '/pages/index/survey/survey-details/survey-details?listId=' + e.currentTarget.dataset.listid
+      //   })
+      // } else 
+      if (this.data.typeKey == 'push') {
         if (serviceType == 1 || serviceType == 4) {
           wx.navigateTo({
             url: '/pages/index/push/push-detail/push-detail?listId=' + e.currentTarget.dataset.listid

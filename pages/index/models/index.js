@@ -105,10 +105,21 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
-  // 获取任务记录
-  getRecordList(param, callback) {
+  // 获取疾病任务记录
+  getSickRecordList(param, callback) {
     var params = {
       url: '/api/sick/task/'+ param.id + '/record',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 获取车务任务记录
+  getVehicleRecordList(param, callback) {
+    var params = {
+      url: '/api/traffic/task/' + param.id + '/record',
       type: 'GET',
       auth: true,
       sCallback: callback
@@ -142,7 +153,7 @@ class IndexModel extends HTTP {
   }
 
   // 增加业务
-  addBusiness(param, callback) {  
+  addBusiness(param, callback) {
     var params = {
       url: '/api/ser/work/increase',
       type: 'POST',
@@ -240,12 +251,36 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
-  // 疾病调查相关资料
-  getSicknessData(param, callback) {
+  // (疾病、车务)调查相关资料
+  getRelatedData(param, callback) {
     var params = {
       url: '/api/work/' + param.listId + '/data/' + param.type,
       type: 'GET',
       auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 车务调查添加任务
+  addTask(param, callback) {
+    var params = {
+      url: '/api/traffic/task/insert',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 添加车务调查案件资料
+  addRelatedInfo(param, callback) {
+    var params = {
+      url: '/api/auth/data',
+      type: 'POST',
+      auth: true,
+      data: param,
       sCallback: callback
     }
     this.request(params)

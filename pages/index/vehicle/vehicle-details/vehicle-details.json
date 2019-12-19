@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "i-icon": "/dist/icon/index",
+    "task-title": "/components/task-title/task-title"
+  },
+  "navigationBarTitleText": "车务调查"
+}

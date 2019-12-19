@@ -33,12 +33,19 @@
         <view class="task-info" catchtap="stopBubble">{{item.taskname}}-
           <text style="color: #1a65ff" bindtap="phoneCall" data-phone="{{item.taskmobile}}">{{item.taskmobile}}</text>
         </view>
-        <text class="address">{{sickAddressList}}</text>
+        <text class="address">{{item.area[0]}}市</text>
       </view>
-      <view class="item-result" wx:if="{{item.status == 3}}">已完成</view>
+      <view class="item-result" wx:if="{{item.status == 2 || item.status == 3}}">已完成</view>
       <view class="item-result" wx:else>未完成</view>
     </view>
   </block>
+   <!-- 转单 -->
+  <view class="operation-box">
+    <view class="operation-item" bindtap="" wx:if="{{diseaseList.status < 2}}">
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>转单</text>
+    </view>
+  </view>
 </view>
 
 <view class="whole-task" wx:if='{{first == 1}}'>

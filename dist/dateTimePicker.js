@@ -49,6 +49,20 @@ function getNewDateArry() {
 
   return [year, mont, date, hour, minu, seco];
 }
+
+function getNow() {
+  // 当前时间的处理
+  var newDate = new Date();
+  var year = withData(newDate.getFullYear()),
+    mont = withData(newDate.getMonth() + 1),
+    date = withData(newDate.getDate()),
+    hour = withData(newDate.getHours()),
+    minu = withData(newDate.getMinutes()),
+    seco = withData(newDate.getSeconds());
+
+  return [year, mont, date].join('-') + ' ' + [hour, minu].join(':');
+}
+
 function dateTimePicker(startYear, endYear, date) {
   // 返回默认显示的数组和联动数组的声明
   var dateTime = [], dateTimeArray = [[], [], [], [], [], []];
@@ -76,5 +90,6 @@ function dateTimePicker(startYear, endYear, date) {
 }
 module.exports = {
   dateTimePicker: dateTimePicker,
-  getMonthDay: getMonthDay
+  getMonthDay: getMonthDay,
+  getNow: getNow
 }

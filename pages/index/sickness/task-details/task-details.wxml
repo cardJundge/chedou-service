@@ -39,7 +39,7 @@
                 <view>{{task.is_positive == 1 ? '是':'否'}}</view>
               </view>
 
-              <view class="form-item mode-style">
+              <view class="form-item mode-style" wx:if="{{task.is_positive == 1}}">
                 <label>阳性说明:</label>
                 <view>{{task.positive_state}}</view>
               </view>
@@ -116,7 +116,7 @@
                 <view>{{task.is_positive == 1 ? '是' : '否'}}</view>
               </view>
 
-              <view class="form-item mode-style">
+              <view class="form-item mode-style" wx:if="{{task.is_positive == 1}}">
                 <label>阳性说明:</label>
                 <view>{{task.positive_state}}</view>
               </view>
@@ -177,7 +177,7 @@
                 <view>{{task.is_positive == 1 ? '是': '否'}}</view>
               </view>
 
-              <view class="form-item mode-style">
+              <view class="form-item mode-style" wx:if="{{task.is_positive == 1}}">
                 <label>阳性说明:</label>
                 <text>{{task.positive_state}}</text>
               </view>
@@ -283,7 +283,7 @@
                 <view>{{task.is_positive == 1 ? '是':'否'}}</view>
               </view>
 
-              <view class="form-item mode-style">
+              <view class="form-item mode-style" wx:if="{{task.is_positive == 1}}">
                 <label>阳性说明:</label>
                 <view>{{task.positive_state}}</view>
               </view>
@@ -337,7 +337,7 @@
                 <view>{{task.is_positive == 1 ? '是' : '否'}}</view>
               </view>
 
-              <view class="form-item mode-style">
+              <view class="form-item mode-style" wx:if="{{task.is_positive == 1}}">
                 <label>阳性说明:</label>
                 <view>{{task.positive_state}}</view>
               </view>

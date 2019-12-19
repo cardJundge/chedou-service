@@ -1,0 +1,173 @@
+<!--车务调查详情-->
+
+<view class="disease-step">
+  <block wx:for="{{diseaseStep}}" wx:key="">
+    <text wx:if='{{index==first}}' style="color:#fff;background:#1a65ff" bindtap="selectDiseaseStep" id="{{index}}">{{item}}</text>
+    <text wx:else bindtap="selectDiseaseStep" id="{{index}}">{{item}}</text>
+  </block>
+</view>
+
+<view class="disease-content">
+  <view class="disease-item">
+    <text>案件号:</text>
+    <text>{{vehicleList.report_no}}</text>
+  </view>
+  <view class="disease-item">
+    <text>委派公司:</text>
+    <text>{{vehicleList.entrust_company}}</text>
+  </view>
+  <view class="disease-item">
+    <text>委派时间:</text>
+    <text>{{vehicleList.entrust_at}}</text>
+  </view>
+  <view class="disease-item">
+    <text>调查员</text>
+    <text>{{personName}}</text>
+  </view>
+  <view class="disease-item">
+    <text>联系电话</text>
+    <text bindtap="phoneCall" data-phone="{{personMobile}}" style="color: #1a65ff">{{personMobile}}</text>
+  </view>
+</view>
+
+<view class="whole-task" wx:if="{{first == 0}}">
+  <view class="whole-task-tip">全部任务</view>
+  <view class="line"></view>
+
+  <block wx:for="{{taskList}}" wx:key="">
+    <view class="task-list" bindtap="toTaskDetail" data-vehtaskid="{{item.id}}" data-name='{{item.title}}'>
+      <view class="item-content">
+        <text>{{index+1}}、{{item.title}}</text>
+        <text class="address">{{item.address}}</text>
+      </view>
+      <view class="item-result" wx:if="{{item.status == 0}}">未完成</view>
+      <view class="item-result" wx:else>已完成</view>
+    </view>
+  </block>
+  <view class="add-task-btn" bindtap="toAddTask">添加任务</view>
+  <!-- 分配作业员/转单 -->
+  <view class="operation-box">
+    <view class="operation-item" bindtap="toAssignment" wx:if="{{!vehicleList.task_id && vehicleList.status == 0}}">
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>分配作业员</text>
+    </view>
+    <view class="operation-item" bindtap="" wx:if="{{vehicleList.status < 3}}">
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>转单</text>
+    </view>
+  </view>
+</view>
+
+<view class="whole-task" wx:if='{{first == 1}}'>
+  <view class="whole-base-tip">
+    <view class="base active">
+      <view>案件信息</view>
+      <view class="line"></view>
+    </view>
+  </view>
+
+  <view class="base-infor">
+    <!-- 案件信息 -->
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>被保险人:</text>
+      <text>{{vehicleList.recognizee}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>驾驶员:</text>
+      <text>{{vehicleList.driver}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>联系电话:</text>
+      <text>{{vehicleList.mobile}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>出险车牌号:</text>
+      <text>{{vehicleList.car_no}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>厂牌型号:</text>
+      <text>{{vehicleList.factory_no}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>出险地点:</text>
+      <text>{{vehicleList.survey_address}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>报案时间:</text>
+      <text>{{vehicleList.report_date}}</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>核实内容:</text>
+      <text wx:if="{{vehicleList.verify_content}}">{{vehicleList.verify_content}}</text>
+      <text wx:else>无</text>
+    </view>
+
+    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+      <text>调查内容:</text>
+      <text wx:if="{{vehicleList.survey_content}}">{{vehicleList.survey_content}}</text>
+      <text wx:else>无</text>
+    </view>
+
+  </view>
+</view>
+
+<view class="whole-task" wx:if="{{first == 2}}">
+  <view class="whole-task-tip">相关资料</view>
+  <view class="line"></view>
+  <view class="pic-mode">
+    <view wx:if="{{vehicleData.length !== 0}}" wx:for="{{vehicleData}}" wx:for-item="data" wx:for-index="index">
+      <text>{{data.title}}（{{data.picture.length}}份）</text>
+      <view class="whole-data-img">
+        <view class="data-list" wx:for="{{data.picture}}" wx:for-item="item" wx:for-index="ind" wx:key="">
+          <image src="{{imgUrl}}{{item}}" bindtap="previewImage" data-index="{{ind}}" data-id="{{index}}"></image>
+        </view>
+      </view>
+    </view>
+    <view class="no-info" wx:if="{{vehicleData.length == 0}}">
+      <text>暂无资料</text>
+    </view>
+  </view>
+</view>
+
+<view class="whole-task" wx:if='{{first == 3}}'>
+  <view class="whole-task-tip">调查结论</view>
+  <view class="line"></view>
+
+  <view class="base-infor">
+    <view class="task-list base-item">
+      <text>赔付意见:</text>
+      <picker bindchange="compensationChange" range="{{compensationList}}">
+        <view class="task-item-picker" wx:if="{{!compensationName}}">请选择赔付意见</view>
+        <view wx:if="{{compensationName}}">{{compensationName}}</view>
+      </picker>
+    </view>
+
+    <view class="task-list base-item">
+      <text>是否举报/协助案件:</text>
+      <picker bindchange="reportChange" range="{{reportList}}">
+        <view class="task-item-picker" wx:if="{{!reportName}}">请选择是否举报/协助案件</view>
+        <view wx:if="{{reportName}}">{{reportName}}</view>
+      </picker>
+    </view>
+
+    <view class="task-list base-item">
+      <text>公司调查费用:</text>
+      <input placeholder="请输入公司调查费用" placeholder-class="ph-class"></input>
+    </view>
+
+    <view class="investigation-whole">
+      <text>备注:</text>
+      <textarea type="text" placeholder="选填"></textarea>
+    </view>
+  </view>
+</view>
+
+<!-- 添加任务模板 -->
+<task-title isShow="{{titleShow}}" bind:addTitle="getTasksList" />

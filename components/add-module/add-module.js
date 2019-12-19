@@ -14,6 +14,9 @@ Component({
     },
     bottomSpin: {
       type: Boolean
+    },
+    flag: {
+      type: Number
     }
   },
   data: {
@@ -21,22 +24,30 @@ Component({
   },
   methods: {
     onConfirm() {
-      indexModel.setSelfModule(this.data.moduleItem, res=> {
-        if(res.data.status == 1) {
-          this.triggerEvent('okEvent')
-        } else {
-          if (res.data.msg.match('Token已过期或失效')) {
-          } else {
-            wx.showToast({
-              title: res.data.msg ? res.data.msg : '请求超时',
-              icon: 'none'
-            })
-          }
-        }
+      if(this.data.flag == 1) {
+        this.triggerEvent('okEvent', { moduleItem: this.data.moduleItem})
         this.setData({
           isShow: false
         })
-      })
+      } else {
+        indexModel.setSelfModule(this.data.moduleItem, res => {
+          if (res.data.status == 1) {
+            this.triggerEvent('okEvent')
+          } else {
+            if (res.data.msg.match('Token已过期或失效')) {
+            } else {
+              wx.showToast({
+                title: res.data.msg ? res.data.msg : '请求超时',
+                icon: 'none'
+              })
+            }
+          }
+          this.setData({
+            isShow: false
+          })
+        })
+      }
+     
     },
 
     selectModule(e) {

@@ -11,6 +11,7 @@
       </view>
     </view>
   </view>
+  
   <view class="loading-img" wx:if="{{spinShow}}">
     <image src="/images/loading.gif"></image>
   </view>

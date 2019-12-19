@@ -95,8 +95,8 @@
 .assignment-btn {
   padding: 0;
   text-align: center;
-  height: 80rpx;
-  line-height: 80rpx;
+  height: 90rpx;
+  line-height: 90rpx;
   background: #1a65ff;
   color: #fff;
   position: fixed;

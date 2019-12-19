@@ -17,16 +17,18 @@
         <label>联盟简介</label>
         <textarea name="unionIntro" bindinput="getUnionIntro" value="{{unionIntro}}" placeholder="请输入联盟简介" placeholder-class="ph-class"></textarea>
       </view>
-      <view class="establish-item">
-        <label>主导业务</label>
-        <text bindtap="addModule">请选择</text>
-      </view>
-      <view class="establish-box">
-        <view wx:for="{{businessArray}}">{{item.name}}</view>
+      <view class="establish-item establish-item-box">
+        <view>
+          <label>主导业务</label>
+          <text bindtap="addModule">请选择</text>
+        </view>
+        <view class="establish-box">
+          <view wx:for="{{businessArray}}">{{item}}</view>
+        </view>
       </view>
       <button class="establish-btn" formType="submit">确定</button>
     </view>
   </form>
-   <!-- 添加模块components -->
-  <add-module module="{{moduleArray}}" bottomSpin="{{bottomSpin}}" isShow="{{isAddModule}}" bind:okEvent="okEvent" />
+  <!-- 添加模块components -->
+  <add-module module="{{moduleArray}}" bottomSpin="{{bottomSpin}}" isShow="{{isAddModule}}" bind:okEvent="okEvent" flag="1"/>
 </view>

@@ -249,6 +249,7 @@ Page({
       this.setData({
         isThreeRes: true
       })
+      this.data.type = 1
     }
   },
 

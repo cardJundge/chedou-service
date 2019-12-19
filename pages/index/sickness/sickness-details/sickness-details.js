@@ -47,13 +47,12 @@ Page({
         this.setData({
           diseaseList: res.data.data
         })
-        this.data.sickTaskList = res.data.sickTask
-        this.data.diseaseList.sick_address = this.data.diseaseList.sick_address.substring('市')
-        this.setData({
-          sickAddressList: this.data.diseaseList.sick_address
+        res.data.sickTask.forEach((item, index) => {
+          item.area = item.area.split('市')
         })
-        // console.log(this.data.diseaseList.sick_address)
-        // console.log(this.data.diseaseList.suspects,this.data.diseaseList.sick_address)
+        // console.log(res.data.sickTask)
+        this.data.sickTaskList = res.data.sickTask
+        
         if (this.data.diseaseList.suspects) {
           var doubt = JSON.parse(this.data.diseaseList.suspects)
           // console.log(doubt)
@@ -105,7 +104,7 @@ Page({
       listId: this.data.listId,
       type: 0
     }
-    indexModel.getSicknessData(params, res=> {
+    indexModel.getRelatedData(params, res=> {
       if(res.data.status == 1) {
         res.data.data.forEach((item, index) => {
             item.picture = item.picture.split(',')
@@ -138,17 +137,14 @@ Page({
 
   //基本资料选项卡
   switchnav(e) {
-    var that = this
-
-    that.setData({
+    this.setData({
       currentTab: e.currentTarget.dataset.index
     })
   },
 
   //语音模块显示
   openvoice() {
-    var that = this
-    that.setData({
+   this.setData({
       voiceIsshow: true
     })
   },

@@ -50,7 +50,13 @@
     "pages/union/join/join-details/join-details",
     "pages/union/notice/notice",
     "pages/index/transfer/transfer",
-    "pages/index/transfer/company/company"
+    "pages/index/transfer/company/company",
+    "pages/index/transfer/payment/payment",
+    "pages/index/vehicle/vehicle",
+    "pages/index/vehicle/vehicle-details/vehicle-details",
+    "pages/index/vehicle/add-vehicle/add-vehicle",
+    "pages/index/vehicle/add-information/add-information",
+    "pages/index/vehicle/task-details/task-details"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,182 @@
+/* 车务调查 */
+
+.vehicle-body {
+}
+
+.vehicle-top {
+  width: 100%;
+  height: 60rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.search-bg {
+  width: 100%;
+  height: 30rpx;
+  background: #1a65ff;
+  border-radius: 0 0 20rpx 20rpx;
+  position: relative;
+}
+
+.search-box {
+  width: 100%;
+  height: 60rpx;
+  padding: 0 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: -30rpx;
+  top: 0;
+  left: 0;
+}
+
+.search {
+  width: 612rpx;
+  height: 60rpx;
+  background: #fff;
+  border: 2rpx solid #f2f2f2;
+  border-radius: 36rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24rpx;
+}
+
+.search image {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.search-box .add {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.loading-img {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-img image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+/* 状态选择 */
+
+.status-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 0 24rpx;
+  margin-top: 84rpx;
+  white-space: nowrap;
+}
+
+.status-item {
+  padding: 0 24rpx;
+  /* width: 160rpx; */
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background: #e7efff;
+  color: #1a65ff;
+  border-radius: 30rpx;
+  display: inline-block;
+  margin: 0 12rpx;
+}
+
+.select-active {
+  /* width: 160rpx; */
+  padding: 0 24rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background: #1a65ff;
+  color: #fff;
+  border-radius: 30rpx;
+  display: inline-block;
+}
+
+.vehicle-list {
+  width: 100%;
+}
+
+.list-item {
+  width: 100%;
+  height: 160rpx;
+  border-bottom: 1rpx solid #f7f7f7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24rpx;
+}
+
+.list-item-left {
+  width: 480rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.list-item-left text:first-child {
+  margin-bottom: 12rpx;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.list-item-left text:last-child {
+  font-size: 24rpx;
+  color: #737373;
+}
+
+.list-item-right {
+  width: 180rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 30rpx;
+  color: #fff;
+}
+
+.status01 {
+  background: #1a65ff;
+}
+
+.status02 {
+  background: #14d680;
+}
+
+.status03 {
+  background: #ffa91a;
+}
+
+.status04 {
+  background: #d0d0d0;
+}
+
+.status05 {
+  color: #1a65ff;
+  border: 1rpx solid #1a65ff;
+}
+
+.more-data {
+  width: 100%;
+  line-height: 80rpx;
+  text-align: center;
+  color: #737373;
+}
+
+.no-data {
+  width: 100%;
+  margin-top: 120rpx;
+  text-align: center;
+  color: #737373;
+}

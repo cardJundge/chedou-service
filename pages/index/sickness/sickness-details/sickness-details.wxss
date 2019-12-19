@@ -38,7 +38,7 @@
 }
 
 .whole-task{
-  width: 92%;
+  width: 702rpx;
   margin: 24rpx 24rpx 48rpx;
   display: flex;
   flex-direction: column;
@@ -203,7 +203,7 @@
   padding: 12rpx 24rpx;
 }
 
-.data-list{
+/* .data-list{
   width: 154rpx;
   display: flex;
   justify-content: center;
@@ -221,38 +221,20 @@
 
 .data-list video{
   width: 170rpx;
-}
-
-.voice-mode{
-  margin: 10rpx 30rpx 0 30rpx;
-}
-
-.add-img image{
-  width: 70rpx;
-  height: 70rpx;
-}
-
-.voicestyle{
-  height: 200rpx;
-}
-
-.voice-img{
-  width: 100rpx !important;
-  height: 100rpx !important;
-}
+} */
 
 input{
   text-align: right;
 }
 
-.recording-whole{
+/* .recording-whole{
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 16rpx 3%;
-}
+} */
 
-.recording{
+/* .recording{
   display: flex;
   justify-content: center;
   width: 80%;
@@ -267,24 +249,11 @@ input{
   width: 50rpx;
   height: 50rpx;
   margin-right: 20rpx;
-}
+} */
 
-.shangchuan{
+/* .shangchuan{
   width: 70rpx;
   height: 70rpx;
-}
-
-/* .imagesure{
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  height: 80rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #1a65ff;
-  color: white;
-  letter-spacing: 1rpx;
 } */
 
 .no-info {
@@ -294,13 +263,26 @@ input{
   align-items: center;
 }
 
-/* .no-info image {
-  width: 150rpx;
-  height: 150rpx;
-  margin-bottom: 24rpx;
-} */
-
 .no-info text {
  color: #aeaeae;
 }
 
+.operation-box {
+  width: 750rpx;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: #fff;
+  background: #1a65ff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.operation-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

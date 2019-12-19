@@ -33,7 +33,7 @@
                   <text>{{it.name}}</text>
                 </view>
               </view>
-              <view class="member-content-item-btn" wx:if="{{serviceId != it.id}}" data-id="{{it.id}}" bindtap="delMember">移除</view>
+              <view class="member-content-item-btn" wx:if="{{serviceId != it.id && serviceId == leaderId}}" data-id="{{it.id}}" bindtap="delMember">移除</view>
             </view>
           </view>
         </i-index-item>

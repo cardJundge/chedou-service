@@ -64,10 +64,12 @@ Page({
     let params = {
       id: this.data.stId
     }
-    indexModel.getRecordList(params, res => {
+    indexModel.getSickRecordList(params, res => {
+      
       if(res.data.status == 1) {
         res.data.data.forEach((item, index) => {
-          this.data.taskRecord.push(JSON.parse(item.data))
+          // this.data.taskRecord.push(JSON.parse(item.data))
+          this.data.taskRecord.push(item.data)
           this.data.taskRecord[index].tId = item.id
         })
        

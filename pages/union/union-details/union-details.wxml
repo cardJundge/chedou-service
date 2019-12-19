@@ -1,5 +1,10 @@
 <!--联盟详情-->
-<view class="union-details-body">
+<view claass="union-details-body" wx:if="{{spinShow}}">
+  <view class="spin-article">
+    <i-spin size="large" fix></i-spin>
+  </view>
+</view>
+<view class="union-details-body" wx:if="{{!spinShow}}">
   <view class="union-details-top">
     <view class="top-bg">
       <view class="top-box">
@@ -29,7 +34,7 @@
         <view class="member-item" wx:for="{{memberList}}" wx:for-item="memberitem">
           <image wx:if="{{!memberitem.face}}" src="cloud://chedou-service.6368-chedou-service/images/task_default_avatar.png"></image>
           <image wx:if="{{memberitem.face}}" src="{{imgUrl}}{{memberitem.face}}"></image>
-          <image class="leader-icon" src="/images/union/leader.png" wx:if="{{serviceId == memberitem.id}}"></image>
+          <image class="leader-icon" src="/images/union/leader.png" wx:if="{{leaderId == memberitem.id}}"></image>
           <text>{{memberitem.name}}</text>
         </view>
       </view>
@@ -59,7 +64,8 @@
     </view>
     <!-- 退出按钮 -->
     <view class="union-btn-box">
-      <view class="union-btn" bindtap="signOutUnion">删除并退出</view>
+      <view class="union-btn" bindtap="signOutUnion" data-flag="0" wx:if="{{leaderId == serviceId}}">删除并退出</view>
+      <view class="union-btn" bindtap="signOutUnion" data-flag="1" wx:else>退出</view>
     </view>
   </view>
 </view>

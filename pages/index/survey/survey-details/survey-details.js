@@ -332,6 +332,13 @@ Page({
     })
   },
 
+  // 转单
+  toChangeOrder() {
+    wx.navigateTo({
+      url: '../../transfer/company/company?businessType=' + '查勘定损' + '&businessNo=' + this.data.surveyList.report_no,
+    })
+  },
+
   // 操作---》编辑案件
   editEvent() {
     this.setData({

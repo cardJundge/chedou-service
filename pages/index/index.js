@@ -95,6 +95,10 @@ Page({
       wx.navigateTo({
         url: './sickness/sickness',
       })
+    } else if (key == 'traffic') {
+      wx.navigateTo({
+        url: './vehicle/vehicle',
+      })
     }
   },
 

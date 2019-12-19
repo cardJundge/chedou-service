@@ -165,6 +165,10 @@
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>已推修</text>
     </view>
+    <view class="operation-item" bindtap="toChangeOrder">
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>转单</text>
+    </view>
   </view>
   <view class="operation" wx:if="{{serviceOperation && surveyList.status == 4 && !surveyList.task_id}}">
     <view class="operation-item" bindtap="toAddDetails">

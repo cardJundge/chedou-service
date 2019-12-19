@@ -24,16 +24,18 @@ Page({
   // 获取通知
   getNotice() {
     unionModel.applyNotice(res=> {
+      this.setData({
+        spinShow: false
+      })
       let noticeList = []
       if(res.data.status == 1) {
-        this.setData({
-          spinShow: false
-        })
-        res.data.data.forEach((item, index) => {
-          if(item.status == 0) {
-            noticeList.push(item)
-          }
-        })
+        if(res.data.data) {
+          res.data.data.forEach((item, index) => {
+            if (item.status == 0) {
+              noticeList.push(item)
+            }
+          })
+        }
 
         this.setData({
           noticeList: noticeList
@@ -60,7 +62,7 @@ Page({
             item.module = item.module.split(',')
           })
           this.setData({
-            myUnionList: res.data.data,
+            myUnionList: res.data.data.reverse(),
             someUnion: true
           })
         }

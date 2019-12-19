@@ -48,6 +48,7 @@
           <text wx:if="{{item.key == 'risk'}}">风险调查</text>
           <text wx:if="{{item.key == 'hurt'}}">人伤调解</text>
           <text wx:if="{{item.key == 'sickness'}}">疾病调查</text>
+          <text wx:if="{{item.key == 'traffic'}}">车务调查</text>
         </view>
       </view>
     </view>

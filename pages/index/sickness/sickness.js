@@ -9,9 +9,10 @@ Page({
    sickList: [],
    statusList: [
      { name: '全部案件', id: 1},
-     { name: '进行中', id: 3 },
-     { name: '待审核', id: 4 },
-     { name: '已结案', id: 5 }
+     { name: '待审核', id: 2 },
+     { name: '预结案', id: 3 },
+     { name: '已结案', id: 4 },
+     { name: '转单', id: 5 }
    ],
    selected: 1,
    page: 1,
@@ -26,7 +27,8 @@ Page({
     this.setData({
       sickList: [],
       page: 1,
-      spinShow: true
+      spinShow: true,
+      selected: 1
     })
     this.getSickList()
   },
@@ -53,11 +55,13 @@ Page({
         })
         if (sickInfo.length < this.data.pageSize) { 
           this.setData({
+            sickInfo: sickInfo,
             sickList: sickList.concat(sickInfo),
             hasMoreData: false
           })
         } else {
           this.setData({
+            sickInfo: sickInfo,
             sickList: sickList.concat(sickInfo),
             hasMoreData: true
           })
@@ -94,24 +98,40 @@ Page({
     let tempList = []
     if (this.data.selected === 1) {
       tempList = this.data.sickTempList
-    } else if (this.data.selected === 3) {    
-      this.data.sickTempList.forEach((item, index) => {
-        if(item.status == 3) {
-          tempList.push(item)
-        }
+      if (this.data.sickInfo.length >= this.data.pageSize) {
+        this.setData({
+          hasMoreData: true
+        })
+      } else {
+        this.setData({
+          hasMoreData: false
+        })
+      }
+    } else {
+      this.setData({
+        hasMoreData: false
       })
-    } else if (this.data.selected === 4) {
-      this.data.sickTempList.forEach((item, index) => {
-        if (item.status == 4) {
-          tempList.push(item)
-        }
-      })
-    } else if (this.data.selected === 5) {
-      this.data.sickTempList.forEach((item, index) => {
-        if (item.status == 5) {
-          tempList.push(item)
-        }
-      })
+      if (this.data.selected === 2) {
+        this.data.sickTempList.forEach((item, index) => {
+          if (item.status == 0) {
+            tempList.push(item)
+          }
+        })    
+      } else if (this.data.selected === 3) {
+        this.data.sickTempList.forEach((item, index) => {
+          if (item.status == 1) {
+            tempList.push(item)
+          }
+        })
+      } else if (this.data.selected === 4) {
+        this.data.sickTempList.forEach((item, index) => {
+          if (item.status == 2) {
+            tempList.push(item)
+          }
+        })
+      } else if (this.data.selected === 5) {
+
+      }
     }
     this.setData({
       sickList: tempList

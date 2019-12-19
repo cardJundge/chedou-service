@@ -39,7 +39,6 @@ Page({
       if (res.data.status == 1) {
        res.data.data.forEach((item, index) => {
          this.data.noticeList.forEach((its, ins) => {
-           console.log(its,index)
            if (its.league_id == item.id) {
              its.unionFace = item.logo
              its.unionName = item.name
@@ -47,7 +46,7 @@ Page({
          })
        })
        this.setData({
-         noticeList: this.data.noticeList
+         noticeList: this.data.noticeList.reverse()
        })
         console.log(this.data.noticeList)
       } else {
