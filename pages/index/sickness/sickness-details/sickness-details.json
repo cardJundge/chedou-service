@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "i-modal": "/dist/modal/index",
     "i-icon": "/dist/icon/index"
   },
   "navigationBarTitleText": "疾病调查"

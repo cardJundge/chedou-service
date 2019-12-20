@@ -26,6 +26,16 @@ Page({
     steps: [],
     detailed: [], //人车合一
     showDetailed: false,
+    visible: false,
+    actions: [
+      {
+        name: '退回',
+      },
+      {
+        name: '接单',
+        color: '#1a65ff'
+      }
+    ],
     turnOut: false, //是否转出
     turnIn: false, //是否转入的订单
     turnInFirst: false //是否是第一次转入
@@ -52,7 +62,7 @@ Page({
     indexModel.getModuleUnion(params, res => {
       console.log(res)
       if (res.data.status == 1) {
-        if(res.data.data.length == 0) {
+        if(res.data.data.length < 2) {
           this.setData({
             isShowTransfer: false
           })
@@ -64,33 +74,7 @@ Page({
       }
     })
   },
-
-  // 接单
-  toReceipt() {
-    wx.showLoading({
-      title: '接单中...',
-    })
-    let key = 'survey'
-    let id = this.data.listId
-    indexModel.businessReceipt(id, key, res=> {
-      if(res.data.status == 1) {
-        wx.showToast({
-          title: '接单成功',
-        })
-        this.getDetails()
-        // this.toScene()
-      }else {
-        if (res.data.msg.match('Token已过期或失效')) {
-        } else {
-          wx.showToast({
-            title: res.data.msg ? res.data.msg : '请求超时',
-            icon: 'none'
-          })
-        }
-      }
-    })
-  },
-
+ 
   // 查勘定损详情请求
   getDetails() {
     let key = 'survey'
@@ -130,22 +114,24 @@ Page({
         } 
         if (this.data.surveyList.turn_service_id && (this.data.surveyList.turn_service_id == this.data.serviceId) && this.data.surveyList.status == 0) {
           this.setData({
-            turnInFirst: true
+            turnInFirst: true,
+            visible: true
           })
-          wx.showModal({
-            title: '提示',
-            content: '联盟内有新的订单转入',
-            cancelText: "退回",
-            confirmText: "接单",
-            confirmColor: '#1a65ff',
-            success: res=> {
-              if (res.cancel) {
-                //点击取消,默认隐藏弹框
-              } else {
-                this.toReceipt()
-              }
-            }
-          })
+            
+          // wx.showModal({
+          //   title: '提示',
+          //   content: '联盟内有新的订单转入',
+          //   cancelText: "退回",
+          //   confirmText: "接单",
+          //   confirmColor: '#1a65ff',
+          //   success: res=> {
+          //     if (res.cancel) {
+          //       this.toSendBack()
+          //     } else {
+          //       this.toReceipt()
+          //     }
+          //   }
+          // })
         }
         if (this.data.surveyList.turn_service_id && (this.data.surveyList.turn_service_id == this.data.serviceId)) {
           this.setData({
@@ -236,6 +222,67 @@ Page({
         })
         this.getInsuranceList()
       }
+    })
+  },
+
+  // 转入的单退回
+  toSendBack() {
+    let params = {
+      key: 'survey',
+      id: this.data.listId
+    }
+    indexModel.backOrder(params, res=> {
+      if(res.data.status == 1) {
+        wx.navigateBack({
+          delta: 1
+        })
+      }
+    })
+  },
+
+  // 接单
+  toReceipt() {
+    wx.showLoading({
+      title: '接单中...',
+    })
+    let key = 'survey'
+    let id = this.data.listId
+    indexModel.businessReceipt(id, key, res => {
+      if (res.data.status == 1) {
+        wx.showToast({
+          title: '接单成功',
+        })
+        this.getDetails()
+        // this.toScene()
+      } else {
+        if (res.data.msg.match('Token已过期或失效')) {
+        } else {
+          wx.showToast({
+            title: res.data.msg ? res.data.msg : '请求超时',
+            icon: 'none'
+          })
+        }
+      }
+    })
+  },
+
+  modalClick({ detail }) {
+    const index = detail.index
+
+    if (index === 0) {
+      this.toSendBack()
+    } else if (index === 1) {
+      this.toReceipt()
+    }
+
+    this.setData({
+      visible: false
+    })
+  },
+
+  modalCancel() {
+    this.setData({
+      visible: false
     })
   },
 

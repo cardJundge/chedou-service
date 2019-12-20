@@ -321,6 +321,18 @@ class IndexModel extends HTTP {
     }
     this.request(params)
   }
+
+  // 退单
+  backOrder(param, callback) {
+    var params = {
+      url: '/api/ser/work/back',
+      type: 'GET',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
 }
 export {
   IndexModel

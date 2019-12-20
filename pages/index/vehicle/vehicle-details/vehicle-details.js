@@ -20,13 +20,27 @@ Page({
     compensationList: ['正常赔付','拒绝处理','减损处理','其他'],
     compensationName: '',
     reportList: ['是', '否'],
-    reportName: ''
+    reportName: '',
+    turnIn: false,
+    turnOut: false,
+    turnInFirst: false,
+    visible: false,
+    actions: [
+      {
+        name: '退回',
+      },
+      {
+        name: '接单',
+        color: '#1a65ff'
+      }
+    ],
   },
 
   onLoad: function (options) {
     this.data.listId = options.listId
     this.setData({
-      imgUrl: app.globalData.imgUrl
+      imgUrl: app.globalData.imgUrl,
+      serviceId: app.globalData.userInfo.id
     })
   },
 
@@ -49,6 +63,16 @@ Page({
           this.setData({
             isShowTransfer: false
           })
+        } else if (res.data.data.length == 1) {
+          if(res.data.data[0].service.length < 2) {
+            this.setData({
+              isShowTransfer: false
+            })
+          } else {
+            this.setData({
+              isShowTransfer: true
+            })
+          }
         } else {
           this.setData({
             isShowTransfer: true
@@ -87,9 +111,94 @@ Page({
           taskList: res.data.trafficTask,
           spinShow: false
         })
+        // ********************************************************
+        // ！=转出 ==转入
+        if (this.data.vehicleList.turn_service_id && (this.data.vehicleList.turn_service_id != this.data.serviceId)) {
+          this.setData({
+            turnOut: true
+          })
+        }
+        if (this.data.vehicleList.turn_service_id && (this.data.vehicleList.turn_service_id == this.data.serviceId) && this.data.vehicleList.status == 0) {
+          this.setData({
+            turnInFirst: true,
+            visible: true
+          })
+          // wx.showModal({
+          //   title: '提示',
+          //   content: '联盟内有新的订单转入',
+          //   cancelText: "退回",
+          //   confirmText: "接单",
+          //   confirmColor: '#1a65ff',
+          //   success: res => {
+          //     if (res.cancel) {
+          //       this.toSendBack()
+          //     } else {
+          //       this.toReceipt()
+          //     }
+          //   }
+          // })
+        }
+        if (this.data.vehicleList.turn_service_id && (this.data.vehicleList.turn_service_id == this.data.serviceId)) {
+          this.setData({
+            turnIn: true
+          })
+        }
+        // ***********************************************************
         this.getPersonnelList()
         this.getVehicleData()
       }
+    })
+  },
+
+  // 转入的单退回
+  toSendBack() {
+
+  },
+
+  // 转入的单接单
+  toReceipt() {
+    wx.showLoading({
+      title: '接单中...',
+    })
+    let key = 'traffic'
+    let id = this.data.listId
+    indexModel.businessReceipt(id, key, res => {
+      if (res.data.status == 1) {
+        wx.showToast({
+          title: '接单成功',
+        })
+        this.getSickDetailsList()
+        // this.toScene()
+      } else {
+        if (res.data.msg.match('Token')) {
+        } else {
+          wx.showToast({
+            title: res.data.msg ? res.data.msg : '请求超时',
+            icon: 'none'
+          })
+        }
+      }
+    })
+  },
+
+
+  modalClick({ detail }) {
+    const index = detail.index
+
+    if (index === 0) {
+      this.toSendBack()
+    } else if (index === 1) {
+      this.toReceipt()
+    }
+
+    this.setData({
+      visible: false
+    })
+  },
+
+  modalCancel() {
+    this.setData({
+      visible: false
     })
   },
 
@@ -101,9 +210,11 @@ Page({
     }
     indexModel.getRelatedData(params, res => {
       if (res.data.status == 1) {
-        res.data.data.forEach((item, index) => {
-          item.picture = item.picture.split(',')
-        })
+        if (res.data.data.length != 0) {
+          res.data.data.forEach((item, index) => {
+            item.picture = item.picture.split(',')
+          })
+        }
         this.setData({
           vehicleData: res.data.data
         })

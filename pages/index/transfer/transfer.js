@@ -62,7 +62,7 @@ Page({
       report_no: this.data.businessNo,
       type: this.data.moduleType,
       turn_service: this.data.companyName,
-      remark: this.data.remark,
+      remark: this.data.remark ? this.data.remark : '',
       money: this.data.money,
       pay: this.data.payment,
       key: this.data.moduleName,

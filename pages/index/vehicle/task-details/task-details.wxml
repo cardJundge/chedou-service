@@ -46,7 +46,7 @@
                 </view>
                 <view class="image-cell" wx:if="{{task.video.length != 0}}">
                   <view wx:for="{{task.video}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playVideo" data-src="{{item}}">
-                    <image src="/images/index/voice.png"></image>
+                    <video id="myVideo{{index}}" src="{{imgUrl}}{{item}}" object-fit="cover" bindplay="playvideo" bindfullscreenchange='bindfullscreenchange' class="pic"></video>
                   </view>
                 </view>
               </view>

@@ -4,6 +4,7 @@ import {
 } from '../../models/index.js'
 
 var indexModel = new IndexModel()
+var app = getApp()
 Page({
   data: {
     currentUnion: "",
@@ -18,7 +19,8 @@ Page({
     let sysInfo = wx.getSystemInfoSync()
     this.setData({
       // currentUnion: this.data.unionData[0].id,
-      screenHeight: sysInfo.windowHeight
+      screenHeight: sysInfo.windowHeight,
+      serviceId: app.globalData.userInfo.id
     })
     this.getModuleUnion()
   },

@@ -234,3 +234,10 @@ input{
   align-items: center;
   justify-content: center;
 }
+
+.no-info {
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

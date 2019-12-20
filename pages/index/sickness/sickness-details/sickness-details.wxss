@@ -1,5 +1,6 @@
 /* 疾病调查详情 */
-.disease-step{
+
+.disease-step {
   width: 100%;
   height: 100rpx;
   display: flex;
@@ -7,7 +8,7 @@
   align-items: center;
 }
 
-.disease-step text{
+.disease-step text {
   width: 220rpx;
   height: 58rpx;
   display: flex;
@@ -20,7 +21,7 @@
   font-size: 28rpx;
 }
 
-.disease-content{
+.disease-content {
   width: 92%;
   margin: 0 4%;
   display: flex;
@@ -28,7 +29,7 @@
   font-size: 26rpx;
 }
 
-.disease-item{
+.disease-item {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -37,28 +38,28 @@
   border-bottom: 1rpx solid #eee;
 }
 
-.whole-task{
+.whole-task {
   width: 702rpx;
   margin: 24rpx 24rpx 48rpx;
   display: flex;
   flex-direction: column;
 }
 
-.whole-task-tip{
+.whole-task-tip {
   font-size: 32rpx;
   font-family: PingFangSC-Medium, sans-serif;
   letter-spacing: 1rpx;
   display: flex;
 }
 
-.line{
+.line {
   width: 50rpx;
   height: 6rpx;
   background: #1a65ff;
   margin-top: 2rpx;
 }
 
-.task-list{
+.task-list {
   box-shadow: 0 0 2rpx 2rpx rgba(216, 216, 216, 0.5);
   border-radius: 20rpx;
   display: flex;
@@ -87,12 +88,12 @@
   text-align: right;
 } */
 
-.item-content{
+.item-content {
   display: flex;
   flex-direction: column;
 }
 
-.address{
+.address {
   color: #bbb9b9;
   font-size: 24rpx;
   padding-left: 50rpx;
@@ -104,7 +105,7 @@
   padding-left: 50rpx;
 }
 
-.item-result{
+.item-result {
   width: 130rpx;
   height: 55rpx;
   border-radius: 50rpx;
@@ -126,12 +127,12 @@
   bottom: 0;
 } */
 
-.whole-base-tip{
+.whole-base-tip {
   display: flex;
   line-height: 50rpx;
 }
 
-.base{
+.base {
   color: #bbb9b9;
   font-size: 24rpx;
   font-family: PingFangSC-Medium, sans-serif;
@@ -142,7 +143,7 @@
   margin-right: 12rpx;
 }
 
-.active{
+.active {
   color: #000;
   /* border-bottom: 5rpx solid #000; */
   font-weight: 600;
@@ -152,14 +153,14 @@
   /* padding-top: 10rpx !important; */
 }
 
-.base-infor{
+.base-infor {
   border-radius: 20rpx;
   border: 1rpx solid rgba(216, 216, 216, 0.5);
   margin-top: 16rpx;
 }
 
-.base-item{
-  box-shadow:none;
+.base-item {
+  box-shadow: none;
   border-bottom: 1rpx solid rgba(216, 216, 216, 0.5);
   border-radius: 0;
   height: 80rpx;
@@ -167,11 +168,11 @@
   width: 100%;
 }
 
-.base-item text:first-child{
+.base-item text:first-child {
   width: 240rpx;
 }
 
-.accidentstyle{
+.accidentstyle {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -183,7 +184,7 @@
   line-height: 45rpx;
 }
 
-.pic-mode{
+.pic-mode {
   width: 100%;
   margin: 3% 0;
   border-radius: 20rpx;
@@ -192,18 +193,18 @@
   flex-direction: column;
 }
 
-.pic-mode text{
+.pic-mode text {
   padding: 3% 0 0 3%;
 }
 
-.whole-data-img{
+.whole-data-img {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   padding: 12rpx 24rpx;
 }
 
-/* .data-list{
+.data-list {
   width: 154rpx;
   display: flex;
   justify-content: center;
@@ -212,18 +213,18 @@
   margin: 12rpx 24rpx 0 0;
 }
 
-.data-list image{
+.data-list image {
   width: 154rpx;
   height: 154rpx;
   border: 1rpx solid #eee;
   border-radius: 10rpx;
 }
 
-.data-list video{
+.data-list video {
   width: 170rpx;
-} */
+}
 
-input{
+input {
   text-align: right;
 }
 
@@ -264,7 +265,7 @@ input{
 }
 
 .no-info text {
- color: #aeaeae;
+  color: #aeaeae;
 }
 
 .operation-box {

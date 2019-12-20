@@ -15,7 +15,7 @@ Page({
     //第二类样式成员变量
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     // console.log(options)
     this.setData({
       vehId: options.vehId,
@@ -77,6 +77,37 @@ Page({
     myAudio.src = this.data.imgUrl + e.currentTarget.dataset.src
     console.log(myAudio.src)
     myAudio.play()
+  },
+
+  //播放视频
+  playvideo(e) {
+    var that = this
+    var videoId = e.currentTarget.id
+    that.data.myVideo = wx.createVideoContext(videoId, that)
+    that.data.myVideo.requestFullScreen({
+      direction: 0
+    })
+
+    that.setData({
+      isShowTextarea: false
+    })
+  },
+
+  //视频全屏与退出
+  bindfullscreenchange(e) {
+    var that = this
+    if (e.detail.fullScreen) {
+      that.setData({
+        isShowTextarea: false
+      })
+    } else {
+      if (that.data.myVideo) {
+        that.data.myVideo.stop()
+      }
+      that.setData({
+        isShowTextarea: true
+      })
+    }
   }
 
 })

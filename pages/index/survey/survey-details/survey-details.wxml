@@ -236,3 +236,6 @@
 <bottom-modal isShow="{{showBottomOperation}}" status="{{surveyList.status}}" bind:editEvent="editEvent" bind:delEvent="delEvent" />
 <!-- 评价二维码 -->
 <qr-code isShow="{{showQrCode}}" qrImg="{{qrImg}}" />
+<i-modal title="提示" visible="{{visible}}" actions="{{actions}}" bind:click="modalClick" bind:cancel="modalCancel">
+  <view>联盟内有新的订单</view>
+</i-modal>

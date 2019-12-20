@@ -40,10 +40,15 @@
     </view>
   </block>
    <!-- 转单 -->
-  <view class="operation-box"  wx:if="{{diseaseList.status < 2 && isShowTransfer}}" bindtap="toChangeOrder">
+  <view class="operation-box"  wx:if="{{diseaseList.status < 2 && isShowTransfer && !turnOut && !turnIn}}" bindtap="toChangeOrder">
     <view class="operation-item">
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>转单</text>
+    </view>
+  </view>
+  <view class="operation-box"  wx:if="{{turnOut}}">
+    <view class="operation-item">
+      <text>已转单</text>
     </view>
   </view>
 </view>
@@ -218,3 +223,6 @@
     </view>
   </view>
 </view>
+<i-modal title="提示" visible="{{visible}}" actions="{{actions}}" bind:click="modalClick" bind:cancel="modalCancel">
+  <view>联盟内有新的订单</view>
+</i-modal>

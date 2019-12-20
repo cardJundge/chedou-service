@@ -153,6 +153,11 @@
   height: 70rpx;
 }
 
+.voice-item video {
+  width: 146rpx;
+  height: 146rpx;
+}
+
 .reject-mode {
   width: 100%;
   margin: 24rpx 0;

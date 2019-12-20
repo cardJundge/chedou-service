@@ -44,16 +44,31 @@
       <view class="item-result" wx:else>已完成</view>
     </view>
   </block>
-  <view class="add-task-btn" bindtap="toAddTask">添加任务</view>
+  <view class="add-task-btn" bindtap="toAddTask" wx:if="{{!turnInFirst && !turnOut}}">添加任务</view>
   <!-- 分配作业员/转单 -->
-  <view class="operation-box" wx:if="{{(vehicleList.status < 3 && isShowTransfer) || (!vehicleList.task_id && vehicleList.status == 0)}}">
+  <!-- (vehicleList.status < 3 && isShowTransfer) || (!vehicleList.task_id && vehicleList.status == 0) -->
+  <view class="operation-box" wx:if="{{vehicleList.status < 3 && !turnOut && !turnInFirst}}">
     <view class="operation-item" bindtap="toAssignment" wx:if="{{!vehicleList.task_id && vehicleList.status == 0}}">
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>分配作业员</text>
     </view>
-    <view class="operation-item" bindtap="toChangeOrder" wx:if="{{vehicleList.status < 3 && isShowTransfer}}">
+    <view class="operation-item" bindtap="toChangeOrder" wx:if="{{vehicleList.status < 3 && isShowTransfer && !turnIn}}">
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>转单</text>
+    </view>
+  </view>
+  <view class="operation-box" wx:if="{{vehicleList.status < 3 && !turnOut && vehicleList.task_id}}">
+    <view class="operation-item" wx:if="{{vehicleList.task_id && vehicleList.status < 3}}">
+      <text>已分配作业员</text>
+    </view>
+    <view class="operation-item" bindtap="toChangeOrder" wx:if="{{vehicleList.status < 3 && isShowTransfer && !turnIn}}">
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>转单</text>
+    </view>
+  </view>
+  <view class="operation-box" wx:if="{{vehicleList.status < 3 && turnOut}}">
+    <view class="operation-item">
+      <text>已转单</text>
     </view>
   </view>
 </view>
@@ -134,10 +149,10 @@
       <text>暂无资料</text>
     </view>
   </view>
-  <view class="add-task-btn" bindtap="toAddInformation">添加资料</view>
+  <view class="add-task-btn" bindtap="toAddInformation" wx:if="{{!turnInFirst && !turnOut}}">添加资料</view>
 </view>
 
-<view class="whole-task" wx:if='{{first == 3}}'>
+<view class="whole-task" wx:if='{{first == 3}}' >
   <view class="whole-task-tip">调查结论</view>
   <view class="line"></view>
   <view class="base-infor">
@@ -171,7 +186,7 @@
       <textarea type="text" placeholder="选填" placeholder-class="ph-class" value="{{vehicleList.remark?vehicleList.remark:'无'}}" disabled="disabled" wx:if="{{vehicleList.pay_opinion}}"></textarea>
     </view>
   </view>
-  <view class="operation-box" bindtap="submitConclusion" wx:if="{{!vehicleList.pay_opinion}}">
+  <view class="operation-box" bindtap="submitConclusion" wx:if="{{!vehicleList.pay_opinion &&!turnInFirst && !turnOut}}">
     <view class="operation-item">
       <text>确定</text>
     </view>
@@ -180,3 +195,6 @@
 
 <!-- 添加任务模板 -->
 <task-title isShow="{{titleShow}}" bind:addTitle="getTasksList" />
+<i-modal title="提示" visible="{{visible}}" actions="{{actions}}" bind:click="modalClick" bind:cancel="modalCancel">
+  <view>联盟内有新的订单</view>
+</i-modal>
