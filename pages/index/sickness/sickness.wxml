@@ -12,7 +12,7 @@
   </view>
   <!-- 状态选择 -->
   <scroll-view scroll-x class="status-box">
-    <view bindtap="changeStatus" wx:for="{{statusList}}" wx:key="" data-index="{{item.id}}" class="{{item.id == selected? 'select-active': 'status-item'}}">{{item.name}}</view>
+    <view bindtap="changeStatus" wx:for="{{statusList}}" wx:key="" data-index="{{item.id}}" class="status-item {{item.id == selected? 'select-active': 'status-item'}}">{{item.name}}</view>
   </scroll-view>
   
   <view class="loading-img" wx:if="{{spinShow}}">

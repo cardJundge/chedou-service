@@ -1,6 +1,6 @@
 // 调查任务详情
-// const myAudio = wx.createInnerAudioContext()
-// myAudio.obeyMuteSwitch = false 
+const myAudio = wx.createInnerAudioContext()
+myAudio.obeyMuteSwitch = false
 // 是否遵循系统静音开关,当此参数为 false 时，即使用户打开了静音开关，也能继续发出声音
 import {
   IndexModel
@@ -37,13 +37,16 @@ Page({
       if (res.data.status == 1) {
         res.data.data.forEach((item, index) => {
           // this.data.taskRecord.push(JSON.parse(item.data))
+          item.image = item.image.split(',')
+          item.audio = item.audio.split(',')
+          item.video = item.video.split(',')
           this.data.taskRecord.push(item)
           this.data.taskRecord[index].tId = item.id
         })
 
+
         this.setData({
-          taskRecord: this.data.taskRecord,
-          taskReject: res.data.reject
+          taskRecord: this.data.taskRecord
         })
         console.log(this.data.taskRecord)
       }
@@ -70,10 +73,10 @@ Page({
   },
 
   // 播放录音
-  // playAudio(e) {
-  //   myAudio.src = this.data.imgUrl + e.currentTarget.dataset.src
-  //   console.log(myAudio.src)
-  //   myAudio.play()
-  // }
+  playAudio(e) {
+    myAudio.src = this.data.imgUrl + e.currentTarget.dataset.src
+    console.log(myAudio.src)
+    myAudio.play()
+  }
 
 })

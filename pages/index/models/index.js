@@ -285,6 +285,42 @@ class IndexModel extends HTTP {
     }
     this.request(params)
   }
+
+  // 车务调查提交调查结论
+  submitConclusion(param, callback) {
+    var params = {
+      url: '/api/work/audit',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 获取各模块下的联盟成员（公司）
+  getModuleUnion(param, callback) {
+    var params = {
+      url: '/api/ser/work/league',
+      type: 'GET',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 转单
+  toTransferOrder(param, callback) {
+    var params = {
+      url: '/api/ser/work/turn',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
 }
 export {
   IndexModel

@@ -4,7 +4,7 @@
   <view class="business" style="{{steps.length == 0 ? 'padding-bottom: 114rpx' : ''}}">
     <view class="business-title">
       <text>业务基本信息</text>
-      <i-icon color="#1a65ff" type="more" bindtap="operation" size="24" />
+      <i-icon color="#1a65ff" type="more" bindtap="operation" size="24" wx:if="{{!turnInFirst && !turnOut}}" />
     </view>
     <view class="business-content">
       <view class="business-item">
@@ -144,12 +144,19 @@
   </view>
 
   <!-- 操作按钮 -->
-  <!-- <view class="operation" wx:if="{{surveyList.status < 4}}" bindtap="toReceipt">
-    <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
-    <text>接单</text>
-  </view> -->
-  <view class="operation" wx:if="{{!serviceOperation && surveyList.status <5 && !surveyList.task_id}}">
+  <view class="operation" wx:if="{{surveyList.status < 4 && !turnOut && !turnInFirst}}">
     <view class="operation-item" bindtap="toReceipt">
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>接单</text>
+    </view>
+    <view class="operation-item" bindtap="toChangeOrder" wx:if="{{isShowTransfer && !turnIn}}">
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>转单</text>
+    </view>
+  </view>
+  <!-- ------------ -->
+  <view class="operation" wx:if="{{!serviceOperation && surveyList.status == 4 && !surveyList.task_id && !turnOut}}">
+    <view class="operation-item" bindtap="toScene">
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>添加明细</text>
     </view>
@@ -165,12 +172,13 @@
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>已推修</text>
     </view>
-    <view class="operation-item" bindtap="toChangeOrder">
+    <view class="operation-item" bindtap="toChangeOrder" wx:if="{{isShowTransfer && !turnIn}}">
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>转单</text>
     </view>
   </view>
-  <view class="operation" wx:if="{{serviceOperation && surveyList.status == 4 && !surveyList.task_id}}">
+  <!-- ------------- -->
+  <view class="operation" wx:if="{{serviceOperation && surveyList.status == 4 && !surveyList.task_id && !turnOut}}">
     <view class="operation-item" bindtap="toAddDetails">
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>添加明细</text>
@@ -187,7 +195,12 @@
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>已推修</text>
     </view>
+    <view class="operation-item" bindtap="toChangeOrder" wx:if="{{isShowTransfer && !turnIn}}">
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>转单</text>
+    </view>
   </view>
+  <!-- ---------------- -->
   <view class="operation" wx:if="{{serviceOperation && surveyList.status == 6 && !surveyList.task_id}}">
     <view class="operation-item" bindtap="toAddDetails">
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
@@ -202,8 +215,21 @@
       <text>已推修</text>
     </view>
   </view>
-  <view class="operation" wx:if="{{surveyList.status == 4 && surveyList.task_id}}">
-    <text>已分配作业员</text>
+  <!-- ----------------- -->
+  <view class="operation" wx:if="{{surveyList.status == 4 && surveyList.task_id && !turnOut}}">
+    <view class="operation-item">
+      <text>已分配作业员</text>
+    </view>
+    <view class="operation-item" bindtap="toChangeOrder" wx:if="{{isShowTransfer && !turnIn}}">
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>转单</text>
+    </view>
+  </view>
+  <!-- -------------------- -->
+  <view class="operation" wx:if="{{turnOut && surveyList.status < 6}}">
+    <view class="operation-item">
+      <text>已转单</text>
+    </view>
   </view>
 </view>
 <!-- 底部操作按钮 -->

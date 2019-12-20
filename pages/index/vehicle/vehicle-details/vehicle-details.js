@@ -32,6 +32,30 @@ Page({
 
   onShow: function () {
     this.getVehicleDetails()
+    this.getModuleUnion()
+  },
+
+
+  // 获取当前模块下是否有联盟
+  getModuleUnion() {
+    let params = {
+      key: 'traffic',
+      module: '车务调查'
+    }
+    indexModel.getModuleUnion(params, res => {
+      console.log(res)
+      if (res.data.status == 1) {
+        if (res.data.data.length == 0) {
+          this.setData({
+            isShowTransfer: false
+          })
+        } else {
+          this.setData({
+            isShowTransfer: true
+          })
+        }
+      }
+    })
   },
 
   // 获取作业员信息
@@ -139,6 +163,60 @@ Page({
     })
   },
 
+  // 转单
+  toChangeOrder() {
+    wx.navigateTo({
+      url: '../../transfer/company/company?moduleType=' + '车务调查' + '&businessNo=' + this.data.vehicleList.report_no + '&moduleName=' + 'traffic' + '&businessId=' + this.data.listId
+    })
+  },
+
+  // get公司调查费用
+  getFeeInput(e) {
+    this.data.conclusionFee = e.detail.value
+  },
+
+  // get备注
+  getRemarkInput(e) {
+    this.data.conclusionRemark = e.detail.value
+  },
+
+  // 提交调查结论
+  submitConclusion() {
+    if (!this.data.compensationName) {
+      return wx.showToast({
+        title: '请选择赔付意见！',
+        icon: 'none'
+      })
+    } 
+    if (!this.data.reportName) {
+      return wx.showToast({
+        title: '请选择是否举报/协助案件！',
+        icon: 'none'
+      })
+    }
+    if (!this.data.conclusionFee) {
+      return wx.showToast({
+        title: '请输入公司调查费用！',
+        icon: 'none'
+      })
+    }
+    let params = {
+      pay_opinion: this.data.compensationName,
+      assist_case: this.data.reportName,
+      survey_fee: this.data.conclusionFee,
+      remark: this.data.conclusionRemark,
+      id: this.data.listId
+    }
+    indexModel.submitConclusion(params, res=> {
+      if(res.data.status == 1) {
+        wx.showToast({
+          title: '提交成功！',
+        })
+        this.getVehicleDetails()
+      }
+    })
+  },
+
   // 分配作业员
   toAssignment() {
     wx.navigateTo({
@@ -176,6 +254,13 @@ Page({
           })
         }
       }
+    })
+  },
+
+  // 添加相关资料
+  toAddInformation() {
+    wx.navigateTo({
+      url: '../add-information/add-information?vehicleId=' + this.data.listId,
     })
   },
 

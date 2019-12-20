@@ -40,8 +40,8 @@
     </view>
   </block>
    <!-- 转单 -->
-  <view class="operation-box">
-    <view class="operation-item" bindtap="" wx:if="{{diseaseList.status < 2}}">
+  <view class="operation-box"  wx:if="{{diseaseList.status < 2 && isShowTransfer}}" bindtap="toChangeOrder">
+    <view class="operation-item">
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>转单</text>
     </view>

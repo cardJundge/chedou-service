@@ -145,7 +145,7 @@
   padding: 0 12rpx;
   color: #fff;
   font-size: 18rpx;
-  background: #1a84ff;
+  background: #1a65ff;
   border-radius: 18rpx;
   margin-right: 12rpx;
 }

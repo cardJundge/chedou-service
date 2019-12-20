@@ -1,6 +1,10 @@
 /* 转单 */
-.transfer-body {
+page {
+  height: 100%;
+}
 
+.transfer-body {
+ 
 }
 
 .transfer-form {
@@ -49,4 +53,17 @@
   left: 0;
   right: 0;
   border-radius: 0;
+}
+
+.transfer-success {
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   color: #1a65ff;
+   padding-top: 240rpx;
+}
+
+.transfer-success text {
+  margin-top: 24rpx;
 }

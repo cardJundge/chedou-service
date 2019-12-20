@@ -1,5 +1,5 @@
 <!--转单-->
-<view class="transfer-body">
+<view class="transfer-body"  wx:if="{{!isSuccess}}">
   <form bindsubmit='formSubmit'>
     <view class="transfer-form">
       <view class="form-item">
@@ -8,7 +8,7 @@
       </view>
       <view class="form-item">
         <label>案件分类</label>
-        <text>{{businessType}}</text>
+        <text>{{moduleType}}</text>
       </view>
       <view class="form-item">
         <label>转单时间</label>
@@ -16,11 +16,11 @@
       </view>
       <view class="form-item">
         <label>转单公司</label>
-        <text>{{company}}</text>
+        <text>{{companyName}}</text>
       </view>
       <view class="form-item form-item-textarea">
         <label>备注</label>
-        <textarea placeholder="请输入备注" placeholder-class="ph-class"></textarea>
+        <textarea placeholder="请输入备注" placeholder-class="ph-class" bindinput="getRemarkInput"></textarea>
       </view>
       <view class="form-item">
         <label>转单金额</label>
@@ -37,4 +37,8 @@
       </view>
     </view>
   </form>
+</view>
+<view class="transfer-success" wx:if="{{isSuccess}}">
+  <i-icon type="success_fill" size="128"/>
+  <text>下单成功,{{countDown}}秒后自动返回...</text>
 </view>

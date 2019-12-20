@@ -9,6 +9,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 9;
 }
 
 .search-bg {
@@ -90,18 +91,21 @@
   color: #1a65ff;
   border-radius: 30rpx;
   display: inline-block;
-  margin: 0 12rpx;
+  margin-right: 12rpx;
+  margin-left: 12rpx;
+}
+
+.status-item:first-child {
+  margin-left: 0;
+}
+
+.status-item:last-child {
+ margin-right: 0;
 }
 
 .select-active {
-  /* width: 160rpx; */
-  padding: 0 24rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  text-align: center;
   background: #1a65ff;
   color: #fff;
-  border-radius: 30rpx;
   display: inline-block;
 }
 

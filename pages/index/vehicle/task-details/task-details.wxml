@@ -9,27 +9,27 @@
             <view>
               <view class="form-item">
                 <label>调查人员:</label>
-                <view>{{task.personName}}</view>
+                <view>{{personName ? personName : '无'}}</view>
               </view>
 
               <view class="form-item">
                 <label>面访地址:</label>
-                <view>{{task.place}}</view>
+                <view>{{task.place ? task.place : '无'}}</view>
               </view>
 
               <view class="form-item">
                 <label>详细地址:</label>
-                <view>{{task.address}}</view>
+                <view>{{task.address ? task.address : '无'}}</view>
               </view>
 
               <view class="form-item">
                 <label>面访对象姓名:</label>
-                <view>{{task.tracer}}</view>
+                <view>{{task.tracer ? task.tracer : '无'}}</view>
               </view>
 
               <view class="form-item mode-style">
                 <label>调查经过说明:</label>
-                <view>{{task.state}}</view>
+                <view>{{task.state ? task.state : '无'}}</view>
               </view>
 
               <view class="investigation" wx:if="{{task.image.length !== 0 || task.audio.length !== 0}}">
@@ -39,13 +39,18 @@
                     <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                   </view>
                 </view>
-                <view class="image-cell">
-                  <view wx:for="{{task.audio}}" wx:for-item="item" wx:  ="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                <view class="image-cell" wx:if="{{task.audio.length != 0}}">
+                  <view wx:for="{{task.audio}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playAudio" data-src="{{item}}">
+                    <image src="/images/index/voice.png"></image>
+                  </view>
+                </view>
+                <view class="image-cell" wx:if="{{task.video.length != 0}}">
+                  <view wx:for="{{task.video}}" wx:for-item="item" wx:key="" class="voice-item" catchtap="playVideo" data-src="{{item}}">
                     <image src="/images/index/voice.png"></image>
                   </view>
                 </view>
               </view>
-              <view class="investigation" wx:if="{{task.image.length == 0 && task.audio.length == 0}}">
+              <view class="investigation" wx:if="{{task.image.length == 0 && task.audio.length == 0 && task.video.length == 0}}">
                 暂无调查材料
               </view>
             </view>

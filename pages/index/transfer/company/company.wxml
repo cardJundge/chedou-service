@@ -15,9 +15,9 @@
         <!-- <view class='list-title' id="{{'inToview'+item.id}}"></view> -->
         <view class='list-content'>
           <radio-group class="radiogroup" bindchange="companyChange">
-            <view class='list-item' wx:for="{{item.list}}" wx:for-item="it">
-              <text>{{it.company}}</text>
-              <radio value="{{it.company}}"></radio>
+            <view class='list-item' wx:for="{{item.service}}" wx:for-item="it">
+              <text>{{it.name}}</text>
+              <radio value="{{it.id}}"></radio>
             </view>
           </radio-group>
         </view>

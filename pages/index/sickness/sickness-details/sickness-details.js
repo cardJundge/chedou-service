@@ -32,9 +32,35 @@ Page({
   onLoad(options) {
     console.log(options)
     this.data.listId = options.listId
-    this.getSickDetailsList()
     this.setData({
       imgUrl: app.globalData.imgUrl
+    })
+  },
+
+  onShow() {
+    this.getSickDetailsList()
+    this.getModuleUnion()
+  },
+
+  // 获取当前模块下是否有联盟
+  getModuleUnion() {
+    let params = {
+      key: 'sickness',
+      module: '疾病调查'
+    }
+    indexModel.getModuleUnion(params, res => {
+      console.log(res)
+      if (res.data.status == 1) {
+        if (res.data.data.length == 0) {
+          this.setData({
+            isShowTransfer: false
+          })
+        } else {
+          this.setData({
+            isShowTransfer: true
+          })
+        }
+      }
     })
   },
 
@@ -125,6 +151,13 @@ Page({
     let stName = e.currentTarget.dataset.name
     wx.navigateTo({
       url: '../task-details/task-details?stId=' + stId + '&sicknessTaskId=' + sicknessTaskId + '&stName=' + stName,
+    })
+  },
+
+  // 转单
+  toChangeOrder() {
+    wx.navigateTo({
+      url: '../../transfer/company/company?moduleType=' + '疾病调查' + '&businessNo=' + this.data.diseaseList.report_no + '&moduleName=' + 'sickness' + '&businessId=' + this.data.listId
     })
   },
 

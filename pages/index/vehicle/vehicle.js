@@ -141,7 +141,11 @@ Page({
           }
         })
       } else if (this.data.selected === 5) {
-      
+        this.data.vehicleTempList.forEach((item, index) => {
+          if (item.turn_service_id) {
+            tempList.push(item)
+          }
+        })
       }
     }
     this.setData({

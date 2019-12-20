@@ -77,7 +77,11 @@ Page({
           }
         })
       } else if (this.data.selected === 4) {
-        
+        this.data.businessTempList.forEach((item, index) => {
+          if (item.turn_service_id) {
+            tempList.push(item)
+          }
+        })
       }
     }
 

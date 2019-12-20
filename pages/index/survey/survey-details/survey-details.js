@@ -25,17 +25,44 @@ Page({
     serviceOperation: false,
     steps: [],
     detailed: [], //人车合一
-    showDetailed: false
+    showDetailed: false,
+    turnOut: false, //是否转出
+    turnIn: false, //是否转入的订单
+    turnInFirst: false //是否是第一次转入
   },
   onLoad: function(options) {
     this.setData({
-      imgUrl: app.globalData.imgUrl
+      imgUrl: app.globalData.imgUrl,
+      serviceId: app.globalData.userInfo.id
     })
     this.data.listId = options.listId
   },
 
   onShow() {
     this.getDetails()
+    this.getModuleUnion()
+  },
+
+  // 获取当前模块下是否有联盟
+  getModuleUnion() {
+    let params = {
+      key: 'survey',
+      module: '查勘定损'
+    }
+    indexModel.getModuleUnion(params, res => {
+      console.log(res)
+      if (res.data.status == 1) {
+        if(res.data.data.length == 0) {
+          this.setData({
+            isShowTransfer: false
+          })
+        } else {
+          this.setData({
+            isShowTransfer: true
+          })
+        }
+      }
+    })
   },
 
   // 接单
@@ -47,7 +74,11 @@ Page({
     let id = this.data.listId
     indexModel.businessReceipt(id, key, res=> {
       if(res.data.status == 1) {
-        this.toScene()
+        wx.showToast({
+          title: '接单成功',
+        })
+        this.getDetails()
+        // this.toScene()
       }else {
         if (res.data.msg.match('Token已过期或失效')) {
         } else {
@@ -90,6 +121,38 @@ Page({
           surveyList: res.data.data,
           schedule: res.data.schedule.reverse()
         })
+        // ********************************************************
+        // ！=转出 ==转入
+        if (this.data.surveyList.turn_service_id && (this.data.surveyList.turn_service_id != this.data.serviceId)) {
+          this.setData({
+            turnOut: true
+          })
+        } 
+        if (this.data.surveyList.turn_service_id && (this.data.surveyList.turn_service_id == this.data.serviceId) && this.data.surveyList.status == 0) {
+          this.setData({
+            turnInFirst: true
+          })
+          wx.showModal({
+            title: '提示',
+            content: '联盟内有新的订单转入',
+            cancelText: "退回",
+            confirmText: "接单",
+            confirmColor: '#1a65ff',
+            success: res=> {
+              if (res.cancel) {
+                //点击取消,默认隐藏弹框
+              } else {
+                this.toReceipt()
+              }
+            }
+          })
+        }
+        if (this.data.surveyList.turn_service_id && (this.data.surveyList.turn_service_id == this.data.serviceId)) {
+          this.setData({
+            turnIn: true
+          })
+        }
+        // ***********************************************************
         res.data.schedule.forEach((item, index) => {
           if(item.title.match('到达现场')) {
             this.setData({
@@ -335,7 +398,7 @@ Page({
   // 转单
   toChangeOrder() {
     wx.navigateTo({
-      url: '../../transfer/company/company?businessType=' + '查勘定损' + '&businessNo=' + this.data.surveyList.report_no,
+      url: '../../transfer/company/company?moduleType=' + '查勘定损' + '&businessNo=' + this.data.surveyList.report_no + '&moduleName=' + 'survey' + '&businessId=' + this.data.listId
     })
   },
 

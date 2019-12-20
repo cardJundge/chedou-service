@@ -11,27 +11,27 @@
             <view>
               <view class="form-item">
                 <label>面访时间:</label>
-                <view>{{task.face_date}}</view>
+                <view>{{task.face_date ? task.face_date : '无'}}</view>
               </view>
 
               <view class="form-item">
                 <label>面访地址:</label>
-                <view>{{task.face_address}}</view>
+                <view>{{task.face_address ? task.face_address : '无'}}</view>
               </view>
 
               <view class="form-item">
                 <label>公估人姓名:</label>
-                <view>{{task.task_name}}</view>
+                <view>{{task.task_name ? task.task_name : '无'}}</view>
               </view>
 
               <view class="form-item">
                 <label>面访对象与患病成员关系:</label>
-                <view>{{task.face_relation}}</view>
+                <view>{{task.face_relation ? task.face_relation : '无'}}</view>
               </view>
 
               <view class="form-item">
                 <label>面访对象姓名:</label>
-                <view>{{task.face_name}}</view>
+                <view>{{task.face_name ? task.face_name : '无'}}</view>
               </view>
 
               <view class="form-item">
@@ -41,12 +41,12 @@
 
               <view class="form-item mode-style" wx:if="{{task.is_positive == 1}}">
                 <label>阳性说明:</label>
-                <view>{{task.positive_state}}</view>
+                <view>{{task.positive_state ? task.positive_state : '无'}}</view>
               </view>
 
               <view class="form-item mode-style">
                 <label>面访经过说明:</label>
-                <view>{{task.face_state}}</view>
+                <view>{{task.face_state ? task.face_state : '无'}}</view>
               </view>
 
               <view class="investigation" wx:if="{{task.image.length !== 0 || task.audio.length !== 0}}">
@@ -85,12 +85,12 @@
             <view>
               <view class="form-item">
                 <label>医院名称:</label>
-                <view>{{task.hospital}}</view>
+                <view>{{task.hospital ? task.hospital : '无'}}</view>
               </view>
 
               <view class="form-item">
                 <label>排查时间:</label>
-                <view>{{task.screen_date}}</view>
+                <view>{{task.screen_date ? task.screen_date : '无'}}</view>
               </view>
 
               <view class="form-item" wx:if="{{task.screen_type == 1}}">
@@ -108,7 +108,7 @@
 
               <view class="form-item">
                 <label>排查科室:</label>
-                <view>{{task.screen_department}}</view>
+                <view>{{task.screen_department ? task.screen_department : '无'}}</view>
               </view>
 
               <view class="form-item">
@@ -118,12 +118,12 @@
 
               <view class="form-item mode-style" wx:if="{{task.is_positive == 1}}">
                 <label>阳性说明:</label>
-                <view>{{task.positive_state}}</view>
+                <view>{{task.positive_state ? task.positive_state : '无'}}</view>
               </view>
 
               <view class="form-item mode-style">
                 <label>医院排查结论:</label>
-                <view>{{task.screen_conclusion}}</view>
+                <view>{{task.screen_conclusion ? task.screen_conclusion : '无'}}</view>
               </view>
 
               <view class="investigation">
@@ -159,17 +159,17 @@
             <view>
               <view class="form-item">
                 <label>走访对象:</label>
-                <view>{{task.visit_name}}</view>
+                <view>{{task.visit_name ? task.visit_name : '无'}}</view>
               </view>
 
               <view class="form-item">
                 <label>走访时间:</label>
-                <view>{{task.visit_date}}</view>
+                <view>{{task.visit_date ? task.visit_date : '无'}}</view>
               </view>
 
               <view class="form-item">
                 <label>走访地址:</label>
-                <view>{{task.visit_address}}</view>
+                <view>{{task.visit_address ? task.visit_address : '无'}}</view>
               </view>
 
               <view class="form-item">
@@ -179,12 +179,12 @@
 
               <view class="form-item mode-style" wx:if="{{task.is_positive == 1}}">
                 <label>阳性说明:</label>
-                <text>{{task.positive_state}}</text>
+                <text>{{task.positive_state ? task.positive_state : '无'}}</text>
               </view>
 
               <view class="form-item mode-style">
                 <label>走访结论:</label>
-                <text>{{task.visit_conclusion}}</text>
+                <text>{{task.visit_conclusion ? task.visit_conclusion : '无'}}</text>
               </view>
 
               <view class="investigation">
@@ -219,22 +219,22 @@
             <view>
               <view class="form-item">
                 <label>公司名称:</label>
-                <view>{{task.company}}</view>
+                <view>{{task.company ? task.company : '无'}}</view>
               </view>
 
               <view class="form-item mode-style">
                 <label>商保排查结论:</label>
-                <view>{{task.screen_conclusion}}</view>
+                <view>{{task.screen_conclusion ? task.screen_conclusion : '无'}}</view>
               </view>
 
               <view class="form-item">
                 <label>互助排查名称:</label>
-                <view>{{task.help_screen_name}}</view>
+                <view>{{task.help_screen_name ? task.help_screen_name : '无'}}</view>
               </view>
 
               <view class="form-item mode-style">
                 <label>互助排查结论:</label>
-                <view>{{task.help_screen_conclusion}}</view>
+                <view>{{task.help_screen_conclusion ? task.help_screen_conclusion : '无'}}</view>
               </view>
 
               <view class="investigation">
@@ -270,12 +270,12 @@
             <view>
               <view class="form-item">
                 <label>社保局名称:</label>
-                <view>{{task.social_security}}</view>
+                <view>{{task.social_security ? task.social_security : '无'}}</view>
               </view>
 
               <view class="form-item">
                 <label>排查时间:</label>
-                <view>{{task.screen_date}}</view>
+                <view>{{task.screen_date ? task.screen_date : '无'}}</view>
               </view>
 
               <view class="form-item">
@@ -285,12 +285,12 @@
 
               <view class="form-item mode-style" wx:if="{{task.is_positive == 1}}">
                 <label>阳性说明:</label>
-                <view>{{task.positive_state}}</view>
+                <view>{{task.positive_state ? task.positive_state : '无'}}</view>
               </view>
 
               <view class="form-item mode-style">
                 <label>社保排查结论:</label>
-                <view>{{task.social_security_screen_conclusion}}</view>
+                <view>{{task.social_security_screen_conclusion ? task.social_security_screen_conclusion : '无'}}</view>
               </view>
 
               <view class="investigation">
@@ -325,12 +325,12 @@
             <view>
               <view class="form-item">
                 <label>体检机构名称:</label>
-                <view>{{task.medical_screen}}</view>
+                <view>{{task.medical_screen ? task.medical_screen : '无'}}</view>
               </view>
 
               <view class="form-item">
                 <label>排查时间:</label>
-                <view>{{task.screen_date}}</view>
+                <view>{{task.screen_date ? task.screen_date : '无'}}</view>
               </view>
               <view class="form-item">
                 <label>是否阳性:</label>
@@ -339,12 +339,12 @@
 
               <view class="form-item mode-style" wx:if="{{task.is_positive == 1}}">
                 <label>阳性说明:</label>
-                <view>{{task.positive_state}}</view>
+                <view>{{task.positive_state ? task.positive_state : '无'}}</view>
               </view>
 
               <view class="form-item mode-style">
                 <label>体检排查结论:</label>
-                <view>{{task.medical_screen_conclusion}}</view>
+                <view>{{task.medical_screen_conclusion ? task.medical_screen_conclusion : '无'}}</view>
               </view>
 
               <view class="investigation">
@@ -380,17 +380,17 @@
             <view>
               <view class="form-item">
                 <label>排查时间:</label>
-                <view>{{task.screen_date}}</view>
+                <view>{{task.screen_date ? task.screen_date : '无'}}</view>
               </view>
 
               <view class="form-item">
                 <label>事故地址:</label>
-                <view>{{task.accident_address}}</view>
+                <view>{{task.accident_address ? task.accident_address : '无'}}</view>
               </view>
 
               <view class="form-item mode-style">
                 <label>排查结论:</label>
-                <view>{{task.screen_conclusion}}</view>
+                <view>{{task.screen_conclusion ? task.screen_conclusion : '无'}}</view>
               </view>
 
               <view class="investigation">
@@ -426,17 +426,17 @@
             <view>
               <view class="form-item">
                 <label>排查时间:</label>
-                <view>{{task.screen_date}}</view>
+                <view>{{task.screen_date ? task.screen_date : '无'}}</view>
               </view>
 
               <view class="form-item">
                 <label>处理机构:</label>
-                <view>{{task.accident_address}}</view>
+                <view>{{task.accident_address ? task.accident_address : '无'}}</view>
               </view>
 
               <view class="form-item mode-style">
                 <label>排查结论:</label>
-                <view>{{task.screen_conclusion}}</view>
+                <view>{{task.screen_conclusion ? task.screen_conclusion : '无'}}</view>
               </view>
 
               <view class="investigation">

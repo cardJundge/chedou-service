@@ -1,7 +1,6 @@
 /* 疾病调查 */
 
 .sickness-body {
-  
 }
 
 .sickness-top {
@@ -10,6 +9,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 9;
 }
 
 .search-bg {
@@ -63,7 +63,7 @@
   align-items: center;
 }
 
-.loading-img image{
+.loading-img image {
   width: 40rpx;
   height: 40rpx;
 }
@@ -91,29 +91,31 @@
   color: #1a65ff;
   border-radius: 30rpx;
   display: inline-block;
-  margin: 0 12rpx;
+  margin-right: 12rpx;
+  margin-left: 12rpx;
+}
+
+.status-item:first-child {
+  margin-left: 0;
+}
+
+.status-item:last-child {
+  margin-right: 0;
 }
 
 .select-active {
-  /* width: 160rpx; */
-  padding: 0 24rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  text-align: center;
   background: #1a65ff;
   color: #fff;
-  border-radius: 30rpx;
   display: inline-block;
 }
 
 .sickness-list {
-
 }
 
 .list-item {
   width: 100%;
   height: 160rpx;
-  border-bottom: 1rpx solid #F7F7F7;
+  border-bottom: 1rpx solid #f7f7f7;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -129,8 +131,8 @@
 
 .list-item-left text:first-child {
   margin-bottom: 12rpx;
-  word-break:break-all;
-  word-wrap:break-word;
+  word-break: break-all;
+  word-wrap: break-word;
 }
 
 .list-item-left text:last-child {
@@ -150,14 +152,17 @@
 .status01 {
   background: #1a65ff;
 }
+
 .status02 {
-  background: #14D680;
+  background: #14d680;
 }
+
 .status03 {
-  background: #FFA91A;
+  background: #ffa91a;
 }
+
 .status04 {
-  background: #D0D0D0;
+  background: #d0d0d0;
 }
 
 .status05 {

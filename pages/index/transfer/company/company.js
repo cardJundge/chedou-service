@@ -1,63 +1,42 @@
 // 转单公司选择
+import {
+  IndexModel
+} from '../../models/index.js'
+
+var indexModel = new IndexModel()
 Page({
   data: {
     currentUnion: "",
-    unionData: [{
-        id: 1,
-        name: "标题1",
-        list: [{
-            id: 1,
-            url: "/images/demo1.jpg",
-            company: "文字说明1",
-          },
-          {
-            id: 2,
-            url: "/images/demo2.jpg",
-            company: "文字说明2",
-          }
-        ]
-      },
-      {
-        id: 2,
-        name: "标题2",
-        list: [{
-            id: 1,
-            url: "/images/demo1.jpg",
-            company: "文字说明3",
-          },
-          {
-            id: 2,
-            url: "/images/demo2.jpg",
-            company: "文字说明4",
-          }
-        ]
-      },
-      {
-        id: 3,
-        name: "标题3",
-        list: [{
-            id: 3,
-            url: "/images/demo1.jpg",
-            company: "文字说明5",
-          },
-          {
-            id: 4,
-            url: "/images/demo2.jpg",
-            company: "文字说明6",
-          }
-        ]
-      }
-    ],
+    unionData: [],
     currentCompany: ''
   },
 
   onLoad: function(options) {
     console.log(options)
     this.data.businessInfo = options
+    // this.data.moduleName = options.businessName
     let sysInfo = wx.getSystemInfoSync()
     this.setData({
-      currentUnion: this.data.unionData[0].id,
+      // currentUnion: this.data.unionData[0].id,
       screenHeight: sysInfo.windowHeight
+    })
+    this.getModuleUnion()
+  },
+
+  // 获取模块下的联盟和联盟成员
+  getModuleUnion() {
+    let params = {
+      key: this.data.businessInfo.moduleName,
+      module: this.data.businessInfo.moduleType
+    }
+    indexModel.getModuleUnion(params, res=> {
+      console.log(res)
+      if(res.data.status == 1) {
+        this.setData({
+          unionData: res.data.data,
+          currentUnion: res.data.data[0].id
+        })
+      }
     })
   },
 
@@ -72,14 +51,25 @@ Page({
   // 公司选择
   companyChange(e) {
     console.log(e.detail.value)
-    this.data.currentCompany = e.detail.value
+    this.data.currentCompanyId = e.detail.value
+    this.data.unionData.forEach((item, index) => {
+      if (item.id == this.data.currentUnion) {
+        item.service.forEach((its, ins) => {
+          if (its.id == this.data.currentCompanyId) {
+            this.data.currentCompanyName = its.name
+          }
+        })
+      }
+    })
   },
 
-  onConfirm() {
-    console.log(this.data.currentCompany)
-    if (this.data.currentCompany) {
+  onConfirm(e) {
+    this.data.businessInfo.companyName = this.data.currentCompanyName
+    this.data.businessInfo.companyId = this.data.currentCompanyId
+    let data = JSON.stringify(this.data.businessInfo)
+    if (this.data.currentCompanyId) {
       wx.navigateTo({
-        url: '../transfer?company=' + this.data.currentCompany + '&businessType=' + this.data.businessInfo.businessType + '&businessNo=' + this.data.businessInfo.businessNo,
+        url: '../transfer?data=' + data,
       })
     }
   }

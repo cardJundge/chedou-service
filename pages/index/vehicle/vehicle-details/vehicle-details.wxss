@@ -113,13 +113,6 @@
   margin-right: 10rpx;
 }
 
-.whole-base-tip .active{
-  color: #000;
-  font-weight: 600;
-  font-size: 32rpx;
-  width: 200rpx;
-}
-
 .base-infor{
   border-radius: 20rpx;
   border: 1rpx solid rgba(216, 216, 216, 0.5);
@@ -235,6 +228,8 @@ input{
 }
 
 .operation-item {
+  height: 90rpx;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -22,9 +22,9 @@
   </view>
   <view class="disease-item">
     <text>调查员</text>
-    <text>{{personName}}</text>
+    <text>{{personName ? personName : '待分配'}}</text>
   </view>
-  <view class="disease-item">
+  <view class="disease-item" wx:if="{{personMobile}}">
     <text>联系电话</text>
     <text bindtap="phoneCall" data-phone="{{personMobile}}" style="color: #1a65ff">{{personMobile}}</text>
   </view>
@@ -46,12 +46,12 @@
   </block>
   <view class="add-task-btn" bindtap="toAddTask">添加任务</view>
   <!-- 分配作业员/转单 -->
-  <view class="operation-box">
+  <view class="operation-box" wx:if="{{(vehicleList.status < 3 && isShowTransfer) || (!vehicleList.task_id && vehicleList.status == 0)}}">
     <view class="operation-item" bindtap="toAssignment" wx:if="{{!vehicleList.task_id && vehicleList.status == 0}}">
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>分配作业员</text>
     </view>
-    <view class="operation-item" bindtap="" wx:if="{{vehicleList.status < 3}}">
+    <view class="operation-item" bindtap="toChangeOrder" wx:if="{{vehicleList.status < 3 && isShowTransfer}}">
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>转单</text>
     </view>
@@ -60,7 +60,7 @@
 
 <view class="whole-task" wx:if='{{first == 1}}'>
   <view class="whole-base-tip">
-    <view class="base active">
+    <view class="base">
       <view>案件信息</view>
       <view class="line"></view>
     </view>
@@ -134,37 +134,46 @@
       <text>暂无资料</text>
     </view>
   </view>
+  <view class="add-task-btn" bindtap="toAddInformation">添加资料</view>
 </view>
 
 <view class="whole-task" wx:if='{{first == 3}}'>
   <view class="whole-task-tip">调查结论</view>
   <view class="line"></view>
-
   <view class="base-infor">
     <view class="task-list base-item">
       <text>赔付意见:</text>
-      <picker bindchange="compensationChange" range="{{compensationList}}">
+      <picker bindchange="compensationChange" range="{{compensationList}}" wx:if="{{!vehicleList.pay_opinion}}">
         <view class="task-item-picker" wx:if="{{!compensationName}}">请选择赔付意见</view>
         <view wx:if="{{compensationName}}">{{compensationName}}</view>
       </picker>
+      <view wx:if="{{vehicleList.pay_opinion}}">{{!vehicleList.pay_opinion}}</view>
     </view>
 
     <view class="task-list base-item">
       <text>是否举报/协助案件:</text>
-      <picker bindchange="reportChange" range="{{reportList}}">
+      <picker bindchange="reportChange" range="{{reportList}}" wx:if="{{!vehicleList.assist_case}}">
         <view class="task-item-picker" wx:if="{{!reportName}}">请选择是否举报/协助案件</view>
         <view wx:if="{{reportName}}">{{reportName}}</view>
       </picker>
+      <view wx:if="{{vehicleList.assist_case}}">{{vehicleList.assist_case}}</view>
     </view>
 
     <view class="task-list base-item">
       <text>公司调查费用:</text>
-      <input placeholder="请输入公司调查费用" placeholder-class="ph-class"></input>
+      <input placeholder="请输入公司调查费用" placeholder-class="ph-class" value="{{vehicleList.survey_fee}}" disabled="disabled" wx:if="{{vehicleList.survey_fee}}"></input>
+      <input placeholder="请输入公司调查费用" placeholder-class="ph-class" bindinput="getFeeInput" wx:if="{{!vehicleList.survey_fee}}"></input>
     </view>
 
     <view class="investigation-whole">
       <text>备注:</text>
-      <textarea type="text" placeholder="选填"></textarea>
+      <textarea type="text" placeholder="选填" placeholder-class="ph-class" bindinput="getRemarkInput" wx:if="{{!vehicleList.pay_opinion}}"></textarea>
+      <textarea type="text" placeholder="选填" placeholder-class="ph-class" value="{{vehicleList.remark?vehicleList.remark:'无'}}" disabled="disabled" wx:if="{{vehicleList.pay_opinion}}"></textarea>
+    </view>
+  </view>
+  <view class="operation-box" bindtap="submitConclusion" wx:if="{{!vehicleList.pay_opinion}}">
+    <view class="operation-item">
+      <text>确定</text>
     </view>
   </view>
 </view>
