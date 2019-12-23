@@ -96,6 +96,7 @@
         <text wx:if='{{surveyList.status==4}}'>进行中</text>
         <text wx:if='{{surveyList.status==5}}'>已取消</text>
         <text wx:if='{{surveyList.status==6}}'>已完成</text>
+        <text wx:if='{{surveyList.status==100}}'>已转单</text>
       </view>
       <view class="business-item" wx:if="{{surveyList.status > 3}}">
         <text>评价</text>
@@ -144,7 +145,7 @@
   </view>
 
   <!-- 操作按钮 -->
-  <view class="operation" wx:if="{{surveyList.status < 4 && !turnOut && !turnInFirst}}">
+  <!-- <view class="operation" wx:if="{{surveyList.status < 4 && !turnOut && !turnInFirst}}">
     <view class="operation-item" bindtap="toReceipt">
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>接单</text>
@@ -153,9 +154,9 @@
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>转单</text>
     </view>
-  </view>
+  </view> -->
   <!-- ------------ -->
-  <view class="operation" wx:if="{{!serviceOperation && surveyList.status == 4 && !surveyList.task_id && !turnOut}}">
+  <view class="operation" wx:if="{{surveyList.status < 4 && !surveyList.task_id && !turnOut && !turnInFirst}}">
     <view class="operation-item" bindtap="toScene">
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>添加明细</text>
@@ -226,7 +227,7 @@
     </view>
   </view>
   <!-- -------------------- -->
-  <view class="operation" wx:if="{{turnOut && surveyList.status < 6}}">
+  <view class="operation" wx:if="{{(turnOut && surveyList.status < 6) || turnOut && surveyList.status == 100}}">
     <view class="operation-item">
       <text>已转单</text>
     </view>

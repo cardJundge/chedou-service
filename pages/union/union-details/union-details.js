@@ -55,9 +55,9 @@ Page({
         success: (res) => {
           console.log(res.tapIndex);
           if (res.tapIndex === 0) {
-            this.establishUnion()
+            // this.establishUnion()
           } else if (res.tapIndex === 1) {
-            this.applyUnion()
+            // this.applyUnion()
           }
         }
       })

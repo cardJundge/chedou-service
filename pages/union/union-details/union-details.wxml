@@ -52,7 +52,7 @@
       </view>
     </view>
     <!-- 加入联盟方式 -->
-    <view class="union-mode">
+    <!-- <view class="union-mode">
       <view class="union-mode-top">
         <text>联盟成员</text>
         <view bindtap="toExamine">
@@ -61,7 +61,7 @@
           <i-icon type="enter" size="20" />
         </view>
       </view>
-    </view>
+    </view> -->
     <!-- 退出按钮 -->
     <view class="union-btn-box">
       <view class="union-btn" bindtap="signOutUnion" data-flag="0" wx:if="{{leaderId == serviceId}}">删除并退出</view>

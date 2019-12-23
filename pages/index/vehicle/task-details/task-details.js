@@ -37,9 +37,15 @@ Page({
       if (res.data.status == 1) {
         res.data.data.forEach((item, index) => {
           // this.data.taskRecord.push(JSON.parse(item.data))
-          item.image = item.image.split(',')
-          item.audio = item.audio.split(',')
-          item.video = item.video.split(',')
+          if(item.image) {
+            item.image = item.image.split(',')
+          }
+          if(item.audio) {
+            item.audio = item.audio.split(',')
+          }
+         if(item.video) {
+           item.video = item.video.split(',')
+         }
           this.data.taskRecord.push(item)
           this.data.taskRecord[index].tId = item.id
         })

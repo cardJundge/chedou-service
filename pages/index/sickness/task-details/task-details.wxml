@@ -325,7 +325,7 @@
             <view>
               <view class="form-item">
                 <label>体检机构名称:</label>
-                <view>{{task.medical_screen ? task.medical_screen : '无'}}</view>
+                <view>{{task.medical_org ? task.medical_org : '无'}}</view>
               </view>
 
               <view class="form-item">

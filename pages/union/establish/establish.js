@@ -19,13 +19,22 @@ Page({
     bottomSpin: true,
     isAddModule: false,
     businessArray: [],
-    unionName: ''
+    unionName: '',
+    addWay: '',
+    addWayList: ['无需审核直接加入','需要审核'],
   },
   onLoad: function(options) {
     this.getModule()
     this.data.hostName = app.globalData.hostName
     this.setData({
       imgUrl: app.globalData.imgUrl
+    })
+  },
+
+  addWayChange(e) {
+    this.data.addWayIndex = e.detail.value
+    this.setData({
+      addWay: this.data.addWayList[this.data.addWayIndex]
     })
   },
 
@@ -145,6 +154,11 @@ Page({
         title: '联盟简介不能为空',
         icon: 'none'
       })
+    } else if (!this.data.addWayIndex) {
+      return wx.showToast({
+        title: '请选择加入方式',
+        icon: 'none'
+      })
     } else if (!this.data.module) {
       return wx.showToast({
         title: '主导业务不能为空',
@@ -155,7 +169,7 @@ Page({
       name: this.data.unionName,
       logo: this.data.imgLogo,
       intro: this.data.unionIntro,
-      audit: 1,
+      audit: this.data.addWayIndex,
       module: this.data.module
     }
 

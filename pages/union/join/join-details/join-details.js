@@ -7,7 +7,8 @@ var app = getApp()
 Page({
   data: {
     unionInfo: [],
-    spinShow: true
+    spinShow: true,
+    isApply: false
   },
 
   onLoad: function (options) {
@@ -45,14 +46,23 @@ Page({
   },
 
   toApply() {
+    this.setData({
+      isApply: true
+    })
     let params = {
       id: this.data.unionInfo.id,
       service_id: app.globalData.userInfo.id
     }
     unionModel.applyJoinUnion(params, res=> {
+      this.setData({
+        isApply: false
+      })
       if(res.data.status == 1) {
         wx.showToast({
           title: '申请成功'
+        })
+        wx.navigateBack({
+          delta: 1
         })
       } else {
         if (res.data.msg.match('Token已过期或失效')) {

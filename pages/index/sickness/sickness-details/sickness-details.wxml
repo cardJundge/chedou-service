@@ -46,7 +46,7 @@
       <text>转单</text>
     </view>
   </view>
-  <view class="operation-box"  wx:if="{{turnOut}}">
+  <view class="operation-box"  wx:if="{{(diseaseList.status < 2 && turnOut) || (diseaseList.status == 100 && turnOut)}}">
     <view class="operation-item">
       <text>已转单</text>
     </view>

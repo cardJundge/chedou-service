@@ -96,7 +96,7 @@ Page({
             turnOut: true
           })
         }
-        if (this.data.diseaseList.turn_service_id && (this.data.diseaseList.turn_service_id == this.data.serviceId) && this.data.diseaseList.status == 0) {
+        if (this.data.diseaseList.turn_service_id && (this.data.diseaseList.turn_service_id == this.data.serviceId) && this.data.diseaseList.status == 100) {
           this.setData({
             visible: true
           })
@@ -150,7 +150,23 @@ Page({
 
   // 转入的单退回
   toSendBack() {
-
+    wx.showLoading({
+      title: '退回中...',
+    })
+    let params = {
+      key: 'sickness',
+      id: this.data.listId
+    }
+    indexModel.backOrder(params, res => {
+      if (res.data.status == 1) {
+        wx.showToast({
+          title: '退回成功',
+        })
+        wx.navigateBack({
+          delta: 1
+        })
+      }
+    })
   },
 
   // 转入的单是否接单

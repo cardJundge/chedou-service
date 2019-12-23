@@ -17,6 +17,14 @@
         <label>联盟简介</label>
         <textarea name="unionIntro" bindinput="getUnionIntro" value="{{unionIntro}}" placeholder="请输入联盟简介" placeholder-class="ph-class"></textarea>
       </view>
+      <!-- 加入联盟方式 -->
+      <view class="establish-item">
+        <label>加入方式</label>
+        <picker value="{{addWay}}" range="{{addWayList}}" bindchange="addWayChange">
+          <view wx:if="{{!addWay}}" style="color: #a3a3a3">请选择加入方式</view>
+          <view wx:if="{{addWay}}">{{addWay}}</view>
+        </picker>
+      </view>
       <view class="establish-item establish-item-box">
         <view>
           <label>主导业务</label>
@@ -30,5 +38,5 @@
     </view>
   </form>
   <!-- 添加模块components -->
-  <add-module module="{{moduleArray}}" bottomSpin="{{bottomSpin}}" isShow="{{isAddModule}}" bind:okEvent="okEvent" flag="1"/>
+  <add-module module="{{moduleArray}}" bottomSpin="{{bottomSpin}}" isShow="{{isAddModule}}" bind:okEvent="okEvent" flag="1" />
 </view>

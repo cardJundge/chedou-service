@@ -118,7 +118,7 @@ Page({
             turnOut: true
           })
         }
-        if (this.data.vehicleList.turn_service_id && (this.data.vehicleList.turn_service_id == this.data.serviceId) && this.data.vehicleList.status == 0) {
+        if (this.data.vehicleList.turn_service_id && (this.data.vehicleList.turn_service_id == this.data.serviceId) && this.data.vehicleList.status == 100) {
           this.setData({
             turnInFirst: true,
             visible: true
@@ -152,7 +152,23 @@ Page({
 
   // 转入的单退回
   toSendBack() {
-
+    wx.showLoading({
+      title: '退回中...',
+    })
+    let params = {
+      key: 'traffic',
+      id: this.data.listId
+    }
+    indexModel.backOrder(params, res => {
+      if (res.data.status == 1) {
+        wx.showToast({
+          title: '退回成功',
+        })
+        wx.navigateBack({
+          delta: 1
+        })
+      }
+    })
   },
 
   // 转入的单接单
@@ -167,7 +183,10 @@ Page({
         wx.showToast({
           title: '接单成功',
         })
-        this.getSickDetailsList()
+        this.getVehicleDetails()
+        this.setData({
+          turnInFirst: false
+        })
         // this.toScene()
       } else {
         if (res.data.msg.match('Token')) {

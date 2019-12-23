@@ -112,7 +112,7 @@ Page({
             turnOut: true
           })
         } 
-        if (this.data.surveyList.turn_service_id && (this.data.surveyList.turn_service_id == this.data.serviceId) && this.data.surveyList.status == 0) {
+        if (this.data.surveyList.turn_service_id && (this.data.surveyList.turn_service_id == this.data.serviceId) && this.data.surveyList.status == 100) {
           this.setData({
             turnInFirst: true,
             visible: true
@@ -140,11 +140,6 @@ Page({
         }
         // ***********************************************************
         res.data.schedule.forEach((item, index) => {
-          if(item.title.match('到达现场')) {
-            this.setData({
-              serviceOperation: true
-            })
-          }
           if (item.title.match('接单') || item.title.match('到达现场') || item.title.match('分配') || item.title.match('完成')) {
             steps.push(item)
             this.setData({
@@ -220,6 +215,14 @@ Page({
         this.setData({
           detailed: this.data.detailed
         })
+        res.data.schedule.forEach((item, index) => {
+          if (this.data.detailed.length != 0 && item.title.match('到达现场')) {
+            this.setData({
+              serviceOperation: true
+            })
+          }
+        })
+      
         this.getInsuranceList()
       }
     })
@@ -227,12 +230,18 @@ Page({
 
   // 转入的单退回
   toSendBack() {
+    wx.showLoading({
+      title: '退回中...',
+    })
     let params = {
       key: 'survey',
       id: this.data.listId
     }
     indexModel.backOrder(params, res=> {
       if(res.data.status == 1) {
+        wx.showToast({
+          title: '退回成功',
+        })
         wx.navigateBack({
           delta: 1
         })
@@ -253,6 +262,9 @@ Page({
           title: '接单成功',
         })
         this.getDetails()
+        this.setData({
+          turnInFirst: false
+        })
         // this.toScene()
       } else {
         if (res.data.msg.match('Token已过期或失效')) {

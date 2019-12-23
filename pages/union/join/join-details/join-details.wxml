@@ -49,7 +49,8 @@
     </view>
     <!-- 按钮 -->
     <view class="union-btn-box" wx:if="{{joinStatus == '去申请'}}">
-      <view class="union-btn" bindtap="toApply">申请加入</view>
+      <view class="union-btn" bindtap="toApply" wx:if="{{!isApply}}">申请加入</view>
+      <view class="union-btn" wx:if="{{isApply}}">申请中...</view>
     </view>
   </view>
 </view>

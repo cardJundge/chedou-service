@@ -62,7 +62,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#1A65FF",
-    "navigationBarTitleText": "商户端",
+    "navigationBarTitleText": "车豆服务商",
     "navigationBarTextStyle": "white"
   },
   "permission": {
