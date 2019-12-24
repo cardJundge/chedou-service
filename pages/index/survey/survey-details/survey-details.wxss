@@ -136,3 +136,32 @@
   align-items: center;
   justify-content: center;
 }
+
+.modal-content {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24rpx;
+}
+
+.modal-item {
+  padding: 12rpx 0;
+}
+
+.modal-item text {
+  text-align: left;
+}
+
+.modal-item text:first-child{
+  margin-right: 24rpx;
+}
+
+.modal-item text:last-child {
+  color: #242429;
+}
+
+.modal-item-remark {
+  display: flex;
+  flex-direction: column;
+}

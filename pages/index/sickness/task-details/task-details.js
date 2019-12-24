@@ -11,16 +11,20 @@ Page({
     name: 'name1',
     // 记录
     taskRecord: [],
+    tabList: ['调查详情', '调查要求'],
+    isActive: 1
     //第二类样式成员变量
   },
 
-  onLoad: function(options) {
+  onLoad: function (options) {
     // console.log(options)
     this.setData({
       stId: options.stId,
       sicknessTaskId: options.sicknessTaskId,
-      stName: options.stName,
       imgUrl: app.globalData.imgUrl
+    })
+    wx.setNavigationBarTitle({
+      title: options.stName
     })
     let sicknessId = this.data.sicknessTaskId
     if (sicknessId >= 1 && sicknessId < 3) {
@@ -59,20 +63,27 @@ Page({
     this.getTaskRecord()
   },
 
+  changeTab(e) {
+    console.log(e)
+    this.setData({
+      isActive: e.currentTarget.dataset.index
+    })
+  },
+
   // 获取任务记录
   getTaskRecord() {
     let params = {
       id: this.data.stId
     }
     indexModel.getSickRecordList(params, res => {
-      
-      if(res.data.status == 1) {
+
+      if (res.data.status == 1) {
         res.data.data.forEach((item, index) => {
           // this.data.taskRecord.push(JSON.parse(item.data))
           this.data.taskRecord.push(item.data)
           this.data.taskRecord[index].tId = item.id
         })
-       
+
         this.setData({
           taskRecord: this.data.taskRecord,
           taskReject: res.data.reject
@@ -96,7 +107,7 @@ Page({
           urls: imgArr,
           current: imgArr[imageIndex]
         })
-        console.log(imgArr, imgArr[imageIndex])
+        // console.log(imgArr, imgArr[imageIndex])
       }
     })
   },

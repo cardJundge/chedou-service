@@ -31,7 +31,9 @@ Page({
     ],
   },
   onLoad(options) {
-
+    this.setData({
+      serviceId: app.globalData.userInfo.id
+    })
   },
   onShow() {
     this.setData({

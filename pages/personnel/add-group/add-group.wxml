@@ -19,7 +19,7 @@
 <!-- 分组列表 -->
 <view class="add-group-body" wx:if="{{isEdit == 2}}">
   <view class="group-content-null" wx:if="{{nodata}}">
-    <image src="cloud://chedou-service.6368-chedou-service/images/someone_null_bg.png"></image>
+    <image src="/images/personnel/group_null.png"></image>
     <text>暂无分组</text>
     <view bindtap="addGroup">立即添加</view>
   </view>

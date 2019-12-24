@@ -52,18 +52,26 @@
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>分配作业员</text>
     </view>
-    <view class="operation-item" bindtap="toChangeOrder" wx:if="{{vehicleList.status < 3 && isShowTransfer && !turnIn}}">
+    <view class="operation-item" bindtap="toChangeOrder" wx:if="{{isShowTransfer && !turnIn}}">
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>转单</text>
+    </view>
+    <view class="operation-item" bindtap="toSendBack" wx:if="{{turnIn}}">
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>退回</text>
     </view>
   </view>
   <view class="operation-box" wx:if="{{vehicleList.status < 3 && !turnOut && vehicleList.task_id}}">
     <view class="operation-item" wx:if="{{vehicleList.task_id && vehicleList.status < 3}}">
       <text>已分配作业员</text>
     </view>
-    <view class="operation-item" bindtap="toChangeOrder" wx:if="{{vehicleList.status < 3 && isShowTransfer && !turnIn}}">
+    <view class="operation-item" bindtap="toChangeOrder" wx:if="{{isShowTransfer && !turnIn}}">
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>转单</text>
+    </view>
+    <view class="operation-item" bindtap="toSendBack" wx:if="{{turnIn}}">
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>退回</text>
     </view>
   </view>
   <view class="operation-box" wx:if="{{(vehicleList.status < 3 && turnOut) || (vehicleList.status == 100 && turnOut)}}">
@@ -196,5 +204,30 @@
 <!-- 添加任务模板 -->
 <task-title isShow="{{titleShow}}" bind:addTitle="getTasksList" />
 <i-modal title="提示" visible="{{visible}}" actions="{{actions}}" bind:click="modalClick" bind:cancel="modalCancel">
-  <view>联盟内有新的订单</view>
+  <view class="modal-content">
+   <view class="modal-item">
+      <text>转单公司</text>
+      <text>{{transferOrderDetail.turn_service}}</text>
+    </view>
+    <view class="modal-item">
+      <text>转单时间</text>
+      <text>{{transferOrderDetail.turn_date}}</text>
+    </view>
+    <view class="modal-item">
+      <text>案件分类</text>
+      <text>{{transferOrderDetail.type}}</text>
+    </view>
+    <view class="modal-item modal-item-remark" wx:if="{{transferOrderDetail.remark}}">
+      <text>备注</text>
+      <text>{{transferOrderDetail.remark}}</text>
+    </view>
+    <view class="modal-item">
+      <text>转单金额</text>
+      <text>{{transferOrderDetail.money}}</text>
+    </view>
+     <view class="modal-item">
+      <text>支付方式</text>
+      <text>{{transferOrderDetail.pay}}</text>
+    </view>
+  </view>
 </i-modal>

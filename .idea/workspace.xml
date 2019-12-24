@@ -1,52 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c35a2726-368c-4175-b887-e6304481fb55" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/components/framemode/framemode.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/components/framemode/framemode.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/components/framemode/framemode.wxml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/components/framemode/framemode.wxss" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/components/list/list.wxml" afterPath="$PROJECT_DIR$/components/list/list.wxml" />
-      <change beforePath="$PROJECT_DIR$/dist/dateTimePicker.js" afterPath="$PROJECT_DIR$/dist/dateTimePicker.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/index.js" afterPath="$PROJECT_DIR$/pages/index/index.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/index.wxml" afterPath="$PROJECT_DIR$/pages/index/index.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/index/models/index.js" afterPath="$PROJECT_DIR$/pages/index/models/index.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/sickness/sickness-details/sickness-details.js" afterPath="$PROJECT_DIR$/pages/index/sickness/sickness-details/sickness-details.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/sickness/sickness-details/sickness-details.wxml" afterPath="$PROJECT_DIR$/pages/index/sickness/sickness-details/sickness-details.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/index/sickness/sickness-details/sickness-details.wxss" afterPath="$PROJECT_DIR$/pages/index/sickness/sickness-details/sickness-details.wxss" />
-      <change beforePath="$PROJECT_DIR$/pages/index/sickness/sickness.js" afterPath="$PROJECT_DIR$/pages/index/sickness/sickness.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/sickness/sickness.wxml" afterPath="$PROJECT_DIR$/pages/index/sickness/sickness.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/index/sickness/sickness.wxss" afterPath="$PROJECT_DIR$/pages/index/sickness/sickness.wxss" />
-      <change beforePath="$PROJECT_DIR$/pages/index/sickness/task-details/task-details.js" afterPath="$PROJECT_DIR$/pages/index/sickness/task-details/task-details.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/sickness/task-details/task-details.wxml" afterPath="$PROJECT_DIR$/pages/index/sickness/task-details/task-details.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/index/sickness/task-details/task-details.wxss" afterPath="$PROJECT_DIR$/pages/index/sickness/task-details/task-details.wxss" />
-      <change beforePath="$PROJECT_DIR$/pages/index/survey/add-survey/add-survey.js" afterPath="$PROJECT_DIR$/pages/index/survey/add-survey/add-survey.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/survey/survey-details/survey-details.js" afterPath="$PROJECT_DIR$/pages/index/survey/survey-details/survey-details.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/survey/survey-details/survey-details.wxml" afterPath="$PROJECT_DIR$/pages/index/survey/survey-details/survey-details.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/index/survey/survey-details/survey-details.wxss" afterPath="$PROJECT_DIR$/pages/index/survey/survey-details/survey-details.wxss" />
-      <change beforePath="$PROJECT_DIR$/pages/index/survey/survey.js" afterPath="$PROJECT_DIR$/pages/index/survey/survey.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/survey/survey.wxml" afterPath="$PROJECT_DIR$/pages/index/survey/survey.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/index/survey/survey.wxss" afterPath="$PROJECT_DIR$/pages/index/survey/survey.wxss" />
-      <change beforePath="$PROJECT_DIR$/pages/index/transfer/company/company.js" afterPath="$PROJECT_DIR$/pages/index/transfer/company/company.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/transfer/transfer.js" afterPath="$PROJECT_DIR$/pages/index/transfer/transfer.js" />
-      <change beforePath="$PROJECT_DIR$/pages/index/transfer/transfer.wxml" afterPath="$PROJECT_DIR$/pages/index/transfer/transfer.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/personnel/assignment/assignment.wxss" afterPath="$PROJECT_DIR$/pages/personnel/assignment/assignment.wxss" />
-      <change beforePath="$PROJECT_DIR$/pages/union/establish/establish.js" afterPath="$PROJECT_DIR$/pages/union/establish/establish.js" />
-      <change beforePath="$PROJECT_DIR$/pages/union/establish/establish.wxml" afterPath="$PROJECT_DIR$/pages/union/establish/establish.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/union/establish/establish.wxss" afterPath="$PROJECT_DIR$/pages/union/establish/establish.wxss" />
-      <change beforePath="$PROJECT_DIR$/pages/union/join/join-details/join-details.js" afterPath="$PROJECT_DIR$/pages/union/join/join-details/join-details.js" />
-      <change beforePath="$PROJECT_DIR$/pages/union/join/join-details/join-details.wxml" afterPath="$PROJECT_DIR$/pages/union/join/join-details/join-details.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/union/join/join.js" afterPath="$PROJECT_DIR$/pages/union/join/join.js" />
-      <change beforePath="$PROJECT_DIR$/pages/union/join/join.wxml" afterPath="$PROJECT_DIR$/pages/union/join/join.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/union/join/join.wxss" afterPath="$PROJECT_DIR$/pages/union/join/join.wxss" />
-      <change beforePath="$PROJECT_DIR$/pages/union/member/member.js" afterPath="$PROJECT_DIR$/pages/union/member/member.js" />
-      <change beforePath="$PROJECT_DIR$/pages/union/member/member.wxml" afterPath="$PROJECT_DIR$/pages/union/member/member.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/union/notice/notice.js" afterPath="$PROJECT_DIR$/pages/union/notice/notice.js" />
-      <change beforePath="$PROJECT_DIR$/pages/union/union-details/union-details.js" afterPath="$PROJECT_DIR$/pages/union/union-details/union-details.js" />
-      <change beforePath="$PROJECT_DIR$/pages/union/union-details/union-details.json" afterPath="$PROJECT_DIR$/pages/union/union-details/union-details.json" />
-      <change beforePath="$PROJECT_DIR$/pages/union/union-details/union-details.wxml" afterPath="$PROJECT_DIR$/pages/union/union-details/union-details.wxml" />
-      <change beforePath="$PROJECT_DIR$/pages/union/union.js" afterPath="$PROJECT_DIR$/pages/union/union.js" />
-    </list>
+    <list default="true" id="c35a2726-368c-4175-b887-e6304481fb55" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -82,9 +37,11 @@
       <file leaf-file-name="list.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/list/list.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="540">
               <caret line="22" column="12" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-              <folding />
+              <folding>
+                <marker date="1576722955462" expanded="true" signature="3328:3445" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -137,8 +94,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="17" />
-    <option name="y" value="11" />
+    <option name="x" value="193" />
+    <option name="y" value="5" />
     <option name="width" value="1726" />
     <option name="height" value="1036" />
   </component>
@@ -158,6 +115,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -206,12 +164,11 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ds-app/dou-said-app" />
+    <property name="last_opened_file_path" value="E:/project/imgUp" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
   </component>
   <component name="RunDashboard">
@@ -243,14 +200,16 @@
       <workItem from="1572511493428" duration="1154000" />
       <workItem from="1573609793365" duration="22000" />
       <workItem from="1576722489390" duration="500000" />
+      <workItem from="1577096690294" duration="153000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3198000" />
+    <option name="totallyTimeSpent" value="3351000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="17" y="11" width="1726" height="1036" extended-state="0" />
+    <frame x="193" y="5" width="1726" height="1036" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21445498" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -282,6 +241,56 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/components/list/list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="22" column="12" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+          <folding>
+            <marker date="1576722955462" expanded="true" signature="3328:3445" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/index/survey/add-survey/add-survey.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/index/survey/add-survey/add-survey.wxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1485">
+          <caret line="55" column="22" lean-forward="false" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/list/list.wxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="14" column="45" lean-forward="false" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/list/list.wxss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2943">
+          <caret line="109" column="4" lean-forward="false" selection-start-line="109" selection-start-column="4" selection-end-line="109" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/index/transfer/payment/payment.wxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pages/index/survey/add-survey/add-survey.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -318,7 +327,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="594">
           <caret line="22" column="12" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-          <folding />
+          <folding>
+            <marker date="1576722955462" expanded="true" signature="3328:3445" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -358,7 +369,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="18" column="12" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
-          <folding />
+          <folding>
+            <marker date="1576722955462" expanded="true" signature="3328:3445" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -412,9 +425,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/list/list.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="540">
           <caret line="22" column="12" lean-forward="false" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-          <folding />
+          <folding>
+            <marker date="1576722955462" expanded="true" signature="3328:3445" ph="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>

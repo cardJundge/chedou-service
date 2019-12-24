@@ -96,7 +96,8 @@
         <text wx:if='{{surveyList.status==4}}'>进行中</text>
         <text wx:if='{{surveyList.status==5}}'>已取消</text>
         <text wx:if='{{surveyList.status==6}}'>已完成</text>
-        <text wx:if='{{surveyList.status==100}}'>已转单</text>
+        <text wx:if='{{surveyList.status==100 && turnOut}}'>已转单</text>
+        <text wx:if='{{surveyList.status==100 && turnIn}}'>待接单</text>
       </view>
       <view class="business-item" wx:if="{{surveyList.status > 3}}">
         <text>评价</text>
@@ -177,6 +178,10 @@
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>转单</text>
     </view>
+    <view class="operation-item" bindtap="toSendBack" wx:if="{{turnIn}}">
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>退回</text>
+    </view>
   </view>
   <!-- ------------- -->
   <view class="operation" wx:if="{{serviceOperation && surveyList.status == 4 && !surveyList.task_id && !turnOut}}">
@@ -199,6 +204,10 @@
     <view class="operation-item" bindtap="toChangeOrder" wx:if="{{isShowTransfer && !turnIn}}">
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>转单</text>
+    </view>
+    <view class="operation-item" bindtap="toSendBack" wx:if="{{turnIn}}">
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>退回</text>
     </view>
   </view>
   <!-- ---------------- -->
@@ -225,6 +234,10 @@
       <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
       <text>转单</text>
     </view>
+    <view class="operation-item" bindtap="toSendBack" wx:if="{{turnIn}}">
+      <i-icon class="icon" type="keyboard" size="20" color="#ffffff" />
+      <text>退回</text>
+    </view>
   </view>
   <!-- -------------------- -->
   <view class="operation" wx:if="{{(turnOut && surveyList.status < 6) || turnOut && surveyList.status == 100}}">
@@ -238,5 +251,30 @@
 <!-- 评价二维码 -->
 <qr-code isShow="{{showQrCode}}" qrImg="{{qrImg}}" />
 <i-modal title="提示" visible="{{visible}}" actions="{{actions}}" bind:click="modalClick" bind:cancel="modalCancel">
-  <view>联盟内有新的订单</view>
+  <view class="modal-content">
+   <view class="modal-item">
+      <text>转单公司</text>
+      <text>{{transferOrderDetail.turn_service}}</text>
+    </view>
+    <view class="modal-item">
+      <text>转单时间</text>
+      <text>{{transferOrderDetail.turn_date}}</text>
+    </view>
+    <view class="modal-item">
+      <text>案件分类</text>
+      <text>{{transferOrderDetail.type}}</text>
+    </view>
+    <view class="modal-item modal-item-remark" wx:if="{{transferOrderDetail.remark}}">
+      <text>备注</text>
+      <text>{{transferOrderDetail.remark}}</text>
+    </view>
+    <view class="modal-item">
+      <text>转单金额</text>
+      <text>{{transferOrderDetail.money}}</text>
+    </view>
+     <view class="modal-item">
+      <text>支付方式</text>
+      <text>{{transferOrderDetail.pay}}</text>
+    </view>
+  </view>
 </i-modal>

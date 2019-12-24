@@ -4,6 +4,7 @@ import {
 } from '../models/index.js'
 
 var indexModel = new IndexModel()
+var app = getApp()
 Page({
   data: {
    sickList: [],
@@ -20,7 +21,9 @@ Page({
    hasNoData: false,
   },
   onLoad: function (options) {
-   
+    this.setData({
+      serviceId: app.globalData.userInfo.id
+    })
   },
 
   onShow() {

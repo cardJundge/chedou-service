@@ -39,6 +39,8 @@
       <text class='list-item-right status05' wx:if='{{item.status==4}}'>进行中</text>
       <text class='list-item-right status06' wx:if='{{item.status==5}}'>已取消</text>
       <text class='list-item-right status06' wx:if='{{item.status==6}}'>已完成</text>
+      <text class='list-item-right status06' wx:if='{{item.status==100 && (item.turn_service_id != serviceId)}}'>已转单</text>
+      <text class='list-item-right status01' wx:if='{{item.status==100 && (item.turn_service_id == serviceId)}}'>待审核</text>
     </view>
     <view class="more-data" wx:if="{{hasMoreData}}" bindtap="getMoreData">点击加载更多...</view>
   </view>

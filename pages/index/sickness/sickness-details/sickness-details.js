@@ -100,20 +100,7 @@ Page({
           this.setData({
             visible: true
           })
-          // wx.showModal({
-          //   title: '提示',
-          //   content: '联盟内有新的订单转入',
-          //   cancelText: "退回",
-          //   confirmText: "接单",
-          //   confirmColor: '#1a65ff',
-          //   success: res => {
-          //     if (res.cancel) {
-          //       this.toSendBack()
-          //     } else {
-          //       this.toReceipt()
-          //     }
-          //   }
-          // })
+          this.getTransferOrderDetail()
         }
         if (this.data.diseaseList.turn_service_id && (this.data.diseaseList.turn_service_id == this.data.serviceId)) {
           this.setData({
@@ -164,6 +151,20 @@ Page({
         })
         wx.navigateBack({
           delta: 1
+        })
+      }
+    })
+  },
+
+  // 获取转单详情
+  getTransferOrderDetail() {
+    let params = {
+      id: this.data.diseaseList.report_no
+    }
+    indexModel.getTransferOrderDetail(params, res => {
+      if (res.data.status == 1) {
+        this.setData({
+          transferOrderDetail: res.data.data
         })
       }
     })

@@ -76,7 +76,7 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: nowrap;
-  padding: 0 24rpx;
+  /* padding: 0 24rpx; */
   margin-top: 84rpx;
   white-space: nowrap;
 }

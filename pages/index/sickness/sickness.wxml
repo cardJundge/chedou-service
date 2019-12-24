@@ -28,6 +28,8 @@
       <view wx:if="{{item.status == 0}}" class='list-item-right status05'>待审核</view>
       <view wx:if="{{item.status == 1}}" class='list-item-right status01'>预结案</view>
       <view wx:if="{{item.status == 2}}" class='list-item-right status04'>已结案</view>
+      <view wx:if="{{item.status == 100 && (item.turn_service_id != serviceId)}}" class='list-item-right status04'>已转单</view>
+      <view wx:if="{{item.status == 100 && (item.turn_service_id == serviceId)}}" class='list-item-right status05'>待审核</view>
     </view>
     <view class="more-data" wx:if="{{hasMoreData}}" bindtap="getMoreData">点击加载更多...</view>
   </view>

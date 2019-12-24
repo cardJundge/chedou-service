@@ -333,6 +333,17 @@ class IndexModel extends HTTP {
     }
     this.request(params)
   }
+
+  // 转单详情
+  getTransferOrderDetail(param, callback) {
+    var params = {
+      url: '/api/ser/turn/' + param.id + '/info',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
 }
 export {
   IndexModel
