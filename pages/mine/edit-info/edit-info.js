@@ -58,18 +58,15 @@ Page({
       title: '修改中...',
     })
     if (!this.data.avatar) {
-      return wx.showToast({
-        title: '请选择上传头像',
-        icon: 'none'
-      })
+      this.data.avatar = ''
     }
-    mineModel.modifyInfo(this.data.avatar, this.data.companyName, res=> {
-      if(res.data.status == 1) {
+    mineModel.modifyInfo(this.data.avatar, this.data.companyName, res => {
+      if (res.data.status == 1) {
         let params = {
           phone: wx.getStorageSync('userMobile'),
           password: wx.getStorageSync('userPwd')
         }
-        loginModel.postLogin(params, res=> {
+        loginModel.postLogin(params, res => {
           app.globalData.userInfo = res.data.data
           wx.showToast({
             title: '修改成功',

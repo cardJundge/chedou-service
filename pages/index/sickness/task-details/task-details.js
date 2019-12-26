@@ -12,7 +12,7 @@ Page({
     // 记录
     taskRecord: [],
     tabList: ['调查详情', '调查要求'],
-    isActive: 1
+    isActive: 0
     //第二类样式成员变量
   },
 

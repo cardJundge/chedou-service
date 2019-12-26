@@ -40,8 +40,8 @@
         <text>{{index+1}}、{{item.title}}</text>
         <text class="address">{{item.address}}</text>
       </view>
-      <view class="item-result" wx:if="{{item.status == 0}}">未完成</view>
-      <view class="item-result" wx:else>已完成</view>
+      <view class="item-result status05" wx:if="{{item.status == 0}}">未完成</view>
+      <view class="item-result status04" wx:else>已完成</view>
     </view>
   </block>
   <view class="add-task-btn" bindtap="toAddTask" wx:if="{{!turnInFirst && !turnOut}}">添加任务</view>
@@ -146,7 +146,7 @@
   <view class="line"></view>
   <view class="pic-mode">
     <view wx:if="{{vehicleData.length !== 0}}" wx:for="{{vehicleData}}" wx:for-item="data" wx:for-index="index">
-      <text>{{data.title}}（{{data.picture.length}}份）</text>
+      <text wx:if="{{data.title}}">{{data.title}}（{{data.picture.length}}份）</text>
       <view class="whole-data-img">
         <view class="data-list" wx:for="{{data.picture}}" wx:for-item="item" wx:for-index="ind" wx:key="">
           <image src="{{imgUrl}}{{item}}" bindtap="previewImage" data-index="{{ind}}" data-id="{{index}}"></image>

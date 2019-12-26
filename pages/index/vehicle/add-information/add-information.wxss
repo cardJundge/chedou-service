@@ -70,6 +70,7 @@
 }
 
 .related-info-item .image-item .del {
+  color: #ef5959;
   width: 40rpx;
   height: 40rpx;
   position: absolute;

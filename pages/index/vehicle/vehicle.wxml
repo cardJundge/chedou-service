@@ -13,7 +13,7 @@
   </view>
   <!-- 状态选择 -->
 
-  <scroll-view scroll-x class="status-box">
+  <scroll-view scroll-x class="status-box" scroll-left="{{navScrollLeft}}">
     <view bindtap="changeStatus" wx:for="{{statusList}}" wx:key="" data-index="{{item.id}}" class="status-item {{item.id == selected? 'select-active': 'status-item'}}">{{item.name}}</view>
   </scroll-view>
 

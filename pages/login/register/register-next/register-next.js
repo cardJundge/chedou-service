@@ -75,6 +75,9 @@ Page({
       this.data.otherData.shortName = params.shortName
       loginModel.postRegister(this.data.otherData, res=> {
         if(res.data.status == 1) {
+          this.setData({
+            isDisabled: false
+          })
           wx.showToast({
             title: '注册成功',
           })
@@ -89,14 +92,10 @@ Page({
                 url: '/pages/index/index',
               })
             } else {
-              wx.showToast({
-                title: res1.data.msg ? res1.data.msg : '操作超时',
-                icon: 'none'
+              wx.navigateBack({
+                delta: 2
               })
             }
-          })
-          this.setData({
-            isDisabled: false
           })
         } else {
           wx.showToast({

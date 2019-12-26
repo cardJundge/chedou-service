@@ -43,6 +43,7 @@
   margin: 24rpx 24rpx 48rpx;
   display: flex;
   flex-direction: column;
+  padding-bottom: 124rpx;
 }
 
 .whole-task-tip {
@@ -105,14 +106,23 @@
   padding-left: 50rpx;
 }
 
-.item-result {
-  width: 130rpx;
-  height: 55rpx;
-  border-radius: 50rpx;
-  color: #bbb9b9;
+.item-result{
+  width: 180rpx;
+  height: 60rpx;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  border-radius: 30rpx;
+  color: #fff;
+}
+
+.status04 {
+  background: #d0d0d0;
+}
+
+.status05 {
+  color: #1a65ff;
+  border: 1rpx solid #1a65ff;
 }
 
 /* .nextstep{
@@ -169,7 +179,7 @@
 }
 
 .base-item text:first-child {
-  width: 240rpx;
+  width: 320rpx;
 }
 
 .accidentstyle {

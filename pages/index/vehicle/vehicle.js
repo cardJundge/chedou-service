@@ -33,6 +33,7 @@ Page({
     page: 1,
     pageSize: 15,
     hasNoData: false,
+    navScrollLeft: 0
   },
 
   onLoad: function(options) {
@@ -111,6 +112,9 @@ Page({
     // console.log(this.data.selected)
     let tempList = []
     if (this.data.selected === 1) {
+      this.setData({
+        navScrollLeft: 0
+      })
       tempList = this.data.vehicleTempList
       if (this.data.vehicleInfo.length >= this.data.pageSize) {
         this.setData({
@@ -144,6 +148,9 @@ Page({
           }
         })
       } else if (this.data.selected === 5) {
+        this.setData({
+          navScrollLeft: 400
+        })
         this.data.vehicleTempList.forEach((item, index) => {
           if (item.turn_service_id) {
             tempList.push(item)

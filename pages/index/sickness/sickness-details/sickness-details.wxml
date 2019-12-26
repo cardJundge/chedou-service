@@ -35,8 +35,8 @@
         </view>
         <text class="address">{{item.area[0]}}市</text>
       </view>
-      <view class="item-result" wx:if="{{item.status == 2 || item.status == 3}}">已完成</view>
-      <view class="item-result" wx:else>未完成</view>
+      <view class="item-result status04" wx:if="{{item.status == 2 || item.status == 3}}">已完成</view>
+      <view class="item-result status05" wx:else>未完成</view>
     </view>
   </block>
    <!-- 转单 -->

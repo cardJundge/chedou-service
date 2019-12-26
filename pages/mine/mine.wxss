@@ -51,6 +51,7 @@
   left: 12rpx;
   top: 12rpx;
   z-index: 999;
+  border-radius: 50%;
 }
 
 .mine-text {

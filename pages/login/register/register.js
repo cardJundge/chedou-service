@@ -148,10 +148,6 @@ Page({
               })
             }
           })
-          let data = JSON.stringify(params)
-          wx.navigateTo({
-            url: './register-next/register-next?params=' + data,
-          })
         }
       })
     }
