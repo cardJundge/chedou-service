@@ -62,10 +62,20 @@ Page({
     indexModel.getModuleUnion(params, res => {
       console.log(res)
       if (res.data.status == 1) {
-        if(res.data.data.length < 2) {
+        if (res.data.data.length == 0) {
           this.setData({
             isShowTransfer: false
           })
+        } else if (res.data.data.length == 1) {
+          if (res.data.data[0].service.length < 2) {
+            this.setData({
+              isShowTransfer: false
+            })
+          } else {
+            this.setData({
+              isShowTransfer: true
+            })
+          }
         } else {
           this.setData({
             isShowTransfer: true

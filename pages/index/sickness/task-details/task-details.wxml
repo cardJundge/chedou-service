@@ -98,7 +98,7 @@
                   <label>调查材料:</label>
                   <view class="image-cell">
                     <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
-                      <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                      <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                     </view>
                   </view>
                   <view class="image-cell">
@@ -174,7 +174,7 @@
                   <label>调查材料:</label>
                   <view class="image-cell">
                     <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
-                      <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                      <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                     </view>
                   </view>
                   <view class="image-cell">
@@ -235,7 +235,7 @@
                   <label>调查材料:</label>
                   <view class="image-cell">
                     <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
-                      <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                      <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                     </view>
                   </view>
                   <view class="image-cell">
@@ -285,7 +285,7 @@
                   <label>调查材料:</label>
                   <view class="image-cell">
                     <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
-                      <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                      <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                     </view>
                   </view>
                   <view class="image-cell">
@@ -341,7 +341,7 @@
                   <label>调查材料:</label>
                   <view class="image-cell">
                     <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
-                      <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                      <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                     </view>
                   </view>
                   <view class="image-cell">
@@ -395,7 +395,7 @@
                   <label>调查材料:</label>
                   <view class="image-cell">
                     <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
-                      <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                      <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                     </view>
                   </view>
                   <view class="image-cell">
@@ -441,7 +441,7 @@
                   <label>调查材料:</label>
                   <view class="image-cell">
                     <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
-                      <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                      <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                     </view>
                   </view>
                   <view class="image-cell">
@@ -487,7 +487,7 @@
                   <label>调查材料:</label>
                   <view class="image-cell">
                     <view wx:for="{{task.image}}" wx:for-item="item" wx:key="" class="image-item">
-                      <image src="{{imgUrl}}{{item}}" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
+                      <image src="{{imgUrl}}{{item}}!100" catchtap="previewImage" data-index="{{index}}" data-id="{{task.tId}}"></image>
                     </view>
                   </view>
                   <view class="image-cell">

@@ -4,7 +4,7 @@
   <view class="register-tips">
     <text>填写基本信息</text>
     <view class="tips-box">
-      <image src="cloud://chedou-service.6368-chedou-service/images/tips_01.png"></image>
+      <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/tips_01.png"></image>
     </view>
   </view>
   <form bindsubmit="formSubmit">

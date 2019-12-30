@@ -28,10 +28,10 @@ Page({
     })
   },
   onReady() {
-    this.getDataStatics()
     this.getOrderList()
   },
   onShow() {
+    this.getDataStatics()
     this.getModule()
   },
 
@@ -42,13 +42,13 @@ Page({
 
   // 首页获取数据统计
   getDataStatics() {
-    // indexModel.dataStatistics(res => {
-    //   if (res.data.status == 1) {
-    //     this.setData({
-    //       dataStatisticsArray: res.data.data
-    //     })
-    //   }
-    // })
+    indexModel.dataStatistics(res => {
+      if (res.data.status == 1) {
+        this.setData({
+          dataStatisticsArray: res.data.data
+        })
+      }
+    })
   },
 
   // 进入数据统计详情

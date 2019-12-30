@@ -114,10 +114,10 @@
   color: #242429;
 }
 
-.business-item-text text:last-child {
+/* .business-item-text text:last-child {
   font-size: 24rpx;
   color: #aeaeae;
-}
+} */
 
 /* 接单系统 */
 

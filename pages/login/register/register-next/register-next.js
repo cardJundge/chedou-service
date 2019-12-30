@@ -9,7 +9,7 @@ var loginModel = new LoginModel()
 Page({
   data: {
     register: {
-      title: '注册车豆商户端账号'
+      title: '注册分谷OMO商户端账号'
     },
     formData: {
       company: '',

@@ -38,7 +38,8 @@ class MineModel extends HTTP {
       auth: true,
       data: {
         js_code: params.js_code,
-        type: params.type
+        type: params.type,
+        key: params.key
       },
       sCallback: callback
     }
@@ -46,13 +47,14 @@ class MineModel extends HTTP {
   }
 
   // 解绑
-  unTying(callback) {
+  unTying(param, callback) {
     var params = {
       url: '/api/ser/index/unbind',
       type: 'POST',
       auth: true,
       data: {
-        type: 'chedou'
+        type: param.type,
+        key: param.key
       },
       sCallback: callback
     }

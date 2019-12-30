@@ -82,12 +82,8 @@
 </view>
 
 <view class="whole-task" wx:if='{{first == 1}}'>
-  <view class="whole-base-tip">
-    <view class="base">
-      <view>案件信息</view>
-      <view class="line"></view>
-    </view>
-  </view>
+  <view class="whole-task-tip">案件信息</view>
+  <view class="line"></view>
 
   <view class="base-infor">
     <!-- 案件信息 -->
@@ -103,7 +99,7 @@
 
     <view class="task-list base-item" wx:if="{{currentTab == 0}}">
       <text>联系电话:</text>
-      <text>{{vehicleList.mobile}}</text>
+      <text bindtap="phoneCall" data-phone="{{vehicleList.mobile}}" style="color: #1a65ff">{{vehicleList.mobile}}</text>
     </view>
 
     <view class="task-list base-item" wx:if="{{currentTab == 0}}">
@@ -126,16 +122,16 @@
       <text>{{vehicleList.report_date}}</text>
     </view>
 
-    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+    <view class="task-list base-item base-item-textarea" wx:if="{{currentTab == 0}}">
       <text>核实内容:</text>
-      <text wx:if="{{vehicleList.verify_content}}">{{vehicleList.verify_content}}</text>
-      <text wx:else>无</text>
+     <view wx:if="{{vehicleList.verify_content}}">{{vehicleList.verify_content}}</view>
+      <view wx:else>无</view>
     </view>
 
-    <view class="task-list base-item" wx:if="{{currentTab == 0}}">
+    <view class="task-list base-item base-item-textarea" wx:if="{{currentTab == 0}}">
       <text>调查内容:</text>
-      <text wx:if="{{vehicleList.survey_content}}">{{vehicleList.survey_content}}</text>
-      <text wx:else>无</text>
+      <view wx:if="{{vehicleList.survey_content}}">{{vehicleList.survey_content}}</view>
+      <view wx:else>无</view>
     </view>
 
   </view>
@@ -149,7 +145,7 @@
       <text wx:if="{{data.title}}">{{data.title}}（{{data.picture.length}}份）</text>
       <view class="whole-data-img">
         <view class="data-list" wx:for="{{data.picture}}" wx:for-item="item" wx:for-index="ind" wx:key="">
-          <image src="{{imgUrl}}{{item}}" bindtap="previewImage" data-index="{{ind}}" data-id="{{index}}"></image>
+          <image src="{{imgUrl}}{{item}}!100" bindtap="previewImage" data-index="{{ind}}" data-id="{{index}}"></image>
         </view>
       </view>
     </view>
@@ -170,7 +166,7 @@
         <view class="task-item-picker" wx:if="{{!compensationName}}">请选择赔付意见</view>
         <view wx:if="{{compensationName}}">{{compensationName}}</view>
       </picker>
-      <view wx:if="{{vehicleList.pay_opinion}}">{{!vehicleList.pay_opinion}}</view>
+      <view wx:if="{{vehicleList.pay_opinion}}">{{vehicleList.pay_opinion}}</view>
     </view>
 
     <view class="task-list base-item">

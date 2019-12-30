@@ -18,15 +18,16 @@
 }
 
 .modify-btn {
-  position: fixed;
+  /* position: fixed;
   bottom: 0;
-  left: 0;
-  width: 100%;
+  left: 0; */
+  width: 702rpx;
   height: 80rpx;
   line-height: 80rpx;
   text-align: center;
   color: #fff;
   background: #1A65FF;
   font-size: 36rpx;
-  border-radius: 0;
+  border-radius: 40rpx;
+  margin: 24rpx;
 }

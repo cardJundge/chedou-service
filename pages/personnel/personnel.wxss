@@ -9,6 +9,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 9;
 }
 
 .search-bg {
@@ -122,6 +123,7 @@
   width: 90rpx;
   height: 90rpx;
   margin-right: 24rpx;
+  border-radius: 50%;
 }
 
 .personnel-content-item-text {

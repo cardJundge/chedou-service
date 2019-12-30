@@ -45,6 +45,9 @@ Page({
   },
 
   onShow: function () {
+    this.setData({
+      isToComplete: false
+    })
     this.getVehicleDetails()
     this.getModuleUnion()
   },
@@ -110,6 +113,13 @@ Page({
           vehicleList: res.data.data,
           taskList: res.data.trafficTask,
           spinShow: false
+        })
+        this.data.taskList.forEach((item, index) => {
+          if (item.status == 0) {
+            this.setData({
+              isToComplete: true
+            })
+          }
         })
         // ********************************************************
         // ！=转出 ==转入
@@ -315,21 +325,27 @@ Page({
 
   // 提交调查结论
   submitConclusion() {
+    if (this.data.isToComplete) {
+      return wx.showToast({
+        title: '案件中有未完成的任务',
+        icon: 'none'
+      })
+    }
     if (!this.data.compensationName) {
       return wx.showToast({
-        title: '请选择赔付意见！',
+        title: '请选择赔付意见',
         icon: 'none'
       })
     } 
     if (!this.data.reportName) {
       return wx.showToast({
-        title: '请选择是否举报/协助案件！',
+        title: '请选择是否举报/协助案件',
         icon: 'none'
       })
     }
     if (!this.data.conclusionFee) {
       return wx.showToast({
-        title: '请输入公司调查费用！',
+        title: '请输入公司调查费用',
         icon: 'none'
       })
     }
@@ -343,7 +359,7 @@ Page({
     indexModel.submitConclusion(params, res=> {
       if(res.data.status == 1) {
         wx.showToast({
-          title: '提交成功！',
+          title: '提交成功',
         })
         this.getVehicleDetails()
       }

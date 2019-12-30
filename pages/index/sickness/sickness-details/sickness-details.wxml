@@ -163,7 +163,7 @@
       <text>{{data.title}}（{{data.picture.length}}份）</text>
       <view class="whole-data-img">
         <view class="data-list" wx:for="{{data.picture}}" wx:for-item="item" wx:for-index="ind" wx:key="">
-          <image src="{{imgUrl}}{{item}}" bindtap="previewImage" data-index="{{ind}}" data-id="{{index}}"></image>
+          <image src="{{imgUrl}}{{item}}!100" bindtap="previewImage" data-index="{{ind}}" data-id="{{index}}"></image>
           <!-- <text>资料</text>
           <view wx:if="{{index<9}}">0{{index+1}}</view>
           <view wx:else>{{index+1}}</view> -->

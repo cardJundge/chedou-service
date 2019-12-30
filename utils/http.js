@@ -16,8 +16,8 @@ class HTTP {
       },
       data: params.data,
       success: res => {
-        params.sCallback && params.sCallback(res)
         wx.hideLoading()
+        params.sCallback && params.sCallback(res)
         if (res.data.msg.match('Token')) {
           wx.showModal({
             title: '提示',
@@ -33,8 +33,8 @@ class HTTP {
         }
       },
       fail: err => {
-        params.sCallback && params.sCallback(err)
         wx.hideLoading()
+        params.sCallback && params.sCallback(err)
         wx.showToast({
           title: '请求超时',
           icon: 'none'

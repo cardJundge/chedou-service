@@ -40,6 +40,18 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
+  // 数据统计详情
+  dataStatisticsDetail(param, callback) {
+    var params = {
+      url: '/api/ser/work/detail',
+      type: 'GET',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
   // 获取业务列表
   getWorkList(key, page, callback) {
     var params = {
@@ -116,7 +128,7 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
-  // 获取车务任务记录
+  // 获取车物任务记录
   getVehicleRecordList(param, callback) {
     var params = {
       url: '/api/traffic/task/' + param.id + '/record',
@@ -251,7 +263,7 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
-  // (疾病、车务)调查相关资料
+  // (疾病、车物)调查相关资料
   getRelatedData(param, callback) {
     var params = {
       url: '/api/work/' + param.listId + '/data/' + param.type,
@@ -262,7 +274,7 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
-  // 车务调查添加任务
+  // 车物调查添加任务
   addTask(param, callback) {
     var params = {
       url: '/api/traffic/task/insert',
@@ -274,7 +286,7 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
-  // 添加车务调查案件资料
+  // 添加车物调查案件资料
   addRelatedInfo(param, callback) {
     var params = {
       url: '/api/auth/data',
@@ -286,7 +298,7 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
-  // 车务调查提交调查结论
+  // 车物调查提交调查结论
   submitConclusion(param, callback) {
     var params = {
       url: '/api/work/audit',

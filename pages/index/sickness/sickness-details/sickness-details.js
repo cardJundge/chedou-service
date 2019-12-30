@@ -64,10 +64,20 @@ Page({
     indexModel.getModuleUnion(params, res => {
       console.log(res)
       if (res.data.status == 1) {
-        if (res.data.data.length < 2) {
+        if (res.data.data.length == 0) {
           this.setData({
             isShowTransfer: false
           })
+        } else if (res.data.data.length == 1) {
+          if (res.data.data[0].service.length < 2) {
+            this.setData({
+              isShowTransfer: false
+            })
+          } else {
+            this.setData({
+              isShowTransfer: true
+            })
+          }
         } else {
           this.setData({
             isShowTransfer: true
@@ -111,16 +121,16 @@ Page({
         // console.log(res.data.sickTask)
         this.data.sickTaskList = res.data.sickTask
         
-        if (this.data.diseaseList.suspects) {
-          var doubt = JSON.parse(this.data.diseaseList.suspects)
-          // console.log(doubt)
-          doubt.forEach((item, index) => {
-            this.data.doubttext += (',' + item)
-          })
-          this.setData({
-            doubttext: this.data.doubttext.substring(1)
-          })
-        }
+        // if (this.data.diseaseList.suspects) {
+        //   var doubt = JSON.parse(this.data.diseaseList.suspects)
+        //   // console.log(doubt)
+        //   doubt.forEach((item, index) => {
+        //     this.data.doubttext += (',' + item)
+        //   })
+        //   this.setData({
+        //     doubttext: this.data.doubttext.substring(1)
+        //   })
+        // }
         this.getTaskList()
         this.getSicknessData()
       } else {

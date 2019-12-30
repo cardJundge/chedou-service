@@ -41,14 +41,14 @@
           <text wx:if="{{serviceType == 2 || serviceType == 3}}">{{item.name}}</text>
           <text wx:if="{{serviceType == 1 || serviceType == 4}}">{{item.name == '车辆维修' ? '车辆推修': item.name}}</text>
           <text wx:else>{{item.name}}</text>
-          <text wx:if="{{item.key == 'survey'}}">科学的估损定价</text>
+          <!-- <text wx:if="{{item.key == 'survey'}}">科学的估损定价</text>
           <text wx:if="{{item.key == 'push'}}">汽车维护和修理</text>
           <text wx:if="{{item.key == 'trailer'}}">道路清障救援</text>
           <text wx:if="{{item.key == 'rescue'}}">道路紧急救援</text>
           <text wx:if="{{item.key == 'risk'}}">风险调查</text>
           <text wx:if="{{item.key == 'hurt'}}">人伤调解</text>
           <text wx:if="{{item.key == 'sickness'}}">疾病调查</text>
-          <text wx:if="{{item.key == 'traffic'}}">车务调查</text>
+          <text wx:if="{{item.key == 'traffic'}}">车物调查</text> -->
         </view>
       </view>
     </view>

@@ -13,12 +13,11 @@ Page({
   data: {
     basicUserInfo: {}
   },
-  onLoad: function() {
-  },
+  onLoad: function() {},
   onShow() {
     this.setData({
       basicUserInfo: app.globalData.userInfo,
-      avatarUrl: app.globalData.userInfo.face?app.globalData.imgUrl + app.globalData.userInfo.face:'',
+      avatarUrl: app.globalData.userInfo.face ? app.globalData.imgUrl + app.globalData.userInfo.face : '',
     })
     console.log(this.data.avatarUrl)
   },
@@ -45,7 +44,7 @@ Page({
 
   // 绑定微信
   toBindWX() {
-    this.bindWX(data=> {})
+    this.bindWX(data => {})
   },
 
   bindWX(sCallback) {
@@ -56,15 +55,17 @@ Page({
       success: res => {
         let params = {
           js_code: res.code,
-          type: 'chedou'
+          type: 'chedou',
+          key: 0
         }
         mineModel.bindWx(params, response => {
           if (response.data.status == 1) {
             wx.showToast({
               title: '绑定成功'
             })
-            this.toGetUserInfo()
-            sCallback(true)
+            this.toGetUserInfo(res=> {
+              sCallback(true)
+            })
           } else if (response.data.status == -1) {
 
           } else {
@@ -83,15 +84,18 @@ Page({
     wx.showLoading({
       title: '解绑中...',
     })
-    mineModel.unTying(res => {
+    let params = {
+      type: 'chedou',
+      key: 1
+    }
+    mineModel.unTying(params, res => {
       if (res.data.status == 1) {
         wx.showToast({
           title: '解绑成功',
         })
-        this.toGetUserInfo()
+        this.toGetUserInfo(res=> {})
       } else {
-        if (res.data.msg.match('Token已过期或失效')) {
-        } else {
+        if (res.data.msg.match('Token已过期或失效')) {} else {
           wx.showToast({
             title: res.data.msg ? res.data.msg : '请求超时',
             icon: 'none'
@@ -104,22 +108,21 @@ Page({
   // 账户钱包
   toAccount() {
     var openId = this.data.basicUserInfo.openId_chedou
-    if(!openId) {
+    if (!openId) {
       wx.showModal({
         title: '提示',
         content: '微信绑定后才能执行此操作，是否进行微信绑定？',
-        success: res=> {
+        success: res => {
           if (res.confirm) {
-            this.bindWX(data=> {
-              if(data) {
+            this.bindWX(data => {
+              if (data) {
                 wx.navigateTo({
                   url: './account/account',
                 })
               }
             })
 
-          } else if (res.cancel) {
-          }
+          } else if (res.cancel) {}
         }
       })
     } else {
@@ -130,7 +133,7 @@ Page({
   },
 
   // 绑定解绑之后重新请求用户信息（重新登录）
-  toGetUserInfo() {
+  toGetUserInfo(sCallback) {
     let params = {
       phone: wx.getStorageSync('userMobile'),
       password: wx.getStorageSync('userPwd')
@@ -141,6 +144,7 @@ Page({
         this.setData({
           basicUserInfo: res.data.data
         })
+        sCallback(true)
       }
     })
   },
@@ -178,9 +182,8 @@ Page({
               wx.reLaunch({
                 url: '../login/login',
               })
-            }else {
-              if (res.data.msg.match('Token已过期或失效')) {
-              } else {
+            } else {
+              if (res.data.msg.match('Token已过期或失效')) {} else {
                 wx.showToast({
                   title: res.data.msg ? res.data.msg : '请求超时',
                   icon: 'none'
