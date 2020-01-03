@@ -24,10 +24,38 @@ Page({
     addWayList: ['无需审核直接加入','需要审核'],
   },
   onLoad: function(options) {
+    console.log(options.unionId)
+    if (options.unionId) {
+      this.data.unionId = options.unionId
+      this.data.isEdit = true
+      this.getMemberList()
+    }
     this.getModule()
     this.data.hostName = app.globalData.hostName
     this.setData({
       imgUrl: app.globalData.imgUrl
+    })
+  },
+
+  // 获取联盟成员列表
+  getMemberList() {
+    let params = {
+      id: this.data.unionId
+    }
+    unionModel.getMemberList(params.id, res => {
+      if (res.data.status == 1) {
+       this.setData({
+         imgLogo: res.data.data.logo,
+         unionName: res.data.data.name,
+         unionIntro: res.data.data.intro,
+         addWayIndex: String(res.data.data.audit),
+         addWay: this.data.addWayList[res.data.data.audit],
+         module: res.data.data.module,
+         businessArray: res.data.data.module.split(',')
+       })
+      } else {
+
+      }
     })
   },
 
@@ -174,6 +202,10 @@ Page({
         icon: 'none'
       })
     }
+    if (this.data.imgLogo.match('league')) {
+      this.data.imgLogo = ''
+    }
+    console.log(this.data.imgLogo)
     let params = {
       name: this.data.unionName,
       logo: this.data.imgLogo,
@@ -182,21 +214,38 @@ Page({
       module: this.data.module
     }
 
-    unionModel.createUnion(params, res => {
-      if (res.data.status == 1) {
-        wx.navigateBack({
-          delta: 1
-        })
-      } else {
-        if (res.data.msg.match('Token已过期或失效')) {} else {
-          wx.showToast({
-            title: res.data.msg ? res.data.msg : '请求超时',
-            icon: 'none'
-          })
-        }
-      }
-    })
-
     console.log(params)
+    if (this.data.isEdit) {
+      params.id = this.data.unionId
+      unionModel.editUnion(params, res=> {
+        if (res.data.status == 1) {
+          wx.navigateBack({
+            delta: 2
+          })
+        } else {
+          if (res.data.msg.match('Token已过期或失效')) { } else {
+            wx.showToast({
+              title: res.data.msg ? res.data.msg : '请求超时',
+              icon: 'none'
+            })
+          }
+        }
+      })
+    } else {
+      unionModel.createUnion(params, res => {
+        if (res.data.status == 1) {
+          wx.navigateBack({
+            delta: 1
+          })
+        } else {
+          if (res.data.msg.match('Token已过期或失效')) { } else {
+            wx.showToast({
+              title: res.data.msg ? res.data.msg : '请求超时',
+              icon: 'none'
+            })
+          }
+        }
+      })
+    }
   }
 })

@@ -2,5 +2,5 @@
   "usingComponents": {
     "add-module": "/components/add-module/add-module"
   },
-  "navigationBarTitleText": "创建联盟"
+  "navigationBarTitleText": "联盟"
 }

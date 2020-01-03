@@ -10,8 +10,8 @@
       <view class="top-box">
         <view class="top-card">
           <view class="top-card-left">
-            <image src="{{imgUrl}}{{unionInfo.logo}}"></image>
-             <image wx:if="{{!unionInfo.logo}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/default_user.png"></image>
+            <image wx:if="{{unionInfo.logo}}" src="{{imgUrl}}{{unionInfo.logo}}"></image>
+            <image wx:if="{{!unionInfo.logo}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/default_user.png"></image>
           </view>
           <view class="top-card-right">
             {{unionInfo.name}}

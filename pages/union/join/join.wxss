@@ -62,7 +62,8 @@
 .item-left-info-module {
   display: flex;
   align-items: center;
-  margin: 6rpx 0;
+  flex-wrap: wrap;
+  margin-top: 6rpx;
 }
 
 .item-left-info-module view {
@@ -72,6 +73,7 @@
   background: #1a65ff;
   color: #fff;
   margin-right: 12rpx;
+  margin-bottom: 6rpx;
   border-radius: 6rpx;
   font-size: 18rpx;
 }

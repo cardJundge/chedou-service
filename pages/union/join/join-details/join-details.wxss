@@ -127,6 +127,7 @@
 .union-business-content {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   padding: 24rpx 0;
   border-bottom: 2rpx solid #f2f2f2;
 }
@@ -136,6 +137,7 @@
   display: flex;
   align-items: center;
   margin-right: 24rpx;
+  margin-bottom: 12rpx;
   background: #1a65ff;
   border-radius: 8rpx;
   color: #fff;

@@ -10,11 +10,14 @@
       <view class="top-box">
         <view class="top-card">
           <view class="top-card-left">
-            <image wx:if="{{unionInfo.logo}}" src="{{imgUrl}}{{unionInfo.logo}}"></image>
-            <image wx:if="{{!unionInfo.logo}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/default_user.png"></image>
+            <view class="top-card-left-img">
+              <image wx:if="{{unionInfo.logo}}" src="{{imgUrl}}{{unionInfo.logo}}"></image>
+              <image wx:if="{{!unionInfo.logo}}" src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/default_user.png"></image>
+            </view>
+            <view class="top-card-left-text">{{unionInfo.name}}</view>
           </view>
-          <view class="top-card-right">
-            {{unionInfo.name}}
+          <view class="top-card-right" bindtap="toEditUnion" wx:if="{{leaderId == serviceId}}">
+            编辑
           </view>
         </view>
       </view>

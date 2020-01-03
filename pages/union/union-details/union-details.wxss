@@ -41,22 +41,35 @@
   border-radius: 20rpx;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .top-card-left {
+  display: flex;
+  align-items: center;
+}
+
+.top-card-left-img {
   margin-right: 24rpx;
 }
 
-.top-card-left image {
+.top-card-left-img image {
   width: 110rpx;
   height: 110rpx;
   border-radius: 50%;
   border: 1rpx solid #1a65ff;
 }
 
-.top-card-right {
+.top-card-left-text {
   font-size: 36rpx;
   color: #35383a;
+}
+
+.top-card-right {
+  background: #1a65ff;
+  color: #fff;
+  padding: 12rpx 24rpx;
+  border-radius: 48rpx;
 }
 
 .union-details-content {
@@ -155,6 +168,7 @@
 .union-business-content {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   padding: 24rpx 0;
   border-bottom: 2rpx solid #f2f2f2;
 }
@@ -164,6 +178,7 @@
   display: flex;
   align-items: center;
   margin-right: 24rpx;
+  margin-bottom: 12rpx;
   background: #1a65ff;
   border-radius: 8rpx;
   color: #fff;

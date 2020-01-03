@@ -52,6 +52,7 @@
   color: #fff;
   border-radius: 8rpx;
   margin-right: 12rpx;
+  margin-bottom: 12rpx;
 }
 
 .establish-item-textarea {

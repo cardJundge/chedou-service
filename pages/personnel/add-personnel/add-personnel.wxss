@@ -30,7 +30,7 @@
 
 .select-box {
   width: 100%;
-  height: 258rpx;
+  /* height: 258rpx; */
   border-bottom: 1rpx solid #c6c6c6;
 }
 

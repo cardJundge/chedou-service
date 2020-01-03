@@ -179,13 +179,15 @@
 .union-item-right-module {
   display: flex;
   align-items: center;
-  margin: 6rpx 0;
+  flex-wrap: wrap;
+  margin-top: 6rpx;
 }
 
 .union-item-right-module view {
   height: 30rpx;
   line-height: 30rpx;
   margin-right: 18rpx;
+  margin-bottom: 6rpx;
   padding: 0 8rpx;
   background: #1a65ff;
   color: #fff;

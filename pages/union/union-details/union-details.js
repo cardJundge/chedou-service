@@ -21,6 +21,13 @@ Page({
     }
   },
 
+  // 编辑联盟
+  toEditUnion() {
+    wx.navigateTo({
+      url: '../establish/establish?unionId=' + this.data.unionId,
+    })
+  },
+
   // 获取联盟成员列表
   getMemberList(params) {
     unionModel.getMemberList(params, res => {

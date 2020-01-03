@@ -16,6 +16,18 @@ class UnionModel extends HTTP {
     this.request(params)
   }
 
+  // 编辑联盟
+  editUnion(param, callback) {
+    var params = {
+      url: '/api/ser/league/edit',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
   // 联盟列表
   getUnionList(param, callback) {
     var params = {

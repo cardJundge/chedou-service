@@ -69,6 +69,11 @@ Page({
           title: res.data.msg,
         })
         this.getNotice()
+      } else {
+        wx.showToast({
+          title: res.data.msg ? res.data.msg :'操作超时',
+          icon: 'none'
+        })
       }
     })
   }
