@@ -1,4 +1,4 @@
-// 增加车务调查案件
+// 增加车物调查案件
 import dateTimePicker from '../../../../dist/dateTimePicker.js'
 import {
   IndexModel
@@ -98,7 +98,7 @@ Page({
     })
   },
 
-  // 添加车务调查案件
+  // 添加车物调查案件
   addVehicle(e) {
     console.log(e)
     let data = e.detail.value

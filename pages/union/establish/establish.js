@@ -59,6 +59,15 @@ Page({
   okEvent(e) {
     this.data.moduleItem = e.detail.moduleItem.split(',')
     this.getModule()
+    this.setData({
+      isAddModule: false
+    })
+  },
+
+  closeEvent() {
+    this.setData({
+      isAddModule: false
+    })
   },
 
   addModule() {

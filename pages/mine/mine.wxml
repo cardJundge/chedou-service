@@ -71,13 +71,13 @@
         <i-icon type="enter" size="18" color="#E2E2E2" />
       </view>
     </view>
-    <view class="mine-item" bindtap="toBuyBusiness">
+    <!-- <view class="mine-item" bindtap="toBuyBusiness">
       <image src="/images/mine/icon_money.png"></image>
       <view class="mine-item-text">
         <text>购买商业版</text>
         <i-icon type="enter" size="18" color="#E2E2E2" />
       </view>
-    </view>
+    </view> -->
     <view class="mine-item" bindtap="modifyPwd">
       <image src="/images/mine/icon_modify.png"></image>
       <view class="mine-item-text">

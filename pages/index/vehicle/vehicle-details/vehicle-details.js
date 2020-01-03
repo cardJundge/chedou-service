@@ -1,4 +1,4 @@
-// 车务调查详情
+// 车物调查详情
 import {
   PersonnelModel
 } from '../../../personnel/models/personnel.js'
@@ -57,7 +57,7 @@ Page({
   getModuleUnion() {
     let params = {
       key: 'traffic',
-      module: '车务调查'
+      module: '车物调查'
     }
     indexModel.getModuleUnion(params, res => {
       console.log(res)
@@ -102,7 +102,7 @@ Page({
     })
   },
 
-  // 获取车务调查详情
+  // 获取车物调查详情
   getVehicleDetails() {
     let key = 'traffic'
     let id = this.data.listId
@@ -309,7 +309,7 @@ Page({
   // 转单
   toChangeOrder() {
     wx.navigateTo({
-      url: '../../transfer/company/company?moduleType=' + '车务调查' + '&businessNo=' + this.data.vehicleList.report_no + '&moduleName=' + 'traffic' + '&businessId=' + this.data.listId
+      url: '../../transfer/company/company?moduleType=' + '车物调查' + '&businessNo=' + this.data.vehicleList.report_no + '&moduleName=' + 'traffic' + '&businessId=' + this.data.listId
     })
   },
 

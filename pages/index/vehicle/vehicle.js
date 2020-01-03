@@ -1,4 +1,4 @@
-// 车务调查
+// 车物调查
 import {
   IndexModel
 } from '../models/index.js'
@@ -170,7 +170,7 @@ Page({
     })
   },
 
-  // 添加车务调查案件
+  // 添加车物调查案件
   addVehicle() {
     wx.navigateTo({
       url: './add-vehicle/add-vehicle',

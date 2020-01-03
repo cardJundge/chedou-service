@@ -56,11 +56,11 @@
   <!-- 接单系统 -->
   <view class="order">
     <view class="order-title">
-      <text>接单系统</text>
+      <text>系统通知</text>
     </view>
     <view class="order-null" wx:if="{{orderList.length == 0}}">
       <image src="/images/index/order_null.png"></image>
-      <text>您还没有订单哦~</text>
+      <text>您还没有通知哦~</text>
     </view>
     <view class="order-content" wx:if="{{orderList.length !== 0}}">
       <view class="order-item" wx:for="{{orderList}}" wx:key="" bindtap="toOrderDetail" data-id="{{item.id}}" data-img="{{item.img}}" data-name="{{item.name}}">

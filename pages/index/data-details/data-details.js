@@ -38,7 +38,7 @@ Page({
       yData = []
       if(res.data.status == 1) {
         let arrTemp = []
-        console.log(res.data.data)
+        // console.log(res.data.data)
         for (let i in res.data.data.count) {
           let arrObj = {}
           arrObj.name = i
@@ -69,7 +69,7 @@ Page({
         width: width,
         height: height
       })
-      this.setOption(chart)
+      // this.setOption(chart)
       // 注意这里一定要返回 chart 实例，否则会影响事件处理等
       return chart
     })

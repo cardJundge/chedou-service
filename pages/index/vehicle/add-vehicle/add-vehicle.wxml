@@ -1,4 +1,4 @@
-<!--增加车务调查案件-->
+<!--增加车物调查案件-->
 <view class="add-vehicle-body">
   <form bindsubmit="addVehicle">
     <view class="case-whole">

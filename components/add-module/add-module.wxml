@@ -17,7 +17,7 @@
           <view class="circle" wx:if="{{!item.selected}}"></view>
           <i-icon class="icon" wx:if="{{item.selected}}" type="success_fill" size="22" color="#1A65FF" />
           <image src="{{item.img}}"></image>
-          <text>{{item.name == '调查' ? '风险调查' : item.name}}</text>
+          <text>{{item.name}}</text>
         </view>
       </view>
     </scroll-view>

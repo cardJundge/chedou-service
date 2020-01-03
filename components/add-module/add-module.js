@@ -67,6 +67,7 @@ Component({
     },
 
     toCloseModule() {
+      this.triggerEvent('closeEvent')
       this.setData({
         isShow: false
       })

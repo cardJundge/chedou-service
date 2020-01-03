@@ -61,13 +61,13 @@ Page({
     let params = {
       report_no: this.data.businessNo,
       type: this.data.moduleType,
-      turn_service: this.data.companyName,
+      turn_service: this.data.companyId,
       remark: this.data.remark ? this.data.remark : '',
       money: this.data.money,
       pay: this.data.payment,
       key: this.data.moduleName,
       work_id: this.data.businessId,
-      service_id: this.data.companyId
+      // service_id: this.data.companyId
     }
     if(this.data.payment == '线下') {
       indexModel.toTransferOrder(params, res=> {

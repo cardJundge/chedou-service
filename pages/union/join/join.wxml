@@ -13,7 +13,7 @@
         <view class="item-left-info">
           <view>
             <text>{{item.name}}</text>
-            <text>{{item.number}}人</text>
+            <text>{{item.number}}名成员</text>
           </view>
           <view class="item-left-info-module">
             <view wx:for="{{item.module}}" wx:for-item="it">{{it}}</view>

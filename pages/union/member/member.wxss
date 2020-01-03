@@ -63,6 +63,7 @@
 
 .member-content-list {
   width: 100%;
+  height: 915rpx;
 }
 
 .member-content-leader>view:last-child {

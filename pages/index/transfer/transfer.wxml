@@ -32,9 +32,9 @@
             <view>{{payment ? payment : '请选择支付方式'}}</view>
           </picker>
       </view>
-      <view class="form-item">
+      <!-- <view class="form-item"> -->
          <button class="transfer-btn" formType="submit">确 定</button>
-      </view>
+      <!-- </view> -->
     </view>
   </form>
 </view>

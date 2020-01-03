@@ -1,4 +1,4 @@
-<!--车务调查详情-->
+<!--车物调查详情-->
 
 <view class="disease-step">
   <block wx:for="{{diseaseStep}}" wx:key="">
@@ -203,7 +203,7 @@
   <view class="modal-content">
    <view class="modal-item">
       <text>转单公司</text>
-      <text>{{transferOrderDetail.turn_service}}</text>
+      <text>{{transferOrderDetail.from_servie}}</text>
     </view>
     <view class="modal-item">
       <text>转单时间</text>

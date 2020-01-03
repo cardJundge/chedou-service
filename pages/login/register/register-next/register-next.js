@@ -1,4 +1,4 @@
-// 注册--》最后一步
+    // 注册--》最后一步
 import WxValidate from '../../../../dist/WxValidate.js'
 import {
   LoginModel
