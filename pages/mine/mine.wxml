@@ -35,14 +35,14 @@
         <i-icon type="enter" size="18" color="#E2E2E2" />
       </view>
     </view>
-    <view class="mine-item" bindtap="unbindWX" wx:if="{{basicUserInfo.openId_chedou}}">
+    <view class="mine-item" bindtap="unbindWX" wx:if="{{basicUserInfo.openId_omo}}">
       <image src="/images/mine/icon_wx.png"></image>
       <view class="mine-item-text">
         <text>解绑微信</text>
         <i-icon type="enter" size="18" color="#E2E2E2" />
       </view>
     </view>
-    <view class="mine-item" bindtap="toBindWX" wx:if="{{!basicUserInfo.openId_chedou}}">
+    <view class="mine-item" bindtap="toBindWX" wx:if="{{!basicUserInfo.openId_omo}}">
       <image src="/images/mine/icon_wx.png"></image>
       <view class="mine-item-text">
         <text>绑定微信</text>

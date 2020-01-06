@@ -22,7 +22,7 @@ Page({
 
   onLoad: function (options) {
     this.setData({
-      openId: app.globalData.userInfo.openId_chedou
+      openId: app.globalData.userInfo.openId_omo
     })
     mineModel.getBean(res=> {
       if (res.data.status == 1) {
@@ -89,7 +89,7 @@ Page({
       btnTrigger: false
     })
     let params = {
-      type: 'chedou',
+      type: 'omo',
       bean: that.data.cashNum,
       openid: that.data.openId,
       true_name: that.data.name

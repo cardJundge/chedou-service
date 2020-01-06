@@ -55,8 +55,8 @@ Page({
       success: res => {
         let params = {
           js_code: res.code,
-          type: 'chedou',
-          key: 0
+          type: 'omo',
+          key: 1
         }
         mineModel.bindWx(params, response => {
           if (response.data.status == 1) {
@@ -85,7 +85,7 @@ Page({
       title: '解绑中...',
     })
     let params = {
-      type: 'chedou',
+      type: 'omo',
       key: 1
     }
     mineModel.unTying(params, res => {
@@ -107,7 +107,7 @@ Page({
 
   // 账户钱包
   toAccount() {
-    var openId = this.data.basicUserInfo.openId_chedou
+    var openId = this.data.basicUserInfo.openId_omo
     if (!openId) {
       wx.showModal({
         title: '提示',
