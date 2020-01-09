@@ -1,0 +1,37 @@
+<!--商铺管理-->
+<view class="shops-body">
+  <form bindsubmit="formSubmit">
+    <view class="shops-form">
+      <view class="input-box">
+        <label>商铺名称</label>
+        <input placeholder-class="ph-class" type="text" placeholder="请输入商铺名称"></input>
+      </view>
+      <view class="input-box">
+        <label>商铺简称</label>
+        <input placeholder-class="ph-class" type="text" placeholder="请输入商铺简称"></input>
+      </view>
+      <view class="input-box">
+        <label>服务电话</label>
+        <input placeholder-class="ph-class" type="text" placeholder="请输入服务电话"></input>
+      </view>
+      <view class="input-box direction-input-box">
+        <label>商铺位置</label>
+        <textarea placeholder-class="ph-class" type="text" placeholder="请输入商铺位置"></textarea>
+      </view>
+      <view class="input-box direction-input-box">
+        <label>商铺照片</label>
+        <view class="image-box">
+          <view class="image-item" wx:for="{{imageList}}">
+            <image src="/images/logo.png"></image>
+          </view>
+          <view class="image-item" bindtap="uploadImg">
+            <i-icon type="add" color="#898989" size="28" />
+            <text>添加照片</text>
+          </view>
+        </view>
+
+      </view>
+      <button formType="submit" class="add-btn">确定</button>
+    </view>
+  </form>
+</view>

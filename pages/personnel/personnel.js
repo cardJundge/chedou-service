@@ -66,20 +66,22 @@ Page({
         spinShow: false
       })
       if (res.data.status == 1) {
-        this.setData({
-          personnelCount: res.data.count,
-          personnelData: res.data.data,
-          someone: true
-        })
-        this.data.personnelData.forEach((item, index) => {
-          item.pinyin = py.getPinyin(item.nickname).toUpperCase() 
-        })
-        this.rendering()
-      } else if(res.data.status == 0) {
-        this.setData({
-          personnelData: [],
-          someone: false
-        })
+        if(res.data.data.length > 0) {
+          this.setData({
+            personnelCount: res.data.count,
+            personnelData: res.data.data,
+            someone: true
+          })
+          this.data.personnelData.forEach((item, index) => {
+            item.pinyin = py.getPinyin(item.nickname).toUpperCase()
+          })
+          this.rendering()
+        } else {
+          this.setData({
+            personnelData: [],
+            someone: false
+          })
+        }    
       }
     })
   },

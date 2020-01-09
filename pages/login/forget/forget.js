@@ -138,6 +138,7 @@ Page({
         } else {
           wx.showToast({
             title: res.data.msg? res.data.msg : '操作超时',
+            icon: 'none'
           })
         }
       })

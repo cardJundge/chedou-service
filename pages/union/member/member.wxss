@@ -52,7 +52,7 @@
 }
 
 .member-content {
-  margin-top: 60rpx;
+  /* margin-top: 60rpx; */
 }
 
 .member-content-title {
@@ -69,7 +69,7 @@
 .member-content-leader>view:last-child {
   display: flex;
   align-items: center;
-  padding: 24rpx;
+  padding: 12rpx 24rpx;
 }
 
 .member-content-leader>view:last-child image {

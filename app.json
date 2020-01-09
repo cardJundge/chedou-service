@@ -57,7 +57,9 @@
     "pages/index/vehicle/add-vehicle/add-vehicle",
     "pages/index/vehicle/add-information/add-information",
     "pages/index/vehicle/task-details/task-details",
-    "pages/index/transfer/order-success/order-success"
+    "pages/index/transfer/order-success/order-success",
+    "pages/mine/shops/shops",
+    "pages/mine/shops/shops-management/shops-management"
   ],
   "window": {
     "backgroundTextStyle": "light",

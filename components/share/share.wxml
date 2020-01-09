@@ -1,0 +1,6 @@
+<view class="ceshi-body" wx:if="{{isShow}}">
+  <view class="ceshi-content">
+    <canvas canvas-id="shareCanvas" style="width:476rpx;height:846rpx"></canvas>
+  </view>
+  <button bindtap="toSaveImg">保存</button>
+</view>

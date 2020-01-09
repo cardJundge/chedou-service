@@ -72,6 +72,7 @@ ec-canvas {
   width: 702rpx;
   margin: 0 auto;
   padding: 0 24rpx;
+  margin-bottom: 48rpx;
   border-radius: 20rpx;
   border: 1rpx solid rgba(216, 216, 216, 0.5);
   box-shadow: 0 0 2rpx 2rpx rgba(216, 216, 216, 0.5);

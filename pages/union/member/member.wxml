@@ -1,6 +1,6 @@
 <!--联盟成员-->
 <view class="union-member-body">
-  <view class="member-top">
+  <!-- <view class="member-top">
     <view class="search-bg">
       <view class="search-box">
         <view class="search">
@@ -9,7 +9,7 @@
         </view>
       </view>
     </view>
-  </view>
+  </view> -->
   <view class="member-content">
     <!-- 联盟盟主 -->
     <view class="member-content-leader">

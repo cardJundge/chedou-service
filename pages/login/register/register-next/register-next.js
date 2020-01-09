@@ -1,4 +1,4 @@
-    // 注册--》最后一步
+// 注册--》最后一步
 import WxValidate from '../../../../dist/WxValidate.js'
 import {
   LoginModel
@@ -19,11 +19,11 @@ Page({
     otherData: [],
     isDisabled: false,
     companyArray: [
-      '公估公司', '4s店', '维修店','保险公司'
+      '公估公司', '4s店', '维修店', '保险公司', '调查公司', '咨询公司', '律所'
     ]
   },
   onLoad: function (options) {
-    this.data.otherData = JSON.parse(options.params)   
+    this.data.otherData = JSON.parse(options.params)
     this.initValidate() // 验证规则函数
   },
 
@@ -70,17 +70,19 @@ Page({
       this.setData({
         isDisabled: true
       })
+      this.data.company = Number(this.data.company) + 1
       this.data.otherData.companyType = this.data.company
       this.data.otherData.company = params.company
       this.data.otherData.shortName = params.shortName
       loginModel.postRegister(this.data.otherData, res=> {
-        if(res.data.status == 1) {
+        if (res.data.status == 1) {
           this.setData({
             isDisabled: false
           })
           wx.showToast({
             title: '注册成功',
           })
+
           let data = {
             phone: this.data.otherData.phone,
             password: this.data.otherData.password
@@ -88,6 +90,8 @@ Page({
           loginModel.postLogin(data, res1 => {
             if (res1.data.status == 1) {
               app.globalData.userInfo = res1.data.data
+              wx.setStorageSync('userMobile', this.data.otherData.phone)
+              wx.setStorageSync('userPwd', this.data.otherData.password)
               wx.switchTab({
                 url: '/pages/index/index',
               })
@@ -97,11 +101,16 @@ Page({
               })
             }
           })
+          setTimeout(() => {
+            wx.navigateBack({
+              delta: 2
+            })
+          }, 10000)
         } else {
           wx.showToast({
             title: res.data.msg ? res.data.msg : '请求超时',
             icon: 'none',
-            success: res=> {
+            success: res => {
               this.setData({
                 isDisabled: false
               })

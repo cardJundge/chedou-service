@@ -10,11 +10,13 @@
         </view>
         <view class="mine-text">
           <text>{{basicUserInfo.name}}</text>
-          <!-- <text wx:if="{{basicUserInfo.type == 1}}">{{basicUserInfo.name}}公估公司</text>
-          <text wx:if="{{basicUserInfo.type == 2}}">{{basicUserInfo.name}}4S店</text>
-          <text wx:if="{{basicUserInfo.type == 3}}">{{basicUserInfo.name}}维修公司</text>
-          <text wx:if="{{basicUserInfo.type == 4}}">{{basicUserInfo.name}}保险公司</text>
-          <text wx:if="{{basicUserInfo.type !== 4 && basicUserInfo.type !== 3 && basicUserInfo.type !== 2 && basicUserInfo.type !== 1}}">{{basicUserInfo.name}}</text> -->
+          <!-- <text wx:if="{{basicUserInfo.type == 1}}">{{basicUserInfo.short_name}}公估公司</text>
+          <text wx:if="{{basicUserInfo.type == 2}}">{{basicUserInfo.short_name}}4S店</text>
+          <text wx:if="{{basicUserInfo.type == 3}}">{{basicUserInfo.short_name}}维修店</text>
+          <text wx:if="{{basicUserInfo.type == 4}}">{{basicUserInfo.short_name}}保险公司</text>
+          <text wx:if="{{basicUserInfo.type == 5}}">{{basicUserInfo.short_name}}调查公司</text>
+          <text wx:if="{{basicUserInfo.type == 6}}">{{basicUserInfo.short_name}}咨询公司</text>
+          <text wx:if="{{basicUserInfo.type == 7}}">{{basicUserInfo.short_name}}律所</text> -->
           <view class="vip-box">
             <image src="/images/mine/icon_vip.png"></image>
             <text>非会员</text>
@@ -28,6 +30,13 @@
 
   </view>
   <view class="mine-list">
+    <!-- <view class="mine-item" bindtap="toShops">
+      <image src="/images/mine/icon_shops.png"></image>
+      <view class="mine-item-text">
+        <text>我的商铺</text>
+        <i-icon type="enter" size="18" color="#E2E2E2" />
+      </view>
+    </view> -->
     <view class="mine-item" bindtap="toAccount">
       <image src="/images/mine/icon_money.png"></image>
       <view class="mine-item-text">

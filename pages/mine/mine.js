@@ -105,6 +105,13 @@ Page({
     })
   },
 
+  // 我的商铺
+  toShops() {
+    wx.navigateTo({
+      url: './shops/shops',
+    })
+  },
+
   // 账户钱包
   toAccount() {
     var openId = this.data.basicUserInfo.openId_omo
@@ -150,11 +157,11 @@ Page({
   },
 
   // 服务项目管理
-  toProject() {
-    wx.navigateTo({
-      url: './project/project'
-    })
-  },
+  // toProject() {
+  //   wx.navigateTo({
+  //     url: './project/project'
+  //   })
+  // },
 
   // 购买商业版本
   toBuyBusiness() {
@@ -164,11 +171,11 @@ Page({
   },
 
   // 服务品牌
-  toService() {
-    wx.navigateTo({
-      url: './service-brand/service-brand',
-    })
-  },
+  // toService() {
+  //   wx.navigateTo({
+  //     url: './service-brand/service-brand',
+  //   })
+  // },
 
   // 退出登录
   toLogout() {
