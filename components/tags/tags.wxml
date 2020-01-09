@@ -1,0 +1,6 @@
+<!--客户印象标签-->
+<view class="tags-body" wx:if="{{isShow}}">
+  <view class="tags-content">
+    <view class="tags-title">客户印象</view>
+  </view>
+</view>

@@ -25,6 +25,13 @@ Page({
     })
   },
 
+  // 客户管理
+  toCustomer() {
+    wx.navigateTo({
+      url: './customer/customer',
+    })
+  },
+
   // 推广商铺
   toShareShops() {
     this.setData({

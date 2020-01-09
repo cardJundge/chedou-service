@@ -50,7 +50,7 @@
           <i-icon type="enter" size="18" color="#E2E2E2" />
         </view>
       </view>
-      <view class="manage-item">
+      <view class="manage-item" bindtap="toCustomer">
         <image src="/images/mine/shops/customer_icon.png"></image>
         <view class="manage-item-text">
           <text>客户管理</text>

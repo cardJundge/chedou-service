@@ -4,25 +4,25 @@
     <view class="shops-form">
       <view class="input-box">
         <label>商铺名称</label>
-        <input placeholder-class="ph-class" type="text" placeholder="请输入商铺名称"></input>
+        <input placeholder-class="ph-class" type="text" placeholder="请输入商铺名称" name="shopsName" value="{{formData.shopsName}}" bindinput="getShopsName"></input>
       </view>
       <view class="input-box">
         <label>商铺简称</label>
-        <input placeholder-class="ph-class" type="text" placeholder="请输入商铺简称"></input>
+        <input placeholder-class="ph-class" type="text" placeholder="请输入商铺简称" name="shopsShortName" value="{{formData.shopsShortName}}" bindinput="getShopsShortName"></input>
       </view>
       <view class="input-box">
         <label>服务电话</label>
-        <input placeholder-class="ph-class" type="text" placeholder="请输入服务电话"></input>
+        <input placeholder-class="ph-class" type="text" placeholder="请输入服务电话" name="phoneNumber" value="{{formData.phoneNumber}}" bindinput="getPhoneNumber"></input>
       </view>
       <view class="input-box direction-input-box">
         <label>商铺位置</label>
-        <textarea placeholder-class="ph-class" type="text" placeholder="请输入商铺位置"></textarea>
+        <textarea placeholder-class="ph-class" type="text" placeholder="请输入商铺位置" name="shopsAddress" value="{{formData.shopsAddress}}" bindinput="getShopsAddress"></textarea>
       </view>
       <view class="input-box direction-input-box">
         <label>商铺照片</label>
         <view class="image-box">
           <view class="image-item" wx:for="{{imageList}}">
-            <image src="/images/logo.png"></image>
+            <image src="{{imgUrl}}{{item}}"></image>
           </view>
           <view class="image-item" bindtap="uploadImg">
             <i-icon type="add" color="#898989" size="28" />
