@@ -11,6 +11,20 @@ Component({
   },
 
   methods: {
+    toCloseModule() {
+      this.setData({
+        isShow: false
+      })
+    },
 
+    // 取消
+    onCancel() {
+
+    },
+
+    // 确定
+    onConfirm() {
+
+    }
   }
 })

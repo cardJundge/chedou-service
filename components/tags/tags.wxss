@@ -24,9 +24,71 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .tags-title {
+  width: 100%;
+  padding: 24rpx;
   font-size: 36rpx;
-color: #212125;
+  color: #212125;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.tags-title image {
+  width: 24rpx;
+  height: 24rpx;
+  position: absolute;
+  right: 24rpx;
+  top: 36rpx;
+}
+
+.tags-edit {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tags-edit input {
+  width: 570rpx;
+  height: 80rpx;
+  background: #f2f2f2;
+  border-radius: 40rpx;
+  text-align: center;
+}
+
+.operation-box {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.operation-cancel {
+  width: 50%;
+  height: 80rpx;
+  border-top: 1rpx solid #979797;
+  color: #7b7b7b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.operation-confirm {
+  width: 50%;
+  height: 80rpx;
+  background: #1a65ff;
+  color: #fff;
+  border-radius: 0 0 30rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

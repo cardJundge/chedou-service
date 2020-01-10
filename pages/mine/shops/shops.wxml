@@ -57,14 +57,14 @@
           <i-icon type="enter" size="18" color="#E2E2E2" />
         </view>
       </view>
-      <view class="manage-item">
+      <view class="manage-item" bindtap="toService">
         <image src="/images/mine/shops/service_icon.png"></image>
         <view class="manage-item-text">
           <text>商品/服务管理</text>
           <i-icon type="enter" size="18" color="#E2E2E2" />
         </view>
       </view>
-      <view class="manage-item">
+      <view class="manage-item" bindtap="toClassification">
         <image src="/images/mine/shops/classification_icon.png"></image>
         <view class="manage-item-text">
           <text>分类管理</text>

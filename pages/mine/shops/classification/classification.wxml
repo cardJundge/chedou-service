@@ -1,0 +1,51 @@
+<!--分类管理-->
+<view class="classification-body">
+  <!-- 没有分类 -->
+  <view class="classification-null" wx:if="{{noClassification}}">
+    <view class="classification-null-box">
+      <view>
+        <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/classification_null_bg.png"></image>
+        <text>添加分类可以更好的管理商品哦～</text>
+      </view>
+      <view bindtap="">
+        <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/icon_add.png"></image>
+        <text>添加</text>
+      </view>
+    </view>
+  </view>
+  <!-- 有分类 -->
+  <view class="classification-content" wx:if="{{!noClassification}}">
+    <!-- 分类列表 -->
+    <view class='left-scroll'>
+      <scroll-view scroll-y="true" style="height: {{screenHeight}}px" scroll-into-view="true" scroll-with-animation="true">
+        <block wx:for="{{classificationData}}">
+          <view class="{{current == item.id?'view-active':''}}" data-id='{{item.id}}' bindtap='selectClassification'>
+            <text class="left-text {{current == item.id?'text-active':'left-text'}}">{{item.name}}</text>
+            <i-icon class="left-text-icon" type="delete_fill" size="15" color="#FF9E1A" />
+          </view>
+        </block>
+        <view class="classification-add-btn" bindtap="toAddClassification">
+          <view>添加分类</view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class='right-scroll'>
+      <scroll-view scroll-y="true" style="height: {{screenHeight}}px" scroll-into-view="true" scroll-with-animation="true">
+        <block wx:for="{{classificationData}}" wx:if="{{current == item.id}}">
+          <view class='list-content'>
+            <view class='list-item' wx:for="{{item.second}}" wx:for-item="it">
+              <text>{{it.name}}</text>
+              <view class="item-btn">
+                <text>编辑</text>
+                <text>删除</text>
+              </view>
+            </view>
+            <view class="list-add-btn" bindtap="toAddClassification">
+              <view>添加二级分类</view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>

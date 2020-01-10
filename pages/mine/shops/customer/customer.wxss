@@ -147,9 +147,6 @@ page {
 }
 
 .item-impression {
-}
-
-.item-impression {
   display: flex;
   align-items: flex-start;
 }

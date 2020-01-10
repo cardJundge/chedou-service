@@ -14,5 +14,11 @@ Page({
     this.setData({
       tagsModalShow: true
     })
+  },
+
+  toCustomerDetails() {
+    wx.navigateTo({
+      url: './customer-details/customer-details',
+    })
   }
 })

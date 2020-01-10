@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/mine/shops/customer/customer",
     "pages/login/login",
     "pages/index/index",
     "pages/mine/mine",
@@ -60,7 +59,13 @@
     "pages/index/vehicle/task-details/task-details",
     "pages/index/transfer/order-success/order-success",
     "pages/mine/shops/shops",
-    "pages/mine/shops/shops-management/shops-management"
+    "pages/mine/shops/shops-management/shops-management",
+    "pages/mine/shops/customer/customer",
+    "pages/mine/shops/customer/customer-details/customer-details",
+    "pages/mine/shops/classification/classification",
+    "pages/mine/shops/classification/add-classification/add-classification",
+    "pages/mine/shops/service/service",
+    "pages/mine/shops/service/add-service/add-service"
   ],
   "window": {
     "backgroundTextStyle": "light",

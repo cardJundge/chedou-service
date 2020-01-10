@@ -12,7 +12,7 @@ Component({
 
   ready() {
     wx.getImageInfo({
-      src: 'https://6368-chedou-service-1257955119.tcb.qcloud.la/images/login_bg.png?sign=c52ed479650167c1c33ff9f6099cf591&t=1578377227',
+      src: 'https://6f6d-omo-service-b6dza-1301029807.tcb.qcloud.la/images/share.png?sign=87067c912367d0468a9923c396c79e96&t=1578647518',
       success: res => {
         this.data.bgImg = res.path
         this.paintImg()   
@@ -21,6 +21,12 @@ Component({
   },
 
   methods: {
+    toCloseModule() {
+      this.setData({
+        isShow: false
+      })
+    },
+
     rpx2px(rpx) {
       const info = wx.getSystemInfoSync()
       return rpx * info.windowWidth / 750
@@ -31,26 +37,22 @@ Component({
       ctx.drawImage(this.data.bgImg, 0, 0, this.rpx2px(476), this.rpx2px(846))
 
       // 作者名称
+      const logoImgSize = this.rpx2px(64)
       const qrImgSize = this.rpx2px(100)
       const txt = "Hello World"
 
       ctx.setTextAlign('left')    // 文字居中
-      ctx.setFillStyle('#000000')  // 文字颜色：黑色
-      ctx.setFontSize(this.rpx2px(30))         // 文字字号
-      console.log(ctx.measureText(txt).width / 2 + this.rpx2px(24))
-      ctx.fillText(txt, this.rpx2px(24), (qrImgSize + this.rpx2px(48)))
+      ctx.setFillStyle('#1a65ff')   // 文字颜色：黑色
+      ctx.setFontSize(this.rpx2px(24))  // 文字字号
+      ctx.fillText(txt, this.rpx2px(24), (logoImgSize + this.rpx2px(54)))
 
       // 用户头像
-      ctx.drawImage('/images/avatar/2.png', (ctx.measureText(txt).width / 2 + this.rpx2px(24) - (qrImgSize / 2)), this.rpx2px(24), qrImgSize, qrImgSize)
+      ctx.drawImage('/images/logo.png', (ctx.measureText(txt).width / 2 + this.rpx2px(24) - (logoImgSize / 2)), this.rpx2px(24), logoImgSize, logoImgSize)
       ctx.stroke()
 
       // 小程序码
-      ctx.setFillStyle('#FF0000')
-      ctx.fillRect(this.rpx2px(48), this.rpx2px(240), 150, 70)
-      ctx.moveTo(0, 0)
-      ctx.lineTo(this.rpx2px(476), this.rpx2px(846))
+      ctx.drawImage('/images/logo.png', (this.rpx2px(476) / 2) - (qrImgSize / 2), this.rpx2px(630), qrImgSize, qrImgSize)
       ctx.stroke()
-
       ctx.draw()
     },
 

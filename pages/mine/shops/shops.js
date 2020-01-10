@@ -32,6 +32,18 @@ Page({
     })
   },
 
+  // 商品/服务管理
+  toService() {
+    
+  },
+
+  // 分类管理
+  toClassification() {
+    wx.navigateTo({
+      url: './classification/classification',
+    })
+  },
+
   // 推广商铺
   toShareShops() {
     this.setData({

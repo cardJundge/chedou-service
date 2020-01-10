@@ -4,7 +4,7 @@
   <view class="customer-null" wx:if="{{!someOne}}">
     <view class="customer-null-box">
       <view>
-        <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/invitation_bg.png"></image>
+        <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/invitation_null_bg.png"></image>
         <text>快去邀请客户吧</text>
       </view>
       <view bindtap="">
@@ -48,7 +48,7 @@
             <view class="tags-item">客户印象</view>
           </view>
         </view>
-        <view class="more-btn">查看更多>></view>
+        <view class="more-btn" bindtap="toCustomerDetails">查看更多>></view>
       </view>
     </view>
   </view>
