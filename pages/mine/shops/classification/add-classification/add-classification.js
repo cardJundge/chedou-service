@@ -20,6 +20,10 @@ Page({
         title: '请输入分类名称',
         icon: 'none'
       })
+    } else {
+      wx.navigateBack({
+        delta: 1
+      })
     }
   }
 })

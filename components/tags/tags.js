@@ -25,6 +25,11 @@ Component({
     // 确定
     onConfirm() {
 
+    },
+
+    // 删除标签
+    toDelTags() {
+      
     }
   }
 })

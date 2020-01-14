@@ -107,14 +107,33 @@ Page({
 
   // 我的商铺
   toShops() {
-    wx.navigateTo({
-      url: './shops/shops',
-    })
+    let openId = this.data.basicUserInfo.openId_omo
+    if (!openId) {
+      wx.showModal({
+        title: '提示',
+        content: '微信绑定后才能执行此操作，是否进行微信绑定？',
+        success: res => {
+          if (res.confirm) {
+            this.bindWX(data => {
+              if (data) {
+                wx.navigateTo({
+                  url: './shops/shops',
+                })
+              }
+            })
+          }
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: './shops/shops',
+      })
+    }
   },
 
   // 账户钱包
   toAccount() {
-    var openId = this.data.basicUserInfo.openId_omo
+    let openId = this.data.basicUserInfo.openId_omo
     if (!openId) {
       wx.showModal({
         title: '提示',
@@ -128,8 +147,7 @@ Page({
                 })
               }
             })
-
-          } else if (res.cancel) {}
+          }
         }
       })
     } else {

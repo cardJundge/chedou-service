@@ -115,7 +115,7 @@
   flex-direction: column;
 }
 
-.step-title text:last-child {
+.step-title text:first-child {
   font-weight: normal;
   font-size: 24rpx;
   color: #80848f;

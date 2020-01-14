@@ -18,18 +18,20 @@ class HTTP {
       success: res => {
         wx.hideLoading()
         params.sCallback && params.sCallback(res)
-        if (res.data.msg.match('Token')) {
-          wx.showModal({
-            title: '提示',
-            content: 'Token过期或已失效，请前往登录页面重新登录',
-            success: res=> {
-              if(res.confirm) {
-                wx.reLaunch({
-                  url: '/pages/login/login',
-                })
+        if (res.data.msg) {
+          if (res.data.msg.match('Token')) {
+            wx.showModal({
+              title: '提示',
+              content: 'Token过期或已失效，请前往登录页面重新登录',
+              success: res => {
+                if (res.confirm) {
+                  wx.reLaunch({
+                    url: '/pages/login/login',
+                  })
+                }
               }
-            }
-          })
+            })
+          }
         }
       },
       fail: err => {

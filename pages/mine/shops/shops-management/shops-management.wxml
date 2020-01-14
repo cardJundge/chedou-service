@@ -22,7 +22,8 @@
         <label>商铺照片</label>
         <view class="image-box">
           <view class="image-item" wx:for="{{imageList}}">
-            <image src="{{imgUrl}}{{item}}"></image>
+            <image src="{{imgUrl}}{{item}}!100" bindtap="previewImage" data-index="{{index}}"></image>
+            <i-icon class="del-icon" type="delete_fill" size="16" color="#e4393c"  data-index="{{index}}" bindtap="delImg"/>
           </view>
           <view class="image-item" bindtap="uploadImg">
             <i-icon type="add" color="#898989" size="28" />

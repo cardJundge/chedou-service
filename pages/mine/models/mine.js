@@ -106,6 +106,69 @@ class MineModel extends HTTP {
     this.request(params)
   }
 
+  // ------商铺-------------------------》》》》
+  // 是否有商铺
+  haveShops(callback) {
+    var params = {
+      url: '/api/ser/shop/isHave',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 去支付
+  toPay(param, callback) {
+    var params = {
+      url: '/api/pull/pay',
+      type: 'POST',
+      data: param,
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 开通商铺
+  openShops(param, callback) {
+    var params = {
+      url: '/api/ser/shop/open',
+      type: 'POST',
+      data: param,
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 商铺详情
+  shopsDetails(callback) {
+    var params = {
+      url: '/api/ser/shop/info',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 新增、修改商铺
+  operationShops(param, callback) {
+    var params = {
+      url: '/api/ser/shop/update',
+      type: 'POST',
+      data: param,
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 添加分类
+  
+
+
 }
 export {
   MineModel

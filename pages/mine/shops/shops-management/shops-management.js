@@ -1,5 +1,11 @@
 // 商铺管理
 import WxValidate from '../../../../dist/WxValidate.js'
+import {
+  MineModel
+} from './../../models/mine.js'
+
+var app = getApp()
+var mineModel = new MineModel()
 var app = getApp()
 Page({
 
@@ -10,7 +16,8 @@ Page({
       phoneNumber: '',
       shopsAddress: ''
     },
-    imageList: []
+    imageList: [],
+    isEdit: false
   },
 
   onLoad: function (options) {
@@ -18,6 +25,23 @@ Page({
     this.setData({
       imgUrl: app.globalData.imgUrl
     })
+    if (options.data) {
+      let data = JSON.parse(options.data)
+      console.log(data)
+      let banner = data.banner.split(',')
+      this.setData({
+        isEdit: true,
+        shopsId: data.id,
+        imageList: banner,
+        formData: {
+          shopsName: data.name,
+          shopsShortName: data.short_name,
+          phoneNumber: data.mobile,
+          shopsAddress: data.address
+        }
+      })
+      console.log(this.data.imageList)
+    }
   },
 
   initValidate() {
@@ -54,30 +78,6 @@ Page({
     this.WxValidate = new WxValidate(rules, messages)
   },
 
-  // 获取商铺名称
-  // getShopsName(e) {
-  //   console.log(e.detail.value)
-  //   this.data.formData.shopsName = e.detail.value
-  // },
-
-  // 获取商铺简称
-  // getShopsShortName(e) {
-  //   console.log(e.detail.value)
-  //   this.data.formData.shopsShortName = e.detail.value
-  // },
-
-  // 获取服务商电话
-  // getPhoneNumber(e) {
-  //   console.log(e.detail.value)
-  //   this.data.formData.phoneNumber = e.detail.value
-  // },
-
-  // 获取商铺位置
-  // getShopsAddress(e) {
-  //   console.log(e.detail.value)
-  //   this.data.formData.shopsAddress = e.detail.value
-  // },
-
   // 上传店铺照片
   uploadImg() {
     wx.chooseImage({
@@ -101,7 +101,7 @@ Page({
               if (data.status == 1) {
                 imageList.push(data.data.filename)
                 this.setData({
-                  imageList: imageList
+                  imageList: this.data.imageList.concat(imageList)
                 })
               } else {
                 wx.showToast({
@@ -134,9 +134,66 @@ Page({
         icon: 'none'
       })
     } else {
+      
       let params = {
-        
+        name: data.shopsName,
+        mobile: data.phoneNumber,
+        address: data.shopsAddress,
+        short_name: data.shopsShortName,
+        banner: this.data.imageList.toString()
+      }
+      console.log(params)
+      // 修改商铺
+      if(this.data.isEdit) {
+        params.id = this.data.shopsId
+        mineModel.operationShops(params, res => {
+          if (res.data.status == 1) {
+            wx.showToast({
+              title: '添加成功'
+            })
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        })
+      } else {
+        mineModel.operationShops(params, res => {
+          if (res.data.status == 1) {
+            wx.showToast({
+              title: '修改成功'
+            })
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        })
       }
     }
+  },
+
+  // 预览大图
+  previewImage(e) {
+    let imgArr = []
+    let imgIndex = e.currentTarget.dataset.index
+    this.data.imageList.forEach((item, index) => {
+      imgArr.push(this.data.imgUrl + item)
+    })
+    wx.previewImage({
+      urls: imgArr,
+      current: imgArr[imgIndex]
+    })
+    console.log(imgArr, imgArr[imgIndex])
+  },
+
+  // 删除图片
+  delImg(e) {
+    console.log(e, imageList)
+    let imageList = this.data.imageList
+    let imgIndex = e.currentTarget.dataset.index
+    imageList.splice(imgIndex, 1)
+    console.log(imageList)
+    this.setData({
+      imageList: imageList
+    })
   }
 })

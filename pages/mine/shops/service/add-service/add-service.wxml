@@ -17,21 +17,21 @@
       <view class="input-box">
         <label>类型</label>
         <picker value="{{serviceTypeIndex}}" range="{{serviceType}}" bindchange="serviceTypeChange">
-          <input wx:if="{{!serviceType[serviceTypeIndex]}}" placeholder-class="ph-class" placeholder="请选择类型" disabled="disabled"></input>
+          <input wx:if="{{!serviceType[serviceTypeIndex]}}" placeholder-class="ph-class" placeholder="请选择商品/服务类型" disabled="disabled"></input>
           <view wx:if="{{serviceType[serviceTypeIndex]}}" class="survey-item-picker">{{serviceType[serviceTypeIndex]}}</view>
         </picker>
       </view>
       <view class="input-box">
         <label>分类</label>
         <picker>
-          <input placeholder-class="ph-class" placeholder="请选择分类" disabled="disabled"></input>
+          <input placeholder-class="ph-class" placeholder="请选择商品/服务分类" disabled="disabled"></input>
         </picker>
       </view>
       <view class="input-box direction-input-box">
         <label>照片</label>
         <view class="image-box">
           <view class="image-item" wx:for="{{imageList}}">
-            <image src="{{imgUrl}}{{item}}"></image>
+            <image src="{{imgUrl}}{{item}}!100"></image>
           </view>
           <view class="image-item" bindtap="uploadImg">
             <i-icon type="add" color="#898989" size="28" />

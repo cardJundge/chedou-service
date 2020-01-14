@@ -21,7 +21,7 @@
         <block wx:for="{{classificationData}}">
           <view class="{{current == item.id?'view-active':''}}" data-id='{{item.id}}' bindtap='selectClassification'>
             <text class="left-text {{current == item.id?'text-active':'left-text'}}">{{item.name}}</text>
-            <i-icon class="left-text-icon" type="delete_fill" size="15" color="#FF9E1A" />
+            <i-icon class="left-text-icon" type="delete_fill" size="16" color="#FF9E1A" bindtap="toDelClassification"/>
           </view>
         </block>
         <view class="classification-add-btn" bindtap="toAddClassification">
@@ -36,8 +36,8 @@
             <view class='list-item' wx:for="{{item.second}}" wx:for-item="it">
               <text>{{it.name}}</text>
               <view class="item-btn">
-                <text>编辑</text>
-                <text>删除</text>
+                <text bindtap="toEditClassification">编辑</text>
+                <text bindtap="toDelClassification">删除</text>
               </view>
             </view>
             <view class="list-add-btn" bindtap="toAddClassification">

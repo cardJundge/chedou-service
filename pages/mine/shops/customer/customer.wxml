@@ -30,7 +30,11 @@
             <view class="item-info-left-text">
               <text>客户昵称</text>
               <text>17635372126</text>
-              <text></text>
+              <view>
+                <text></text>
+                <text></text>
+                <text></text>
+              </view>
             </view>
           </view>
           <view class="item-info-right" bindtap="toEditTags">编辑</view>

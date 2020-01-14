@@ -135,10 +135,29 @@ page {
   align-items: flex-start;
 }
 
-.item-info-left-text text:last-child {
+.item-info-left-text view {
+ display: flex;
+ align-items: center;
+}
+
+.item-info-left-text view text:nth-child(1) {
+  width: 4rpx;
+  height: 4rpx;
+  border-radius: 50%;
+  background: #cbcbcb;
+}
+
+.item-info-left-text view text:nth-child(2) {
   width: 306rpx;
-  height: 8rpx;
-  border-bottom: 1px dashed #cbcbcb;
+  margin: 0 1rpx;
+  border-bottom: 1px dotted #cbcbcb;
+}
+
+.item-info-left-text view text:nth-child(3) {
+  width: 4rpx;
+  height: 4rpx;
+  border-radius: 50%;
+  background: #cbcbcb;
 }
 
 .item-info-right {

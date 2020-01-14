@@ -2,7 +2,7 @@
 Page({
   data: {
     noClassification: false,
-    current: "",
+    current: 1,
     classificationData: [{
         id: 1,
         name: '测试01',
@@ -107,6 +107,26 @@ Page({
   toAddClassification() {
     wx.navigateTo({
       url: './add-classification/add-classification',
+    })
+  },
+
+  // 编辑分类
+  toEditClassification() {
+    wx.navigateTo({
+      url: './add-classification/add-classification',
+    })
+  },
+
+  // 删除分类
+  toDelClassification() {
+    wx.showModal({
+      title: '提示',
+      content: '',
+      success: res=> {
+        if(res.confirm) {
+
+        }
+      }
     })
   }
 })

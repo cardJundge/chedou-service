@@ -9,6 +9,13 @@
     <view class="tags-edit">
       <input placeholder-class="ph-class" placeholder="编辑印象标签"></input>
     </view>
+    <!-- 标签栏 -->
+    <view class="tags-box">
+      <view class="tags-item">
+        客户印象
+        <i-icon class="left-text-icon" type="delete_fill" size="16" color="#FF9E1A" bindtap="toDelTags"/>
+      </view>
+    </view>
     <!-- 底部操作按钮 -->
     <view class="operation-box">
       <!-- 取消 -->

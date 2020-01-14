@@ -123,26 +123,22 @@ page {
   align-items: center;
 }
 
-.add-service view:first-child {
+.add-service image {
   width: 56rpx;
   height: 56rpx;
   border-radius: 50%;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin-right: 12rpx;
   margin-left: 170rpx;
 }
 
-.add-service view:last-child {
+.add-service view {
   font-size: 40rpx;
-  color: #FFFFFF;
+  color: #fff;
 }
 
 /* 管理列表 */
-.manage-list {
 
+.manage-list {
 }
 
 .manage-item {
@@ -152,7 +148,7 @@ page {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2rpx solid #E2E2E2;
+  border-bottom: 2rpx solid #e2e2e2;
 }
 
 .manage-item image {

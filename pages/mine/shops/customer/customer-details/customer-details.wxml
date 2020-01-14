@@ -45,18 +45,18 @@
   <view class="footprint">
     <view class="footprint-title">记录</view>
     <view>
-       <i-steps current="{{schedule.length}}" direction="vertical">
-          <i-step wx:for="{{schedule}}" wx:for-item="scheduleitem" >
-            <view slot="title" class="step-title">
-              <text>{{scheduleitem.title}}</text>
-              <text>{{scheduleitem.date}}</text>
-            </view>
-            <view slot="content" class="step-content">
-              <text>{{scheduleitem.content}}</text>
-            </view>
-          </i-step>
-        </i-steps>
+      <i-steps current="{{schedule.length}}" direction="vertical">
+        <i-step wx:for="{{schedule}}" wx:for-item="scheduleitem">
+          <view slot="title" class="step-title">
+            <text>{{scheduleitem.date}}</text>
+            <text>{{scheduleitem.title}}</text>
+          </view>
+          <view slot="content" class="step-content">
+            <text>{{scheduleitem.content}}</text>
+          </view>
+        </i-step>
+      </i-steps>
     </view>
   </view>
 </view>
-<tags isShow="{{tagsModalShow}}"/>
+<tags isShow="{{tagsModalShow}}" />

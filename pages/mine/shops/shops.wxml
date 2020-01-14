@@ -1,5 +1,10 @@
 <!--我的商铺/开通商铺-->
-<view class="shops-body">
+<view class="shops-body" wx:if="{{spinShow}}">
+  <view class="spin-article">
+    <i-spin size="large" fix></i-spin>
+  </view>
+</view>
+<view class="shops-body" wx:if="{{!spinShow}}">
   <!-- 开通商铺 -->
   <view class="open-shops" wx:if="{{!isOpen}}">
     <view class="open-explain">商铺开通说明</view>
@@ -7,7 +12,7 @@
       <image src="/images/logo.png"></image>
       <text class="open-content-text01">线上商铺</text>
       <text class="open-content-text02">简单好用的线上线下结合商铺</text>
-      <button>399/年</button>
+      <button bindtap="openShopsFirst">399/年</button>
     </view>
     <view class="open-bottom-bg"></view>
   </view>
@@ -37,8 +42,8 @@
       </view>
     </view>
     <!-- 添加商品/服务 -->
-    <view class="add-service">
-      <view></view>
+    <view class="add-service" bindtap="toAddService">
+      <image src="/images/mine/shops/add_icon.png"></image>
       <view>添加商品/服务</view>
     </view>
     <!-- 管理列表 -->
@@ -81,4 +86,4 @@
     </view>
   </view>
 </view>
-<share isShow="{{shareShow}}"/>
+<share isShow="{{shareShow}}" data="{{emptyObj}}"/>

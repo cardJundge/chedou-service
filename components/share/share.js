@@ -3,6 +3,13 @@ Component({
   properties: {
     isShow: {
       type: Boolean
+    },
+    data: {
+      type: Object,
+      value: {},
+      observer(newVal, oldVal) {
+        this.getImgObj()
+      }
     }
   },
 
@@ -10,17 +17,18 @@ Component({
     bgImg: ''
   },
 
-  ready() {
-    wx.getImageInfo({
-      src: 'https://6f6d-omo-service-b6dza-1301029807.tcb.qcloud.la/images/share.png?sign=87067c912367d0468a9923c396c79e96&t=1578647518',
-      success: res => {
-        this.data.bgImg = res.path
-        this.paintImg()   
-      }
-    })
-  },
-
   methods: {
+    getImgObj() {
+      wx.getImageInfo({
+        src: 'https://6f6d-omo-service-b6dza-1301029807.tcb.qcloud.la/images/share.png?sign=87067c912367d0468a9923c396c79e96&t=1578647518',
+        success: res => {
+          this.data.bgImg = res.path
+          console.log('测试一下', this.data.bgImg, this.data.isShow)
+          this.paintImg()
+        }
+      })
+    },
+
     toCloseModule() {
       this.setData({
         isShow: false
@@ -38,7 +46,7 @@ Component({
 
       // 作者名称
       const logoImgSize = this.rpx2px(64)
-      const qrImgSize = this.rpx2px(100)
+      const qrImgSize = this.rpx2px(120)
       const txt = "Hello World"
 
       ctx.setTextAlign('left')    // 文字居中
@@ -47,11 +55,12 @@ Component({
       ctx.fillText(txt, this.rpx2px(24), (logoImgSize + this.rpx2px(54)))
 
       // 用户头像
-      ctx.drawImage('/images/logo.png', (ctx.measureText(txt).width / 2 + this.rpx2px(24) - (logoImgSize / 2)), this.rpx2px(24), logoImgSize, logoImgSize)
+      // ctx.drawImage('/images/logo.png', (ctx.measureText(txt).width / 2 + this.rpx2px(24) - (logoImgSize / 2)), this.rpx2px(24), logoImgSize, logoImgSize)
+      ctx.drawImage('/images/logo.png', this.rpx2px(24), this.rpx2px(24), logoImgSize, logoImgSize)
       ctx.stroke()
 
       // 小程序码
-      ctx.drawImage('/images/logo.png', (this.rpx2px(476) / 2) - (qrImgSize / 2), this.rpx2px(630), qrImgSize, qrImgSize)
+      ctx.drawImage('/images/qr_code.png', (this.rpx2px(476) / 2) - (qrImgSize / 2), this.rpx2px(620), qrImgSize, qrImgSize)
       ctx.stroke()
       ctx.draw()
     },

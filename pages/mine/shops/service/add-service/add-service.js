@@ -15,9 +15,38 @@ Page({
   },
 
   onLoad: function (options) {
+    this.initValidate()
     this.setData({
       imgUrl: app.globalData.imgUrl
     })
+  },
+
+  initValidate() {
+    const rules = {
+      serviceName: {
+        required: true
+      },
+      servicePrice: {
+        required: true,
+        digits: true
+      },
+      serviceIntro: {
+        required: true
+      }
+    }
+    const messages = {
+      serviceName: {
+        required: '请输入商品/服务名称'
+      },
+      servicePrice: {
+        required: '请输入商品/服务价格',
+        digits: '商品/服务价格只能为数字'
+      },
+      serviceIntro: {
+        required: '请输入商品/服务简介'
+      }
+    }
+    this.WxValidate = new WxValidate(rules, messages)
   },
 
   serviceTypeChange(e) {
@@ -69,6 +98,14 @@ Page({
   },
 
   formSubmit(e) {
-
+    let data = e.detail.value
+    console.log(data)
+    if (!this.WxValidate.checkForm(data)) {
+      const error = this.WxValidate.errorList[0]
+      return wx.showToast({
+        title: error.msg,
+        icon: 'none'
+      })
+    }
   }
 })
