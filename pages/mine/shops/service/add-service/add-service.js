@@ -33,7 +33,11 @@ Page({
     mineModel.getClassificationList(res => {
       if (res.data.status == 1) {
         var cateList = res.data.data
-        var cateArr = cateList.map(item => {
+        var id
+        var cateArr = cateList.map((item, index) => {
+          if(index == 0) {
+            id = item.id
+          }
           return item.name
         })
         
@@ -42,7 +46,7 @@ Page({
           cateList,
           cateArr
         })
-        this.getChild(1)
+        this.getChild(id)
       }
     })
   },
