@@ -52,6 +52,13 @@
   justify-content: center;
   margin-right: 22rpx;
   margin-bottom: 12rpx;
+  position: relative;
+}
+
+.del-icon {
+  position: absolute;
+  top: -16rpx;
+  right: -16rpx;
 }
 
 .image-item:nth-child(2n) {

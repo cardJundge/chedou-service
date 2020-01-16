@@ -110,7 +110,7 @@ class MineModel extends HTTP {
   // 是否有商铺
   haveShops(callback) {
     var params = {
-      url: '/api/ser/shop/isHave',
+      url: '/api/ser/store/isHave',
       type: 'GET',
       auth: true,
       sCallback: callback
@@ -133,7 +133,7 @@ class MineModel extends HTTP {
   // 开通商铺
   openShops(param, callback) {
     var params = {
-      url: '/api/ser/shop/open',
+      url: '/api/ser/store/open',
       type: 'POST',
       data: param,
       auth: true,
@@ -145,7 +145,7 @@ class MineModel extends HTTP {
   // 商铺详情
   shopsDetails(callback) {
     var params = {
-      url: '/api/ser/shop/info',
+      url: '/api/ser/store/info',
       type: 'GET',
       auth: true,
       sCallback: callback
@@ -156,7 +156,7 @@ class MineModel extends HTTP {
   // 新增、修改商铺
   operationShops(param, callback) {
     var params = {
-      url: '/api/ser/shop/update',
+      url: '/api/ser/store/update',
       type: 'POST',
       data: param,
       auth: true,
@@ -165,8 +165,64 @@ class MineModel extends HTTP {
     this.request(params)
   }
 
+  // 获取分类列表
+  getClassificationList(callback) {
+    var params = {
+      url: '/api/ser/cate',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+
   // 添加分类
-  
+  addClassification(param, callback) {
+    var params = {
+      url: '/api/ser/cate/add',
+      type: 'POST',
+      data: param,
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 编辑分类
+  editClassification(param, callback) {
+    var params = {
+      url: '/api/ser/cate/update',
+      type: 'POST',
+      data: param,
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 删除分类
+  delClassification(param, callback) {
+    var params = {
+      url: '/api/ser/cate/' + param.id + '/delete',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 添加商品
+  addService(param, callback) {
+    var params = {
+      url: '/api/ser/goods/add',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
 
 
 }

@@ -6,7 +6,6 @@ import {
 
 var app = getApp()
 var mineModel = new MineModel()
-var app = getApp()
 Page({
 
   data: {

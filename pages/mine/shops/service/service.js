@@ -1,4 +1,10 @@
 // 商品/服务
+import {
+  MineModel
+} from './../../models/mine.js'
+
+var app = getApp()
+var mineModel = new MineModel()
 Page({
 
   data: {

@@ -1,97 +1,47 @@
 // 分类管理
+import {
+  MineModel
+} from './../../models/mine.js'
+
+var app = getApp()
+var mineModel = new MineModel()
 Page({
   data: {
-    noClassification: false,
+    noClassification: true,
     current: 1,
-    classificationData: [{
-        id: 1,
-        name: '测试01',
-        second: [{
-            id: 1,
-            name: '二级01'
-          },
-          {
-            id: 2,
-            name: '二级02'
-          }
-        ]
-      },
-      {
-        id: 2,
-        name: '测试02',
-        second: [{
-            id: 3,
-            name: '二级03'
-          },
-          {
-            id: 4,
-            name: '二级04'
-          },
-          {
-            id: 5,
-            name: '二级05'
-          },
-          {
-            id: 6,
-            name: '二级06'
-          },
-          {
-            id: 7,
-            name: '二级07'
-          },
-          {
-            id: 8,
-            name: '二级08'
-          },
-          {
-            id: 9,
-            name: '二级09'
-          },
-          {
-            id: 10,
-            name: '二级10'
-          },
-          {
-            id: 11,
-            name: '二级11'
-          },
-          {
-            id: 12,
-            name: '二级12'
-          },
-          {
-            id: 13,
-            name: '二级13'
-          },
-          {
-            id: 14,
-            name: '二级14'
-          },
-          {
-            id: 15,
-            name: '二级15'
-          },
-          {
-            id: 16,
-            name: '二级16'
-          },
-          {
-            id: 17,
-            name: '二级17'
-          },
-          {
-            id: 18,
-            name: '二级18'
-          }
-        ]
-      }
-    ],
+    spinShow: true,
+    classificationData: [],
   },
 
   onLoad: function(options) {
     let sysInfo = wx.getSystemInfoSync()
     this.setData({
       screenHeight: sysInfo.windowHeight
+    })
+  },
+
+  onShow() {
+    this.getClassificationList()
+  },
+
+  // 请求分类列表
+  getClassificationList() {
+    mineModel.getClassificationList(res => {
+      this.setData({
+        spinShow: false
+      })
+      if(res.data.status == 1) {
+        if(res.data.data.length == 0) {
+          this.setData({
+            noClassification: true
+          })
+        } else {
+          this.setData({
+            noClassification: false,
+            classificationData: res.data.data
+          })
+        }
+      }
     })
   },
 
@@ -104,27 +54,51 @@ Page({
   },
 
   // 添加分类
-  toAddClassification() {
+  toAddClassification(e) {
+    let parentId = e.currentTarget.dataset.parentid
     wx.navigateTo({
-      url: './add-classification/add-classification',
+      url: './add-classification/add-classification?parentId=' + parentId,
     })
   },
 
   // 编辑分类
-  toEditClassification() {
+  toEditClassification(e) {
+    let data = {
+      childId: e.currentTarget.dataset.childid,
+      childName: e.currentTarget.dataset.childname,
+      parentId: e.currentTarget.dataset.parentid
+    }
+    console.log(JSON.stringify(data))
     wx.navigateTo({
-      url: './add-classification/add-classification',
+      url: './add-classification/add-classification?data=' + JSON.stringify(data),
     })
   },
 
   // 删除分类
-  toDelClassification() {
+  toDelClassification(e) {
+    let id = e.currentTarget.dataset.id
+    console.log(id)
     wx.showModal({
       title: '提示',
-      content: '',
+      content: '确定删除该分类吗？',
       success: res=> {
         if(res.confirm) {
-
+          let params = {
+            id: id
+          }
+          mineModel.delClassification(params, res=> {
+            if(res.data.status == 1) {
+              wx.showToast({
+                title: '删除成功'
+              })
+              this.getClassificationList()
+            } else {
+              wx.showToast({
+                title: res.data.msg ? res.data.msg : '操作超时',
+                icon: 'none'
+              })
+            }
+          })
         }
       }
     })
