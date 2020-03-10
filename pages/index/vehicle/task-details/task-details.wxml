@@ -12,10 +12,10 @@
                 <view>{{personName ? personName : '无'}}</view>
               </view>
 
-              <view class="form-item">
+              <!-- <view class="form-item">
                 <label>面访地址:</label>
                 <view>{{task.place ? task.place : '无'}}</view>
-              </view>
+              </view> -->
 
               <view class="form-item">
                 <label>详细地址:</label>
@@ -62,7 +62,7 @@
       <view class="no-data">暂无记录</view>
     </view>
     <!-- 驳回原因 -->
-    <view class="reject-list">
+    <view class="reject-list" wx:if="{{taskReject.length != 0}}">
       <view class="reject-title">驳回意见:</view>
       <view class="reject-item" wx:for="{{taskReject}}">
         <view class="reject-item-time">

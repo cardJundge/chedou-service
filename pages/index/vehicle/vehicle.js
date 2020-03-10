@@ -192,9 +192,12 @@ Page({
 
   toVehicleDetails(e) {
     // console.log(e.currentTarget.dataset.id)
-    wx.navigateTo({
-      url: './vehicle-details/vehicle-details?listId=' + e.currentTarget.dataset.id,
-    })
+    if (this.data.endTime - this.data.startTime < 350) {
+      wx.navigateTo({
+        url: './vehicle-details/vehicle-details?listId=' + e.currentTarget.dataset.id,
+      })
+    }
+    
   },
 
   // 添加车物调查案件
@@ -257,9 +260,16 @@ Page({
     })
   },
 
+  bindTouchStart(e) {
+    this.data.startTime = e.timeStamp
+  },
+  
+  bindTouchEnd(e) {
+    this.data.endTime = e.timeStamp
+  },
+
   // 下拉刷新方法
   onPullDownRefresh: function () {
-    console.log('刷新执行了吗')
     this.setData({
       isRefresh: true,
       marginTop: 0

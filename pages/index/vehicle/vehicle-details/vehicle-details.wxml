@@ -1,5 +1,4 @@
-<!--车物调查详情-->
-
+<wxs src="./../../../../dist/subutil.wxs" module="tools" />
 <view class="disease-step">
   <block wx:for="{{diseaseStep}}" wx:key="">
     <text wx:if='{{index==first}}' style="color:#fff;background:#1a65ff" bindtap="selectDiseaseStep" id="{{index}}">{{item}}</text>
@@ -140,7 +139,7 @@
 
     <view class="task-list base-item base-item-textarea" wx:if="{{currentTab == 0}}">
       <text>核实内容:</text>
-     <view wx:if="{{vehicleList.verify_content}}">{{vehicleList.verify_content}}</view>
+      <view wx:if="{{vehicleList.verify_content}}">{{vehicleList.verify_content}}</view>
       <view wx:else>无</view>
     </view>
 
@@ -161,7 +160,9 @@
       <text wx:if="{{data.title}}">{{data.title}}（{{data.picture.length}}份）</text>
       <view class="whole-data-img">
         <view class="data-list" wx:for="{{data.picture}}" wx:for-item="item" wx:for-index="ind" wx:key="">
-          <image src="{{imgUrl}}{{item}}!100" bindtap="previewImage" data-index="{{ind}}" data-id="{{index}}"></image>
+          <image wx:if="{{(tools.sub(item)) == 'doc' || (tools.sub(item)) == 'docx'}}" src="/images/index/word.png" bindtap="openfile" data-src="{{item}}"></image>
+          <image wx:elif="{{(tools.sub(item)) == 'xlsx' || (tools.sub(item)) == 'xls'}}" src="/images/index/excel.png" bindtap="openfile" data-src="{{item}}"></image>
+          <image wx:else src="{{imgUrl}}{{item}}!100" bindtap="previewImage" data-index="{{ind}}" data-id="{{index}}"></image>
         </view>
       </view>
     </view>
@@ -172,7 +173,7 @@
   <view class="add-task-btn" bindtap="toAddInformation" wx:if="{{!turnInFirst && !turnOut}}">添加资料</view>
 </view>
 
-<view class="whole-task" wx:if='{{first == 3}}' >
+<view class="whole-task" wx:if='{{first == 3}}'>
   <view class="whole-task-tip">调查结论</view>
   <view class="line"></view>
   <view class="base-infor">
@@ -217,7 +218,7 @@
 <task-title isShow="{{titleShow}}" bind:addTitle="getTasksList" />
 <i-modal title="提示" visible="{{visible}}" actions="{{actions}}" bind:click="modalClick" bind:cancel="modalCancel">
   <view class="modal-content">
-   <view class="modal-item">
+    <view class="modal-item">
       <text>转单公司</text>
       <text>{{transferOrderDetail.from_servie}}</text>
     </view>
@@ -237,7 +238,7 @@
       <text>转单金额</text>
       <text>{{transferOrderDetail.money}}</text>
     </view>
-     <view class="modal-item">
+    <view class="modal-item">
       <text>支付方式</text>
       <text>{{transferOrderDetail.pay}}</text>
     </view>
@@ -245,4 +246,4 @@
 </i-modal>
 
 <!-- 审核弹框 -->
-<examine isShow="{{isShowExamine}}" bind:confirmEvent="confirmEvent" bind:rejectEvent="rejectEvent"/>
+<examine isShow="{{isShowExamine}}" bind:confirmEvent="confirmEvent" bind:rejectEvent="rejectEvent" prompt="{{prompt}}" />

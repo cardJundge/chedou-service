@@ -211,9 +211,7 @@ Page({
   },
 
 
-  modalClick({
-    detail
-  }) {
+  modalClick({detail}) {
     const index = detail.index
 
     if (index === 0) {
@@ -428,7 +426,23 @@ Page({
       urls: imgArr,
       current: imgArr[imgIndex]
     })
-    console.log(imgArr, imgArr[imgIndex])
+    // console.log(imgArr, imgArr[imgIndex])
+  },
+
+  openfile(e) {   
+    let filesrc  =  e.currentTarget.dataset.src    
+    wx.downloadFile({
+      url: this.data.imgUrl + filesrc,
+      success: res=> {
+        const filePath  =  res.tempFilePath
+        wx.openDocument({          
+          filePath: filePath,
+          success: res1=>  {
+            // console.log('打开成功')    
+          }        
+        })      
+      }    
+    })  
   },
 
   // 审核被拒绝
@@ -454,7 +468,8 @@ Page({
   // 审核
   toExamine() {
     this.setData({
-      isShowExamine: true
+      isShowExamine: true,
+      prompt: false
     })
   },
 
