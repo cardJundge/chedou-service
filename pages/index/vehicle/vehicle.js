@@ -21,19 +21,24 @@ Page({
         id: 3
       },
       {
-        name: '已结案',
+        name: '预结案',
         id: 4
       },
       {
-        name: '转单',
+        name: '已结案',
         id: 5
+      },
+      {
+        name: '转单',
+        id: 6
       }
     ],
     selected: 1,
     page: 1,
     pageSize: 15,
     hasNoData: false,
-    navScrollLeft: 0
+    navScrollLeft: 0,
+    marginTop: 84
   },
 
   onLoad: function(options) {
@@ -54,8 +59,18 @@ Page({
 
   // 获取疾病调查列表
   getVehicleList() {
-    let key = 'traffic'
-    indexModel.getWorkList(key, this.data.page, res => {
+    this.data.vehicleList = []
+    let params = {
+      key: 'traffic',
+      page: this.data.page,
+      keywords: this.data.keywords ? this.data.keywords : ''
+    }
+    indexModel.getWorkList(params, res => {
+      wx.stopPullDownRefresh()
+      this.setData({
+        isRefresh: false,
+        marginTop: 84
+      })
       let vehicleList = this.data.vehicleList
       let vehicleInfo = res.data.data.data
       if (res.data.status == 1) {
@@ -130,6 +145,9 @@ Page({
         hasMoreData: false
       })
       if (this.data.selected === 2) {
+        this.setData({
+          navScrollLeft: 0
+        })
         this.data.vehicleTempList.forEach((item, index) => {
           if (item.status == 1) {
             tempList.push(item)
@@ -149,7 +167,16 @@ Page({
         })
       } else if (this.data.selected === 5) {
         this.setData({
-          navScrollLeft: 400
+          navScrollLeft: 800
+        })
+        this.data.vehicleTempList.forEach((item, index) => {
+          if (item.status == 4) {
+            tempList.push(item)
+          }
+        })
+      }else if (this.data.selected === 6) {
+        this.setData({
+          navScrollLeft: 800
         })
         this.data.vehicleTempList.forEach((item, index) => {
           if (item.turn_service_id) {
@@ -175,5 +202,68 @@ Page({
     wx.navigateTo({
       url: './add-vehicle/add-vehicle',
     })
+  },
+
+  // 搜索
+  search(e) {
+    wx.showLoading({
+      title: '加载中...'
+    })
+    if (this.data.selected != 1) {
+      this.setData({
+        selected: 1
+      })
+    }
+    this.data.keywords = e.detail.value
+    this.getVehicleList()
+  },
+
+  // 删除业务列表
+  toDelVehicleItem(e) {
+    let caseStatus = e.currentTarget.dataset.status
+    wx.showModal({
+      title: '提示',
+      content: '是否删除该案件？',
+      success: res=> {
+        if (res.confirm) {
+          if (caseStatus == 1) {
+            wx.showToast({
+              title: '已分配状态下不可以删除案件',
+              icon: 'none'
+            })
+          } else if (caseStatus == 2) {
+            wx.showToast({
+              title: '进行中状态下不可以删除案件',
+              icon: 'none'
+            })
+          }else {
+            let params = {
+              key: 'traffic',
+              id: e.currentTarget.dataset.id
+            }
+            indexModel.delBusiness(params, res => {
+              if (res.data.status == 1) {
+                this.getVehicleList()
+              } else {
+                wx.showToast({
+                  title: res.data.msg ? res.data.msg : '操作超时',
+                  icon: 'none'
+                })
+              }
+            })
+          }
+        }
+      }
+    })
+  },
+
+  // 下拉刷新方法
+  onPullDownRefresh: function () {
+    console.log('刷新执行了吗')
+    this.setData({
+      isRefresh: true,
+      marginTop: 0
+    })
+    this.getVehicleList()
   }
 })

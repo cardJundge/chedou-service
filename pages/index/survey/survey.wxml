@@ -9,7 +9,7 @@
     <view class="search-bg">
       <view class="search-box">
         <view class="search">
-          <input placeholder-class="ph-class" type='text' placeholder="搜索业务" bindinput="search"></input>
+          <input placeholder-class="ph-class" type='text' placeholder="搜索业务" bindconfirm="search"></input>
           <image src="/images/personnel/icon_search.png"></image>
         </view>
         <image bindtap="addBusiness" class="add" src="/images/personnel/icon_add.png"></image>

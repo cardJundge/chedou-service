@@ -21,6 +21,7 @@ Page({
   },
 
   onLoad: function(options) {
+    console.log(options.data)
     this.initValidate()
     this.getClassification()
     this.setData({
@@ -207,6 +208,9 @@ Page({
         if (res.data.status == 1) {
           wx.showToast({
             title: '添加成功',
+          })
+          wx.navigateBack({
+            delta: 1
           })
         }
       })

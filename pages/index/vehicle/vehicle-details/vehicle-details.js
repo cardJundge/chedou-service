@@ -11,13 +11,14 @@ var personnelModel = new PersonnelModel()
 var indexModel = new IndexModel()
 Page({
   data: {
+    isShowExamine: false,
     diseaseStep: ['全部任务', '基本信息', '相关资料', '调查结论'],
     first: 0,
     currentTab: 0,
-    taskList: [],  //任务列表
+    taskList: [], //任务列表
     titleShow: false,
     compensationshow: false,
-    compensationList: ['正常赔付','拒绝处理','减损处理','其他'],
+    compensationList: ['正常赔付', '拒绝处理', '减损处理', '其他'],
     compensationName: '',
     reportList: ['是', '否'],
     reportName: '',
@@ -25,8 +26,7 @@ Page({
     turnOut: false,
     turnInFirst: false,
     visible: false,
-    actions: [
-      {
+    actions: [{
         name: '退回',
       },
       {
@@ -36,7 +36,7 @@ Page({
     ],
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.data.listId = options.listId
     this.setData({
       imgUrl: app.globalData.imgUrl,
@@ -44,7 +44,7 @@ Page({
     })
   },
 
-  onShow: function () {
+  onShow: function() {
     this.setData({
       isToComplete: false
     })
@@ -67,7 +67,7 @@ Page({
             isShowTransfer: false
           })
         } else if (res.data.data.length == 1) {
-          if(res.data.data[0].service.length < 2) {
+          if (res.data.data[0].service.length < 2) {
             this.setData({
               isShowTransfer: false
             })
@@ -108,7 +108,7 @@ Page({
     let id = this.data.listId
     let type = 9
     indexModel.getBusinessDetail(key, id, type, res => {
-      if(res.data.status == 1) {
+      if (res.data.status == 1) {
         this.setData({
           vehicleList: res.data.data,
           taskList: res.data.trafficTask,
@@ -200,8 +200,7 @@ Page({
         })
         // this.toScene()
       } else {
-        if (res.data.msg.match('Token')) {
-        } else {
+        if (res.data.msg.match('Token')) {} else {
           wx.showToast({
             title: res.data.msg ? res.data.msg : '请求超时',
             icon: 'none'
@@ -212,7 +211,9 @@ Page({
   },
 
 
-  modalClick({ detail }) {
+  modalClick({
+    detail
+  }) {
     const index = detail.index
 
     if (index === 0) {
@@ -286,17 +287,19 @@ Page({
   toTaskDetail(e) {
     let vehId = this.data.listId
     let vehTaskId = e.currentTarget.dataset.vehtaskid
+    let vehTaskStatus = e.currentTarget.dataset.status
+    let vehCaseStatus = e.currentTarget.dataset.casestatus
     let vehName = e.currentTarget.dataset.name
     wx.navigateTo({
-      url: '../task-details/task-details?vehId=' + vehId + '&vehTaskId=' + vehTaskId + '&vehName=' + vehName + '&personName=' + this.data.personName,
+      url: '../task-details/task-details?vehId=' + vehId + '&vehTaskId=' + vehTaskId + '&vehName=' + vehName + '&personName=' + this.data.personName + '&vehTaskStatus=' + vehTaskStatus + '&vehCaseStatus=' + vehCaseStatus,
     })
   },
 
   //选择赔付意见
   compensationChange(e) {
-   this.setData({
-     compensationName: this.data.compensationList[e.detail.value]
-   })
+    this.setData({
+      compensationName: this.data.compensationList[e.detail.value]
+    })
   },
 
   // 选择是否举报
@@ -336,7 +339,7 @@ Page({
         title: '请选择赔付意见',
         icon: 'none'
       })
-    } 
+    }
     if (!this.data.reportName) {
       return wx.showToast({
         title: '请选择是否举报/协助案件',
@@ -356,8 +359,8 @@ Page({
       remark: this.data.conclusionRemark,
       id: this.data.listId
     }
-    indexModel.submitConclusion(params, res=> {
-      if(res.data.status == 1) {
+    indexModel.submitConclusion(params, res => {
+      if (res.data.status == 1) {
         wx.showToast({
           title: '提交成功',
         })
@@ -426,5 +429,40 @@ Page({
       current: imgArr[imgIndex]
     })
     console.log(imgArr, imgArr[imgIndex])
+  },
+
+  // 审核被拒绝
+  rejectEvent() {
+    let params = {
+      id: this.data.vehicleList.id,
+      key: 'traffic',
+      status: 2
+    }
+    this.caseExamine(params)
+  },
+
+  // 审核被通过
+  confirmEvent() {
+    let params = {
+      id: this.data.vehicleList.id,
+      key: 'traffic',
+      status: 4
+    }
+    this.caseExamine(params)
+  },
+
+  // 审核
+  toExamine() {
+    this.setData({
+      isShowExamine: true
+    })
+  },
+
+  // 审核接口
+  caseExamine(params) {
+    indexModel.examineCase(params, res => {
+      this.getVehicleDetails()
+    })
   }
+
 })

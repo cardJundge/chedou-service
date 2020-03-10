@@ -96,15 +96,11 @@ Page({
           this.uploadimg(i, j + 1)
         })
       } else {
-        // this.data.itempic.push(this.data.fileNameTemp)
         this.data.picture.push(this.data.fileNameTemp)
         this.data.fileNameTemp = ''
-        // this.data.itempic = []
         this.uploadimg(i + 1, 0)
       }
     } else {
-      // this.data.pic = this.data.fileNameTemp.substr(1, this.data.fileNameTemp.length)
-      // console.log("eee", this.data.picture)
       for (var item in this.data.picture) {
         this.data.picture[item] = (this.data.picture[item]).substr(1)
       }
@@ -112,8 +108,6 @@ Page({
       this.data.title = []
       this.data.relatedInfoList.forEach((item, index) => {
         this.data.title.push(item.title)
-        // this.data.title.push(this.data.itemtitle)
-        // this.data.itemtitle = []
       })
 
       let params = {
@@ -149,33 +143,13 @@ Page({
         if (data.status == 1) {
           this.data.fileName = data.data.filename
           this.data.fileNameTemp = this.data.fileNameTemp + ',' + this.data.fileName
+          // console.log(data, this.data.fileNameTemp)
           callback(this.data.fileNameTemp)
         } else {
           
         }
       }
     })
-    // personalcenter.upFace("/api/auth/upload", this.data.mediaSrc, res => {
-    //   console.log(res)
-    //   var jsonStr = res.data
-    //   jsonStr = jsonStr.replace(" ", "")
-    //   jsonStr = jsonStr.replace(/\ufeff/g, "") //重点
-    //   res.data = JSON.parse(jsonStr)
-    //   if (res.data.status == 1) {
-    //     this.data.fileName = res.data.data.filename
-    //     // console.log(this.data.fileName)
-
-    //     this.data.fileNameTemp = this.data.fileNameTemp + ',' + this.data.fileName
-    //     callback(this.data.fileNameTemp)
-
-    //   } else if (res.data.status == -2) {
-    //     wx.hideLoading()
-    //     wx.showModal({
-    //       title: '文件大于2M',
-    //       content: '',
-    //     })
-    //   }
-    // })
   },
 
   getInputTitle(e) {

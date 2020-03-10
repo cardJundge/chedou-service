@@ -1,4 +1,4 @@
-
+var app = getApp()
 Component({
   properties: {
     isShow: {
@@ -23,8 +23,20 @@ Component({
         src: 'https://6f6d-omo-service-b6dza-1301029807.tcb.qcloud.la/images/share.png?sign=87067c912367d0468a9923c396c79e96&t=1578647518',
         success: res => {
           this.data.bgImg = res.path
-          console.log('测试一下', this.data.bgImg, this.data.isShow)
-          this.paintImg()
+          // console.log('测试一下', this.data.bgImg, this.data.isShow)
+          wx.request({
+            url: app.globalData.hostName + '/api/ser/store/promoteQRCode',
+            method: 'GET',
+            header: {
+              'Accept': 'application/json',
+              'Authorization': 'Bearer ' + app.globalData.userInfo.api_token
+            },
+            responseType: 'arraybuffer',
+            success: (res) => {
+              this.data.qrImg = wx.arrayBufferToBase64(res.data)
+              this.paintImg()
+            }
+          })
         }
       })
     },
@@ -60,7 +72,7 @@ Component({
       ctx.stroke()
 
       // 小程序码
-      ctx.drawImage('/images/qr_code.png', (this.rpx2px(476) / 2) - (qrImgSize / 2), this.rpx2px(620), qrImgSize, qrImgSize)
+      ctx.drawImage(this.data.qrImg, (this.rpx2px(476) / 2) - (qrImgSize / 2), this.rpx2px(620), qrImgSize, qrImgSize)
       ctx.stroke()
       ctx.draw()
     },

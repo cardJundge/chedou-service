@@ -1,0 +1,13 @@
+<!--审核弹框-->
+<view class="module-body" catchtouchmove="true"  wx:if="{{isShow}}" catchtap="toCloseModule">
+  <view class="module-content" catchtap="stopBubble">
+    <view class="top-title">提示</view>
+    <view class="input-box">
+      <text>审核是否通过?</text>
+    </view>
+    <view class="bottom-btn-bar">
+      <view bindtap="toReject">否</view>
+      <view bindtap="toConfirm">是</view>
+    </view>
+  </view>
+</view>

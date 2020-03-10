@@ -12,17 +12,20 @@ Page({
     name: 'name1',
     // 记录
     taskRecord: [],
+    isShowBack: false
     //第二类样式成员变量
   },
 
   onLoad: function(options) {
-    // console.log(options)
+    console.log(options)
     this.setData({
       vehId: options.vehId,
       vehTaskId: options.vehTaskId,
       vehName: options.vehName,
       imgUrl: app.globalData.imgUrl,
-      personName: options.personName
+      personName: options.personName,
+      vehTaskStatus: options.vehTaskStatus,
+      vehCaseStatus: options.vehCaseStatus
     })
     this.getTaskRecord()
   },
@@ -52,7 +55,8 @@ Page({
 
 
         this.setData({
-          taskRecord: this.data.taskRecord
+          taskRecord: this.data.taskRecord,
+          taskReject: res.data.reject
         })
         console.log(this.data.taskRecord)
       }
@@ -114,6 +118,34 @@ Page({
         isShowTextarea: true
       })
     }
+  },
+
+  toBackTask() {
+    this.setData({
+      isShowBack: true
+    })
+  },
+
+  // 确定退回
+  confirmEvent(e) {
+    let params =  {
+      key: 'traffic',
+      tasks_id: this.data.vehTaskId,
+      reason: e.detail.reason,
+      case_id: this.data.vehId,
+    }
+    indexModel.taskReturn(params, res=> {
+      if(res.data.status == 1) {
+        wx.navigateBack({
+          delta: 1
+        })
+      } else {
+        wx.showToast({
+          title: res.data.msg ? res.data.msg : '操作超时',
+          icon: 'none'
+        })
+      }
+    })
   }
 
 })

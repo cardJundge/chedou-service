@@ -16,6 +16,10 @@ Page({
     dateTime1: null, //报案
     dateTimeArray1: null, //报案
     baoanShow: false, //报案
+
+    dateTime2: null, //出险
+    dateTimeArray2: null, //出险
+    chuxianShow: false, //出险
     region: ["", ""]
   },
 
@@ -25,13 +29,14 @@ Page({
       dateTime: obj.dateTime,
       dateTimeArray: obj.dateTimeArray,
       dateTime1: obj.dateTime,
-      dateTimeArray1: obj.dateTimeArray
+      dateTimeArray1: obj.dateTimeArray,
+      dateTime2: obj.dateTime,
+      dateTimeArray2: obj.dateTimeArray
     })
   },
 
   //改变列
   changeDateTimeColumn(e) {
-    console.log(e)
     if (e.currentTarget.dataset.type == "weipai") {
 
       var arr = this.data.dateTime,
@@ -45,7 +50,7 @@ Page({
         dateTime: arr
       })
 
-    } else {
+    } else if (e.currentTarget.dataset.type == "baoan"){
       var arr = this.data.dateTime1,
         dateArr = this.data.dateTimeArray1
 
@@ -57,6 +62,17 @@ Page({
         dateTime1: arr
       })
 
+    } else if (e.currentTarget.dataset.type == "出险") {
+      var arr = this.data.dateTime2,
+        dateArr = this.data.dateTimeArray2
+
+      arr[e.detail.column] = e.detail.value
+      dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]])
+
+      this.setData({
+        dateTimeArray2: dateArr,
+        dateTime2: arr
+      })
     }
 
   },
@@ -70,10 +86,15 @@ Page({
         weipaiShow: true
       })
 
-    } else {
+    } else if (e.currentTarget.dataset.type == 'baoan'){
       this.setData({
         dateTime1: e.detail.value,
         baoanShow: true
+      })
+    } else if (e.currentTarget.dataset.type == 'chuxian'){
+      this.setData({
+        dateTime2: e.detail.value,
+        chuxianShow: true
       })
     }
   },
@@ -84,15 +105,18 @@ Page({
       this.setData({
         weipaiShow: false
       })
-    } else {
+    } else if (e.currentTarget.dataset.type == 'baoan'){
       this.setData({
         baoanShow: false
+      })
+    } else if (e.currentTarget.dataset.type == 'chuxian') {
+      this.setData({
+        chuxianShow: false
       })
     }
   },
 
   bindRegionChange(e) {
-    console.log(e)
     this.setData({
       region: e.detail.value
     })
@@ -100,7 +124,6 @@ Page({
 
   // 添加车物调查案件
   addVehicle(e) {
-    console.log(e)
     let data = e.detail.value
     if (!data.reportNo) {
       return wx.showToast({
@@ -141,6 +164,12 @@ Page({
     if (!data.carNo) {
       return wx.showToast({
         title: '出险车牌号不能为空！',
+        icon: "none"
+      })
+    }
+    if (!this.data.chuxianShow) {
+      return wx.showToast({
+        title: '请选择出险时间！',
         icon: "none"
       })
     }
@@ -190,7 +219,8 @@ Page({
       survey_address: this.data.region[0] + "-" + this.data.region[1] + " " + data.detailAddress,
       report_date: this.data.dateTimeArray1[0][this.data.dateTime1[0]] + "-" + this.data.dateTimeArray1[1][this.data.dateTime1[1]] + '-' + this.data.dateTimeArray1[2][this.data.dateTime1[2]] + " " + this.data.dateTimeArray1[3][this.data.dateTime1[3]] + ":" + this.data.dateTimeArray1[4][this.data.dateTime1[4]],
       verify_content: data.verify,
-      survey_content: data.investigation
+      survey_content: data.investigation,
+      survey_date: this.data.dateTimeArray2[0][this.data.dateTime2[0]] + "-" + this.data.dateTimeArray2[1][this.data.dateTime2[1]] + '-' + this.data.dateTimeArray2[2][this.data.dateTime2[2]] + " " + this.data.dateTimeArray2[3][this.data.dateTime2[3]] + ":" + this.data.dateTimeArray2[4][this.data.dateTime2[4]]
     }
 
     indexModel.addBusiness(params, res => {

@@ -14,16 +14,7 @@ Page({
     noShops: true,
   },
 
-  onLoad: function(options) {
-    if (this.data.isOpen) {
-      wx.setNavigationBarTitle({
-        title: '我的商铺'
-      })
-    } else {
-      wx.setNavigationBarTitle({
-        title: '开通商铺'
-      })
-    }
+  onLoad(options) {
     this.haveShops()
   },
 
@@ -41,9 +32,15 @@ Page({
         this.setData({
           isOpen: false
         })
+        wx.setNavigationBarTitle({
+          title: '开通商铺'
+        })
       } else if (res.data == 1) {
         this.setData({
           isOpen: true
+        })
+        wx.setNavigationBarTitle({
+          title: '我的商铺'
         })
         this.getShopsDetails()
       }

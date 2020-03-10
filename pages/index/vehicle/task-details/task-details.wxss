@@ -7,6 +7,7 @@
 .task-details-body {
   width: 702rpx;
   margin: 0 auto;
+  padding-bottom: 90rpx;
 }
 
 .title {
@@ -107,6 +108,7 @@
   display: flex;
   flex-direction: column;
   /* margin-bottom: 100rpx; */
+  line-height: 90rpx;
 }
 
 .investigation label {
@@ -179,4 +181,48 @@
 
 .reject-mode text {
   padding: 24rpx;
+}
+
+.footer {
+  width: 750rpx;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: #1a65ff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.reject-list {
+  box-shadow: 0 0 2rpx 2rpx rgba(216, 216, 216, 0.5);
+  border-radius: 20rpx;
+  width: 100%;
+  margin-bottom: 24rpx;
+}
+
+.reject-title {
+  padding: 12rpx 24rpx;
+}
+
+.reject-item {
+  width: 100%;
+  padding: 12rpx 24rpx;
+}
+
+.reject-item-time text:first-child {
+  width: 48rpx;
+}
+
+.reject-item-time text:last-child {
+  font-size: 24rpx;
+}
+
+.reject-item-reason {
+  margin-left: 48rpx;
+  font-size: 24rpx;
+  color: #a9a9a9;
 }

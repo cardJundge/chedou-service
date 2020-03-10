@@ -39,8 +39,13 @@ Page({
 
   // 获取疾病调查列表
   getSickList() {
-    let key = 'sickness'
-    indexModel.getWorkList(key, this.data.page, res=> {
+  this.data.sickList = []
+   let params = {
+     key: 'sickness',
+     page: this.data.page,
+     keywords: this.data.keywords ? this.data.keywords: ''
+   }
+    indexModel.getWorkList(params, res=> {
       let sickList = this.data.sickList
       let sickInfo = res.data.data.data
       if(res.data.status == 1) {
@@ -157,5 +162,16 @@ Page({
     wx.navigateTo({
       url: './sickness-details/sickness-details?listId=' + e.currentTarget.dataset.id,
     })
+  },
+
+  // 搜索
+  search(e) {
+    if (this.data.selected != 1) {
+      this.setData({
+        selected: 1
+      })
+    }
+    this.data.keywords = e.detail.value
+    this.getSickList()
   }
 })

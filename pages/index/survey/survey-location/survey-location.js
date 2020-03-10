@@ -37,6 +37,7 @@ Page({
                 longitude: res.result.location.lng
               },
             })
+            console.log('ceshivceshi',addList)
           }
         })
       },

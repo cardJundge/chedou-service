@@ -212,13 +212,46 @@ class MineModel extends HTTP {
     this.request(params)
   }
 
-  // 添加商品
+  // 添加商品/服务
   addService(param, callback) {
     var params = {
       url: '/api/ser/goods/add',
       type: 'POST',
       auth: true,
       data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 商品/服务列表
+  serviceList(callback) {
+    var params = {
+      url: '/api/ser/goods',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 删除商品/服务
+  delService(param, callback) {
+    var params = {
+      url: '/api/ser/goods/' + param.id + '/delete',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 编辑商品
+  editService(param, callback) {
+    var params = {
+      url: '/api/ser/goods/update',
+      type: 'POST',
+      auth: true,
       sCallback: callback
     }
     this.request(params)

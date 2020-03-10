@@ -40,6 +40,13 @@
         <text>出险车牌号</text>
         <input placeholder="请输入出险车牌号" placeholder-class="ph-class" name="carNo"></input>
       </view>
+      <view class="case-item">
+        <text>出险时间</text>
+        <picker mode="multiSelector" value="{{dateTime2}}" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray2}}" bindchange="changedateTime" bindcancel="cancelTime" data-type="chuxian">
+          <input placeholder="请选择出险时间" placeholder-class="ph-class" disabled="disabled" wx:if="{{!chuxianShow}}"></input>
+          <input disabled="disabled" wx:else value="{{dateTimeArray2[0][dateTime2[0]]}}-{{dateTimeArray2[1][dateTime2[1]]}}-{{dateTimeArray2[2][dateTime2[2]]}} {{dateTimeArray2[3][dateTime2[3]]}}:{{dateTimeArray2[4][dateTime2[4]]}}"></input>
+        </picker>
+      </view>
 
       <view class="case-item">
         <text>厂牌型号</text>

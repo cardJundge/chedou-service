@@ -61,5 +61,18 @@
     <view class="record-whole" wx:if="{{taskRecord.length == 0}}">
       <view class="no-data">暂无记录</view>
     </view>
+    <!-- 驳回原因 -->
+    <view class="reject-list">
+      <view class="reject-title">驳回意见:</view>
+      <view class="reject-item" wx:for="{{taskReject}}">
+        <view class="reject-item-time">
+          <text>{{index + 1}}、</text>
+          <text>{{item.created_at}}</text>
+        </view>
+        <view class="reject-item-reason">{{item.reason}}</view>
+      </view>
+    </view>
   </view>
+  <view class="footer" wx:if="{{vehCaseStatus < 4 && vehTaskStatus == 1}}" bindtap="toBackTask">退回</view>
 </view>
+<back isShow="{{isShowBack}}" bind:confirmEvent="confirmEvent" />

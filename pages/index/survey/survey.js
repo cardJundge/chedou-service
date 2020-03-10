@@ -92,7 +92,13 @@ Page({
     })
   },
   getBusinessList() {
-    indexModel.getWorkList('survey', this.data.page, res => {
+    this.data.businessList = []
+    let params = {
+      key: 'survey',
+      page: this.data.page,
+      keywords: this.data.keywords ? this.data.keywords : ''
+    }
+    indexModel.getWorkList(params, res => {
       if (res.data.status == 1) {
         let businessList = this.data.businessList
         let businessInfo = res.data.data.data
@@ -154,5 +160,16 @@ Page({
     })
     this.getBusinessList()
   },
+
+  // 搜索
+  search(e) {
+    if (this.data.selected != 1) {
+      this.setData({
+        selected: 1
+      })
+    }
+    this.data.keywords = e.detail.value
+    this.getBusinessList()
+  }
 
 })

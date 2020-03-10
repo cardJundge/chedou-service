@@ -21,7 +21,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.8.3",
+	"libVersion": "2.10.2",
 	"appid": "wx726ab815a689d5db",
 	"projectname": "chedou-service",
 	"debugOptions": {

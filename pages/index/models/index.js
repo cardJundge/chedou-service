@@ -53,15 +53,12 @@ class IndexModel extends HTTP {
   }
 
   // 获取业务列表
-  getWorkList(key, page, callback) {
+  getWorkList(param, callback) {
     var params = {
       url: '/api/ser/work/lists',
       type: 'GET',
       auth: true,
-      data: {
-        key: key,
-        page: page
-      },
+      data: param,
       sCallback: callback
     }
     this.request(params)
@@ -352,6 +349,30 @@ class IndexModel extends HTTP {
       url: '/api/ser/turn/' + param.id + '/info',
       type: 'GET',
       auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 审核
+  examineCase(param, callback) {
+    var params = {
+      url: '/api/ser/work/audit',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 任务退回
+  taskReturn(param, callback) {
+    var params = {
+      url: '/api/ser/work/reject',
+      type: 'POST',
+      auth: true,
+      data: param,
       sCallback: callback
     }
     this.request(params)

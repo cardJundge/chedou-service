@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "back": "/components/back/back",
     "i-icon": "/dist/icon/index",
     "i-collapse": "../../dist/collapse/index",
     "i-collapse-item": "../../dist/collapse-item/index"

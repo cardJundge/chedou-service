@@ -16,18 +16,18 @@
   <!-- 商品/服务列表 -->
   <view wx:if="{{!noService}}">
     <view class="service-list">
-      <view class="service-item">
+      <view class="service-item" wx:for="{{serviceList}}">
         <view class="item-top">
-          <image src="/images/logo.png"></image>
+          <image src="{{imgUrl}}{{item.pic}}"></image>
           <view class="item-top-info">
             <view class="item-top-info-first">
-              <text>服务项目</text>
+              <text>{{item.name}}</text>
               <view>
                 <text>¥</text>
-                <text>100.00</text>
+                <text>{{item.price}}</text>
               </view>
             </view>
-            <text class="item-top-info-second">服务简介服务简介服务简介服务简介服务简介服介服务简介</text>
+            <text class="item-top-info-second">{{item.intro}}</text>
             <view class="item-top-info-third">
               <text></text>
               <text></text>
@@ -40,14 +40,14 @@
           <view class="item-bottom-right">
             <view class="item-bottom-right-statistics">
               <view class="statistics-content">
-                <text>26</text>
+                <text>{{item.buy}}</text>
                 <view>
                   <text></text>
                   <text>购买</text>
                 </view>
               </view>
               <view class="statistics-content">
-                <text>456</text>
+                <text>{{item.look}}</text>
                 <view>
                   <text></text>
                   <text>看过</text>
@@ -55,8 +55,8 @@
               </view>
             </view>
             <view class="item-bottom-right-btn">
-              <view bindtap="toDelService">删除</view>
-              <view bindtap="toEditService">编辑</view>
+              <view bindtap="toDelService" data-id="{{item.id}}">删除</view>
+              <view bindtap="toEditService" data-id="{{item.id}}">编辑</view>
             </view>
           </view>
         </view>
