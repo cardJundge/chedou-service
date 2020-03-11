@@ -90,6 +90,9 @@
   flex-wrap: nowrap;
   padding: 0 24rpx;
   white-space: nowrap;
+  position: fixed;
+  top: 76rpx;
+  background: #fff;
 }
 
 .status-item {
@@ -122,7 +125,7 @@
 
 .vehicle-list {
   width: 100%;
-  margin-top: 12rpx;
+  margin-top: 136rpx;
 }
 
 .list-item {

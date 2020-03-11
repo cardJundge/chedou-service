@@ -12,11 +12,11 @@
     </view>
   </view>
   <!-- 下拉刷新 -->
-  <view class="refresh-img" wx:if="{{isRefresh}}">
+  <!-- <view class="refresh-img" wx:if="{{isRefresh}}">
     <image src="/images/index/refresh.gif"></image>
-  </view>
+  </view> -->
   <!-- 状态选择 -->
-  <scroll-view scroll-x class="status-box" style="margin-top: {{marginTop}}rpx" scroll-left="{{navScrollLeft}}">
+  <scroll-view scroll-x class="status-box" scroll-left="{{navScrollLeft}}">
     <view bindtap="changeStatus" wx:for="{{statusList}}" wx:key="" data-index="{{item.id}}" class="status-item {{item.id == selected? 'select-active': 'status-item'}}">{{item.name}}</view>
   </scroll-view>
 
@@ -34,7 +34,7 @@
         <view wx:if="{{item.status == 0}}" class='list-item-right status05'>待分配</view>
         <view wx:if="{{item.status == 1}}" class='list-item-right status01'>已分配</view>
         <view wx:if="{{item.status == 2}}" class='list-item-right status02'>进行中</view>
-        <view wx:if="{{item.status == 3}}" class='list-item-right status01'>预结案</view>
+        <view wx:if="{{item.status == 3}}" class='list-item-right status03'>预结案</view>
         <view wx:if="{{item.status == 4}}" class='list-item-right status04'>已结案</view>
         <view wx:if="{{item.status == 100 && (item.turn_service_id != serviceId)}}" class='list-item-right status04'>已转单</view>
         <view wx:if="{{item.status == 100 && (item.turn_service_id == serviceId)}}" class='list-item-right status05'>待审核</view>
@@ -45,7 +45,7 @@
         </view>
       </view> -->
     <!-- </i-swipeout> -->
-    <view class="more-data" wx:if="{{hasMoreData}}" bindtap="getMoreData">点击加载更多...</view>
+    <view class="more-data" wx:if="{{hasMoreData}}">上拉加载更多...</view>
   </view>
 
   <view class="no-data" wx:if="{{!spinShow && hasNoData}}">

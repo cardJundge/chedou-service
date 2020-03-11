@@ -246,4 +246,4 @@
 </i-modal>
 
 <!-- 审核弹框 -->
-<examine isShow="{{isShowExamine}}" bind:confirmEvent="confirmEvent" bind:rejectEvent="rejectEvent" prompt="{{prompt}}" />
+<examine isShow="{{isShowExamine}}" bind:confirmEvent="confirmEvent" bind:rejectEvent="rejectEvent" prompt="{{prompt}}" reason="{{caseRejectReason}}" />

@@ -42,13 +42,26 @@ Page({
       imgUrl: app.globalData.imgUrl,
       serviceId: app.globalData.userInfo.id
     })
+    this.getVehicleDetails(res => {
+      if (res) {
+        if (this.data.vehicleList.reject && this.data.vehicleList.status == 2) {
+          let str = this.data.vehicleList.reject.reason.replace(/↵/g, "\n")
+          this.setData({
+            isShowExamine: true,
+            prompt: true,
+            caseRejectReason: str
+          })
+          
+        }
+      }
+    })
   },
 
   onShow: function() {
     this.setData({
       isToComplete: false
     })
-    this.getVehicleDetails()
+    this.getVehicleDetails(res => {})
     this.getModuleUnion()
   },
 
@@ -103,7 +116,7 @@ Page({
   },
 
   // 获取车物调查详情
-  getVehicleDetails() {
+  getVehicleDetails(callback) {
     let key = 'traffic'
     let id = this.data.listId
     let type = 9
@@ -143,6 +156,7 @@ Page({
         // ***********************************************************
         this.getPersonnelList()
         this.getVehicleData()
+        callback(true)
       }
     })
   },
@@ -194,7 +208,7 @@ Page({
         wx.showToast({
           title: '接单成功',
         })
-        this.getVehicleDetails()
+        this.getVehicleDetails(res => {})
         this.setData({
           turnInFirst: false
         })
@@ -211,7 +225,9 @@ Page({
   },
 
 
-  modalClick({detail}) {
+  modalClick({
+    detail
+  }) {
     const index = detail.index
 
     if (index === 0) {
@@ -276,7 +292,7 @@ Page({
     }
     indexModel.addTask(params, res => {
       if (res.data.status == 1) {
-        this.getVehicleDetails()
+        this.getVehicleDetails(res => {})
       }
     })
   },
@@ -362,7 +378,7 @@ Page({
         wx.showToast({
           title: '提交成功',
         })
-        this.getVehicleDetails()
+        this.getVehicleDetails(res => {})
       }
     })
   },
@@ -430,14 +446,14 @@ Page({
   },
 
   openfile(e) {   
-    let filesrc  =  e.currentTarget.dataset.src    
+    let  filesrc  =  e.currentTarget.dataset.src    
     wx.downloadFile({
       url: this.data.imgUrl + filesrc,
-      success: res=> {
-        const filePath  =  res.tempFilePath
+      success: res =>  {
+        const  filePath  =  res.tempFilePath
         wx.openDocument({          
           filePath: filePath,
-          success: res1=>  {
+          success: res1 =>  {
             // console.log('打开成功')    
           }        
         })      
@@ -446,20 +462,22 @@ Page({
   },
 
   // 审核被拒绝
-  rejectEvent() {
+  rejectEvent(e) {
     let params = {
-      id: this.data.vehicleList.id,
+      case_id: this.data.vehicleList.id,
       key: 'traffic',
+      reason: e.detail.reason,
       status: 2
     }
     this.caseExamine(params)
   },
 
   // 审核被通过
-  confirmEvent() {
+  confirmEvent(e) {
     let params = {
-      id: this.data.vehicleList.id,
+      case_id: this.data.vehicleList.id,
       key: 'traffic',
+      reason: e.detail.reason,
       status: 4
     }
     this.caseExamine(params)
@@ -475,8 +493,8 @@ Page({
 
   // 审核接口
   caseExamine(params) {
-    indexModel.examineCase(params, res => {
-      this.getVehicleDetails()
+    indexModel.taskCaseReturn(params, res => {
+      this.getVehicleDetails(res => {})
     })
   }
 

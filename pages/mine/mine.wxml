@@ -30,13 +30,13 @@
 
   </view>
   <view class="mine-list">
-    <!-- <view class="mine-item" bindtap="toShops">
+    <view class="mine-item" bindtap="toShops">
       <image src="/images/mine/icon_shops.png"></image>
       <view class="mine-item-text">
         <text>我的商铺</text>
         <i-icon type="enter" size="18" color="#E2E2E2" />
       </view>
-    </view> -->
+    </view>
     <view class="mine-item" bindtap="toAccount">
       <image src="/images/mine/icon_money.png"></image>
       <view class="mine-item-text">

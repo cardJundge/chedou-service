@@ -38,7 +38,8 @@ Page({
     pageSize: 15,
     hasNoData: false,
     navScrollLeft: 0,
-    marginTop: 84
+    // marginTop: 84,
+    vehStatus: 0 // 车物调查初始状态
   },
 
   onLoad: function(options) {
@@ -57,20 +58,20 @@ Page({
     this.getVehicleList()
   },
 
-  // 获取疾病调查列表
+  // 获取车物调查列表
   getVehicleList() {
-    this.data.vehicleList = []
     let params = {
       key: 'traffic',
       page: this.data.page,
-      keywords: this.data.keywords ? this.data.keywords : ''
+      keywords: this.data.keywords ? this.data.keywords : '',
+      status: this.data.vehStatus
     }
     indexModel.getWorkList(params, res => {
-      wx.stopPullDownRefresh()
-      this.setData({
-        isRefresh: false,
-        marginTop: 84
-      })
+      // wx.stopPullDownRefresh()
+      // this.setData({
+      //   isRefresh: false,
+      //   marginTop: 84
+      // })
       let vehicleList = this.data.vehicleList
       let vehicleInfo = res.data.data.data
       if (res.data.status == 1) {
@@ -113,33 +114,30 @@ Page({
     })
   },
 
-  getMoreData() {
-    this.setData({
-      page: this.data.page + 1
-    })
-    this.getVehicleList()
-  },
-
   changeStatus(e) {
     this.setData({
-      selected: e.target.dataset.index
+      selected: e.target.dataset.index,
+      page: 1
     })
+    this.data.vehicleList = []
     // console.log(this.data.selected)
-    let tempList = []
+    // let tempList = []
     if (this.data.selected === 1) {
       this.setData({
         navScrollLeft: 0
       })
-      tempList = this.data.vehicleTempList
-      if (this.data.vehicleInfo.length >= this.data.pageSize) {
-        this.setData({
-          hasMoreData: true
-        })
-      } else {
-        this.setData({
-          hasMoreData: false
-        })
-      }
+      this.data.vehStatus = 0
+      this.getVehicleList()
+      // tempList = this.data.vehicleTempList
+      // if (this.data.vehicleInfo.length >= this.data.pageSize) {
+      //   this.setData({
+      //     hasMoreData: true
+      //   })
+      // } else {
+      //   this.setData({
+      //     hasMoreData: false
+      //   })
+      // }
     } else {
       this.setData({
         hasMoreData: false
@@ -148,46 +146,57 @@ Page({
         this.setData({
           navScrollLeft: 0
         })
-        this.data.vehicleTempList.forEach((item, index) => {
-          if (item.status == 1) {
-            tempList.push(item)
-          }
-        }) 
+        this.data.vehStatus = 1
+        this.getVehicleList()
+        // this.data.vehicleTempList.forEach((item, index) => {
+        //   if (item.status == 1) {
+        //     tempList.push(item)
+        //   }
+        // }) 
       } else if (this.data.selected === 3) {
-        this.data.vehicleTempList.forEach((item, index) => {
-          if (item.status == 2) {
-            tempList.push(item)
-          }
-        })
+        this.data.vehStatus = 2
+        this.getVehicleList()
+        // this.data.vehicleTempList.forEach((item, index) => {
+        //   if (item.status == 2) {
+        //     tempList.push(item)
+        //   }
+        // })
       } else if (this.data.selected === 4) {
-        this.data.vehicleTempList.forEach((item, index) => {
-          if (item.status == 3) {
-            tempList.push(item)
-          }
+        this.setData({
+          navScrollLeft: 800
         })
+        this.data.vehStatus = 3
+        this.getVehicleList()
+        // this.data.vehicleTempList.forEach((item, index) => {
+        //   if (item.status == 3) {
+        //     tempList.push(item)
+        //   }
+        // })
       } else if (this.data.selected === 5) {
         this.setData({
           navScrollLeft: 800
         })
-        this.data.vehicleTempList.forEach((item, index) => {
-          if (item.status == 4) {
-            tempList.push(item)
-          }
-        })
+        this.data.vehStatus = 4
+        this.getVehicleList()
+        // this.data.vehicleTempList.forEach((item, index) => {
+        //   if (item.status == 4) {
+        //     tempList.push(item)
+        //   }
+        // })
       }else if (this.data.selected === 6) {
         this.setData({
           navScrollLeft: 800
         })
-        this.data.vehicleTempList.forEach((item, index) => {
-          if (item.turn_service_id) {
-            tempList.push(item)
-          }
-        })
+        // this.data.vehicleTempList.forEach((item, index) => {
+        //   if (item.turn_service_id) {
+        //     tempList.push(item)
+        //   }
+        // })
       }
     }
-    this.setData({
-      vehicleList: tempList
-    })
+    // this.setData({
+    //   vehicleList: tempList
+    // })
   },
 
   toVehicleDetails(e) {
@@ -218,6 +227,7 @@ Page({
       })
     }
     this.data.keywords = e.detail.value
+    this.data.vehicleList = []
     this.getVehicleList()
   },
 
@@ -268,12 +278,24 @@ Page({
     this.data.endTime = e.timeStamp
   },
 
+  // 上拉加载
+  onReachBottom: function() {
+    if (this.data.hasMoreData) {
+      this.setData({
+        page: this.data.page + 1
+      })
+      this.getVehicleList()
+    }
+  },
+
   // 下拉刷新方法
-  onPullDownRefresh: function () {
-    this.setData({
-      isRefresh: true,
-      marginTop: 0
-    })
+  onPullDownRefresh: function() {
+    // this.setData({
+    //   isRefresh: true,
+    //   marginTop: 0,
+    //   page: 1
+    // })
+    this.data.page = 1
     this.getVehicleList()
   }
 })

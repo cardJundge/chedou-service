@@ -6,6 +6,9 @@ Component({
     },
     prompt: {
       type: Boolean
+    },
+    reason: {
+      type: String
     }
   },
 
@@ -41,7 +44,9 @@ Component({
         isShow: false
       })
       if (this.data.isPass == true) {
-        this.triggerEvent('confirmEvent')
+        this.triggerEvent('confirmEvent', {
+          reason: ''
+        })
       } else if (this.data.isPass == false){
         this.triggerEvent('rejectEvent', {
           reason: this.data.reason

@@ -21,7 +21,17 @@ Page({
   },
 
   onLoad: function(options) {
-    console.log(options.data)
+    console.log(JSON.parse(options.data))
+    let data = JSON.parse(options.data)
+    if(data) {
+      this.setData({
+        formData: {
+          serviceName: data.name,
+          servicePrice: data.price,
+          serviceIntro: data.intro,
+        },
+      })
+    }
     this.initValidate()
     this.getClassification()
     this.setData({

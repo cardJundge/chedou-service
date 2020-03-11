@@ -134,7 +134,7 @@ Page({
       reason: e.detail.reason,
       case_id: this.data.vehId,
     }
-    indexModel.taskReturn(params, res=> {
+    indexModel.taskCaseReturn(params, res=> {
       if(res.data.status == 1) {
         wx.navigateBack({
           delta: 1

@@ -148,7 +148,7 @@ Page({
         mineModel.operationShops(params, res => {
           if (res.data.status == 1) {
             wx.showToast({
-              title: '添加成功'
+              title: '修改成功'
             })
             wx.navigateBack({
               delta: 1
@@ -159,7 +159,7 @@ Page({
         mineModel.operationShops(params, res => {
           if (res.data.status == 1) {
             wx.showToast({
-              title: '修改成功'
+              title: '添加成功'
             })
             wx.navigateBack({
               delta: 1

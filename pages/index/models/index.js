@@ -355,19 +355,19 @@ class IndexModel extends HTTP {
   }
 
   // 审核
-  examineCase(param, callback) {
-    var params = {
-      url: '/api/ser/work/audit',
-      type: 'POST',
-      auth: true,
-      data: param,
-      sCallback: callback
-    }
-    this.request(params)
-  }
+  // examineCase(param, callback) {
+  //   var params = {
+  //     url: '/api/ser/work/audit',
+  //     type: 'POST',
+  //     auth: true,
+  //     data: param,
+  //     sCallback: callback
+  //   }
+  //   this.request(params)
+  // }
 
   // 任务退回
-  taskReturn(param, callback) {
+  taskCaseReturn(param, callback) {
     var params = {
       url: '/api/ser/work/reject',
       type: 'POST',

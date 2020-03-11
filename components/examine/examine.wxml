@@ -11,7 +11,8 @@
     <!-- 原因 -->
     <view class="input-title" wx:if="{{!isPass}}">原因:</view>
     <view class="input-box" wx:if="{{!isPass}}">
-      <textarea auto-height="true" placeholder="请输入原因" placeholder-class="ph-class" bindinput="getNoPassReason"></textarea>
+      <!-- <textarea auto-height="true" placeholder="请输入原因" placeholder-class="ph-class" bindinput="getNoPassReason" maxlength="500"></textarea> -->
+      <textarea placeholder="请输入原因" placeholder-class="ph-class" bindinput="getNoPassReason" maxlength="500"></textarea>
     </view>
     <view class="bottom-btn-bar">
       <view bindtap="toCancel">取消</view>
@@ -32,7 +33,9 @@
     <!-- 原因 -->
     <view class="input-title">原因:</view>
     <view class="input-box">
-      <textarea auto-height="true" placeholder-class="ph-class" disabled="disabled">{{}}原因原因</textarea>
+      <scroll-view scroll-y='true' class="prompt-textarea">
+        <text>{{reason}}</text>
+      </scroll-view>
     </view>
     <view class="prompt-bottom-btn-bar">
       <view class="prompt-confirm" bindtap="toClosePrompt">确定</view>
