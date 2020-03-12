@@ -62,6 +62,10 @@
 
 /* 刷新 */
 
+.refresh-img {
+  padding-top: 36rpx;
+}
+
 .refresh-img image{
   width: 100%;
   height: 100rpx;
@@ -84,6 +88,7 @@
 
 .status-box {
   width: 100%;
+  height: 136rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -91,8 +96,9 @@
   padding: 0 24rpx;
   white-space: nowrap;
   position: fixed;
-  top: 76rpx;
+  top: 0;
   background: #fff;
+  padding-top: 76rpx;
 }
 
 .status-item {
@@ -125,7 +131,6 @@
 
 .vehicle-list {
   width: 100%;
-  margin-top: 136rpx;
 }
 
 .list-item {
@@ -159,8 +164,9 @@
 .list-item-right {
   width: 180rpx;
   height: 60rpx;
-  line-height: 60rpx;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 30rpx;
   color: #fff;
 }
@@ -183,7 +189,7 @@
 
 .status05 {
   color: #1a65ff;
-  border: 1rpx solid #1a65ff;
+  border: 1px solid #1a65ff;
 }
 
 .more-data {
@@ -195,7 +201,7 @@
 
 .no-data {
   width: 100%;
-  margin-top: 120rpx;
+  margin-top: 160rpx;
   text-align: center;
   color: #737373;
 }

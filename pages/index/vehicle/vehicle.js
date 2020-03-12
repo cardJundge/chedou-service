@@ -38,17 +38,17 @@ Page({
     pageSize: 15,
     hasNoData: false,
     navScrollLeft: 0,
-    // marginTop: 84,
+    marginTop: 136,
     vehStatus: 0 // 车物调查初始状态
   },
 
-  onLoad: function(options) {
+  onLoad(options) {
     this.setData({
       serviceId: app.globalData.userInfo.id
     })
   },
 
-  onShow: function() {
+  onShow() {
     this.setData({
       vehicleList: [],
       page: 1,
@@ -63,15 +63,17 @@ Page({
     let params = {
       key: 'traffic',
       page: this.data.page,
-      keywords: this.data.keywords ? this.data.keywords : '',
-      status: this.data.vehStatus
+      keywords: this.data.keywords ? this.data.keywords : ''
+    }
+    if (this.data.selected == 1 || this.data.selected == 6) {} else {
+      params.status = this.data.vehStatus
     }
     indexModel.getWorkList(params, res => {
-      // wx.stopPullDownRefresh()
-      // this.setData({
-      //   isRefresh: false,
-      //   marginTop: 84
-      // })
+      wx.stopPullDownRefresh()
+      this.setData({
+        isRefresh: false,
+        marginTop: 136
+      })
       let vehicleList = this.data.vehicleList
       let vehicleInfo = res.data.data.data
       if (res.data.status == 1) {
@@ -98,13 +100,31 @@ Page({
             hasMoreData: true
           })
         }
-        this.data.vehicleTempList = this.data.vehicleList
+        // this.data.vehicleTempList = this.data.vehicleList
 
+        if (this.data.selected == 6) {
+          let tempList = []
+          this.data.vehicleList.forEach((item, index) => {
+            if (item.turn_service_id) {
+              tempList.push(item)
+            }
+          })
+          if(tempList.length == 0) {
+            this.setData({
+              hasNoData: true
+            })
+          } else {
+            this.setData({
+              vehicleList: tempList,
+              hasMoreData: false
+            })
+          }
+        }
       } else {
         this.setData({
           hasNoData: true
         })
-        if (res.data.msg.match('Token已过期或失效')) {} else {
+        if (res.data.msg.match('Token')) {} else {
           wx.showToast({
             title: res.data.msg ? res.data.msg : '请求超时',
             icon: 'none'
@@ -116,97 +136,52 @@ Page({
 
   changeStatus(e) {
     this.setData({
-      selected: e.target.dataset.index,
-      page: 1
+      selected: e.target.dataset.index
     })
+    this.data.page = 1
     this.data.vehicleList = []
-    // console.log(this.data.selected)
-    // let tempList = []
     if (this.data.selected === 1) {
       this.setData({
         navScrollLeft: 0
       })
       this.data.vehStatus = 0
       this.getVehicleList()
-      // tempList = this.data.vehicleTempList
-      // if (this.data.vehicleInfo.length >= this.data.pageSize) {
-      //   this.setData({
-      //     hasMoreData: true
-      //   })
-      // } else {
-      //   this.setData({
-      //     hasMoreData: false
-      //   })
-      // }
-    } else {
+    } else if (this.data.selected === 2) {
       this.setData({
-        hasMoreData: false
+        navScrollLeft: 0
       })
-      if (this.data.selected === 2) {
-        this.setData({
-          navScrollLeft: 0
-        })
-        this.data.vehStatus = 1
-        this.getVehicleList()
-        // this.data.vehicleTempList.forEach((item, index) => {
-        //   if (item.status == 1) {
-        //     tempList.push(item)
-        //   }
-        // }) 
-      } else if (this.data.selected === 3) {
-        this.data.vehStatus = 2
-        this.getVehicleList()
-        // this.data.vehicleTempList.forEach((item, index) => {
-        //   if (item.status == 2) {
-        //     tempList.push(item)
-        //   }
-        // })
-      } else if (this.data.selected === 4) {
-        this.setData({
-          navScrollLeft: 800
-        })
-        this.data.vehStatus = 3
-        this.getVehicleList()
-        // this.data.vehicleTempList.forEach((item, index) => {
-        //   if (item.status == 3) {
-        //     tempList.push(item)
-        //   }
-        // })
-      } else if (this.data.selected === 5) {
-        this.setData({
-          navScrollLeft: 800
-        })
-        this.data.vehStatus = 4
-        this.getVehicleList()
-        // this.data.vehicleTempList.forEach((item, index) => {
-        //   if (item.status == 4) {
-        //     tempList.push(item)
-        //   }
-        // })
-      }else if (this.data.selected === 6) {
-        this.setData({
-          navScrollLeft: 800
-        })
-        // this.data.vehicleTempList.forEach((item, index) => {
-        //   if (item.turn_service_id) {
-        //     tempList.push(item)
-        //   }
-        // })
-      }
+      this.data.vehStatus = 1
+      this.getVehicleList()
+    } else if (this.data.selected === 3) {
+      this.data.vehStatus = 2
+      this.getVehicleList()
+    } else if (this.data.selected === 4) {
+      this.setData({
+        navScrollLeft: 800
+      })
+      this.data.vehStatus = 3
+      this.getVehicleList()
+    } else if (this.data.selected === 5) {
+      this.setData({
+        navScrollLeft: 800
+      })
+      this.data.vehStatus = 4
+      this.getVehicleList()
+    } else if (this.data.selected === 6) {
+      this.setData({
+        navScrollLeft: 800
+      })
+      this.getVehicleList()
     }
-    // this.setData({
-    //   vehicleList: tempList
-    // })
   },
 
   toVehicleDetails(e) {
-    // console.log(e.currentTarget.dataset.id)
     if (this.data.endTime - this.data.startTime < 350) {
       wx.navigateTo({
         url: './vehicle-details/vehicle-details?listId=' + e.currentTarget.dataset.id,
       })
     }
-    
+
   },
 
   // 添加车物调查案件
@@ -221,11 +196,7 @@ Page({
     wx.showLoading({
       title: '加载中...'
     })
-    if (this.data.selected != 1) {
-      this.setData({
-        selected: 1
-      })
-    }
+    this.data.page = 1
     this.data.keywords = e.detail.value
     this.data.vehicleList = []
     this.getVehicleList()
@@ -237,7 +208,7 @@ Page({
     wx.showModal({
       title: '提示',
       content: '是否删除该案件？',
-      success: res=> {
+      success: res => {
         if (res.confirm) {
           if (caseStatus == 1) {
             wx.showToast({
@@ -249,13 +220,14 @@ Page({
               title: '进行中状态下不可以删除案件',
               icon: 'none'
             })
-          }else {
+          } else {
             let params = {
               key: 'traffic',
               id: e.currentTarget.dataset.id
             }
             indexModel.delBusiness(params, res => {
               if (res.data.status == 1) {
+                this.data.vehicleList = []
                 this.getVehicleList()
               } else {
                 wx.showToast({
@@ -273,28 +245,26 @@ Page({
   bindTouchStart(e) {
     this.data.startTime = e.timeStamp
   },
-  
+
   bindTouchEnd(e) {
     this.data.endTime = e.timeStamp
   },
 
   // 上拉加载
-  onReachBottom: function() {
+  onReachBottom() {
     if (this.data.hasMoreData) {
-      this.setData({
-        page: this.data.page + 1
-      })
+      this.data.page = this.data.page + 1
       this.getVehicleList()
     }
   },
 
   // 下拉刷新方法
-  onPullDownRefresh: function() {
-    // this.setData({
-    //   isRefresh: true,
-    //   marginTop: 0,
-    //   page: 1
-    // })
+  onPullDownRefresh() {
+    this.setData({
+      isRefresh: true,
+      marginTop: 0
+    })
+    this.data.vehicleList = []
     this.data.page = 1
     this.getVehicleList()
   }

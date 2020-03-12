@@ -12,9 +12,9 @@
     </view>
   </view>
   <!-- 下拉刷新 -->
-  <!-- <view class="refresh-img" wx:if="{{isRefresh}}">
+  <view class="refresh-img" wx:if="{{isRefresh}}">
     <image src="/images/index/refresh.gif"></image>
-  </view> -->
+  </view>
   <!-- 状态选择 -->
   <scroll-view scroll-x class="status-box" scroll-left="{{navScrollLeft}}">
     <view bindtap="changeStatus" wx:for="{{statusList}}" wx:key="" data-index="{{item.id}}" class="status-item {{item.id == selected? 'select-active': 'status-item'}}">{{item.name}}</view>
@@ -24,7 +24,7 @@
     <image src="/images/loading.gif"></image>
   </view>
   <!-- 车物列表 -->
-  <view class="vehicle-list" wx:if="{{!spinShow && !hasNoData}}">
+  <view class="vehicle-list" wx:if="{{!spinShow && !hasNoData}}" style="margin-top: {{marginTop}}rpx">
     <!-- <i-swipeout operateWidth="{{80}}" > -->
       <view wx:for="{{vehicleList}}" slot="content" class="list-item" catchtap="toVehicleDetails" bindtouchstart='bindTouchStart' bindtouchend='bindTouchEnd' bindlongtap="toDelVehicleItem" data-id="{{item.id}}" data-status="{{item.status}}">
         <view class="list-item-left">
