@@ -16,6 +16,25 @@ Page({
 
   onLoad(options) {
     this.haveShops()
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.writePhotosAlbum']) {
+          this.setData({
+            photoLimit: true
+          })
+        } else {
+          this.setData({
+            photoLimit: false
+          })
+        }
+
+      }
+    })
+    this.setData({
+      serviceFace: app.globalData.userInfo.face ? app.globalData.imgUrl + app.globalData.userInfo.face : '',
+      serviceName: app.globalData.userInfo.name
+    })
+    console.log(this.data.serviceFace)
   },
 
   onShow() {

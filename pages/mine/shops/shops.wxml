@@ -86,4 +86,4 @@
     </view>
   </view>
 </view>
-<share isShow="{{shareShow}}" data="{{emptyObj}}"/>
+<share isShow="{{shareShow}}" data="{{emptyObj}}" photoLimit="{{photoLimit}}" serviceFace="{{serviceFace}}" serviceName="{{serviceName}}" />
