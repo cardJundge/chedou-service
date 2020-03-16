@@ -17,19 +17,25 @@ Page({
     },
     imageList: [],
     serviceType: ["购买", "预约"],
-    hasCate: false
+    hasCate: false,
+    isEdit: false,
+    showEditCateData: false
   },
 
   onLoad: function(options) {
-    console.log(JSON.parse(options.data))
-    let data = JSON.parse(options.data)
-    if(data) {
+    if (options.data) {
+      let data = JSON.parse(options.data)
       this.setData({
         formData: {
           serviceName: data.name,
           servicePrice: data.price,
           serviceIntro: data.intro,
         },
+        serviceId: data.id,
+        imageItem: data.pic,
+        serviceTypeIndex: data.type,
+        cateId: data.cate_id,
+        isEdit: true
       })
     }
     this.initValidate()
@@ -46,18 +52,33 @@ Page({
         var cateList = res.data.data
         var id
         var cateArr = cateList.map((item, index) => {
-          if(index == 0) {
+          if (index == 0) {
             id = item.id
           }
           return item.name
         })
-        
+
         this.setData({
           multiIndex: [0, 0],
           cateList,
           cateArr
         })
         this.getChild(id)
+        if (this.data.isEdit) {
+          this.data.cateList.forEach((item, index) => {
+            item.child.forEach((item1, index1) => {
+              if (item1.id == this.data.cateId) {
+                console.log(item1.name, item.name)
+                this.setData({
+                  hasCate: true,
+                  editCateName: item.name,
+                  editCateChildName: item1.name,
+                  showEditCateData: true
+                })
+              }
+            })
+          })
+        }
       }
     })
   },
@@ -65,7 +86,7 @@ Page({
   // 获取分类下的二级分类
   getChild(id) {
     this.data.cateList.forEach((item, index) => {
-      if(item.id == id) {
+      if (item.id == id) {
         var childList = item.child
         var childArr = childList.map(item => {
           return item.name
@@ -84,11 +105,13 @@ Page({
     console.log(e.detail.value)
     this.setData({
       hasCate: true,
+      showEditCateData: false,
       multiIndex: e.detail.value
     })
     this.data.childList.forEach((item, index) => {
-      if(index == e.detail.value[1]) {
+      if (index == e.detail.value[1]) {
         this.data.cateId = item.id
+        console.log(this.data.cateId)
       }
     })
   },
@@ -102,7 +125,7 @@ Page({
     switch (e.detail.column) {
       case 0:
         this.data.cateList.forEach((item, index) => {
-          if(index == e.detail.value) {
+          if (index == e.detail.value) {
             this.getChild(item.id)
           }
         })
@@ -123,8 +146,7 @@ Page({
         required: true
       },
       servicePrice: {
-        required: true,
-        digits: true
+        required: true
       },
       serviceIntro: {
         required: true
@@ -135,8 +157,7 @@ Page({
         required: '请输入商品/服务名称'
       },
       servicePrice: {
-        required: '请输入商品/服务价格',
-        digits: '商品/服务价格只能为数字'
+        required: '请输入商品/服务价格'
       },
       serviceIntro: {
         required: '请输入商品/服务简介'
@@ -148,7 +169,7 @@ Page({
   // 上传店铺照片
   uploadImg() {
     wx.chooseImage({
-      count: 9,
+      count: 1,
       // 可以指定是原图还是压缩图
       sizeType: ['compressed'],
       // 可以指定来源是相册还是相机
@@ -156,30 +177,26 @@ Page({
       success: (res) => {
         console.log(res)
         const tempFilePaths = res.tempFilePaths
-        let imageList = []
-        for (let i = 0; i < res.tempFilePaths.length; i++) {
-          wx.uploadFile({
-            url: app.globalData.hostName + '/api/auth/upload',
-            filePath: res.tempFilePaths[i],
-            name: 'file',
-            success: (res) => {
-              let data = JSON.parse(res.data)
-              console.log(data)
-              if (data.status == 1) {
-                imageList.push(data.data.filename)
-                this.setData({
-                  imageList: imageList
-                })
-              } else {
-                wx.showToast({
-                  title: data.msg ? data.msg : '操作超时',
-                  icon: 'none'
-                })
-              }
-            },
-            fail: (err) => {}
-          })
-        }
+        wx.uploadFile({
+          url: app.globalData.hostName + '/api/auth/upload',
+          filePath: res.tempFilePaths[0],
+          name: 'file',
+          success: (res) => {
+            let data = JSON.parse(res.data)
+            console.log(data)
+            if (data.status == 1) {
+              this.setData({
+                imageItem: data.data.filename
+              })
+            } else {
+              wx.showToast({
+                title: data.msg ? data.msg : '操作超时',
+                icon: 'none'
+              })
+            }
+          },
+          fail: (err) => {}
+        })
       }
     })
 
@@ -187,20 +204,16 @@ Page({
 
   formSubmit(e) {
     let data = e.detail.value
+    let serviceTypeIndex = this.data.serviceTypeIndex
     // let cateId = this.data.multiArray[0][this.data.multiIndex[0]] + this.data.multiArray[1][this.data.multiIndex[1]]
-    console.log(data)
+    console.log(data, this.data.serviceTypeIndex)
     if (!this.WxValidate.checkForm(data)) {
       const error = this.WxValidate.errorList[0]
       return wx.showToast({
         title: error.msg,
         icon: 'none'
       })
-    } else if (!this.data.serviceTypeIndex) {
-      return wx.showToast({
-        title: '请选择商品/服务类型',
-        icon: 'none'
-      })
-    }else if (!this.data.cateId) {
+    } else if (!this.data.cateId) {
       return wx.showToast({
         title: '请选择商品/服务分类',
         icon: 'none'
@@ -210,44 +223,57 @@ Page({
         name: data.serviceName,
         price: data.servicePrice,
         intro: data.serviceIntro,
-        type: this.data.serviceTypeIndex,
-        cate_id: this.data.cateId,
-        pic: this.data.imageList.toString()
+        type: this.data.serviceTypeIndex ? this.data.serviceTypeIndex : 0,
+        cate_id: this.data.cateId
       }
-      mineModel.addService(params, res => {
-        if (res.data.status == 1) {
-          wx.showToast({
-            title: '添加成功',
-          })
-          wx.navigateBack({
-            delta: 1
-          })
+      if (this.data.isEdit) {
+        params.id = this.data.serviceId
+        if (this.data.imageItem.match('goods')) {
+          params.pic = ''
+        } else {
+          params.pic = this.data.imageItem
         }
-      })
+        console.log(params)
+        mineModel.editService(params, res => {
+          if (res.data.status == 1) {
+            wx.showToast({
+              title: '修改成功'
+            })
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        })
+      } else {
+        params.pic = this.data.imageItem
+        mineModel.addService(params, res => {
+          if (res.data.status == 1) {
+            wx.showToast({
+              title: '添加成功',
+            })
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        })
+      }
     }
   },
 
   // 大图预览
-  previewImage(e) {
-    console.log(e.currentTarget.dataset)
+  previewImage() {
     let imgArr = []
-    let imgIndex = e.currentTarget.dataset.index
-    this.data.imageList.forEach((item, index) => {
-      imgArr.push(this.data.imgUrl + item)
-    })
+    imgArr.push(this.data.imgUrl + this.data.imageItem)
     wx.previewImage({
       urls: imgArr,
-      current: imgArr[imgIndex]
+      current: imgArr[0]
     })
   },
 
   // 删除图片
-  delImg(e) {
-    let imageList = this.data.imageList
-    let imgIndex = e.currentTarget.dataset.index
-    imageList.splice(imgIndex, 1)
+  delImg() {
     this.setData({
-      imageList: imageList
+      imageItem: ''
     })
   }
 })

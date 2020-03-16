@@ -138,6 +138,13 @@ Page({
     })
   },
 
+  // 进入收入记录
+  toIncomeRecord() {
+    wx.navigateTo({
+      url: './record/record',
+    })
+  },
+
   // 商铺管理
   toShopsManagement() {
    if(this.data.noShops) {

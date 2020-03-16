@@ -33,7 +33,7 @@ Component({
         success: res => {
           this.data.bgImg = res.path
 
-          console.log('测试一下', this.data.bgImg, this.data.isShow)
+          // console.log('测试一下', this.data.bgImg, this.data.isShow)
           wx.getImageInfo({
             src: this.data.serviceFace,
             success: res => {
@@ -89,10 +89,6 @@ Component({
       ctx.stroke()
 
       // 用户头像
-      // ctx.save()
-      // ctx.beginPath()
-      // ctx.arc(this.rpx2px(56), this.rpx2px(56), logoImgSize / 2, 0, Math.PI * 2, false)
-      // ctx.clip()
       this.roundRect(ctx, this.rpx2px(24), this.rpx2px(24), logoImgSize, logoImgSize, this.rpx2px(10))
       // ctx.drawImage('/images/logo.png', (ctx.measureText(txt).width / 2 + this.rpx2px(24) - (logoImgSize / 2)), this.rpx2px(24), logoImgSize, logoImgSize)
       ctx.drawImage(this.data.serviceFace, this.rpx2px(24), this.rpx2px(24), logoImgSize, logoImgSize)

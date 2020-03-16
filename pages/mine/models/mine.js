@@ -252,6 +252,7 @@ class MineModel extends HTTP {
       url: '/api/ser/goods/update',
       type: 'POST',
       auth: true,
+      data: param,
       sCallback: callback
     }
     this.request(params)

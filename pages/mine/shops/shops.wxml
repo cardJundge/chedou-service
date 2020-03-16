@@ -7,7 +7,8 @@
 <view class="shops-body" wx:if="{{!spinShow}}">
   <!-- 开通商铺 -->
   <view class="open-shops" wx:if="{{!isOpen}}">
-    <view class="open-explain">商铺开通说明</view>
+    <view class="open-explain"></view>
+    <!-- <view class="open-explain">商铺开通说明</view> -->
     <view class="open-content">
       <image src="/images/logo.png"></image>
       <text class="open-content-text01">线上商铺</text>
@@ -24,7 +25,7 @@
         <text>七日收入</text>
         <text>0.00</text>
       </view>
-      <text>记录</text>
+      <text bindtap="toIncomeRecord">记录</text>
     </view>
     <!-- 今日访客 -->
     <view class="mine-vistor">

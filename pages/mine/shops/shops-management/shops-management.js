@@ -32,6 +32,7 @@ Page({
         isEdit: true,
         shopsId: data.id,
         imageList: banner,
+        imgTemp: banner,
         formData: {
           shopsName: data.name,
           shopsShortName: data.short_name,
@@ -39,7 +40,7 @@ Page({
           shopsAddress: data.address
         }
       })
-      console.log(this.data.imageList)
+      console.log('onLoad',this.data.imageList, this.data.imgTemp)
     }
   },
 
@@ -88,7 +89,7 @@ Page({
       success: (res) => {
         console.log(res)
         const tempFilePaths = res.tempFilePaths
-        let imageList = []
+        // let imageList = []
         for (let i = 0; i < res.tempFilePaths.length; i++) {
           wx.uploadFile({
             url: app.globalData.hostName + '/api/auth/upload',
@@ -98,10 +99,11 @@ Page({
               let data = JSON.parse(res.data)
               console.log(data)
               if (data.status == 1) {
-                imageList.push(data.data.filename)
+                this.data.imageList.push(data.data.filename)
                 this.setData({
-                  imageList: this.data.imageList.concat(imageList)
+                  imageList: this.data.imageList
                 })
+                console.log('上传',this.data.imageList, this.data.imgTemp)
               } else {
                 wx.showToast({
                   title: data.msg ? data.msg : '操作超时',
@@ -138,13 +140,21 @@ Page({
         name: data.shopsName,
         mobile: data.phoneNumber,
         address: data.shopsAddress,
-        short_name: data.shopsShortName,
-        banner: this.data.imageList.toString()
+        short_name: data.shopsShortName
       }
-      console.log(params)
       // 修改商铺
       if(this.data.isEdit) {
         params.id = this.data.shopsId
+        console.log('呦吼吼吼',this.data.imgTemp, this.data.imageList)
+        this.data.imgTemp.forEach((item, index) => {
+          this.data.imageList.forEach((item1, index1) => {
+            if(item == item1) {
+              this.data.imageList.splice(index1, 1)
+              console.log(this.data.imageList)
+            }
+          })
+        })
+        params.banner = this.data.imageList.toString()
         mineModel.operationShops(params, res => {
           if (res.data.status == 1) {
             wx.showToast({
@@ -156,6 +166,7 @@ Page({
           }
         })
       } else {
+        params.banner = this.data.imageList.toString()
         mineModel.operationShops(params, res => {
           if (res.data.status == 1) {
             wx.showToast({
@@ -194,5 +205,13 @@ Page({
     this.setData({
       imageList: imageList
     })
+  },
+
+  // 删除数组中某一个元素的函数
+  remove(val) {
+    var index = this.indexOf(val)
+    if (index > -1) {
+      this.splice(index, 1)
+    }
   }
 })

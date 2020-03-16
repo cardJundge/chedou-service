@@ -25,17 +25,18 @@
         <label>分类</label>
         <picker mode="multiSelector" value="{{multiIndex}}" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" range="{{multiArray}}" >
           <input wx:if="{{!hasCate}}" placeholder-class="ph-class" placeholder="请选择商品/服务分类" disabled="disabled"></input>
-          <view wx:if="{{hasCate}}">{{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}}</view>
+          <view wx:if="{{hasCate && !showEditCateData}}">{{multiArray[0][multiIndex[0]]}} {{multiArray[1][multiIndex[1]]}}</view>
+          <view wx:if="{{hasCate && showEditCateData}}">{{editCateName}} {{editCateChildName}}</view>
         </picker>
       </view>
       <view class="input-box direction-input-box">
         <label>照片</label>
         <view class="image-box">
-          <view class="image-item" wx:for="{{imageList}}">
-            <image src="{{imgUrl}}{{item}}!100" data-index="{{index}}" bindtap="previewImage"></image>
-            <i-icon class="del-icon" type="delete_fill" size="16" color="#FF9E1A" data-index="{{index}}" bindtap="delImg"/>
+          <view class="image-item" wx:if="{{imageItem && imgUrl}}">
+            <image src="{{imgUrl}}{{imageItem}}" data-index="{{index}}" bindtap="previewImage"></image>
+            <i-icon class="del-icon" type="delete_fill" size="16" color="#FF9E1A" bindtap="delImg"/>
           </view>
-          <view class="image-item" bindtap="uploadImg">
+          <view class="image-item" wx:if="{{!imageItem}}" bindtap="uploadImg">
             <i-icon type="add" color="#898989" size="28" />
             <text>添加照片</text>
           </view>

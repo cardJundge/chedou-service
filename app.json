@@ -65,7 +65,8 @@
     "pages/mine/shops/classification/classification",
     "pages/mine/shops/classification/add-classification/add-classification",
     "pages/mine/shops/service/service",
-    "pages/mine/shops/service/add-service/add-service"
+    "pages/mine/shops/service/add-service/add-service",
+    "pages/mine/shops/record/record"
   ],
   "window": {
     "backgroundTextStyle": "light",
