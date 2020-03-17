@@ -19,7 +19,7 @@ Page({
     isEdit: false
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.initValidate() // 验证规则函数
     this.setData({
       imgUrl: app.globalData.imgUrl
@@ -32,7 +32,6 @@ Page({
         isEdit: true,
         shopsId: data.id,
         imageList: banner,
-        imgTemp: banner,
         formData: {
           shopsName: data.name,
           shopsShortName: data.short_name,
@@ -40,7 +39,6 @@ Page({
           shopsAddress: data.address
         }
       })
-      console.log('onLoad',this.data.imageList, this.data.imgTemp)
     }
   },
 
@@ -87,7 +85,6 @@ Page({
       // 可以指定来源是相册还是相机
       sourceType: ['album', 'camera'],
       success: (res) => {
-        console.log(res)
         const tempFilePaths = res.tempFilePaths
         // let imageList = []
         for (let i = 0; i < res.tempFilePaths.length; i++) {
@@ -103,7 +100,6 @@ Page({
                 this.setData({
                   imageList: this.data.imageList
                 })
-                console.log('上传',this.data.imageList, this.data.imgTemp)
               } else {
                 wx.showToast({
                   title: data.msg ? data.msg : '操作超时',
@@ -111,13 +107,12 @@ Page({
                 })
               }
             },
-            fail: (err) => {
-            }
+            fail: (err) => {}
           })
         }
       }
     })
-   
+
   },
 
   formSubmit(e) {
@@ -129,13 +124,13 @@ Page({
         title: error.msg,
         icon: 'none'
       })
-    } else if(this.data.imageList.length == 0){
+    } else if (this.data.imageList.length == 0) {
       return wx.showToast({
         title: '请上传商铺照片',
         icon: 'none'
       })
     } else {
-      
+
       let params = {
         name: data.shopsName,
         mobile: data.phoneNumber,
@@ -143,17 +138,14 @@ Page({
         short_name: data.shopsShortName
       }
       // 修改商铺
-      if(this.data.isEdit) {
+      if (this.data.isEdit) {
         params.id = this.data.shopsId
-        console.log('呦吼吼吼',this.data.imgTemp, this.data.imageList)
-        this.data.imgTemp.forEach((item, index) => {
-          this.data.imageList.forEach((item1, index1) => {
-            if(item == item1) {
-              this.data.imageList.splice(index1, 1)
-              console.log(this.data.imageList)
-            }
-          })
+        this.data.imageList.forEach((item, index) => {
+          if (item.match('banner')) {
+            this.data.imageList.splice(index, 1)
+          }
         })
+        console.log(this.data.imageList)
         params.banner = this.data.imageList.toString()
         mineModel.operationShops(params, res => {
           if (res.data.status == 1) {

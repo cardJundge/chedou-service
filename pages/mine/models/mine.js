@@ -258,6 +258,42 @@ class MineModel extends HTTP {
     this.request(params)
   }
 
+  // 客户列表
+  clientList(param, callback) {
+    var params = {
+      url: '/api/ser/store/user',
+      type: 'GET',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 客户详情
+  clientDetail(param, callback) {
+    var params = {
+      url: '/api/ser/store/userInfo',
+      type: 'GET',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 设置用户印象
+  setImpress(param, callback) {
+    var params = {
+      url: '/ser/api/store/setUserImpress',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
 
 }
 export {

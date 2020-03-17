@@ -33,7 +33,7 @@ Page({
     type: 1
   },
 
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.data.vehicleId = options.vehicleId
   },
 
@@ -80,9 +80,52 @@ Page({
     })
   },
 
-  //确定按钮 提交相关资料
+  //确定按钮 提交相关资料
   addRelatedInfo() {
-    this.uploadimg(0, 0)
+    var  that  =  this
+    for (let  i = that.data.relatedInfoList.length - 1; i >= 0; i--) {
+      if (!that.data.relatedInfoList[i].title) {
+        if (that.data.relatedInfoList[i].picture.length > 0) {
+          wx.showToast({
+            title: '没有上传标题!',
+            icon: 'none'
+          })
+          return
+        } else {
+          that.data.addflag  = true
+          that.data.relatedInfoList.splice(i, 1)
+        }
+      } else {
+        if (that.data.relatedInfoList[i].picture.length  == 0) {
+          wx.showToast({
+            title: '没有上传图片!',
+            icon: 'none'
+          })
+          return
+        } else {
+          that.data.addflag  = true
+        }
+      }
+    }
+    console.log("qqq", that.data.relatedInfoList.length)
+    if (that.data.addflag) {
+      if (that.data.relatedInfoList.length > 0) {
+        wx.showLoading({
+          title: '稍等片刻!'
+        })
+        that.uploadimg(0, 0, that)
+      } else {
+        wx.showToast({
+          title: '请上传相关资料!',
+          icon: 'none'
+        })
+        that.data.relatedInfoList.push({
+          id: relatedId++,
+          title: '',
+          picture: []
+        })
+      }
+    }
   },
 
   //上传图片递归
@@ -146,7 +189,7 @@ Page({
           // console.log(data, this.data.fileNameTemp)
           callback(this.data.fileNameTemp)
         } else {
-          
+
         }
       }
     })
