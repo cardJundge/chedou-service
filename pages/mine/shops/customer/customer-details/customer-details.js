@@ -1,4 +1,10 @@
 // 客户管理详情
+import {
+  MineModel
+} from './../../../models/mine.js'
+
+var app = getApp()
+var mineModel = new MineModel()
 Page({
 
   data: {
@@ -8,8 +14,18 @@ Page({
     ]
   },
 
-  onLoad: function (options) {
+  onLoad(options) {
+    this.data.clientId = options.id
+    this.getClientDetails()
+  },
 
+  getClientDetails() {
+    let params = {
+      id: this.data.clientId
+    }
+    mineModel.clientDetail(params, res=> {
+      console.log(res)
+    })
   },
 
   toEditTags() {

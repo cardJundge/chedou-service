@@ -4,7 +4,7 @@
     <view class="search-bg">
       <view class="search-box">
         <view class="search">
-          <input placeholder-class="ph-class" type='text' placeholder="被保险人、驾驶员、联系电话、车险车牌号" bindconfirm="search"></input>
+          <input placeholder-class="ph-class" type='text' placeholder="被保险人、驾驶员、联系电话、车险车牌号" bindconfirm="search" value="{{keywords}}"></input>
           <image src="/images/personnel/icon_search.png"></image>
         </view>
         <image bindtap="addVehicle" src="/images/personnel/icon_add.png" class="add"></image>

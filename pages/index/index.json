@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "i-spin": "/dist/spin/index",
-    "add-module": "/components/add-module/add-module"
+    "add-module": "/components/add-module/add-module",
+    "i-icon": "/dist/icon/index"
   }
 }

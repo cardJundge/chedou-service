@@ -1,0 +1,82 @@
+/* 添加模块---》第二步 */
+
+.second-body {
+}
+
+.second-title {
+  display: flex;
+  justify-content: center;
+  padding: 30rpx 0;
+}
+
+.second-title image {
+  width: 612rpx;
+  height: 68rpx;
+}
+
+.second-body-title {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24rpx;
+}
+
+.second-body-title text:last-child {
+  color: #1a65ff;
+}
+
+.second-body-form {
+}
+
+.form-item {
+  margin: 0 24rpx;
+  height: 90rpx;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+.form-add {
+  display: flex;
+  align-items: center;
+  color: #1a65ff;
+}
+
+.form-item image {
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 24rpx;
+}
+
+.form-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-select .left {
+  display: flex;
+  align-items: center;
+}
+
+.form-select .right {
+  display: flex;
+  align-items: center;
+}
+
+.form-select .right text {
+  margin-right: 24rpx;
+  color: #909090;
+}
+
+.form-btn {
+  width: 702rpx;
+  height: 80rpx;
+  margin: 60rpx auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1a65ff;
+  color: #fff;
+  border-radius: 20rpx;
+}

@@ -97,10 +97,13 @@
   padding: 24rpx;
 }
 
-.business-item image {
+.business-item .left {
   width: 106rpx;
   height: 106rpx;
   margin-right: 12rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .business-item-text {
@@ -109,15 +112,10 @@
   justify-content: center;
 }
 
-.business-item-text text:first-child {
+.business-item-text text {
   font-size: 32rpx;
   color: #242429;
 }
-
-/* .business-item-text text:last-child {
-  font-size: 24rpx;
-  color: #aeaeae;
-} */
 
 /* 接单系统 */
 

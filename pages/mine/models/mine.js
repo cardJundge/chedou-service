@@ -259,12 +259,11 @@ class MineModel extends HTTP {
   }
 
   // 客户列表
-  clientList(param, callback) {
+  clientList(callback) {
     var params = {
       url: '/api/ser/store/user',
       type: 'GET',
       auth: true,
-      data: param,
       sCallback: callback
     }
     this.request(params)
@@ -273,10 +272,9 @@ class MineModel extends HTTP {
   // 客户详情
   clientDetail(param, callback) {
     var params = {
-      url: '/api/ser/store/userInfo',
+      url: '/api/ser/store/userInfo/' + param.id,
       type: 'GET',
       auth: true,
-      data: param,
       sCallback: callback
     }
     this.request(params)

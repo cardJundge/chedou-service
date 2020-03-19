@@ -33,7 +33,7 @@ Page({
     type: 1
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.data.vehicleId = options.vehicleId
   },
 
@@ -82,8 +82,8 @@ Page({
 
   //确定按钮 提交相关资料
   addRelatedInfo() {
-    var  that  =  this
-    for (let  i = that.data.relatedInfoList.length - 1; i >= 0; i--) {
+    var  that  =  this
+    for (let  i = that.data.relatedInfoList.length - 1;  i >= 0; i--) {
       if (!that.data.relatedInfoList[i].title) {
         if (that.data.relatedInfoList[i].picture.length > 0) {
           wx.showToast({
@@ -92,18 +92,18 @@ Page({
           })
           return
         } else {
-          that.data.addflag  = true
+          that.data.addflag  = true
           that.data.relatedInfoList.splice(i, 1)
         }
       } else {
-        if (that.data.relatedInfoList[i].picture.length  == 0) {
+        if (that.data.relatedInfoList[i].picture.length  == 0) {
           wx.showToast({
             title: '没有上传图片!',
             icon: 'none'
           })
           return
         } else {
-          that.data.addflag  = true
+          that.data.addflag  = true
         }
       }
     }
@@ -198,6 +198,33 @@ Page({
   getInputTitle(e) {
     var index = e.currentTarget.dataset.titleindex
     this.data.relatedInfoList[index].title = e.detail.value
+  },
+
+  // 删除
+  delImg(e) {
+    var that = this
+    var picindex = e.currentTarget.dataset.index
+    that.data.relatedInfoList.forEach((item, index) => {
+      item.picture.splice(picindex, 1)
+      that.setData({
+        relatedInfoList: that.data.relatedInfoList
+      })
+    })
+  },
+
+  // 预览
+  previewImage(e) {
+    var that = this
+    var imgArr = []
+    var picindex = e.currentTarget.dataset.index
+    var relatedindex = e.currentTarget.dataset.relatedindex
+    that.data.relatedInfoList[relatedindex].picture.forEach((item, index) => {      
+      imgArr.push(item.path)    
+    })
+    wx.previewImage({
+      urls: imgArr,
+      current: imgArr[picindex]    
+    })
   }
 
 })

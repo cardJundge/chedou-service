@@ -136,7 +136,8 @@ Page({
 
   changeStatus(e) {
     this.setData({
-      selected: e.target.dataset.index
+      selected: e.target.dataset.index,
+      keywords: ''
     })
     this.data.page = 1
     this.data.vehicleList = []
@@ -195,6 +196,9 @@ Page({
   search(e) {
     wx.showLoading({
       title: '加载中...'
+    })
+    this.setData({
+      selected: 1
     })
     this.data.page = 1
     this.data.keywords = e.detail.value

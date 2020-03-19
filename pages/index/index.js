@@ -15,12 +15,12 @@ Page({
     work_status: '',
     status: '',
     page: 1,
-    isAddModule: false,
+    // isAddModule: false,
     orderList: [],
     moduleArray: [],
     businessArray: [],
     spinShow: true,
-    bottomSpin: true,
+    // bottomSpin: true,
   },
   onLoad() {
     this.setData({
@@ -36,9 +36,9 @@ Page({
   },
 
   // 添加模块按钮
-  okEvent() {
-    this.getModule()
-  },
+  // okEvent() {
+  //   this.getModule()
+  // },
 
   // 首页获取数据统计
   getDataStatics() {
@@ -65,32 +65,6 @@ Page({
       wx.navigateTo({
         url: './survey/survey',
       })
-    } else if (key == 'push') {
-      if (this.data.serviceType == 1 || this.data.serviceType == 4) {
-        wx.navigateTo({
-          url: './push/push',
-        })
-      } else if (this.data.serviceType == 2 || this.data.serviceType == 3) {
-        wx.navigateTo({
-          url: './repair/repair',
-        })
-      }
-    } else if (key == "rescue") {
-      wx.navigateTo({
-        url: './rescue/rescue',
-      })
-    } else if (key == 'trailer') {
-      wx.navigateTo({
-        url: './trailer/trailer',
-      })
-    } else if (key == 'hurt') {
-      wx.navigateTo({
-        url: './hurt/hurt',
-      })
-    } else if (key == 'risk') {
-      wx.navigateTo({
-        url: './risk/risk',
-      })
     } else if (key == 'sickness') {
       wx.navigateTo({
         url: './sickness/sickness',
@@ -100,33 +74,67 @@ Page({
         url: './vehicle/vehicle',
       })
     }
+    //  else if (key == 'push') {
+    //   if (this.data.serviceType == 1 || this.data.serviceType == 4) {
+    //     wx.navigateTo({
+    //       url: './push/push',
+    //     })
+    //   } else if (this.data.serviceType == 2 || this.data.serviceType == 3) {
+    //     wx.navigateTo({
+    //       url: './repair/repair',
+    //     })
+    //   }
+    // } else if (key == "rescue") {
+    //   wx.navigateTo({
+    //     url: './rescue/rescue',
+    //   })
+    // } else if (key == 'trailer') {
+    //   wx.navigateTo({
+    //     url: './trailer/trailer',
+    //   })
+    // } else if (key == 'hurt') {
+    //   wx.navigateTo({
+    //     url: './hurt/hurt',
+    //   })
+    // } else if (key == 'risk') {
+    //   wx.navigateTo({
+    //     url: './risk/risk',
+    //   })
+    // }
   },
 
   // 添加模块
-  addModule() {
-    this.setData({
-      isAddModule: true
-    })
-    indexModel.getAllModule(res => {
-      if (res.data.status == 1) {
-        this.setData({
-          bottomSpin: false
-        })
-        res.data.data.forEach((item, index) => {
-          item.selected = false
-          item.img = '/images/index/' + item.key + '.png'
-          this.data.businessArray.forEach((its, ins) => {
-            if (item.id == its.id) {
-              item.selected = true
-            }
-          })
-        })
-        this.setData({
-          moduleArray: res.data.data
-        })
-      }
+  toAddModule() {
+    wx.navigateTo({
+      url: './add-module/first/first',
     })
   },
+
+  // 添加模块
+  // addModule() {
+  //   this.setData({
+  //     isAddModule: true
+  //   })
+  //   indexModel.getAllModule(res => {
+  //     if (res.data.status == 1) {
+  //       this.setData({
+  //         bottomSpin: false
+  //       })
+  //       res.data.data.forEach((item, index) => {
+  //         item.selected = false
+  //         item.img = '/images/index/' + item.key + '.png'
+  //         this.data.businessArray.forEach((its, ins) => {
+  //           if (item.id == its.id) {
+  //             item.selected = true
+  //           }
+  //         })
+  //       })
+  //       this.setData({
+  //         moduleArray: res.data.data
+  //       })
+  //     }
+  //   })
+  // },
 
   // 获取服务商拥有的模块
   getModule() {

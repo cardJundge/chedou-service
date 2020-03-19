@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/index/add-module/second/second",
+    "pages/index/add-module/first/first",
     "pages/login/login",
     "pages/index/index",
     "pages/mine/mine",
@@ -66,7 +68,9 @@
     "pages/mine/shops/classification/add-classification/add-classification",
     "pages/mine/shops/service/service",
     "pages/mine/shops/service/add-service/add-service",
-    "pages/mine/shops/record/record"
+    "pages/mine/shops/record/record",
+    "pages/index/taskflow/taskflow",
+    "pages/index/add-module/second/select/select"
   ],
   "window": {
     "backgroundTextStyle": "light",

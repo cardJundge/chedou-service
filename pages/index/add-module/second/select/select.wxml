@@ -1,0 +1,7 @@
+<!--类型选择-->
+<view class="select-body">
+  <view class="select-top">
+    <text>是否必填</text>
+    <switch checked bindchange="switchChange"></switch>
+  </view>
+</view>

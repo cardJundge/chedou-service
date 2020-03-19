@@ -23,12 +23,12 @@
       <view class="search-btn">搜索</view>
     </view>
     <view class="customer-list">
-      <view class="customer-item">
+      <view class="customer-item" wx:for="{{clientList}}">
         <view class="item-info">
           <view class="item-info-left">
-            <image src="/images/logo.png"></image>
+            <image src="{{item.user_id.face}}"></image>
             <view class="item-info-left-text">
-              <text>客户昵称</text>
+              <text>{{item.user_id.nickname}}</text>
               <text>17635372126</text>
               <view>
                 <text></text>
@@ -37,7 +37,7 @@
               </view>
             </view>
           </view>
-          <view class="item-info-right" bindtap="toEditTags">编辑</view>
+          <view class="item-info-right" bindtap="toEditTags" data-id="{{item.id}}">编辑</view>
         </view>
         <view class="item-impression">
           <view>
@@ -45,16 +45,12 @@
             <text>客户印象：</text>
           </view>
           <view class="tags-box">
-            <view class="tags-item">客户印象</view>
-            <view class="tags-item">客户印象</view>
-            <view class="tags-item">客户</view>
-            <view class="tags-item">客户</view>
-            <view class="tags-item">客户印象</view>
+            <view class="tags-item" wx:for="{{item.impress}}" wx:for-item="its">{{its}}</view>
           </view>
         </view>
-        <view class="more-btn" bindtap="toCustomerDetails">查看更多>></view>
+        <view class="more-btn" bindtap="toCustomerDetails" data-id="{{item.id}}">查看更多>></view>
       </view>
     </view>
   </view>
 </view>
-<tags isShow="{{tagsModalShow}}"/>
+<tags isShow="{{tagsModalShow}}" clientData="{{clientData}}" />
