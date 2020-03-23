@@ -377,6 +377,56 @@ class IndexModel extends HTTP {
     }
     this.request(params)
   }
+
+  // --------------------------------------------
+  // 新的模块
+
+  // 添加模块
+  addModule(param, callback) {
+    var params = {
+      url: '/api/ser/module/create',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 新模块案件列表
+  getTaskflowList(param, callback) {
+    var params = {
+      url: '/api/ser/case',
+      type: 'GET',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 新模块案件详情
+  getTaskflowDetail(param, callback) {
+    var params = {
+      url: '/api/ser/case/$id',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 新模块添加案件
+  addTaskflow(param, callback) {
+    var params = {
+      url: '/api/ser/case/create',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
 }
 export {
   IndexModel

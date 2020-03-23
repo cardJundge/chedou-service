@@ -1,0 +1,77 @@
+<!--自定义模块详情-->
+<view>
+  <view class="details-top">
+    <view class="top-item">
+      <text>报案号:</text>
+      <text>201910010028044355</text>
+    </view>
+    <view class="top-item">
+      <text>车牌号:</text>
+      <text>陕K222255</text>
+    </view>
+  </view>
+  <view class="details-content">
+    <view class="content-tab">
+      <view class="tab-item" wx:for="{{tabList}}" bindtap="changeTab" data-index="{{index}}">
+        <text class="{{isActive == index ? 'tab-active' : ''}}">{{item}}</text>
+        <view class="line" wx:if="{{isActive == index}}"></view>
+      </view>
+    </view>
+    <view class="content-box">
+      <!-- 作业员录入 -->
+      <view class="task-input" wx:if="{{isActive == 0}}">
+        <!-- 未完成 -->
+        <view class="task-input-item">
+          <view class="item-incomplete">
+            <text>1.接单</text>
+            <view>未完成</view>
+          </view>
+        </view>
+        <!-- 已完成 -->
+        <view class="task-input-item">
+          <view class="item-complete">
+            <view class="item-complete-title">
+              <text>2.接单</text>
+              <view>已完成</view>
+            </view>
+            <view class="item-complete-text">
+              <view>
+                <text>时间</text>
+                <text>2013-03-17 10:00</text>
+              </view>
+              <view>
+                <text>地点</text>
+                <text></text>
+              </view>
+              <view>
+                <text>内容</text>
+                <text></text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 管理者审核 -->
+      <view class="approval">
+      
+      </view>
+
+      <!-- 客户评价 -->
+      <view class="evaluate"  wx:if="{{isActive == 2}}">
+        <!-- 已评价 -->
+        <view class="evaluate-item">
+          <text>着装是否规范</text>
+          <view>
+            <text>评价内容</text>
+            <text>是</text>
+          </view>
+        </view>
+        <!-- 未评价 -->
+        <view class="evaluate-item">
+          暂无评价
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

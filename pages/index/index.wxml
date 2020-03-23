@@ -35,16 +35,24 @@
       <!-- <text bindtap="addModule">添加模块</text> -->
     </view>
     <view class="business-content">
-      <view wx:for="{{businessArray}}" wx:key="" class="business-item" bindtap="toItemList" data-key="{{item.key}}">
-        <image class="left" src="{{item.img}}"></image>
-        <view class="business-item-text">
-          <!-- <text wx:if="{{serviceType == 2 || serviceType == 3}}">{{item.name}}</text> -->
-          <!-- <text wx:if="{{serviceType == 1 || serviceType == 4}}">{{item.name == '车辆维修' ? '车辆推修': item.name}}</text> -->
-          <text>{{item.name}}</text>
+      <block wx:for="{{businessArray}}">
+        <view wx:if="{{item.key}}" class="business-item" bindtap="toItemList" data-key="{{item.key}}">
+          <image class="left" src="{{item.img}}"></image>
+          <view class="business-item-text">
+            <!-- <text wx:if="{{serviceType == 2 || serviceType == 3}}">{{item.name}}</text> -->
+            <!-- <text wx:if="{{serviceType == 1 || serviceType == 4}}">{{item.name == '车辆维修' ? '车辆推修': item.name}}</text> -->
+            <text>{{item.name}}</text>
+          </view>
         </view>
-      </view>
+        <view wx:if="{{item.icon}}" class="business-item" bindtap="toItemListSelf" data-id="{{item.id}}">
+          <image class="left" src="{{item.img}}"></image>
+          <view class="business-item-text">
+            <text>{{item.name}}</text>
+          </view>
+        </view>
+      </block>
       <view class="business-item" bindtap="toAddModule">
-        <i-icon class="left" type="add" size="48" color="#1a65ff"/>
+        <i-icon class="left" type="add" size="48" color="#1a65ff" />
         <view class="business-item-text">
           <text>添加模块</text>
         </view>

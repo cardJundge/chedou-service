@@ -1,0 +1,65 @@
+<!--添加自定义模块任务流-->
+<view class="add-taskflow">
+  <view class="add-list">
+    <block wx:for="{{field}}">
+      <view class="add-item" wx:if="{{item.type == 'text'}}">
+        <view class="add-item-title">
+          <text wx:if="{{item.required == 1}}">*</text>
+          <text wx:if="{{item.required == 0}}"></text>
+          <text>{{item.name}}</text>
+        </view>
+        <view class="add-item-content">
+          <input placeholder="请输入信息" placeholder-class="ph-class"></input>
+        </view>
+      </view>
+      <view class="add-item" wx:if="{{item.type == 'location'}}">
+        <view class="add-item-title">
+          <text wx:if="{{item.required == 1}}">*</text>
+          <text wx:if="{{item.required == 0}}"></text>
+          <text>{{item.name}}</text>
+        </view>
+        <view class="add-item-content location-content">
+          <input placeholder="请输入信息" placeholder-class="ph-class" disabled="disabled"></input>
+          <image src="/images/index/location.png"></image>
+        </view>
+      </view>
+      <view class="add-item" wx:if="{{item.type == 'select'}}">
+        <view class="add-item-title">
+          <text wx:if="{{item.required == 1}}">*</text>
+          <text wx:if="{{item.required == 0}}"></text>
+          <text>{{item.name}}</text>
+        </view>
+        <view class="add-item-content">
+          <picker bindchange="optionSelect" data-name="{{item.name}}" range="{{item.option}}">
+            <view>
+              <input placeholder="请选择" placeholder-class="ph-class" disabled="disabled" value="{{item.optionName}}"></input>
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="add-item" wx:if="{{item.type == 'date'}}">
+        <view class="add-item-title">
+          <text wx:if="{{item.required == 1}}">*</text>
+          <text wx:if="{{item.required == 0}}"></text>
+          <text>{{item.name}}</text>
+        </view>
+        <view class="add-item-content">
+           <picker mode="date" start="2010" end="2050" bindchange="dateChange"  data-name="{{item.name}}">
+            <input wx:if="{{!item.date}}" placeholder="请选择日期" placeholder-class="ph-class" disabled="disabled"></input>
+            <view wx:if="{{item.date}}">{{item.date}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="add-item" wx:if="{{item.type == 'datetime'}}">
+        <view class="add-item-title">
+          <text wx:if="{{item.required == 1}}">*</text>
+          <text wx:if="{{item.required == 0}}"></text>
+          <text>{{item.name}}</text>
+        </view>
+        <view class="add-item-content">
+          
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

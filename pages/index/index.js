@@ -103,6 +103,14 @@ Page({
     // }
   },
 
+  // 进入新添加的模块详情
+  toItemListSelf(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: './taskflow/taskflow?moduleId=' + id,
+    })
+  },
+
   // 添加模块
   toAddModule() {
     wx.navigateTo({
@@ -143,6 +151,9 @@ Page({
         let module = []
         res.data.data.forEach((item, index) => {
           item.img = '/images/index/' + item.key + '.png'
+          if(item.icon) {
+            item.img = item.icon
+          }
           module.push(item.id)
         })
         wx.setStorageSync('module', module)

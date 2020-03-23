@@ -14,13 +14,48 @@ view, textarea, scroll-view, button, radio-group {
 }
 
 /* radio默认样式 */
+
 radio .wx-radio-input {
   height: 30rpx;
   width: 30rpx;
 }
 
 /* 选中后按钮样式 */
+
 radio .wx-radio-input.wx-radio-input-checked {
   background: #1a65ff;
-  border: 1rpx solid #1a65ff
+  border: 1rpx solid #1a65ff;
+}
+
+/* 改变微信switch样式 */
+switch .wx-switch-input {
+  width: 82rpx !important;
+  height: 42rpx !important;
+  background: #1a65ff !important;
+  border: #1a65ff !important; /* 2018-07-18 重置开关边框颜色 */
+}
+
+/*白色样式（false的样式）*/
+switch .wx-switch-input::before {
+  width: 82rpx !important;
+  height: 42rpx !important;
+}
+
+/*蓝色样式（true的样式）*/
+switch .wx-switch-input::after {
+  width: 40rpx !important;
+  height: 42rpx !important;
+}
+
+/* 首页添加模块里面的按钮样式 */
+.operation-btn {
+  width: 702rpx;
+  height: 80rpx;
+  margin: 60rpx auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1a65ff;
+  color: #fff;
+  border-radius: 20rpx;
 }

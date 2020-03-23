@@ -1,0 +1,25 @@
+<!--管理者审批-->
+<view class="approval-body">
+  <view class="operation-title">评价标准</view>
+  <view>
+    <view class="operation-item operation-add" bindtap="addApprovalField">
+      <image src="/images/index/add_module_icon.png"></image>
+      <text>添加字段</text>
+    </view>
+    <view class="operation-item operation-select" wx:for="{{approvalData}}">
+      <view class="left">
+        <image src="/images/index/del_module_icon.png" bindtap="delApprovalField" data-index="{{index}}"></image>
+        <input placeholder="请填写名称" placeholder-class="ph-class" value="" bindinput="getApprovalInput" data-index="{{index}}" value="{{item.name}}"></input>
+      </view>
+      <view class="right" bindtap="toSelectType" data-name="{{item.name}}" data-index="{{index}}"  data-type="{{item.type}}" data-required="{{item.required}}">
+        <text wx:if="{{item.type == 'text'}}">文本型</text>
+        <text wx:if="{{item.type == 'int'}}">数字型</text>
+        <text wx:if="{{item.type == 'select'}}">下拉选择型</text>
+        <text wx:if="{{item.type == 'click'}}">打卡型</text>
+        <text wx:if="{{item.type == 'image'}}">图片型</text>
+        <i-icon class="icon" type="enter" font-size="18" color="#A6A6A6" />
+      </view>
+    </view>
+    <view class="operation-btn" bindtap="onConfirm">确定</view>
+  </view>
+</view>

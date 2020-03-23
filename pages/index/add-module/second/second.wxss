@@ -68,15 +68,3 @@
   margin-right: 24rpx;
   color: #909090;
 }
-
-.form-btn {
-  width: 702rpx;
-  height: 80rpx;
-  margin: 60rpx auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #1a65ff;
-  color: #fff;
-  border-radius: 20rpx;
-}

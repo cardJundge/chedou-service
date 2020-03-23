@@ -1,0 +1,48 @@
+/* 作业员录入 */
+
+/* 作业员录入 */
+@import "../common.wxss";
+
+page {
+  height: 100%;
+  width: 100%;
+}
+
+.task-input-body {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.movable-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+}
+
+.movable-area .movable-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid #eee;
+  background: #fff;
+}
+
+.ready-place {
+  background: #ccc;
+}
+
+.touch-sort {
+  width: 120rpx;
+  height: 90rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 9;
+}
