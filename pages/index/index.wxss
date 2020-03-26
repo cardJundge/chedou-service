@@ -107,6 +107,7 @@
 }
 
 .business-item-text {
+  width: 128rpx;
   display: flex;
   flex-direction: column;
   justify-content: center;

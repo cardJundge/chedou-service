@@ -41,20 +41,28 @@ Page({
   },
 
   toSelectType(e) {
-    let taskInputName = e.currentTarget.dataset.name
-    let taskInputType = e.currentTarget.dataset.type
-    let taskInputWeight = e.currentTarget.dataset.weight
+    let taskInputName = e.currentTarget.dataset.name,
+    taskInputType = e.currentTarget.dataset.type,
+    taskInputWeight = e.currentTarget.dataset.weight
     this.data.taskInputId = e.currentTarget.dataset.index
-    wx.navigateTo({
-      url: '../../select/select?flag=' + 'task' + '&name=' + taskInputName + '&type=' + taskInputType + '&weight=' + taskInputWeight,
-    })
+    if (taskInputType == 'select') {
+      let taskInputOption = JSON.stringify(e.currentTarget.dataset.option)
+      wx.navigateTo({
+        url: '../../select/select?flag=' + 'task' + '&name=' + taskInputName + '&type=' + taskInputType + '&weight=' + taskInputWeight + '&option=' + taskInputOption,
+      })
+    } else {
+      wx.navigateTo({
+        url: '../../select/select?flag=' + 'task' + '&name=' + taskInputName + '&type=' + taskInputType + '&weight=' + taskInputWeight,
+      })
+    }
+   
   },
 
   // 添加作业员录入字段
   addTaskInputField() {
     this.data.taskInputData.push({
       name: '',
-      weight: 0,
+      weight: 5,
       type: 'text'
     })
     this.setData({

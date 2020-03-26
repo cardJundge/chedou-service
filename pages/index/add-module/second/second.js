@@ -1,12 +1,31 @@
 // 添加模块---》第二步
 Page({
   data: {
+    movableViewInfo: {
+      y: 0,
+      showClass: 'none',
+      data: {}
+    },
+    pageInfo: {
+      scrollHeight: 85,
+      startIndex: null,
+      scrollY: true,
+      readyPlaceIndex: null,
+      startY: 0,
+      selectedIndex: null,
+    },
+    rowHeight: 45,
     fieldData: []
   },
 
   onLoad(options) {
     this.data.moduleName = options.moduleName
     this.data.moduleIcon = options.moduleIcon
+    this.setData({
+      pageInfo: {
+        scrollHeight: this.data.fieldData.length * 45
+      }
+    })
   },
 
   onShow() {
@@ -27,7 +46,10 @@ Page({
       type: 'text'
     })
     this.setData({
-      fieldData: this.data.fieldData
+      fieldData: this.data.fieldData,
+      pageInfo: {
+        scrollHeight: this.data.fieldData.length * 45
+      }
     })
   },
 
@@ -41,7 +63,10 @@ Page({
       }
     })
     this.setData({
-      fieldData: this.data.fieldData
+      fieldData: this.data.fieldData,
+      pageInfo: {
+        scrollHeight: this.data.fieldData.length * 45
+      }
     })
   },
 
@@ -60,13 +85,22 @@ Page({
 
   // 选择类型
   toSelectType(e) {
-    let fieldType = e.currentTarget.dataset.type
-    let fieldName = e.currentTarget.dataset.name
-    let fieldRequired = e.currentTarget.dataset.required
+    console.log(e)
+    let fieldType = e.currentTarget.dataset.type,
+    fieldName = e.currentTarget.dataset.name,
+    fieldRequired = e.currentTarget.dataset.required
     this.data.fieldId = e.currentTarget.dataset.index
-    wx.navigateTo({
-      url: '../select/select?flag=' + 'info' + '&name=' + fieldName + '&type=' + fieldType + '&required=' + fieldRequired,
-    })
+    if (fieldType == 'select') {
+      let fieldOption = JSON.stringify(e.currentTarget.dataset.option)
+      wx.navigateTo({
+        url: '../select/select?flag=' + 'info' + '&name=' + fieldName + '&type=' + fieldType + '&required=' + fieldRequired + '&option=' + fieldOption,
+      })
+    } else {
+      wx.navigateTo({
+        url: '../select/select?flag=' + 'info' + '&name=' + fieldName + '&type=' + fieldType + '&required=' + fieldRequired,
+      })
+    }
+   
   },
 
   // 下一步
@@ -91,6 +125,93 @@ Page({
     let data = JSON.stringify(this.data.fieldData)
     wx.navigateTo({
       url: '../third/third?moduleName=' + this.data.moduleName + '&moduleIcon=' + this.data.moduleIcon + '&fieldData=' + data,
+    })
+  },
+
+  // -------------------------------------
+  dragStart(e) {
+    // this.setData({
+    //   isDrag: true
+    // })
+    let startIndex = e.target.dataset.index
+    console.log('获取到的元素为', this.data.fieldData[startIndex])
+    // 初始化页面数据
+    let pageInfo = this.data.pageInfo
+    pageInfo.startY = e.touches[0].clientY
+    pageInfo.readyPlaceIndex = startIndex
+    pageInfo.selectedIndex = startIndex
+    pageInfo.scrollY = false
+    pageInfo.startIndex = startIndex
+
+    this.setData({
+      'movableViewInfo.y': pageInfo.startY - (this.data.rowHeight / 2)
+    })
+    // 初始化拖动控件数据
+    var movableViewInfo = this.data.movableViewInfo
+    movableViewInfo.data = this.data.fieldData[startIndex]
+    movableViewInfo.showClass = "inline"
+
+    this.setData({
+      movableViewInfo: movableViewInfo,
+      pageInfo: pageInfo
+    })
+  },
+
+  dragMove(e) {
+    // if (this.data.isDrag) {
+    var fieldData = this.data.fieldData
+    var pageInfo = this.data.pageInfo
+    // 计算拖拽距离
+    var movableViewInfo = this.data.movableViewInfo
+    var movedDistance = e.touches[0].clientY - pageInfo.startY
+    movableViewInfo.y = pageInfo.startY - (this.data.rowHeight / 2) + movedDistance
+    console.log('移动的距离为', movedDistance)
+
+    // 修改预计放置位置
+    var movedIndex = parseInt(movedDistance / this.data.rowHeight)
+    var readyPlaceIndex = pageInfo.startIndex + movedIndex
+    if (readyPlaceIndex < 0) {
+      readyPlaceIndex = 0
+    } else if (readyPlaceIndex >= fieldData.length) {
+      readyPlaceIndex = fieldData.length - 1
+    }
+
+    if (readyPlaceIndex != pageInfo.selectedIndex) {
+      var selectedData = fieldData[pageInfo.selectedIndex]
+
+      fieldData.splice(pageInfo.selectedIndex, 1)
+      fieldData.splice(readyPlaceIndex, 0, selectedData)
+      pageInfo.selectedIndex = readyPlaceIndex
+    }
+    // 移动movableView
+    pageInfo.readyPlaceIndex = readyPlaceIndex
+    console.log('移动到了索引', readyPlaceIndex, '选项为', fieldData[readyPlaceIndex])
+
+    this.setData({
+      movableViewInfo: movableViewInfo,
+      fieldData: fieldData,
+      pageInfo: pageInfo
+    })
+    // }
+  },
+
+  dragEnd(e) {
+    // if (this.data.isDrag) {
+    // 重置页面数据
+    var pageInfo = this.data.pageInfo
+    pageInfo.readyPlaceIndex = null
+    pageInfo.startY = null
+    pageInfo.selectedIndex = null
+    pageInfo.startIndex = null
+    pageInfo.scrollY = true
+    // 隐藏movableView
+    var movableViewInfo = this.data.movableViewInfo
+    movableViewInfo.showClass = 'none'
+
+    this.setData({
+      pageInfo: pageInfo,
+      movableViewInfo: movableViewInfo,
+      isDrag: false
     })
   }
 })

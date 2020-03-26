@@ -6,6 +6,7 @@
 }
 
 .add-item {
+  height: 150rpx;
   display: flex;
   flex-direction: column;
   padding: 24rpx;
@@ -26,6 +27,26 @@
 .add-item-content {
   padding-left: 28rpx;
   position: relative;
+}
+
+.add-item-content input {
+  width: 80%;
+}
+
+.image-box {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 38rpx;
+}
+
+.image-item {
+  padding: 12rpx;
+}
+
+.image-item image {
+  width: 200rpx;
+  height: 200rpx;
 }
 
 .location-content {

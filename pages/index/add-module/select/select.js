@@ -53,31 +53,58 @@ Page({
 
   onLoad(options) {
     if (options.flag == 'task') {
-      this.setData({
-        flag: options.flag,
-        tempData: {
-          name: options.name,
-          weight: options.weight,
-          type: options.type
-        }
-      })
+      if (options.type == 'select') {
+        this.setData({
+          flag: options.flag,
+          tempData: {
+            name: options.name,
+            weight: options.weight,
+            type: options.type,
+            option: JSON.parse(options.option)
+          },
+          dropDownData: JSON.parse(options.option),
+        })
+      } else {
+        this.setData({
+          flag: options.flag,
+          tempData: {
+            name: options.name,
+            weight: options.weight,
+            type: options.type
+          }
+        })
+      }
       this.data.gradeList.forEach((item, index) => {
-        if(item == options.weight) {
+        if (item == options.weight) {
           this.setData({
             gradeIndex: index
           })
         }
       })
     } else {
-      this.setData({
-        flag: options.flag,
-        tempData: {
-          name: options.name,
-          required: options.required,
-          type: options.type
-        },
-        switchChecked: options.required == 1 ? true : false
-      })
+      if (options.type == 'select') {
+        this.setData({
+          flag: options.flag,
+          tempData: {
+            name: options.name,
+            required: options.required,
+            type: options.type,
+            option: JSON.parse(options.option)
+          },
+          dropDownData: JSON.parse(options.option),
+          switchChecked: options.required == 1 ? true : false
+        })
+      } else {
+        this.setData({
+          flag: options.flag,
+          tempData: {
+            name: options.name,
+            required: options.required,
+            type: options.type
+          },
+          switchChecked: options.required == 1 ? true : false
+        })
+      }
     }
 
     this.data.typeList.forEach((item, index) => {

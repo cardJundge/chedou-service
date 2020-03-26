@@ -18,7 +18,7 @@ Component({
       // 使用 wx.createContext 获取绘图上下文 context
       var ctx = wx.createCanvasContext('canvasProgressbg', this)
       ctx.setLineWidth(this.rpx2px(8))// 设置圆环的宽度
-      ctx.setStrokeStyle('#cecece') // 设置圆环的颜色
+      ctx.setStrokeStyle('#E7EFFF') // 设置圆环的颜色
       ctx.setLineCap('round') // 设置圆环端点的形状
       ctx.beginPath()//开始一个新的路径
       ctx.arc(this.rpx2px(52), this.rpx2px(52), this.rpx2px(44), 0, 2 * Math.PI, false)

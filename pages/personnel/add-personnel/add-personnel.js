@@ -76,6 +76,11 @@ Page({
     personnelModel.getModule(res => {
       if (res.data.status == 1) {
         res.data.data.forEach((item, index) => {
+          if(item.key) {
+            this.data.selectData.push(item)
+          }
+        })
+        this.data.selectData.forEach((item, index) => {
           this.data.moduleSelect.forEach((its, ins) => {
             if (its.id == item.id) {
               item.selected = true
@@ -83,7 +88,7 @@ Page({
           })
         })
         this.setData({
-          selectData: res.data.data
+          selectData: this.data.selectData
         })
         this.changeStyleType()
       }

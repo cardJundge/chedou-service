@@ -408,7 +408,7 @@ class IndexModel extends HTTP {
   // 新模块案件详情
   getTaskflowDetail(param, callback) {
     var params = {
-      url: '/api/ser/case/$id',
+      url: '/api/ser/case/' + param.id,
       type: 'GET',
       auth: true,
       sCallback: callback
@@ -427,6 +427,30 @@ class IndexModel extends HTTP {
     }
     this.request(params)
   }
+
+  // 获取添加模块字段
+  getModuleField(param, callback) {
+    var params = {
+      url: '/api/ser/module/'+ param.id,
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 管理审批
+  toApproval(param, callback) {
+    var params = {
+      url: '/api/ser/case/approval',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
 }
 export {
   IndexModel

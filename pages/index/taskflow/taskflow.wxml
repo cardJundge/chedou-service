@@ -17,13 +17,29 @@
     <image src="/images/loading.gif"></image>
   </view>
   <view class="list-content" wx:if="{{!spinShow && !noData}}">
-    <view class="list-item" wx:for="{{taskflowList}}" wx:key="" bindtap="toTaskflowDetail">
+    <view class="list-item" wx:for="{{taskflowList}}" wx:key="" bindtap="toTaskflowDetail" data-id="{{item.id}}" data-taskname="{{item.taskName}}">
       <view class="list-item-left">
-        <text>任务流编号</text>
-        <text>作业员姓名 | 派单时间</text>
+        <text>{{item.case_no}}</text>
+        <text>{{item.taskName}} | {{item.start_date}}</text>
       </view>
-      <view class='list-item-right'>
-        <prograss proportion="{{proportion}}" />
+      <view class='list-item-right' wx:if="{{item.showType == 'norm'}}">
+        <prograss wx:if="{{item.percentage || item.percentage == 0}}" proportion="{{item.percentage}}" />
+      </view>
+      <view class='list-item-right' wx:if="{{item.showType == 'approval'}}">
+        <view wx:if="{{item.approvalName == '已审核'}}" class="status01">
+          {{item.approvalName}}
+        </view>
+        <view wx:if="{{item.approvalName == '未审核'}}" class="status02">
+          {{item.approvalName}}
+        </view>
+      </view>
+      <view class='list-item-right' wx:if="{{item.showType == 'comment'}}">
+      <view wx:if="{{item.commentName == '已评价'}}" class="status01">
+          {{item.commentName}}
+        </view>
+        <view wx:if="{{item.commentName == '未评价'}}" class="status02">
+          {{item.commentName}}
+        </view>
       </view>
     </view>
   </view>

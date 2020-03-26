@@ -32,15 +32,14 @@ page {
 }
 
 .ready-place {
-  background: #ccc;
+  /* background: #ccc; */
 }
 
 .touch-sort {
-  width: 120rpx;
+  width: 80rpx;
   height: 90rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: url('https://6f6d-omo-service-b6dza-1301029807.tcb.qcloud.la/images/sort_icon.png?sign=7aeb36235a74f320c8818464684d8451&t=1585208445') no-repeat center;
+  background-size: 100% 100%;
   position: absolute;
   top: 0;
   right: 0;
