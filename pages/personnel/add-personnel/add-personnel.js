@@ -9,7 +9,8 @@ var personnelModel = new PersonnelModel()
 Page({
   data: {
     selectData: [],
-    module: '',
+    otherSelected: [],
+    module: { system: [], define: []},
     moduleSelect: [],
     number: null,
     groupData: [],
@@ -71,13 +72,15 @@ Page({
     this.WxValidate = new WxValidate(rules, messages)
   },
 
-  // 获取服务商拥有的模块
+  // 获取服务商拥有的模块！！
   getModule() {
     personnelModel.getModule(res => {
       if (res.data.status == 1) {
         res.data.data.forEach((item, index) => {
           if(item.key) {
             this.data.selectData.push(item)
+          } else  {
+            this.data.otherSelected.push(item)
           }
         })
         this.data.selectData.forEach((item, index) => {
@@ -87,10 +90,19 @@ Page({
             }
           })
         })
+        this.data.otherSelected.forEach((item, index) => {
+          this.data.moduleSelect.forEach((its, ins) => {
+            if (its.id == item.id) {
+              item.selected = true
+            }
+          })
+        })
         this.setData({
-          selectData: this.data.selectData
+          selectData: this.data.selectData,
+          otherSelected: this.data.otherSelected
         })
         this.changeStyleType()
+        this.changeOtherStyleType()
       }
     })
   },
@@ -142,22 +154,36 @@ Page({
     this.changeStyleType()
   },
 
+  // 自定义模块选择
+  changeOtherStyle(e) {
+    let string = "otherSelected[" + e.target.dataset.index + "].selected"
+    this.setData({
+      [string]: !this.data.otherSelected[e.target.dataset.index].selected
+    })
+    this.changeOtherStyleType()
+  },
+
   changeStyleType() {
     let detailValue = this.data.selectData.filter(it => it.selected).map(it => it.id)
     console.log('所有选中的值为：', detailValue)
-    this.data.module = ''
+    this.data.module.system = []
     detailValue.map((item, index) => {
-      if (index == 0) {
-        this.data.module = this.data.module.concat(item)
-      } else {
-        this.data.module = this.data.module.concat(',' + item)
-      }
+      this.data.module.system.push(item)
+    })
+  },
 
+  changeOtherStyleType() {
+    let detailValue = this.data.otherSelected.filter(it => it.selected).map(it => it.id)
+    console.log('所有选中的值为：', detailValue)
+    this.data.module.define = []
+    detailValue.map((item, index) => {
+      this.data.module.define.push(item)
     })
   },
 
   // 提交添加人员表单
   formSubmit(e) {
+    console.log(this.data.module)
     let params = e.detail.value
     if (!this.WxValidate.checkForm(params)) {
       const error = this.WxValidate.errorList[0]
@@ -166,7 +192,7 @@ Page({
         icon: 'none'
       })
       return false
-    } else if (this.data.module == '') {
+    } else if (this.data.module.system.length == 0 && this.data.module.define.length == 0) {
       return wx.showToast({
         title: '请选择人员类型',
         icon: 'none'

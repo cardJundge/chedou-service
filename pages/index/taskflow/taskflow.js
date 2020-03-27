@@ -66,26 +66,37 @@ Page({
                 item.taskName = item1.nickname
               }
             })
+
             if (item.norm) {
-              let tempArr = []
-              item.norm.forEach((item2, index2) => {
-                if (item2.record && item2.record.content.length != 0) {
-                  tempArr.push(item2)
+              let tempArr1 = []
+              item.norm.forEach((item1, index1) => {
+                if (item1.record) {
+                  tempArr1.push(item1)
                 }
               })
               item.showType = 'norm'
-              item.percentage = Math.floor(tempArr.length / item.norm.length * 100)
-              if(item.percentage == 100 && item.approval) {
+              item.percentage = Math.floor(tempArr1.length / item.norm.length * 100)
+
+              if (item.percentage == 100 && item.approval) {
                 item.showType = 'approval'
+                let tempArr2 = []
                 item.approval.forEach((item2, index2) => {
-                  if (!item2.record || item2.record.content.length < item.approval.length) {
-                    item.approvalName = '未审核'
+                  if (item2.record) {
+                    tempArr2.push(item2)
+                  }
+                  if (tempArr2.length < item.approval.length) {
+                    item.approvalName = '未审批'
                   } else {
-                    item.approvalName = '已审核'
-                    if(item.comment) {
+                    item.approvalName = '已审批'
+
+                    if (item.comment) {
                       item.showType = 'comment'
+                      let tempArr3 = []
                       item.comment.forEach((item3, index3) => {
-                        if (!item3.record || item3.record.content.length < item.comment.length) {
+                        if (item3.record) {
+                          tempArr3.push(item3)
+                        }
+                        if (tempArr3.length < item.comment.length) {
                           item.commentName = '未评价'
                         } else {
                           item.commentName = '已评价'
@@ -95,10 +106,15 @@ Page({
                   }
                 })
               }
+
               if (item.percentage == 100 && item.comment && !item.approval) {
                 item.showType = 'comment'
+                let tempArr2 = []
                 item.comment.forEach((item2, index2) => {
-                  if (!item2.record || item2.record.content.length < item.comment.length) {
+                  if (item2.record) {
+                    tempArr2.push(item2)
+                  }
+                  if (tempArr2.length < item.comment.length) {
                     item.commentName = '未评价'
                   } else {
                     item.commentName = '已评价'
@@ -108,16 +124,25 @@ Page({
             }
 
             if (!item.norm && item.approval) {
+              let tempArr2 = []
               item.showType = 'approval'
               item.approval.forEach((item2, index2) => {
-                if (!item2.record || item2.record.content.length < item.approval.length) {
-                  item.approvalName = '未审核'
+                if (item2.record) {
+                  tempArr2.push(item2)
+                }
+                if (tempArr2.length < item.approval.length) {
+                  item.approvalName = '未审批'
                 } else {
-                  item.approvalName = '已审核'
+                  item.approvalName = '已审批'
+
                   if (item.comment) {
+                    let tempArr3 = []
                     item.showType = 'comment'
                     item.comment.forEach((item3, index3) => {
-                      if (!item3.record || item3.record.content.length < item.comment.length) {
+                      if (item3.record) {
+                        tempArr3.push(item3)
+                      }
+                      if (tempArr3.length < item.comment.length) {
                         item.commentName = '未评价'
                       } else {
                         item.commentName = '已评价'
@@ -129,9 +154,13 @@ Page({
             }
 
             if (!item.norm && !item.approval && item.comment) {
+              let tempArr3 = []
               item.showType = 'comment'
               item.comment.forEach((item3, index3) => {
-                if (!item3.record || item3.record.content.length < item.comment.length) {
+                if (item3.record) {
+                  tempArr3.push(item3)
+                }
+                if (tempArr3.length < item.comment.length) {
                   item.commentName = '未评价'
                 } else {
                   item.commentName = '已评价'
@@ -151,7 +180,7 @@ Page({
 
   toTaskflowDetail(e) {
     let listId = e.currentTarget.dataset.id,
-    taskname = e.currentTarget.dataset.taskname
+      taskname = e.currentTarget.dataset.taskname
     wx.navigateTo({
       url: './taskflow-details/taskflow-details?listId=' + listId + '&taskname=' + taskname,
     })

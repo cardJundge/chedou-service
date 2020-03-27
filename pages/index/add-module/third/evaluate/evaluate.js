@@ -139,7 +139,7 @@ Page({
     console.log('获取到的元素为', this.data.evaluateData[startIndex])
     // 初始化页面数据
     let pageInfo = this.data.pageInfo
-    pageInfo.startY = e.touches[0].clientY
+    pageInfo.startY = e.touches[0].pageY
     pageInfo.readyPlaceIndex = startIndex
     pageInfo.selectedIndex = startIndex
     pageInfo.scrollY = false
@@ -165,7 +165,7 @@ Page({
     var pageInfo = this.data.pageInfo
     // 计算拖拽距离
     var movableViewInfo = this.data.movableViewInfo
-    var movedDistance = e.touches[0].clientY - pageInfo.startY
+    var movedDistance = e.touches[0].pageY - pageInfo.startY
     movableViewInfo.y = pageInfo.startY - (this.data.rowHeight / 2) + movedDistance
     console.log('移动的距离为', movedDistance)
 

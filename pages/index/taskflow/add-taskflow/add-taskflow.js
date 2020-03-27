@@ -52,7 +52,8 @@ Page({
   // 获取作业员列表
   getTaskList() {
     let params = {
-      keywords: ''
+      keywords: '',
+      module_id: this.data.moduleId
     }
     personnelModel.getTaskList(params,res => {
       if (res.data.status == 1) {
@@ -84,13 +85,28 @@ Page({
   },
 
   // 去上传图片
-  toUploadImg(e) {
-    let name = e.currentTarget.dataset.name
+  // toUploadImg(e) {
+  //   let name = e.currentTarget.dataset.name
+  //   this.setData({
+  //     imageName: name
+  //   })
+  // },
+
+  // 删除图片
+  delImage(e) {
+    let name = e.currentTarget.dataset.name,
+    picIndex = e.currentTarget.dataset.index
+    this.data.field.forEach((item, index) => {
+      if (item.name == name) {
+        item.value.splice(picIndex, 1)
+      }
+    })
     this.setData({
-      imageName: name
+      field: this.data.field
     })
   },
 
+  // 上传图片
   uploadImg(e) {
     let name = e.currentTarget.dataset.name
     this.data.imageList = []

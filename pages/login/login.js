@@ -15,6 +15,7 @@ Page({
     }
   },
   onLoad(options) {
+    console.log('fgsdgdfgsdgasdgaSDF')
     this.initValidate() // 验证规则函数
   },
   onShow() {

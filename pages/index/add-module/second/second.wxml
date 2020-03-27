@@ -1,5 +1,5 @@
 <!--添加模块---》第二步-->
-<view class="second-body">
+<view class="second-body-container">
   <view class="second-title">
     <image src="/images/index/add_module_2.png"></image>
   </view>

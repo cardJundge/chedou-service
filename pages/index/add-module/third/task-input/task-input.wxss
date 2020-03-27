@@ -32,7 +32,7 @@ page {
 }
 
 .ready-place {
-  /* background: #ccc; */
+  background: #ccc;
 }
 
 .touch-sort {

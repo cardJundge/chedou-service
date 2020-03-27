@@ -6,7 +6,7 @@
       <view class="top-item top-item-img" wx:if="{{item.type == 'image' && index < 4}}">
         <text>{{item.name}}</text>
         <view class="top-item-img-box">
-          <view class="top-item-img-item" wx:for="{{item.value}}" wx:for-item="imgitem" wx:for-index="imgindex">
+          <view class="top-item-img-item" wx:for="{{item.value}}" wx:for-item="imgitem" wx:for-index="imgindex" wx:if="{{imgindex < 3}}">
             <image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage" data-index="imgindex" data-name="{{item.name}}" data-flag="field"></image>
           </view>
         </view>
@@ -35,7 +35,7 @@
       <view class="top-item top-item-img" wx:if="{{item.type == 'image' && index > 3}}">
         <text>{{item.name}}</text>
         <view class="top-item-img-box">
-          <view class="top-item-img-item" wx:for="{{item.value}}" wx:for-item="imgitem" wx:for-index="imgindex">
+          <view class="top-item-img-item" wx:for="{{item.value}}" wx:for-item="imgitem" wx:for-index="imgindex" wx:if="{{imgindex < 3}}">
             <image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage" data-index="imgindex" data-name="{{item.name}}" data-flag="field"></image>
           </view>
         </view>
@@ -61,14 +61,14 @@
       <view class="task-input" wx:if="{{tabList[isActive] == '任务标准'}}">
         <block wx:for="{{norm}}">
           <!-- 未完成 -->
-          <view class="content-box-item" wx:if="{{!item.record || item.record.length == 0}}">
+          <view class="content-box-item" wx:if="{{!item.record}}">
             <view class="item-incomplete">
               <text>{{index+1}}、{{item.name}}</text>
               <view>未完成</view>
             </view>
           </view>
           <!-- 已完成 -->
-          <view class="content-box-item" wx:if="{{item.record && item.record.length != 0}}">
+          <view class="content-box-item" wx:if="{{item.record}}">
             <view class="item-complete">
               <view class="item-complete-title">
                 <text>{{index+1}}、{{item.name}}</text>
@@ -105,7 +105,7 @@
       <view class="approval" wx:if="{{tabList[isActive] == '管理者审批'}}">
         <block wx:for="{{approval}}">
           <!-- 未完成 -->
-          <view class="content-box-item" wx:if="{{!item.record || item.record.length == 0}}">
+          <view class="content-box-item" wx:if="{{!item.record}}">
             <view class="item-incomplete" wx:if="{{item.type == 'select'}}">
               <text>{{index+1}}、{{item.name}}</text>
               <picker bindchange="optionSelect" data-name="{{item.name}}" range="{{item.option}}">
@@ -118,7 +118,7 @@
             </view>
           </view>
           <!-- 已完成 -->
-          <view class="content-box-item" wx:if="{{item.record && item.record.length != 0}}">
+          <view class="content-box-item" wx:if="{{item.record}}">
             <view class="item-complete">
               <view class="item-complete-title">
                 <text>{{index+1}}、{{item.name}}</text>
@@ -159,7 +159,7 @@
       <view class="evaluate" wx:if="{{tabList[isActive] == '客户评价'}}">
         <!-- 已评价 -->
         <block wx:for="{{evaluate}}">
-          <!-- <view class="content-box-item">
+          <view class="content-box-item" wx:if="{{item.record}}">
             <view class="item-complete">
               <view class="item-complete-title">
                 <text>{{index+1}}、{{item.name}}</text>
@@ -168,13 +168,13 @@
               <view class="item-complete-text">
                 <view>
                   <text>内容</text>
-                  <text>xx</text>
+                  <text>{{item.content}}</text>
                 </view>
               </view>
             </view>
-          </view> -->
+          </view>
           <!-- 未评价 -->
-          <view class="content-box-item">
+          <view class="content-box-item" wx:if="{{!item.record}}">
             <view class="no-evaluate">
               <image src="cloud://omo-service-b6dza.6f6d-omo-service-b6dza-1301029807/images/no_evaluate.png"></image>
               <text>暂无评价</text>

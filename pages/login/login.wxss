@@ -37,8 +37,8 @@ page {
   margin-bottom: 54rpx;
 }
 
-.login-content-form {
-}
+/* .login-content-form {
+} */
 
 .input-box {
   width: 450rpx;
@@ -56,8 +56,8 @@ page {
   margin: 0 15rpx 0 30rpx;
 }
 
-.input-box input {
-}
+/* .input-box input {
+} */
 
 .operation-bar {
   width: 450rpx;
