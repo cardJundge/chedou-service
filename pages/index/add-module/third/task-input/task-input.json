@@ -2,5 +2,5 @@
   "usingComponents": {
     "i-icon": "/dist/icon/index"
   },
-  "navigationBarTitleText": "作业员录入"
+  "navigationBarTitleText": "员工操作项"
 }

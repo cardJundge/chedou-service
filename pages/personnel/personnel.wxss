@@ -107,7 +107,7 @@
 
 .personnel-content-list {
   width: 100%;
-  height: 915rpx;
+  /* height: 915rpx; */
 }
 
 .personnel-content-item {

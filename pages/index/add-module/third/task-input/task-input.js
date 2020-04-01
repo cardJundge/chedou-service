@@ -23,6 +23,13 @@ Page({
     this.setData({
       taskInputData: JSON.parse(options.taskInputData),
     })
+    wx.getSystemInfo({
+      success: res => {
+        this.setData({
+          allHeight: res.windowHeight * 2 - 380
+        })
+      }
+    })
     this.setData({
       pageInfo: {
         scrollHeight: this.data.taskInputData.length * 45
@@ -33,17 +40,18 @@ Page({
   onShow() {
     if (this.data.tempData) {
       this.data.taskInputData[this.data.taskInputId] = this.data.tempData
-      console.log(this.data.taskInputData)
+      // console.log(this.data.taskInputData)
       this.setData({
-        taskInputData: this.data.taskInputData
+        taskInputData: this.data.taskInputData,
+        tempData: ''
       })
     }
   },
 
   toSelectType(e) {
     let taskInputName = e.currentTarget.dataset.name,
-    taskInputType = e.currentTarget.dataset.type,
-    taskInputWeight = e.currentTarget.dataset.weight
+      taskInputType = e.currentTarget.dataset.type,
+      taskInputWeight = e.currentTarget.dataset.weight
     this.data.taskInputId = e.currentTarget.dataset.index
     if (taskInputType == 'select') {
       let taskInputOption = JSON.stringify(e.currentTarget.dataset.option)
@@ -55,7 +63,7 @@ Page({
         url: '../../select/select?flag=' + 'task' + '&name=' + taskInputName + '&type=' + taskInputType + '&weight=' + taskInputWeight,
       })
     }
-   
+
   },
 
   // 添加作业员录入字段
@@ -100,7 +108,7 @@ Page({
     this.setData({
       taskInputData: this.data.taskInputData
     })
-    console.log(this.data.taskInputData)
+    // console.log(this.data.taskInputData)
   },
 
   onConfirm() {
@@ -139,7 +147,7 @@ Page({
     //   isDrag: true
     // })
     let startIndex = e.target.dataset.index
-    console.log('获取到的元素为', this.data.taskInputData[startIndex])
+    // console.log('获取到的元素为', this.data.taskInputData[startIndex])
     // 初始化页面数据
     let pageInfo = this.data.pageInfo
     pageInfo.startY = e.touches[0].pageY
@@ -170,7 +178,7 @@ Page({
     var movableViewInfo = this.data.movableViewInfo
     var movedDistance = e.touches[0].pageY - pageInfo.startY
     movableViewInfo.y = pageInfo.startY - (this.data.rowHeight / 2) + movedDistance
-    console.log('移动的距离为', movedDistance)
+    // console.log('移动的距离为', movedDistance)
 
     // 修改预计放置位置
     var movedIndex = parseInt(movedDistance / this.data.rowHeight)
@@ -190,7 +198,7 @@ Page({
     }
     // 移动movableView
     pageInfo.readyPlaceIndex = readyPlaceIndex
-    console.log('移动到了索引', readyPlaceIndex, '选项为', taskInputData[readyPlaceIndex])
+    // console.log('移动到了索引', readyPlaceIndex, '选项为', taskInputData[readyPlaceIndex])
 
     this.setData({
       movableViewInfo: movableViewInfo,

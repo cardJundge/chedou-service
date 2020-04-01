@@ -63,13 +63,9 @@ App({
   },
   globalData: {
     userInfo: null,
-    // hostName: 'http://192.168.1.108',
-    hostName: 'http://dev.api.feecgo.com',
-    // hostName: 'https://api.chedou123.cn', 
+    hostName: 'http://test-api.feecgo.com', 
     // hostName: 'https://api.feecgo.com',
-    // imgUrl: 'http://192.168.1.108/storage/',
-    imgUrl: 'http://dev.api.feecgo.com/storage/',
-    //  imgUrl: 'https://api.chedou123.cn/storage/',
+    imgUrl: 'http://test-api.feecgo.com/storage/',
     // imgUrl: 'https://api.feecgo.com/storage/',
     clound: "https://6f6d-omo-service-b6dza-1301029807/images/"
   }

@@ -20,7 +20,7 @@
         <text>添加字段</text>
       </view>
 
-      <scroll-view scroll-y='false' style='height:{{pageInfo.scrollHeight}}px;'>
+      <scroll-view scroll-y='false' style='height:{{allHeight}}rpx;'>
         <view wx:for="{{fieldData}}" class="form-item form-select {{pageInfo.readyPlaceIndex == index ? 'ready-place' : ''}}" style='height: {{rowHeight}}px;padding-right: 80rpx;position: relative'>
           <view class="left">
             <image src="/images/index/del_module_icon.png" bindtap="delField" data-index="{{index}}"></image>
@@ -43,7 +43,7 @@
           </view>
         </view>
       </scroll-view>
-      <view class="operation-btn" bindtap="nextStep">下一步</view>
+      <view class="second-btn" bindtap="nextStep">下一步</view>
     </view>
   </view>
 </view>

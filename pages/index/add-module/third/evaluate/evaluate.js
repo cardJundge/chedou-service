@@ -21,6 +21,13 @@ Page({
     this.setData({
       evaluateData: JSON.parse(options.evaluateData),
     })
+    wx.getSystemInfo({
+      success: res => {
+        this.setData({
+          allHeight: res.windowHeight * 2 - 380
+        })
+      }
+    })
     this.setData({
       pageInfo: {
         scrollHeight: this.data.evaluateData.length * 45
@@ -31,9 +38,10 @@ Page({
   onShow() {
     if (this.data.tempData) {
       this.data.evaluateData[this.data.evaluateId] = this.data.tempData
-      console.log(this.data.evaluateData)
+      // console.log(this.data.evaluateData)
       this.setData({
-        evaluateData: this.data.evaluateData
+        evaluateData: this.data.evaluateData,
+        tempData: ''
       })
     }
   },
@@ -96,7 +104,7 @@ Page({
     this.setData({
       evaluateData: this.data.evaluateData
     })
-    console.log(this.data.evaluateData)
+    // console.log(this.data.evaluateData)
   },
 
   // 点击确定按钮
@@ -136,7 +144,7 @@ Page({
     //   isDrag: true
     // })
     let startIndex = e.target.dataset.index
-    console.log('获取到的元素为', this.data.evaluateData[startIndex])
+    // console.log('获取到的元素为', this.data.evaluateData[startIndex])
     // 初始化页面数据
     let pageInfo = this.data.pageInfo
     pageInfo.startY = e.touches[0].pageY
@@ -167,7 +175,7 @@ Page({
     var movableViewInfo = this.data.movableViewInfo
     var movedDistance = e.touches[0].pageY - pageInfo.startY
     movableViewInfo.y = pageInfo.startY - (this.data.rowHeight / 2) + movedDistance
-    console.log('移动的距离为', movedDistance)
+    // console.log('移动的距离为', movedDistance)
 
     // 修改预计放置位置
     var movedIndex = parseInt(movedDistance / this.data.rowHeight)
@@ -187,7 +195,7 @@ Page({
     }
     // 移动movableView
     pageInfo.readyPlaceIndex = readyPlaceIndex
-    console.log('移动到了索引', readyPlaceIndex, '选项为', evaluateData[readyPlaceIndex])
+    // console.log('移动到了索引', readyPlaceIndex, '选项为', evaluateData[readyPlaceIndex])
 
     this.setData({
       movableViewInfo: movableViewInfo,

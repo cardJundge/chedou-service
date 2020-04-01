@@ -13,7 +13,7 @@
     <text>添加字段</text>
   </view>
 
-  <scroll-view scroll-y='false' style='height:{{pageInfo.scrollHeight}}px;'>
+  <scroll-view scroll-y='false' style='height:{{allHeight}}rpx;'>
     <view wx:for="{{approvalData}}" class="operation-item operation-select {{pageInfo.readyPlaceIndex == index ? 'ready-place' : ''}}" style='height: {{rowHeight}}px;padding-right: 80rpx;position: relative'>
       <view class="left">
         <image src="/images/index/del_module_icon.png" bindtap="delApprovalField" data-index="{{index}}"></image>
@@ -35,5 +35,5 @@
       </view>
     </view>
   </scroll-view>
-  <view class="operation-btn" bindtap="onConfirm">确定</view>
+  <view class="scroll-btn" bindtap="onConfirm">确定</view>
 </view>

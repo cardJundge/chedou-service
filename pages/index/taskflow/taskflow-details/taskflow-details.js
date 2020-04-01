@@ -25,6 +25,9 @@ Page({
     })
     this.data.listId = options.listId
     this.getTaskflowDetail()
+    wx.setNavigationBarTitle({
+      title: options.moduleName 
+    })
   },
 
   onShow() {

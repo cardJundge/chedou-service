@@ -24,7 +24,6 @@ Page({
     this.setData({
       iconList: this.data.iconList
     })
-    console.log(this.data.iconList)
   },
 
   // 选择图标

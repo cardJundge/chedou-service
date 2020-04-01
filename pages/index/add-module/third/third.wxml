@@ -5,15 +5,15 @@
   </view>
   <view class="third-content">
     <view class="third-item" bindtap="toTaskInput">
-      <text>作业员录入</text>
+      <text>员工操作项</text>
        <i-icon class="icon" type="enter" font-size="18" color="#A6A6A6"/>
     </view>
     <view class="third-item" bindtap="toApproval">
-      <text>管理者审批</text>
+      <text>管理操作项</text>
        <i-icon class="icon" type="enter" font-size="18" color="#A6A6A6"/>
     </view>
     <view class="third-item" bindtap="toEvaluate">
-      <text>客户评价</text>
+      <text>客户操作项</text>
        <i-icon class="icon" type="enter" font-size="18" color="#A6A6A6"/>
     </view>
     <view class="operation-btn" bindtap="onConfirm">确定</view>

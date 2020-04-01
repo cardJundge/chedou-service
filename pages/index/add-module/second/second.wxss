@@ -36,6 +36,7 @@ page {
 }
 
 .second-body-form {
+  /* padding-bottom: 200rpx; */
 }
 
 .form-item {
@@ -107,4 +108,20 @@ page {
   top: 0;
   right: 0;
   z-index: 9;
+}
+
+.second-btn {
+  width: 702rpx;
+  height: 80rpx;
+  margin: 60rpx auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1a65ff;
+  color: #fff;
+  border-radius: 20rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

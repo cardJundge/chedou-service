@@ -138,7 +138,7 @@ Page({
 
   // 权重:选择分数
   gradeSelect(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
     this.data.tempData.weight = this.data.gradeList[e.detail.value]
     this.setData({
       gradeIndex: e.detail.value
@@ -147,7 +147,7 @@ Page({
 
   // 选择是否必填(作业员录入)
   switchChange(e) {
-    console.log('switch1 发生 change 事件，携带值为', e.detail.value)
+    // console.log('switch1 发生 change 事件，携带值为', e.detail.value)
     if (e.detail.value == true) {
       this.data.tempData.required = 1
     } else {
@@ -221,7 +221,7 @@ Page({
     this.setData({
       dropDownData: this.data.dropDownData
     })
-    console.log(this.data.dropDownData)
+    // console.log(this.data.dropDownData)
     this.data.tempData.option = this.data.dropDownData
   },
 

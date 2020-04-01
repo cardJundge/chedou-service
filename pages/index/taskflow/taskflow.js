@@ -20,7 +20,11 @@ Page({
   onLoad(options) {
     console.log(options)
     this.setData({
-      moduleId: options.moduleId
+      moduleId: options.moduleId,
+      moduleName: options.moduleName
+    })
+    wx.setNavigationBarTitle({
+      title: options.moduleName 
     })
   },
 
@@ -28,22 +32,7 @@ Page({
     this.setData({
       spinShow: true
     })
-    this.getTaskList()
-  },
-
-  // 获取作业员列表
-  getTaskList() {
-    let params = {
-      keywords: ''
-    }
-    personnelModel.getTaskList(params, res => {
-      if (res.data.status == 1) {
-        this.setData({
-          taskList: res.data.data
-        })
-        this.getTaskflowList()
-      }
-    })
+    this.getTaskflowList()
   },
 
   getTaskflowList() {
@@ -61,12 +50,6 @@ Page({
             noData: false
           })
           res.data.data.data.forEach((item, index) => {
-            this.data.taskList.forEach((item1, index1) => {
-              if (item.task_id == item1.id) {
-                item.taskName = item1.nickname
-              }
-            })
-
             if (item.norm) {
               let tempArr1 = []
               item.norm.forEach((item1, index1) => {
@@ -178,11 +161,12 @@ Page({
     })
   },
 
+  // 进入任务流详情
   toTaskflowDetail(e) {
     let listId = e.currentTarget.dataset.id,
       taskname = e.currentTarget.dataset.taskname
     wx.navigateTo({
-      url: './taskflow-details/taskflow-details?listId=' + listId + '&taskname=' + taskname,
+      url: './taskflow-details/taskflow-details?listId=' + listId + '&taskname=' + taskname + '&moduleName=' + this.data.moduleName,
     })
   },
 

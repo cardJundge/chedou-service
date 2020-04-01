@@ -21,6 +21,13 @@ Page({
     this.setData({
       approvalData: JSON.parse(options.approvalData),
     })
+    wx.getSystemInfo({
+      success: res => {
+        this.setData({
+          allHeight: res.windowHeight * 2 - 380
+        })
+      }
+    })
     this.setData({
       pageInfo: {
         scrollHeight: this.data.approvalData.length * 45
@@ -31,9 +38,10 @@ Page({
   onShow() {
     if (this.data.tempData) {
       this.data.approvalData[this.data.approvalId] = this.data.tempData
-      console.log(this.data.approvalData)
+      // console.log(this.data.approvalData)
       this.setData({
-        approvalData: this.data.approvalData
+        approvalData: this.data.approvalData,
+        tempData: ''
       })
     }
   },
@@ -81,7 +89,7 @@ Page({
     this.setData({
       approvalData: this.data.approvalData,
       pageInfo: {
-        scrollHeight: this.data.taskInputData.length * 45
+        scrollHeight: this.data.approvalData.length * 45
       }
     })
   },
@@ -96,7 +104,7 @@ Page({
     this.setData({
       approvalData: this.data.approvalData
     })
-    console.log(this.data.approvalData)
+    // console.log(this.data.approvalData)
   },
 
   // 点击确定按钮
@@ -133,7 +141,7 @@ Page({
   // -------------------------------------
   dragStart(e) {
     let startIndex = e.target.dataset.index
-    console.log('获取到的元素为', this.data.approvalData[startIndex])
+    // console.log('获取到的元素为', this.data.approvalData[startIndex])
     // 初始化页面数据
     let pageInfo = this.data.pageInfo
     pageInfo.startY = e.touches[0].pageY
@@ -164,7 +172,7 @@ Page({
     var movableViewInfo = this.data.movableViewInfo
     var movedDistance = e.touches[0].pageY - pageInfo.startY
     movableViewInfo.y = pageInfo.startY - (this.data.rowHeight / 2) + movedDistance
-    console.log('移动的距离为', movedDistance)
+    // console.log('移动的距离为', movedDistance)
 
     // 修改预计放置位置
     var movedIndex = parseInt(movedDistance / this.data.rowHeight)
@@ -184,7 +192,7 @@ Page({
     }
     // 移动movableView
     pageInfo.readyPlaceIndex = readyPlaceIndex
-    console.log('移动到了索引', readyPlaceIndex, '选项为', approvalData[readyPlaceIndex])
+    // console.log('移动到了索引', readyPlaceIndex, '选项为', approvalData[readyPlaceIndex])
 
     this.setData({
       movableViewInfo: movableViewInfo,

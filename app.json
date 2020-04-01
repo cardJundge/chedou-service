@@ -77,8 +77,9 @@
     "pages/index/taskflow/taskflow",
     "pages/index/taskflow/taskflow-details/taskflow-details",
     "pages/index/add-module/first/icon/icon",
-    "pages/index/taskflow/add-taskflow/add-taskflow"
-    
+    "pages/index/taskflow/add-taskflow/add-taskflow",
+    "pages/index/statistics/statistics",
+    "pages/index/add-module/zero/zero"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,29 @@
+<!--创建模块===》开始页面-->
+<view class="zero-body">
+	<view class="system">
+		<view class="title">系统模块</view>
+		<view class="system-content">
+			<block wx:for="{{businessArray}}">
+				<view wx:if="{{item.key}}" class="system-item" bindtap="toSystemItemList" data-key="{{item.key}}">
+					<image src="{{item.img}}"></image>
+					<text>{{item.name}}</text>
+				</view>
+			</block>
+		</view>
+	</view>
+	<view class="define">
+		<view class="title">自建模块</view>
+		<view class="define-content">
+			<block wx:for="{{businessArray}}">
+				<view wx:if="{{item.icon}}" class="define-item" bindtap="toDefineItemList" data-id="{{item.id}}" data-name="{{item.name}}">
+					<image src="{{item.icon}}"></image>
+					<text>{{item.name}}</text>
+				</view>
+			</block>
+			<view class="define-item" bindtap="toAddModule">
+				<image src="/images/index/add_module.png"></image>
+				<text>添加模块</text>
+			</view>
+		</view>
+	</view>
+</view>

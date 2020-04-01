@@ -17,10 +17,10 @@
     <image src="/images/loading.gif"></image>
   </view>
   <view class="list-content" wx:if="{{!spinShow && !noData}}">
-    <view class="list-item" wx:for="{{taskflowList}}" wx:key="" bindtap="toTaskflowDetail" data-id="{{item.id}}" data-taskname="{{item.taskName}}">
+    <view class="list-item" wx:for="{{taskflowList}}" wx:key="" bindtap="toTaskflowDetail" data-id="{{item.id}}" data-taskname="{{item.task_id.nickname}}">
       <view class="list-item-left">
         <text>{{item.case_no}}</text>
-        <text>{{item.taskName}} | {{item.start_date}}</text>
+        <text>{{item.task_id.nickname}} | {{item.start_date}}</text>
       </view>
       <view class='list-item-right' wx:if="{{item.showType == 'norm'}}">
         <prograss wx:if="{{item.percentage || item.percentage == 0}}" proportion="{{item.percentage}}" />

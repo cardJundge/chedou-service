@@ -2,5 +2,5 @@
   "usingComponents": {
     "i-icon": "/dist/icon/index"
   },
-  "navigationBarTitleText": "客户评价"
+  "navigationBarTitleText": "客户操作项"
 }

@@ -36,9 +36,9 @@ Page({
   },
 
   // 添加模块按钮
-  // okEvent() {
-  //   this.getModule()
-  // },
+  okEvent() {
+    this.getModule()
+  },
 
   // 首页获取数据统计
   getDataStatics() {
@@ -54,7 +54,7 @@ Page({
   // 进入数据统计详情
   toDataDetails() {
     wx.navigateTo({
-      url: './data-details/data-details',
+      url: './statistics/statistics',
     })
   },
 
@@ -104,17 +104,19 @@ Page({
   },
 
   // 进入新添加的模块详情
-  toItemListSelf(e) {
-    let id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: './taskflow/taskflow?moduleId=' + id,
-    })
-  },
+  // toItemListSelf(e) {
+  //   let id = e.currentTarget.dataset.id,
+  //   name = e.currentTarget.dataset.name
+  //   wx.navigateTo({
+  //     url: './taskflow/taskflow?moduleId=' + id + '&moduleName=' + name,
+  //   })
+  // },
 
   // 添加模块
   toAddModule() {
+    let data = JSON.stringify(this.data.businessArray)
     wx.navigateTo({
-      url: './add-module/first/first',
+      url: './add-module/zero/zero?data=' + data,
     })
   },
 

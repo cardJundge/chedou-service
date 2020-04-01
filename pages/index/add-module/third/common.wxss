@@ -49,3 +49,19 @@
   margin-right: 24rpx;
   color: #909090;
 }
+
+.scroll-btn {
+  width: 702rpx;
+  height: 80rpx;
+  margin: 60rpx auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1a65ff;
+  color: #fff;
+  border-radius: 20rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

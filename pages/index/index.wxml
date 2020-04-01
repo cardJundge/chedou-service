@@ -44,12 +44,12 @@
             <text>{{item.name}}</text>
           </view>
         </view>
-        <view wx:if="{{item.icon}}" class="business-item" bindtap="toItemListSelf" data-id="{{item.id}}">
+        <!-- <view wx:if="{{item.icon}}" class="business-item" bindtap="toItemListSelf" data-id="{{item.id}}" data-name="{{item.name}}">
           <image class="left" src="{{item.img}}"></image>
           <view class="business-item-text">
             <text>{{item.name}}</text>
           </view>
-        </view>
+        </view> -->
       </block>
       <view class="business-item" bindtap="toAddModule">
         <i-icon class="left" type="add" size="48" color="#1a65ff" />
@@ -94,5 +94,5 @@
     </view>
   </view>
   <!-- 添加模块components -->
-  <!-- <add-module module="{{moduleArray}}" bottomSpin="{{bottomSpin}}" isShow="{{isAddModule}}" bind:okEvent="okEvent" /> -->
+  <add-module module="{{moduleArray}}" bottomSpin="{{bottomSpin}}" isShow="{{isAddModule}}" bind:okEvent="okEvent" />
 </view>

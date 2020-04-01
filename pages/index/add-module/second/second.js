@@ -21,6 +21,13 @@ Page({
   onLoad(options) {
     this.data.moduleName = options.moduleName
     this.data.moduleIcon = options.moduleIcon
+    wx.getSystemInfo({
+      success: res => {
+        this.setData({
+          allHeight: res.windowHeight * 2 - 508
+        })
+      }
+    })
     this.setData({
       pageInfo: {
         scrollHeight: this.data.fieldData.length * 45
@@ -31,9 +38,10 @@ Page({
   onShow() {
     if (this.data.tempData) {
       this.data.fieldData[this.data.fieldId] = this.data.tempData
-      console.log(this.data.fieldData)
+      // console.log(this.data.fieldData)
       this.setData({
-        fieldData: this.data.fieldData
+        fieldData: this.data.fieldData,
+        tempData: ''
       })
     }
   },
@@ -56,7 +64,6 @@ Page({
   // 删除字段
   delField(e) {
     let fieldIndex = e.currentTarget.dataset.index
-    console.log(fieldIndex, this.data.fieldData)
     this.data.fieldData.forEach((item, index) => {
       if (fieldIndex == index) {
         this.data.fieldData.splice(index, 1)
@@ -80,15 +87,14 @@ Page({
     this.setData({
       fieldData: this.data.fieldData
     })
-    console.log(this.data.fieldData)
+    // console.log(this.data.fieldData)
   },
 
   // 选择类型
   toSelectType(e) {
-    console.log(e)
     let fieldType = e.currentTarget.dataset.type,
-    fieldName = e.currentTarget.dataset.name,
-    fieldRequired = e.currentTarget.dataset.required
+      fieldName = e.currentTarget.dataset.name,
+      fieldRequired = e.currentTarget.dataset.required
     this.data.fieldId = e.currentTarget.dataset.index
     if (fieldType == 'select') {
       let fieldOption = JSON.stringify(e.currentTarget.dataset.option)
@@ -100,7 +106,7 @@ Page({
         url: '../select/select?flag=' + 'info' + '&name=' + fieldName + '&type=' + fieldType + '&required=' + fieldRequired,
       })
     }
-   
+
   },
 
   // 下一步
@@ -131,7 +137,7 @@ Page({
   // -------------------------------------
   dragStart(e) {
     let startIndex = e.target.dataset.index
-    console.log('获取到的元素为', this.data.fieldData[startIndex])
+    // console.log('获取到的元素为', this.data.fieldData[startIndex])
     // 初始化页面数据
     let pageInfo = this.data.pageInfo
     pageInfo.startY = e.touches[0].pageY
@@ -162,7 +168,7 @@ Page({
     var movableViewInfo = this.data.movableViewInfo
     var movedDistance = e.touches[0].pageY - pageInfo.startY
     movableViewInfo.y = pageInfo.startY - (this.data.rowHeight / 2) + movedDistance
-    console.log('移动的距离为', movedDistance)
+    // console.log('移动的距离为', movedDistance)
 
     // 修改预计放置位置
     var movedIndex = parseInt(movedDistance / this.data.rowHeight)
@@ -182,7 +188,7 @@ Page({
     }
     // 移动movableView
     pageInfo.readyPlaceIndex = readyPlaceIndex
-    console.log('移动到了索引', readyPlaceIndex, '选项为', fieldData[readyPlaceIndex])
+    // console.log('移动到了索引', readyPlaceIndex, '选项为', fieldData[readyPlaceIndex])
 
     this.setData({
       movableViewInfo: movableViewInfo,

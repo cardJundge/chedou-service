@@ -1,0 +1,113 @@
+<!--数据统计-->
+<view class="statistics">
+	<!-- 头部 -->
+	<view class="top">
+		<view class="top-tab">
+			<block wx:for="{{moduleList}}">
+				<view class="top-tab-item {{topActive == index ? 'top-tab-item-active' : ''}}" bindtap="changeTopTab" data-index="{{index}}">
+					<text>{{item}}</text>
+					<view wx:if="{{topActive == index}}">
+						<i-icon class="top-tab-item-triangle" type="play_fill" color="#fff" size="12" />
+					</view>
+				</view>
+			</block>
+		</view>
+		<view class="top-content">
+			<view class="top-content-title">本周数据统计</view>
+			<view class="top-content-num">
+				<view class="top-content-num-items">
+					<text>100</text>
+					<text>未完成</text>
+				</view>
+				<view class="top-content-num-items">
+					<text>100</text>
+					<text>已完成</text>
+				</view>
+				<view class="top-content-num-items">
+					<text>100</text>
+					<text>案件总数</text>
+				</view>
+			</view>
+			<view class="top-content-msg">统计自2020年03月08日00:00至2020年3月13日24:00</view>
+		</view>
+	</view>
+	<!-- 时效统计 -->
+	<view class="ageing">
+		<view class="ageing-title">时效统计</view>
+		<view class="chart-tab">
+			<block wx:for="{{dateList}}">
+				<view class="chart-tab-item {{ageingActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeAgeingTab" data-index="{{index}}">{{item}}日</view>
+			</block>
+		</view>
+		<view class="ageing-list">
+			<block>
+				<view class="ageing-item">
+					<view>
+						<text>1、</text>
+						<text>任务标题</text>
+					</view>
+					<view>平均25分钟</view>
+				</view>
+			</block>
+		</view>
+	</view>
+	<!-- 下拉选择型的标题 -->
+	<view class="select">
+		<view class="select-title">下拉选择框标题</view>
+		<view class="chart-tab">
+			<block wx:for="{{dateList}}">
+				<view class="chart-tab-item {{selectActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeSelectTab" data-index="{{index}}">{{item}}日</view>
+			</block>
+		</view>
+		<view class="select-content">
+			<view class="select-item" wx:for="{{pieList}}" wx:if="{{pieList && pieList.length != 0}}">
+				<view class="select-item-left">
+					<ec-canvas id="mychart-dom-bar" class='mychart-bar' canvas-id="mychart-bar" importData="{{item.data}}" ec="{{ ec1 }}"></ec-canvas>
+				</view>
+				<view class="select-item-right">
+					<view class="select-item-right-item" wx:for="{{item.data}}" wx:for-item="pieItem" wx:for-index="pieIndex">
+						<view>
+							<view style="background:{{pieItem.color}}"></view>
+							<text>{{pieItem.name}}</text>
+						</view>
+						<text>{{pieItem.value}}%</text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 逾期率 -->
+	<view class="laterate">
+		<view class="laterate-title">逾期率</view>
+		<view class="chart-tab">
+			<block wx:for="{{dateList}}">
+				<view class="chart-tab-item {{laterateActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeLaterateTab" data-index="{{index}}">{{item}}日</view>
+			</block>
+		</view>
+		<view class="laterate-content">
+			<ec-canvas id="mychart-dom-line" canvas-id="mychart-line" importData="{{laterateData}}" ec="{{ ec2 }}"></ec-canvas>
+		</view>
+	</view>
+	<!-- 超期数 -->
+	<view class="latenum">
+		<view class="latenum-title">超期数</view>
+		<view class="chart-tab">
+			<block wx:for="{{dateList}}">
+				<view class="chart-tab-item {{latenumActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeLatenumTab" data-index="{{index}}">{{item}}日</view>
+			</block>
+		</view>
+		<view class="latenum-content">
+			<ec-canvas id="mychart" canvas-id="mychart-bar" importData="{{latenumData}}" ec="{{ ec3 }}"></ec-canvas>
+		</view>
+	</view>
+	<!-- 综合 -->
+	<view class="all">
+		<view class="all-title">超期数</view>
+		<view class="chart-tab">
+			<block wx:for="{{dateList}}">
+				<view class="chart-tab-item {{allActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeAllTab" data-index="{{index}}">{{item}}日</view>
+			</block>
+		</view>
+		
+	</view>
+</view>

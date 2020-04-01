@@ -12,7 +12,16 @@ Component({
 
     ec: {
       type: Object
+    },
+    
+    importData: {
+      type: Array,
+      value: {},
+      observer(newVal, oldVal) {
+        this.init()
+      }
     }
+
   },
 
   data: {
@@ -20,6 +29,7 @@ Component({
   },
 
   ready: function () {
+    console.log(this.data.pieData)
     if (!this.data.ec) {
       console.warn('组件需绑定 ec 变量，例：<ec-canvas id="mychart-dom-bar" '
         + 'canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>');
@@ -54,16 +64,17 @@ Component({
       var query = wx.createSelectorQuery().in(this);
       query.select('.ec-canvas').boundingClientRect(res => {
         if (typeof callback === 'function') {
-          this.chart = callback(canvas, res.width, res.height);
+          this.chart = callback(canvas, res.width, res.height, this.data.importData);
         }
         else if (this.data.ec && typeof this.data.ec.onInit === 'function') {
-          this.chart = this.data.ec.onInit(canvas, res.width, res.height);
+          this.chart = this.data.ec.onInit(canvas, res.width, res.height, this.data.importData);
         }
         else {
           this.triggerEvent('init', {
             canvas: canvas,
             width: res.width,
-            height: res.height
+            height: res.height,
+            data: this.data.importData
           });
         }
       }).exec();

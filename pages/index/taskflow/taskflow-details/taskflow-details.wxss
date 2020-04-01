@@ -153,9 +153,22 @@
   margin-bottom: 12rpx;
 }
 
-.item-complete-text view text:first-child {
+.item-complete-text view text:nth-child(1) {
+  width: 60rpx;
   color: #9c9c9c;
   margin-right: 24rpx;
+}
+
+.item-complete-text view text:nth-child(2) {
+  width: 570rpx;
+  position: relative;
+}
+
+.item-complete-text view .location-icon {
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute;
+  right: 0;
 }
 
 .item-complete-change {
