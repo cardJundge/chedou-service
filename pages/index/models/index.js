@@ -451,6 +451,19 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
+  // ----新模块统计-----
+  // 整体统计
+  getAllStatistics(param, callback) {
+    var params = {
+      url: '/api/ser/statistics',
+      type: 'GET',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
 }
 export {
   IndexModel

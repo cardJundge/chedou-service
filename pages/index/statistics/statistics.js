@@ -1,10 +1,18 @@
 // 数据统计
 import * as echarts from '../../../components/ec-canvas/echarts.min.js'
 const color = ['#1a65ff','#508EF9','#5DC7FE','#42D8B0','#9BD23C','#EBD322','#F98D50','#B2EB22','#428BD8','#F8824F','#821AFF','#F950EA','#D05DFE','#FF5790','#FF5E5E']
+import {
+  IndexModel
+} from '../models/index.js'
+
+var indexModel = new IndexModel()
+var app = getApp()
+
 Page({
   data: {
-    moduleList: ['疾病调查', '查勘定损', '车务调查'],
+    moduleList: ['疾病调查', '查勘定损', '车务调查测试测试','疾病调查x', '查勘定损y', '车务调查z','疾病调查f', '查勘定损g', '车务调查h'],
     topActive: 0,
+    navScrollLeft: 0,
     dateList: ['7', '15', '30'],
     ageingActive: 0,
     selectActive: 0,
@@ -26,9 +34,16 @@ Page({
   },
 
   onLoad(options) {
-    console.log(wx.getSystemInfoSync())
-    this.setData({
-      height: wx.getSystemInfoSync().screenHeight
+    this.getAllStatisticsData()
+  },
+
+  // 获取所有统计数据
+  getAllStatisticsData() {
+    let params = {
+
+    }
+    indexModel.getAllStatistics(params,res=> {
+
     })
   },
 
@@ -41,24 +56,22 @@ Page({
     })
     if(index == 1) {
       let pieList = [
-        { name: '4', data: [{value: 100, name: '后台'}] },
-        { name: '2', data: [{ value: 90, name: '后台' },{ value: 10, name: 'ios' }] },
-        { name: '3', data: [{ value: 50, name: '后台' },{ value: 50, name: 'ios' }] },
+        { name: '是否阳性', data: [{value: 100, name: '后台'}] },
+        { name: '是否有bug', data: [{ value: 90, name: '后台' },{ value: 10, name: 'ios' }] },
+        { name: '选择保险公司', data: [{ value: 50, name: '后台' },{ value: 50, name: 'ios' }] },
       ]
       this.setData({
-        pieList: pieList,
-        height: wx.getSystemInfoSync().screenHeight
+        pieList: pieList
       })
     } else if (index == 2) {
       this.data.pieList = []
       let pieList = [
-        { name: '1', data: [{value: 10, name: '后台'}, {value: 20, name: 'IOS'},{value: 30, name: 'Android'}, {value: 40, name: 'H5'}] },
-        { name: '2', data: [{ value: 90, name: '后台' },{ value: 10, name: 'ios' }] },
-        { name: '3', data: [{ value: 50, name: '后台' },{ value: 50, name: 'ios' }] },
+        { name: '是否阳性1', data: [{value: 10, name: '后台'}, {value: 20, name: 'IOS'},{value: 30, name: 'Android'}, {value: 40, name: 'H5'}] },
+        { name: '是否有bug2', data: [{ value: 90, name: '后台' },{ value: 10, name: 'ios' }] },
+        { name: '选择保险公司3', data: [{ value: 50, name: '后台' },{ value: 50, name: 'ios' }] },
       ]
       this.setData({
-        pieList: pieList,
-        height: wx.getSystemInfoSync().screenHeight
+        pieList: pieList
       })
     }
     // 给每一个data装一个color

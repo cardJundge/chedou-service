@@ -32,7 +32,6 @@
   <view class="business">
     <view class="business-title">
       <text>业务模块</text>
-      <!-- <text bindtap="addModule">添加模块</text> -->
     </view>
     <view class="business-content">
       <block wx:for="{{businessArray}}">
@@ -44,12 +43,12 @@
             <text>{{item.name}}</text>
           </view>
         </view>
-        <!-- <view wx:if="{{item.icon}}" class="business-item" bindtap="toItemListSelf" data-id="{{item.id}}" data-name="{{item.name}}">
+        <view wx:if="{{item.icon}}" class="business-item" bindtap="toItemListSelf" data-id="{{item.id}}" data-name="{{item.name}}">
           <image class="left" src="{{item.img}}"></image>
           <view class="business-item-text">
             <text>{{item.name}}</text>
           </view>
-        </view> -->
+        </view>
       </block>
       <view class="business-item" bindtap="toAddModule">
         <i-icon class="left" type="add" size="48" color="#1a65ff" />
@@ -93,6 +92,4 @@
       </view>
     </view>
   </view>
-  <!-- 添加模块components -->
-  <add-module module="{{moduleArray}}" bottomSpin="{{bottomSpin}}" isShow="{{isAddModule}}" bind:okEvent="okEvent" />
 </view>

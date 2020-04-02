@@ -2,16 +2,16 @@
 <view class="statistics">
 	<!-- 头部 -->
 	<view class="top">
-		<view class="top-tab">
-			<block wx:for="{{moduleList}}">
-				<view class="top-tab-item {{topActive == index ? 'top-tab-item-active' : ''}}" bindtap="changeTopTab" data-index="{{index}}">
+		<scroll-view scroll-x>
+			<view class="top-tab">
+				<view class="top-tab-item {{topActive == index ? 'top-tab-item-active' : ''}}" bindtap="changeTopTab" data-index="{{index}}" wx:for="{{moduleList}}">
 					<text>{{item}}</text>
 					<view wx:if="{{topActive == index}}">
 						<i-icon class="top-tab-item-triangle" type="play_fill" color="#fff" size="12" />
 					</view>
 				</view>
-			</block>
-		</view>
+			</view>
+		</scroll-view>
 		<view class="top-content">
 			<view class="top-content-title">本周数据统计</view>
 			<view class="top-content-num">
@@ -53,7 +53,7 @@
 	</view>
 	<!-- 下拉选择型的标题 -->
 	<view class="select">
-		<view class="select-title">下拉选择框标题</view>
+		<view class="select-title">下拉选择型</view>
 		<view class="chart-tab">
 			<block wx:for="{{dateList}}">
 				<view class="chart-tab-item {{selectActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeSelectTab" data-index="{{index}}">{{item}}日</view>
@@ -61,16 +61,19 @@
 		</view>
 		<view class="select-content">
 			<view class="select-item" wx:for="{{pieList}}" wx:if="{{pieList && pieList.length != 0}}">
-				<view class="select-item-left">
-					<ec-canvas id="mychart-dom-bar" class='mychart-bar' canvas-id="mychart-bar" importData="{{item.data}}" ec="{{ ec1 }}"></ec-canvas>
-				</view>
-				<view class="select-item-right">
-					<view class="select-item-right-item" wx:for="{{item.data}}" wx:for-item="pieItem" wx:for-index="pieIndex">
-						<view>
-							<view style="background:{{pieItem.color}}"></view>
-							<text>{{pieItem.name}}</text>
+				<view class="select-item-name">{{item.name}}</view>
+				<view>
+					<view class="select-item-left">
+						<ec-canvas id="mychart-dom-bar" class='mychart-bar' canvas-id="mychart-bar" importData="{{item.data}}" ec="{{ ec1 }}"></ec-canvas>
+					</view>
+					<view class="select-item-right">
+						<view class="select-item-right-item" wx:for="{{item.data}}" wx:for-item="pieItem" wx:for-index="pieIndex">
+							<view>
+								<view style="background:{{pieItem.color}}"></view>
+								<text>{{pieItem.name}}</text>
+							</view>
+							<text>{{pieItem.value}}%</text>
 						</view>
-						<text>{{pieItem.value}}%</text>
 					</view>
 				</view>
 			</view>
@@ -108,6 +111,6 @@
 				<view class="chart-tab-item {{allActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeAllTab" data-index="{{index}}">{{item}}日</view>
 			</block>
 		</view>
-		
+
 	</view>
 </view>

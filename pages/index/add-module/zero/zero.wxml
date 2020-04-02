@@ -1,29 +1,55 @@
 <!--创建模块===》开始页面-->
 <view class="zero-body">
-	<view class="system">
-		<view class="title">系统模块</view>
-		<view class="system-content">
-			<block wx:for="{{businessArray}}">
-				<view wx:if="{{item.key}}" class="system-item" bindtap="toSystemItemList" data-key="{{item.key}}">
-					<image src="{{item.img}}"></image>
-					<text>{{item.name}}</text>
-				</view>
-			</block>
-		</view>
+	<view class="zero-tab">
+		<view class="zero-tab-item {{tabActive == index ? 'zero-tab-item-active' : ''}}" wx:for="{{tabList}}" bindtap="changeTab" data-index="{{index}}">{{item}}</view>
 	</view>
-	<view class="define">
-		<view class="title">自建模块</view>
-		<view class="define-content">
-			<block wx:for="{{businessArray}}">
-				<view wx:if="{{item.icon}}" class="define-item" bindtap="toDefineItemList" data-id="{{item.id}}" data-name="{{item.name}}">
-					<image src="{{item.icon}}"></image>
-					<text>{{item.name}}</text>
-				</view>
-			</block>
-			<view class="define-item" bindtap="toAddModule">
-				<image src="/images/index/add_module.png"></image>
+
+	<!-- 系统模块 -->
+	<view class="system" wx:if="{{tabActive == 0}}">
+		<view class="list-item" bindtap="addSystemModule">
+			<view class="list-item-left">
+				<image src="/images/union/add_img.png"></image>
+			</view>
+			<view class="list-item-right">
 				<text>添加模块</text>
+				<i-icon class="icon" type="enter" font-size="18" color="#A6A6A6" />
 			</view>
 		</view>
+		<block wx:for="{{businessArray}}">
+			<view wx:if="{{item.key}}" class="list-item">
+				<view class="list-item-left">
+					<image src="{{item.img}}"></image>
+				</view>
+				<view class="list-item-right">
+					<text>{{item.name}}</text>
+					<text></text>
+				</view>
+			</view>
+		</block>
+	</view>
+	<!-- 自定义模块 -->
+	<view class="define" wx:if="{{tabActive == 1}}">
+		<view class="list-item" bindtap="addDefineModule">
+			<view class="list-item-left">
+				<image src="/images/union/add_img.png"></image>
+			</view>
+			<view class="list-item-right">
+				<text>添加模块</text>
+				<i-icon type="enter" font-size="18" color="#A6A6A6" />
+			</view>
+		</view>
+		<block wx:for="{{businessArray}}">
+			<view wx:if="{{item.icon}}" class="list-item" bindtap="handleModule" data-id="{{item.id}}">
+				<view class="list-item-left">
+					<image src="{{item.img}}"></image>
+				</view>
+				<view class="list-item-right">
+					<text>{{item.name}}</text>
+					<i-icon type="switch" font-size="18" color="#A6A6A6"/>
+				</view>
+			</view>
+		</block>
 	</view>
 </view>
+<!-- 添加模块components -->
+<add-module module="{{moduleArray}}" bottomSpin="{{bottomSpin}}" isShow="{{isAddModule}}" bind:okEvent="okEvent" />

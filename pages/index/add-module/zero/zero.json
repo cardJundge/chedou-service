@@ -1,4 +1,7 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "创建模块"
+  "usingComponents": {
+    "i-icon": "/dist/icon/index",
+    "add-module": "/components/add-module/add-module"
+  },
+  "navigationBarTitleText": "添加模块"
 }

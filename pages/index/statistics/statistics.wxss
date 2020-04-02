@@ -18,7 +18,10 @@ page {
 }
 
 .top-tab {
-  display: flex;
+  width: 100%;
+  height: 88rpx;
+  display: inline-flex;
+  flex-direction: row;
   align-items: center;
   color: #fff;
   font-size: 24rpx;
@@ -26,11 +29,13 @@ page {
 
 .top-tab-item {
   margin-right: 36rpx;
-  padding: 24rpx 0;
+  padding: 24rpx 12rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   position: relative;
 }
 
@@ -129,8 +134,7 @@ page {
   border-radius: 20rpx;
 }
 
-.ageing-list {
-}
+.ageing-list {}
 
 .ageing-item {
   width: 100%;
@@ -152,6 +156,13 @@ page {
 }
 
 .select-item {
+  width: 100%;
+}
+
+.select-item-name {
+
+}
+.select-item>view {
   width: 100%;
   display: flex;
   align-items: center;

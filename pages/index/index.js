@@ -15,12 +15,10 @@ Page({
     work_status: '',
     status: '',
     page: 1,
-    // isAddModule: false,
     orderList: [],
     moduleArray: [],
     businessArray: [],
     spinShow: true,
-    // bottomSpin: true,
   },
   onLoad() {
     this.setData({
@@ -32,11 +30,6 @@ Page({
   },
   onShow() {
     this.getDataStatics()
-    this.getModule()
-  },
-
-  // 添加模块按钮
-  okEvent() {
     this.getModule()
   },
 
@@ -104,47 +97,20 @@ Page({
   },
 
   // 进入新添加的模块详情
-  // toItemListSelf(e) {
-  //   let id = e.currentTarget.dataset.id,
-  //   name = e.currentTarget.dataset.name
-  //   wx.navigateTo({
-  //     url: './taskflow/taskflow?moduleId=' + id + '&moduleName=' + name,
-  //   })
-  // },
-
-  // 添加模块
-  toAddModule() {
-    let data = JSON.stringify(this.data.businessArray)
+  toItemListSelf(e) {
+    let id = e.currentTarget.dataset.id,
+    name = e.currentTarget.dataset.name
     wx.navigateTo({
-      url: './add-module/zero/zero?data=' + data,
+      url: './taskflow/taskflow?moduleId=' + id + '&moduleName=' + name,
     })
   },
 
   // 添加模块
-  // addModule() {
-  //   this.setData({
-  //     isAddModule: true
-  //   })
-  //   indexModel.getAllModule(res => {
-  //     if (res.data.status == 1) {
-  //       this.setData({
-  //         bottomSpin: false
-  //       })
-  //       res.data.data.forEach((item, index) => {
-  //         item.selected = false
-  //         item.img = '/images/index/' + item.key + '.png'
-  //         this.data.businessArray.forEach((its, ins) => {
-  //           if (item.id == its.id) {
-  //             item.selected = true
-  //           }
-  //         })
-  //       })
-  //       this.setData({
-  //         moduleArray: res.data.data
-  //       })
-  //     }
-  //   })
-  // },
+  toAddModule() {
+    wx.navigateTo({
+      url: './add-module/zero/zero',
+    })
+  },
 
   // 获取服务商拥有的模块
   getModule() {
@@ -159,7 +125,7 @@ Page({
           module.push(item.id)
         })
         wx.setStorageSync('module', module)
-        let modules = res.data.data.reverse()
+        let modules = res.data.data
 
         this.setData({
           businessArray: modules

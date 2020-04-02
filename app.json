@@ -67,6 +67,7 @@
     "pages/mine/shops/service/service",
     "pages/mine/shops/service/add-service/add-service",
     "pages/mine/shops/record/record",
+    "pages/index/add-module/zero/zero",
     "pages/index/add-module/first/first",
     "pages/index/add-module/second/second",
     "pages/index/add-module/third/third",
@@ -74,12 +75,12 @@
     "pages/index/add-module/third/task-input/task-input",
     "pages/index/add-module/third/approval/approval",
     "pages/index/add-module/third/evaluate/evaluate",
+    "pages/index/add-module/edit/edit",
     "pages/index/taskflow/taskflow",
     "pages/index/taskflow/taskflow-details/taskflow-details",
     "pages/index/add-module/first/icon/icon",
     "pages/index/taskflow/add-taskflow/add-taskflow",
-    "pages/index/statistics/statistics",
-    "pages/index/add-module/zero/zero"
+    "pages/index/statistics/statistics"
   ],
   "window": {
     "backgroundTextStyle": "light",
