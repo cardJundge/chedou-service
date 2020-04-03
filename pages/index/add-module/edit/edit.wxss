@@ -35,9 +35,9 @@
 }
 
 .second,
-.norm,
+.task-input,
 .approval,
-.comment {
+.evaluate {
   padding: 0 24rpx;
 }
 

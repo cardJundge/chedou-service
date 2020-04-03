@@ -4,8 +4,8 @@
 	<view class="top">
 		<scroll-view scroll-x>
 			<view class="top-tab">
-				<view class="top-tab-item {{topActive == index ? 'top-tab-item-active' : ''}}" bindtap="changeTopTab" data-index="{{index}}" wx:for="{{moduleList}}">
-					<text>{{item}}</text>
+				<view class="top-tab-item {{topActive == index ? 'top-tab-item-active' : ''}}" bindtap="changeTopTab" data-index="{{index}}" data-id="{{item.id}}" wx:for="{{moduleList}}">
+					<text>{{item.name}}</text>
 					<view wx:if="{{topActive == index}}">
 						<i-icon class="top-tab-item-triangle" type="play_fill" color="#fff" size="12" />
 					</view>
@@ -16,19 +16,19 @@
 			<view class="top-content-title">本周数据统计</view>
 			<view class="top-content-num">
 				<view class="top-content-num-items">
-					<text>100</text>
+					<text>{{allStatistics.count.unfinished}}</text>
 					<text>未完成</text>
 				</view>
 				<view class="top-content-num-items">
-					<text>100</text>
+					<text>{{allStatistics.count.complete}}</text>
 					<text>已完成</text>
 				</view>
 				<view class="top-content-num-items">
-					<text>100</text>
+					<text>{{allStatistics.count.total}}</text>
 					<text>案件总数</text>
 				</view>
 			</view>
-			<view class="top-content-msg">统计自2020年03月08日00:00至2020年3月13日24:00</view>
+			<view class="top-content-msg">统计自{{allStatistics.date[0]}} 00:00至{{allStatistics.date[1]}} 24:00</view>
 		</view>
 	</view>
 	<!-- 时效统计 -->
@@ -111,6 +111,20 @@
 				<view class="chart-tab-item {{allActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeAllTab" data-index="{{index}}">{{item}}日</view>
 			</block>
 		</view>
-
+		<view class="all-content">
+			<view class="table">
+				<view class="tr">
+					<view class="th">执行人</view>
+					<view class="th">完成时效</view>
+					<view class="th">阳性点率</view>
+					<view class="th">逾期率</view>
+					<view class="th">超期数</view>
+					<view class="th">分数</view>
+				</view>
+				<view class="tr" wx:for="{{tableList}}">
+					<view wx:for="{{item}}" wx:for-item="tditem" class="td">{{tditem}}</view>
+				</view>
+			</view>
+		</view>
 	</view>
 </view>

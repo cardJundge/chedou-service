@@ -43,7 +43,10 @@
           </view>
         </view>
       </scroll-view>
-      <view class="second-btn" bindtap="nextStep">下一步</view>
+      <!-- 编辑进来的 -->
+      <view class="second-btn" bindtap="nextStep" wx:if="{{flag == 'edit'}}">确定</view>
+      <!-- 添加进来的 -->
+      <view class="second-btn" bindtap="nextStep" wx:if="{{flag == 'add'}}">下一步</view>
     </view>
   </view>
 </view>

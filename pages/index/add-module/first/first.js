@@ -21,7 +21,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '../second/second?moduleName=' + this.data.moduleName + '&moduleIcon=' + this.data.moduleIcon,
+        url: '../second/second?moduleName=' + this.data.moduleName + '&moduleIcon=' + this.data.moduleIcon + '&flag=' + 'add',
       })
     }
   },

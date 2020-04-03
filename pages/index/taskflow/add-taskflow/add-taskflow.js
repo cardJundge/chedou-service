@@ -296,6 +296,7 @@ Page({
       if(item.nickname == this.data.taskName) {
         console.log(item)
         this.data.taskId = item.id
+        this.data.groupId = item.group_id
       }
     })
   },
@@ -345,6 +346,7 @@ Page({
       })
     } else {
       this.data.taskFlowList['task_id'] = this.data.taskId
+      this.data.taskFlowList['group_id'] = this.data.groupId
     }
 
     console.log(this.data.taskFlowList)

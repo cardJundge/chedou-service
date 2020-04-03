@@ -19,8 +19,14 @@ Page({
   },
 
   onLoad(options) {
-    this.data.moduleName = options.moduleName
-    this.data.moduleIcon = options.moduleIcon
+    if (options.flag == 'add') {
+      this.data.moduleName = options.moduleName
+      this.data.moduleIcon = options.moduleIcon
+    } else if (options.flag == 'edit') {
+      this.setData({
+        fieldData: JSON.parse(options.fieldData)
+      })
+    }
     wx.getSystemInfo({
       success: res => {
         this.setData({
@@ -29,6 +35,7 @@ Page({
       }
     })
     this.setData({
+      flag: options.flag,
       pageInfo: {
         scrollHeight: this.data.fieldData.length * 45
       }
@@ -109,7 +116,6 @@ Page({
 
   },
 
-  // 下一步
   nextStep() {
     if (this.data.fieldData.length == 0) {
       return wx.showToast({
@@ -128,10 +134,28 @@ Page({
         })
       }
     }
-    let data = JSON.stringify(this.data.fieldData)
-    wx.navigateTo({
-      url: '../third/third?moduleName=' + this.data.moduleName + '&moduleIcon=' + this.data.moduleIcon + '&fieldData=' + data,
-    })
+
+    if (this.data.flag == 'add') {
+      // "添加"==>下一步
+      let data = JSON.stringify(this.data.fieldData)
+      wx.navigateTo({
+        url: '../third/third?moduleName=' + this.data.moduleName + '&moduleIcon=' + this.data.moduleIcon + '&fieldData=' + data,
+      })
+    } else if (this.data.flag == 'edit') {
+      // "编辑"==>确定
+      var pages = getCurrentPages()
+      var currPage = pages[pages.length - 1] //当前页面
+      var prevPage = pages[pages.length - 2] //上一个页面
+
+      prevPage.setData({
+        fieldData: this.data.fieldData
+      })
+
+      wx.navigateBack({
+        delta: 1
+      })
+    }
+
   },
 
   // -------------------------------------

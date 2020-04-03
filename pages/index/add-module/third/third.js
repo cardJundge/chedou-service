@@ -80,7 +80,7 @@ Page({
               url: '../../index',
             })
           } else {
-            if (res.data.msg.match('Token已过期或失效')) { } else {
+            if (res.data.msg.match('Token')) { } else {
               wx.showToast({
                 title: res.data.msg ? res.data.msg : '请求超时',
                 icon: 'none'
