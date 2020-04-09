@@ -1,11 +1,24 @@
 <!--创建模块===》开始页面-->
 <view class="zero-body">
-	<view class="zero-tab">
+	<!-- <view class="zero-tab">
 		<view class="zero-tab-item {{tabActive == index ? 'zero-tab-item-active' : ''}}" wx:for="{{tabList}}" bindtap="changeTab" data-index="{{index}}">{{item}}</view>
-	</view>
+	</view> -->
 
 	<!-- 系统模块 -->
-	<view class="system" wx:if="{{tabActive == 0}}">
+	<view class="system">
+		<view class="title">系统模块</view>
+		<view class="system-list">
+			<block wx:for="{{businessArray}}">
+				<view wx:if="{{item.key}}" class="system-item">
+					<image class="left" src="{{item.img}}"></image>
+					<view class="system-item-text">
+						<text>{{item.name}}</text>
+					</view>
+				</view>
+			</block>
+		</view>
+	</view>
+	<!-- <view class="system" wx:if="{{tabActive == 0}}">
 		<view class="list-item" bindtap="addSystemModule">
 			<view class="list-item-left">
 				<image src="/images/union/add_img.png"></image>
@@ -26,9 +39,24 @@
 				</view>
 			</view>
 		</block>
-	</view>
+	</view> -->
 	<!-- 自定义模块 -->
-	<view class="define" wx:if="{{tabActive == 1}}">
+	<view class="define">
+		<view class="title">自建模块</view>
+		<view class="define-list">
+			<block wx:for="{{businessArray}}">
+				<view wx:if="{{item.icon}}" class="define-item">
+					<image src="{{item.icon}}"></image>
+					<text>{{item.name}}</text>
+				</view>
+			</block>
+				<view class="define-item" bindtap="addDefineModule">
+					<image src="/images/index/add_module.png"></image>
+					<text>添加模块</text>
+				</view>
+		</view>
+	</view>
+	<!-- <view class="define" wx:if="{{tabActive == 1}}">
 		<view class="list-item" bindtap="addDefineModule">
 			<view class="list-item-left">
 				<image src="/images/union/add_img.png"></image>
@@ -49,7 +77,7 @@
 				</view>
 			</view>
 		</block>
-	</view>
+	</view> -->
 </view>
 <!-- 添加模块components -->
-<add-module module="{{moduleArray}}" bottomSpin="{{bottomSpin}}" isShow="{{isAddModule}}" bind:okEvent="okEvent" />
+<!-- <add-module module="{{moduleArray}}" bottomSpin="{{bottomSpin}}" isShow="{{isAddModule}}" bind:okEvent="okEvent" /> -->

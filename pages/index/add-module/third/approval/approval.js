@@ -51,7 +51,7 @@ Page({
     approvalRequired = e.currentTarget.dataset.required,
     approvalName = e.currentTarget.dataset.name
     this.data.approvalId = e.currentTarget.dataset.index
-    if (approvalType == 'select') {
+    if (approvalType == 'select' || approvalType == 'check') {
       let approvalOption = JSON.stringify(e.currentTarget.dataset.option)
       wx.navigateTo({
         url: '../../select/select?flag=' + 'approval' + '&name=' + approvalName + '&type=' + approvalType + '&required=' + approvalRequired + '&option=' + approvalOption,

@@ -2,68 +2,89 @@
 Page({
   data: {
     typeList: [{
-        name: '文本型',
-        value: 'text',
-        checked: 'true'
-      },
-      {
-        name: '数字型',
-        value: 'int',
-      },
-      {
-        name: '下拉选择型',
-        value: 'select',
-      },
-      {
-        name: '日期型',
-        value: 'dateFather',
-      },
-      {
-        name: '图片型',
-        value: 'image',
-      },
-      {
-        name: '位置型',
-        value: 'location',
-      },
-      {
-        name: '打卡型',
-        value: 'click',
-      }
+      name: '文本型',
+      value: 'text',
+      checked: 'true'
+    },
+    {
+      name: '数字型',
+      value: 'int',
+    },
+    {
+      name: '下拉选择-单选型',
+      value: 'select',
+    },
+    {
+      name: '下拉选择-多选型',
+      value: 'check',
+    },
+    {
+      name: '日期型',
+      value: 'dateFather',
+    },
+    {
+      name: '图片型',
+      value: 'image',
+    },
+    {
+      name: '位置型',
+      value: 'location',
+    },
+    {
+      name: '打卡型',
+      value: 'click',
+    }
     ],
     dateTypeData: [{
-        name: '时间和日期(例:2020-01-01 00:00)',
-        value: 'datetime',
-        checked: 'true'
-      },
-      {
-        name: '仅日期(例:2020-01-01)',
-        value: 'date'
-      },
-      {
-        name: '仅时间(例:00:00)',
-        value: 'time'
-      }
+      name: '时间和日期(例:2020-01-01 00:00)',
+      value: 'datetime',
+      checked: 'true'
+    },
+    {
+      name: '仅日期(例:2020-01-01)',
+      value: 'date'
+    },
+    {
+      name: '仅时间(例:00:00)',
+      value: 'time'
+    }
     ],
     dateBoxShow: false,
     selectBoxShow: false,
-    dropDownData: [],
+    selectData: [],
+    checkData: [],
     gradeList: ['5', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55', '60', '65', '70', '75', '80', '85', '90', '95', '100']
   },
 
   onLoad(options) {
+    console.log(options)
     if (options.flag == 'task') {
-      if (options.type == 'select') {
+      if (options.type == 'select' || options.type == 'check') {
         this.setData({
           flag: options.flag,
           tempData: {
             name: options.name,
             weight: options.weight,
-            type: options.type,
-            option: JSON.parse(options.option)
-          },
-          dropDownData: JSON.parse(options.option),
+            type: options.type
+          }
         })
+        if (options.type == 'select') {
+          this.setData({
+            tempData: {
+              option: JSON.parse(options.option)
+            },
+            selectData: JSON.parse(options.option)
+          })
+        } else {
+          this.setData({
+            tempData: {
+              value: {
+                option: JSON.parse(options.option)
+              }
+            },
+            checkData: JSON.parse(options.option)
+          })
+        }
       } else {
         this.setData({
           flag: options.flag,
@@ -82,18 +103,33 @@ Page({
         }
       })
     } else {
-      if (options.type == 'select') {
+      if (options.type == 'select' || options.type == 'check') {
         this.setData({
           flag: options.flag,
           tempData: {
             name: options.name,
             required: options.required,
-            type: options.type,
-            option: JSON.parse(options.option)
+            type: options.type
           },
-          dropDownData: JSON.parse(options.option),
           switchChecked: options.required == 1 ? true : false
         })
+        if (options.type == 'select') {
+          this.setData({
+            tempData: {
+              option: JSON.parse(options.option)
+            },
+            selectData: JSON.parse(options.option)
+          })
+        } else {
+          this.setData({
+            tempData: {
+              value: {
+                option: JSON.parse(options.option)
+              }
+            },
+            checkData: JSON.parse(options.option)
+          })
+        }
       } else {
         this.setData({
           flag: options.flag,
@@ -108,13 +144,14 @@ Page({
     }
 
     this.data.typeList.forEach((item, index) => {
-      if (options.type != 'select' && (item.value == options.type)) {
+      if (options.type != 'select' && options.type != 'check' && (item.value == options.type)) {
         item.checked = true
       } else if (item.value == 'dateFather' && (options.type == 'date' || options.type == 'time' || options.type == 'datetime')) {
         item.checked = true
         this.setData({
           dateBoxShow: true,
-          dropDownBoxShow: false
+          selectBoxShow: false,
+          checkBoxShow: false
         })
         this.data.dateTypeData.forEach((item1, index1) => {
           if (options.type == item1.value) {
@@ -125,7 +162,15 @@ Page({
         item.checked = true
         this.setData({
           dateBoxShow: false,
-          dropDownBoxShow: true
+          selectBoxShow: true,
+          checkBoxShow: false
+        })
+      } else if (options.type == 'check' && (item.value == options.type)) {
+        item.checked = true
+        this.setData({
+          dateBoxShow: false,
+          selectBoxShow: false,
+          checkBoxShow: true
         })
       }
     })
@@ -133,7 +178,6 @@ Page({
       typeList: this.data.typeList,
       dateTypeData: this.data.dateTypeData
     })
-
   },
 
   // 权重:选择分数
@@ -166,20 +210,33 @@ Page({
       this.data.tempData.type = 'datetime'
       this.setData({
         dateBoxShow: true,
-        dropDownBoxShow: false
+        selectBoxShow: false,
+        checkBoxShow: false
       })
     } else if (e.detail.value == 'select') {
       this.data.tempData.type = e.detail.value
       this.data.tempData.option = []
       this.setData({
         dateBoxShow: false,
-        dropDownBoxShow: true
+        selectBoxShow: true,
+        checkBoxShow: false
+      })
+    } else if (e.detail.value == 'check') {
+      this.data.tempData.type = e.detail.value
+      this.data.tempData.value = {
+        option: []
+      }
+      this.setData({
+        dateBoxShow: false,
+        selectBoxShow: false,
+        checkBoxShow: true
       })
     } else {
       this.data.tempData.type = e.detail.value
       this.setData({
         dateBoxShow: false,
-        dropDownBoxShow: false,
+        selectBoxShow: false,
+        checkBoxShow: false,
         tempData: this.data.tempData
       })
     }
@@ -192,37 +249,71 @@ Page({
 
   // 添加下拉框备选项
   addDropDownItem(e) {
-    this.data.dropDownData.push('')
-    this.setData({
-      dropDownData: this.data.dropDownData
-    })
+    let flag = e.currentTarget.dataset.flag
+    if (flag == 'select') {
+      this.data.selectData.push('')
+      this.setData({
+        selectData: this.data.selectData
+      })
+    } else {
+      this.data.checkData.push('')
+      this.setData({
+        checkData: this.data.checkData
+      })
+    }
   },
 
   // 删除下拉框备选项
   delDropDownItem(e) {
-    let dropDownIndex = e.currentTarget.dataset.index
-    this.data.dropDownData.forEach((item, index) => {
-      if (dropDownIndex == index) {
-        this.data.dropDownData.splice(index, 1)
-      }
-    })
-    this.setData({
-      dropDownData: this.data.dropDownData
-    })
+    let dropDownIndex = e.currentTarget.dataset.index,
+      flag = e.currentTarget.dataset.flag
+    if (flag == 'select') {
+      this.data.selectData.forEach((item, index) => {
+        if (dropDownIndex == index) {
+          this.data.selectData.splice(index, 1)
+        }
+      })
+      this.setData({
+        selectData: this.data.selectData
+      })
+    } else {
+      this.data.checkData.forEach((item, index) => {
+        if (dropDownIndex == index) {
+          this.data.checkData.splice(index, 1)
+        }
+      })
+      this.setData({
+        checkData: this.data.checkData
+      })
+    }
   },
 
   getDropDownInput(e) {
-    let dropDownIndex = e.currentTarget.dataset.index
-    this.data.dropDownData.forEach((item, index) => {
-      if (dropDownIndex == index) {
-        this.data.dropDownData[index] = e.detail.value
-      }
-    })
-    this.setData({
-      dropDownData: this.data.dropDownData
-    })
-    // console.log(this.data.dropDownData)
-    this.data.tempData.option = this.data.dropDownData
+    let dropDownIndex = e.currentTarget.dataset.index,
+      flag = e.currentTarget.dataset.flag
+    if (flag == 'select') {
+      this.data.selectData.forEach((item, index) => {
+        if (dropDownIndex == index) {
+          this.data.selectData[index] = e.detail.value
+        }
+      })
+      this.setData({
+        selectData: this.data.selectData
+      })
+      // console.log(this.data.selectData)
+      this.data.tempData.option = this.data.selectData
+    } else {
+      this.data.checkData.forEach((item, index) => {
+        if (dropDownIndex == index) {
+          this.data.checkData[index] = e.detail.value
+        }
+      })
+      this.setData({
+        checkData: this.data.checkData
+      })
+      // console.log(this.data.checkData)
+      this.data.tempData.value.option = this.data.checkData
+    }
   },
 
   // 确定
@@ -234,6 +325,7 @@ Page({
     prevPage.setData({
       tempData: this.data.tempData
     })
+    console.log('ceshi', this.data.tempData)
 
     if (this.data.tempData.type == 'select') {
       if (this.data.tempData.option.length == 0) {
@@ -243,6 +335,24 @@ Page({
         })
       } else {
         if (this.data.tempData.option.includes("")) {
+          return wx.showToast({
+            title: '备选项不能为空',
+            icon: 'none'
+          })
+        } else {
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+      }
+    } else if (this.data.tempData.type == 'check') {
+      if (this.data.tempData.value.option.length == 0) {
+        return wx.showToast({
+          title: '请为下拉选择型添加备选项',
+          icon: 'none'
+        })
+      } else {
+        if (this.data.tempData.value.option.includes("")) {
           return wx.showToast({
             title: '备选项不能为空',
             icon: 'none'

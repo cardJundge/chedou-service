@@ -18,6 +18,8 @@ Page({
     topActive: 0,
     navScrollLeft: 0,
     dateList: ['7', '15', '30'],
+    date: 7,
+    flag: 'all',
     ageingActive: 0,
     selectActive: 0,
     laterateActive: 0,
@@ -32,10 +34,10 @@ Page({
     ec3: {
       onInit: initChart03
     },
-    pieList: [],
-    laterateData: ['1', '30', '15', '10', '5'],
-    latenumData: ['1', '80', '15', '10', '5'],
-    tableList: [['一个人','1', '30', '15', '10', '5'],['一个人','1', '30', '15', '10', '5'],['一个人','1', '30', '15', '10', '5'],['一个人','1', '30', '15', '10', '5'],['一个人','1', '30', '15', '10', '5']]
+    pieList: [{ name: 'xxx', data: ['2', '1'] }, { name: 'xxx', data: ['9', '1'] }],
+    laterateData: [],
+    latenumData: [],
+    tableData: []
   },
 
   onLoad(options) {
@@ -57,14 +59,77 @@ Page({
   // 获取所有统计数据
   getAllStatisticsData() {
     let params = {
-      module_id: this.data.moduleId ? this.data.moduleId : this.data.moduleList[0].id,
-      date: 'week'
+      date: this.data.date,
+      service_id: app.globalData.userInfo.id
     }
+    this.data.moduleList.forEach((item, index) => {
+      if (item.id == this.data.moduleId) {
+        if (item.key) {
+          params['key'] = item.key
+          this.setData({
+            moduleFlag: 'system'
+          })
+        } else {
+          params['module_id'] = item.id
+          this.setData({
+            moduleFlag: 'define'
+          })
+        }
+      } else if (!this.data.moduleId) {
+        if (this.data.moduleList[0].key) {
+          params['key'] = this.data.moduleList[0].key
+          this.setData({
+            moduleFlag: 'system'
+          })
+        } else {
+          params['module_id'] = this.data.moduleList[0].id
+          this.setData({
+            moduleFlag: 'define'
+          })
+        }
+      }
+    })
     indexModel.getAllStatistics(params, res => {
       if (res.data.status == 1) {
-        this.setData({
-          allStatistics: res.data.data
+        // 拆分超期数键和值
+        let tempLatenum = [], tempLaterate = [], value1 = [], value2 = [],
+        key = Object.keys(res.data.data.overdue),
+        value = Object.values(res.data.data.overdue)
+        value.forEach((item, index) => {
+          value1.push(item.over_rate)
+          value2.push(item.over)
         })
+        tempLatenum.push({
+          key: key,
+          value: value1
+        })
+        tempLaterate.push({
+          key: key,
+          value: value2
+        })
+        // 全部
+        if (this.data.flag == 'all') {
+          this.setData({
+            allStatistics: res.data.data,
+            selectData: res.data.data.select,
+            tableData: res.data.data.operator,
+            latenumData: tempLatenum,
+            laterateData: tempLaterate
+          })
+          console.log('dkjgfjhsdgfjkdsgf',this.data.latenumData)
+        } else if (this.data.flag == 'table') {
+          this.setData({
+            tableData: res.data.data.operator
+          })
+        } else if (this.data.flag == 'latenum') {
+          this.setData({
+            latenumData: tempLatenum
+          })
+        } else if (this.data.flag == 'laterate'){
+          this.setData({
+            laterateData: tempLaterate
+          })
+        }
       }
     })
   },
@@ -73,14 +138,14 @@ Page({
   changeTopTab(e) {
     let index = e.currentTarget.dataset.index,
       id = e.currentTarget.dataset.id
-    console.log(index)
+    console.log(e)
     this.setData({
       topActive: index,
       moduleId: id
     })
     this.getAllStatisticsData()
     // 给每一个data装一个color
-    this.setColor()
+    // this.setColor()
   },
 
   // 时效统计时间切换
@@ -101,26 +166,38 @@ Page({
 
   // 逾期率时间切换
   changeLaterateTab(e) {
-    let index = e.currentTarget.dataset.index
+    let index = e.currentTarget.dataset.index,
+    date = e.currentTarget.dataset.date
     this.setData({
-      laterateActive: index
+      laterateActive: index,
+      date: date,
+      flag: 'laterate'
     })
+    this.getAllStatisticsData()
   },
 
   // 超期数时间切换
   changeLatenumTab(e) {
-    let index = e.currentTarget.dataset.index
+    let index = e.currentTarget.dataset.index,
+      date = e.currentTarget.dataset.date
     this.setData({
-      latenumActive: index
+      latenumActive: index,
+      date: date,
+      flag: 'latenum'
     })
+    this.getAllStatisticsData()
   },
 
-  // 综合时间切换
+  // 综合时间切换（表格）
   changeAllTab(e) {
-    let index = e.currentTarget.dataset.index
+    let index = e.currentTarget.dataset.index,
+      date = e.currentTarget.dataset.date
     this.setData({
-      allActive: index
+      allActive: index,
+      date: date,
+      flag: 'table'
     })
+    this.getAllStatisticsData()
   },
 
   // 设置color
@@ -141,6 +218,7 @@ Page({
   }
 })
 
+// 饼图
 function initChart01(canvas, width, height, data) {
   const chart = echarts.init(canvas, null, {
     width: width,
@@ -170,6 +248,7 @@ function initChart01(canvas, width, height, data) {
   return chart
 }
 
+// 折线图
 function initChart02(canvas, width, height, data) {
   const chart = echarts.init(canvas, null, {
     width: width,
@@ -192,7 +271,7 @@ function initChart02(canvas, width, height, data) {
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: ['2020-03-20', '2020-03-21', '2020-03-22', '2020-03-23', '2020-03-24', '2020-03-25', '2020-03-26'], //x轴数据
+      data: data[0].key, //x轴数据
       // x轴的字体样式
       axisLabel: {
         show: true,
@@ -226,7 +305,8 @@ function initChart02(canvas, width, height, data) {
         textStyle: {
           color: '#9C9C9C',
           fontSize: '12',
-        }
+        },
+        formatter: '{value}%'
       },
       axisTick: {
         show: false
@@ -245,7 +325,7 @@ function initChart02(canvas, width, height, data) {
     series: [{
       type: 'line',
       smooth: true,
-      data: data,
+      data: data[0].value,
       areaStyle: {},
       itemStyle: {
         normal: { //颜色渐变函数 前四个参数分别表示四个位置依次为左、下、右、上
@@ -268,7 +348,9 @@ function initChart02(canvas, width, height, data) {
   return chart
 }
 
+// 柱状图
 function initChart03(canvas, width, height, data) {
+  console.log('@@@@@@@',data)
   const chart = echarts.init(canvas, null, {
     width: width,
     height: height
@@ -288,7 +370,7 @@ function initChart03(canvas, width, height, data) {
     xAxis: {
       type: 'category',
       boundaryGap: false,
-      data: ['2020-03-20', '2020-03-21', '2020-03-22', '2020-03-23', '2020-03-24', '2020-03-25', '2020-03-26'], //x轴数据
+      data: data[0].key, //x轴数据
       // x轴的字体样式
       axisLabel: {
         show: true,
@@ -339,7 +421,7 @@ function initChart03(canvas, width, height, data) {
       }
     },
     series: [{
-      data: data,
+      data: data[0].value,
       type: 'bar',
       barWidth: 20
     }]

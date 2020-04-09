@@ -47,6 +47,27 @@ switch .wx-switch-input::after {
   height: 42rpx !important;
 }
 
+checkbox .wx-checkbox-input {
+  width: 40rpx;
+  height: 40rpx;
+}
+/*checkbox选中后样式  */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: #1a65ff;
+}
+/*checkbox选中后图标样式  */
+checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  width: 28rpx;
+  height: 28rpx;
+  line-height: 28rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #fff;
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+
 /* 首页添加模块里面的按钮样式 */
 .operation-btn {
   width: 702rpx;

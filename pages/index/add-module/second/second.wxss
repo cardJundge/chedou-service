@@ -68,6 +68,10 @@ page {
   align-items: center;
 }
 
+.form-select .left input {
+  width: 280rpx;
+}
+
 .form-select .right {
   display: flex;
   align-items: center;

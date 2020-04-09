@@ -1,95 +1,100 @@
 <!-- 首页 -->
 <view class="index-body" wx:if="{{spinShow}}">
-  <view class="spin-article">
-    <i-spin size="large" fix></i-spin>
-  </view>
+	<view class="spin-article">
+		<i-spin size="large" fix></i-spin>
+	</view>
 </view>
 <view class="index-body">
-  <!-- 数据统计 -->
-  <view class="data">
-    <view class="data-bg">
-      <!-- <view class="data-title">
+	<!-- 数据统计 -->
+	<view class="data">
+		<view class="data-bg">
+			<!-- <view class="data-title">
         <text>数据统计</text>
         <text bindtap="toDataDetails">详情</text>
       </view> -->
-      <view class="data-content">
-        <view class="data-item" bindtap="toDataDetails">
-          <text>{{dataStatisticsArray.today?dataStatisticsArray.today:0}}</text>
-          <text>今日任务流</text>
-        </view>
-        <view class="data-item" bindtap="toDataDetails">
-          <text>{{dataStatisticsArray.week?dataStatisticsArray.week:0}}</text>
-          <text>本周任务流</text>
-        </view>
-        <view class="data-item" bindtap="toDataDetails">
-          <text>{{dataStatisticsArray.total?dataStatisticsArray.total:0}}</text>
-          <text>累计任务流</text>
-        </view>
-      </view>
-    </view>
-  </view>
-  <!-- 业务模块 -->
-  <view class="business">
-    <view class="business-title">
-      <text>业务模块</text>
-    </view>
-    <view class="business-content">
-      <block wx:for="{{businessArray}}">
-        <view wx:if="{{item.key}}" class="business-item" bindtap="toItemList" data-key="{{item.key}}">
-          <image class="left" src="{{item.img}}"></image>
-          <view class="business-item-text">
-            <!-- <text wx:if="{{serviceType == 2 || serviceType == 3}}">{{item.name}}</text> -->
-            <!-- <text wx:if="{{serviceType == 1 || serviceType == 4}}">{{item.name == '车辆维修' ? '车辆推修': item.name}}</text> -->
-            <text>{{item.name}}</text>
-          </view>
-        </view>
-        <view wx:if="{{item.icon}}" class="business-item" bindtap="toItemListSelf" data-id="{{item.id}}" data-name="{{item.name}}">
-          <image class="left" src="{{item.img}}"></image>
-          <view class="business-item-text">
-            <text>{{item.name}}</text>
-          </view>
-        </view>
-      </block>
-      <view class="business-item" bindtap="toAddModule">
-        <i-icon class="left" type="add" size="48" color="#1a65ff" />
-        <view class="business-item-text">
-          <text>添加模块</text>
-        </view>
-      </view>
-    </view>
-  </view>
-  <!-- 接单系统 -->
-  <view class="order">
-    <view class="order-title">
-      <text>系统通知</text>
-    </view>
-    <view class="order-null" wx:if="{{orderList.length == 0}}">
-      <image src="/images/index/order_null.png"></image>
-      <text>您还没有通知哦~</text>
-    </view>
-    <view class="order-content" wx:if="{{orderList.length !== 0}}">
-      <view class="order-item" wx:for="{{orderList}}" wx:key="" bindtap="toOrderDetail" data-id="{{item.id}}" data-img="{{item.img}}" data-name="{{item.name}}">
-        <image src="{{item.img}}"></image>
-        <view class="order-item-content">
-          <view class="order-item-content-left">
-            <text>{{item.name}}</text>
-            <!-- <text>{{item.mobile?item.mobile : ''}}</text> -->
-            <text>{{item.add_time}}</text>
-            <text>2019xxxxxxxx0485</text>
-          </view>
-          <view class="order-item-content-right">
-            <text>{{item.mobile?item.mobile: '176xxxxx426'}}</text>
-            <view class="state-btn state-color01" wx:if="{{item.status == 0}}">待支付</view>
-            <view class="state-btn state-color02" wx:if="{{item.status == 1 && item.work_status == 0}}">接单</view>
-            <view class="state-btn state-color02" wx:if="{{item.status == 1 && item.work_status == 1}}">待分配</view>
-            <view class="state-btn state-color03" wx:if="{{item.status == 1 && item.work_status == 2}}">已分配</view>
-            <view class="state-btn state-color04" wx:if="{{item.status == 1 && item.work_status == 3}}">进行中</view>
-            <view class="state-btn state-color05" wx:if="{{item.status == 1 && item.work_status == 4}}">已完成</view>
-            <view class="state-btn state-color05" wx:if="{{item.status == 1 && item.work_status == 5}}">已评价</view>
-            <view class="state-btn state-color05" wx:if="{{item.status == 1 && item.work_status == 6}}">已取消</view>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
+			<view class="data-content">
+				<view class="data-item" bindtap="toDataDetails">
+					<text>{{dataStatisticsArray.today?dataStatisticsArray.today:0}}</text>
+					<text>今日任务流</text>
+				</view>
+				<view class="data-item" bindtap="toDataDetails">
+					<text>{{dataStatisticsArray.week?dataStatisticsArray.week:0}}</text>
+					<text>本周任务流</text>
+				</view>
+				<view class="data-item" bindtap="toDataDetails">
+					<text>{{dataStatisticsArray.total?dataStatisticsArray.total:0}}</text>
+					<text>累计任务流</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 业务模块 -->
+	<view class="business">
+		<view class="business-title">
+			<text>业务模块</text>
+			<text bindtap="toManage">管理</text>
+		</view>
+		<view class="business-content">
+			<block wx:for="{{businessArray}}">
+				<!-- 系统模块 -->
+				<view wx:if="{{item.key}}" class="business-item" bindtap="toItemList" data-key="{{item.key}}">
+					<image class="left" src="{{item.img}}"></image>
+					<view class="business-item-text">
+						<!-- <text wx:if="{{serviceType == 2 || serviceType == 3}}">{{item.name}}</text> -->
+						<!-- <text wx:if="{{serviceType == 1 || serviceType == 4}}">{{item.name == '车辆维修' ? '车辆推修': item.name}}</text> -->
+						<text>{{item.name}}</text>
+					</view>
+				</view>
+				<!-- 自定义模块 -->
+				<view wx:if="{{item.icon}}" class="business-item" catchtap="toItemListSelf" data-id="{{item.id}}" data-name="{{item.name}}">
+					<image class="left" src="{{item.img}}"></image>
+					<view class="business-item-text">
+						<text>{{item.name}}</text>
+					</view>
+          <image wx:if="{{editIconshow}}" class="business-item-edit" src="/images/mine/icon_edit.png" catchtap="toEditDefineModule" data-id="{{item.id}}"></image>
+				</view>
+			</block>
+			<view class="business-item" bindtap="toAddModule">
+				<!-- <i-icon class="left" type="add" size="48" color="#1a65ff" /> -->
+				<image class="left" src="/images/index/add_module.png"></image>
+				<view class="business-item-text">
+					<text>添加模块</text>
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 接单系统 -->
+	<view class="order">
+		<view class="order-title">
+			<text>系统通知</text>
+		</view>
+		<view class="order-null" wx:if="{{orderList.length == 0}}">
+			<image src="/images/index/order_null.png"></image>
+			<text>您还没有通知哦~</text>
+		</view>
+		<view class="order-content" wx:if="{{orderList.length !== 0}}">
+			<view class="order-item" wx:for="{{orderList}}" wx:key="" bindtap="toOrderDetail" data-id="{{item.id}}" data-img="{{item.img}}" data-name="{{item.name}}">
+				<image src="{{item.img}}"></image>
+				<view class="order-item-content">
+					<view class="order-item-content-left">
+						<text>{{item.name}}</text>
+						<!-- <text>{{item.mobile?item.mobile : ''}}</text> -->
+						<text>{{item.add_time}}</text>
+						<text>2019xxxxxxxx0485</text>
+					</view>
+					<view class="order-item-content-right">
+						<text>{{item.mobile?item.mobile: '176xxxxx426'}}</text>
+						<view class="state-btn state-color01" wx:if="{{item.status == 0}}">待支付</view>
+						<view class="state-btn state-color02" wx:if="{{item.status == 1 && item.work_status == 0}}">接单</view>
+						<view class="state-btn state-color02" wx:if="{{item.status == 1 && item.work_status == 1}}">待分配</view>
+						<view class="state-btn state-color03" wx:if="{{item.status == 1 && item.work_status == 2}}">已分配</view>
+						<view class="state-btn state-color04" wx:if="{{item.status == 1 && item.work_status == 3}}">进行中</view>
+						<view class="state-btn state-color05" wx:if="{{item.status == 1 && item.work_status == 4}}">已完成</view>
+						<view class="state-btn state-color05" wx:if="{{item.status == 1 && item.work_status == 5}}">已评价</view>
+						<view class="state-btn state-color05" wx:if="{{item.status == 1 && item.work_status == 6}}">已取消</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
 </view>

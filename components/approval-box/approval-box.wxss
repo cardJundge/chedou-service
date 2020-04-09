@@ -39,10 +39,12 @@
 
 .input-box {
   width: 100%;
+  max-height: 680rpx;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24rpx;
+  overflow: auto;
 }
 
 .input-box textarea {
@@ -59,6 +61,19 @@
   box-shadow: 0 0 4rpx 2rpx rgba(0, 0, 0, 0.1);
   border-radius: 10rpx;
   padding-left: 12rpx;
+}
+
+.input-box .input-box-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-box .input-box-list .input-box-item {
+  padding: 24rpx 0;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #ececec;
 }
 
 .prompt-textarea {
@@ -94,3 +109,4 @@
   color: #fff;
   border-radius: 0 0 20rpx 0;
 }
+

@@ -56,7 +56,7 @@
 					</view>
 				</view>
 			</view>
-			<!-- 下拉选择型 -->
+			<!-- 下拉选择-单选型 -->
 			<view class="add-item" wx:if="{{item.type == 'select'}}">
 				<view class="add-item-title">
 					<text wx:if="{{item.required == 1}}">*</text>
@@ -69,6 +69,17 @@
 							<input placeholder="请选择" placeholder-class="ph-class" disabled="disabled" value="{{item.value}}"></input>
 						</view>
 					</picker>
+				</view>
+			</view>
+			<!-- 下拉选择-多选型 -->
+			<view class="add-item" wx:if="{{item.type == 'check'}}">
+				<view class="add-item-title">
+					<text wx:if="{{item.required == 1}}">*</text>
+					<text wx:if="{{item.required == 0}}"></text>
+					<text>{{item.name}}</text>
+				</view>
+				<view class="add-item-content">
+					<input bindtap="optionCheck" data-type="{{item.type}}" data-name="{{item.name}}" data-option="{{item.value.option}}" placeholder="请选择" placeholder-class="ph-class" value = "{{selectedOption}}" disabled="disabled"></input>
 				</view>
 			</view>
 			<!-- 日期型 -->
@@ -159,3 +170,4 @@
 		<view bindtap="onConfirm">确定</view>
 	</view>
 </view>
+<approval-box isShow="{{approvalBoxShow}}" approvalBoxName="{{approvalBoxName}}" approvalType="{{approvalType}}" optionData="{{tempOption}}" bind:boxConfirm="boxConfirm" />

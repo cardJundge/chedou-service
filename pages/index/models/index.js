@@ -29,29 +29,6 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
-  // 首页数据统计
-  dataStatistics(callback) {
-    var params = {
-      url: '/api/ser/work/total',
-      type: 'GET',
-      auth: true,
-      sCallback: callback
-    }
-    this.request(params)
-  }
-
-  // 数据统计详情
-  dataStatisticsDetail(param, callback) {
-    var params = {
-      url: '/api/ser/work/detail',
-      type: 'GET',
-      auth: true,
-      data: param,
-      sCallback: callback
-    }
-    this.request(params)
-  }
-
   // 获取业务列表
   getWorkList(param, callback) {
     var params = {
@@ -393,6 +370,18 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
+  // 编辑模块
+  editModule(param, callback) {
+    var params = {
+      url: '/api/ser/module/modify',
+      type: 'POST',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
   // 新模块案件列表
   getTaskflowList(param, callback) {
     var params = {
@@ -452,10 +441,21 @@ class IndexModel extends HTTP {
   }
 
   // ----新模块统计-----
-  // 整体统计
+   // 首页数据统计
+   dataStatistics(param, callback) {
+    var params = {
+      url: '/api/work/total',
+      type: 'GET',
+      auth: true,
+      data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+  // 整体统计(统计详情)
   getAllStatistics(param, callback) {
     var params = {
-      url: '/api/ser/statistics',
+      url: '/api/work/detail',
       type: 'GET',
       auth: true,
       data: param,

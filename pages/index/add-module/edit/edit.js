@@ -115,19 +115,28 @@ Page({
   // 提交
   onConfirm() {
     let params = {
+      id: this.data.moduleId,
       name: this.data.moduleName,
       icon: this.data.moduleIcon,
       field: this.data.fieldData
     }
-    if (this.data.taskInputData.length != 0) {
+    if (this.data.taskInputData) {
       params.norm = this.data.taskInputData
     }
-    if (this.data.approvalData.length != 0) {
+    if (this.data.approvalData) {
       params.approval = this.data.approvalData
     }
 
-    if (this.data.evaluateData.length != 0) {
+    if (this.data.evaluateData) {
       params.comment = this.data.evaluateData
     }
+
+    indexModel.editModule(params, res=> {
+      if (res.data.status == 1) {
+        wx.switchTab({
+          url: '../../index',
+        })
+      }
+    })
   }
 })

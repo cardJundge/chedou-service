@@ -82,7 +82,7 @@
 								<view>
 									<text>地点</text>
 									<text>{{item.record.place}}</text>
-                  <image class="location-icon" src="/images/index/location_01.png"></image>
+									<image class="location-icon" src="/images/index/location_01.png"></image>
 								</view>
 								<view class="item-complete-image" wx:if="{{item.type == 'image'}}">
 									<text>内容</text>
@@ -92,7 +92,7 @@
 										</view>
 									</view>
 								</view>
-								<view wx:if="{{item.type == 'text' || item.type == 'int' || item.type == 'select'}}">
+								<view wx:if="{{item.type == 'text' || item.type == 'int' || item.type == 'select' || item.type == 'check'}}">
 									<text>内容</text>
 									<text>{{item.record.content}}</text>
 								</view>
@@ -112,6 +112,10 @@
 							<picker bindchange="optionSelect" data-name="{{item.name}}" range="{{item.option}}">
 								<view class="complete-option-btn">去完成</view>
 							</picker>
+						</view>
+						<view class="item-incomplete" wx:elif="{{item.type == 'check'}}">
+							<text>{{index+1}}、{{item.name}}</text>
+							<view bindtap="optionCheck" data-name="{{item.name}}" data-type="{{item.type}}" data-option="{{item.value.option}}">去完成</view>
 						</view>
 						<view class="item-incomplete" wx:else>
 							<text>{{index+1}}、{{item.name}}</text>
@@ -137,13 +141,17 @@
 								</view>
 								<view class="item-complete-image" wx:if="{{item.type == 'image'}}">
 									<text>内容</text>
-									<view class="image-box" wx:if="{{item.type == 'image'}}">
+									<view class="image-box">
 										<view class="image-item" wx:for="{{item.record.content}}" wx:for-item="imgitem" wx:for-index="imgindex">
 											<image src="{{imgUrl}}{{imgitem}}" bindtap="previewImage" data-index="{{imgindex}}" data-flag="approval" data-name="{{item.name}}"></image>
 										</view>
 									</view>
 								</view>
-								<view wx:if="{{item.type == 'text' || item.type == 'int' || item.type == 'select'}}">
+								<!-- <view wx:if="{{item.type == 'check'}}">
+									<text>内容</text>
+									<text>{{item.record.content.checked.join(',')}}</text>
+								</view> -->
+								<view wx:if="{{item.type == 'text' || item.type == 'int' || item.type == 'select' || item.type == 'check'}}">
 									<text>内容</text>
 									<text>{{item.record.content}}</text>
 								</view>
@@ -187,5 +195,5 @@
 		</view>
 	</view>
 
-	<approval-box isShow="{{approvalBoxShow}}" approvalBoxName="{{approvalBoxName}}" approvalType="{{approvalType}}" bind:boxConfirm="boxConfirm" />
+	<approval-box isShow="{{approvalBoxShow}}" approvalBoxName="{{approvalBoxName}}" approvalType="{{approvalType}}" optionData="{{tempOption}}" bind:boxConfirm="boxConfirm" />
 </view>

@@ -78,6 +78,10 @@
   font-size: 36rpx;
 }
 
+.business-title text:last-child {
+  color: #1a65ff;
+}
+
 .business-content {
   padding: 0 24rpx;
   display: flex;
@@ -95,6 +99,7 @@
   display: flex;
   align-items: center;
   padding: 24rpx;
+  position: relative;
 }
 
 .business-item .left {
@@ -116,6 +121,14 @@
 .business-item-text text {
   font-size: 32rpx;
   color: #242429;
+}
+
+.business-item-edit {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: -10rpx;
+  top: -10rpx;
 }
 
 /* 接单系统 */

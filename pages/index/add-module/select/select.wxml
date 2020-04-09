@@ -16,26 +16,46 @@
   <view class="type-body">
     <radio-group class="type-box" bindchange="typeChange">
       <block wx:for="{{typeList}}">
+      <!-- 文本型、数字型、图片型 （全部） -->
         <label class="type-item" wx:if="{{item.value == 'text' || item.value == 'int' || item.value == 'image'}}">
           <radio value="{{item.value}}" checked="{{item.checked}}" />
           <text>{{item.name}}</text>
         </label>
+        <!-- 下拉选择-单选型 -->
         <label class="type-item" wx:if="{{item.value == 'select'}}">
           <radio value="{{item.value}}" checked="{{item.checked}}" />
           <text>{{item.name}}</text>
         </label>
-        <!-- ******************** -->
-        <view class="dropDown-box" wx:if="{{item.value == 'select' && dropDownBoxShow}}">
-          <view class="dropDown-item dropDown-item-add" bindtap="addDropDownItem">
+        <!-- 下拉选择-单选型 添加备选项 -->
+        <view class="dropDown-box" wx:if="{{item.value == 'select' && selectBoxShow}}">
+          <view class="dropDown-item dropDown-item-add" bindtap="addDropDownItem" data-flag="select">
             <image src="/images/index/add_module_icon.png"></image>
             <text>添加备选项</text>
           </view>
-          <view class="dropDown-item" wx:for="{{dropDownData}}" wx:for-item="dropitem" wx:for-index="dropindex">
-            <image src="/images/index/del_module_icon.png" bindtap="delDropDownItem" data-index="{{dropindex}}"></image>
-            <input placeholder="备选项名称" placeholder-class="ph-class" value="{{dropitem}}" bindinput="getDropDownInput" data-index="{{dropindex}}"></input>
+          <view class="dropDown-item" wx:for="{{selectData}}" wx:for-item="dropitem" wx:for-index="dropindex">
+            <image src="/images/index/del_module_icon.png" bindtap="delDropDownItem" data-index="{{dropindex}}" data-flag="select"></image>
+            <input placeholder="备选项名称" placeholder-class="ph-class" value="{{dropitem}}" bindinput="getDropDownInput" data-index="{{dropindex}}" data-flag="select"></input>
           </view>
         </view>
         <!-- ******************** -->
+        <!-- 下拉选择-多选型 -->
+        <label class="type-item" wx:if="{{item.value == 'check'}}">
+          <radio value="{{item.value}}" checked="{{item.checked}}" />
+          <text>{{item.name}}</text>
+        </label>
+        <!-- 下拉选择-多选型 添加备选项 -->
+        <view class="dropDown-box" wx:if="{{item.value == 'check' && checkBoxShow}}">
+          <view class="dropDown-item dropDown-item-add" bindtap="addDropDownItem" data-flag="check">
+            <image src="/images/index/add_module_icon.png"></image>
+            <text>添加备选项</text>
+          </view>
+          <view class="dropDown-item" wx:for="{{checkData}}" wx:for-item="dropitem" wx:for-index="dropindex">
+            <image src="/images/index/del_module_icon.png" bindtap="delDropDownItem" data-index="{{dropindex}}" data-flag="check"></image>
+            <input placeholder="备选项名称" placeholder-class="ph-class" value="{{dropitem}}" bindinput="getDropDownInput" data-index="{{dropindex}}" data-flag="check"></input>
+          </view>
+        </view>
+        <!-- ******************** -->
+        <!-- 日期型 （任物流信息） -->
         <label class="type-item" wx:if="{{item.value == 'dateFather' && flag == 'info'}}">
           <radio value="{{item.value}}" checked="{{item.checked}}" />
           <text>{{item.name}}</text>
@@ -50,65 +70,17 @@
           </radio-group>
         </view>
         <!-- --------------------- -->
+        <!-- 位置型 （任物流信息） -->
         <label class="type-item" wx:if="{{item.value == 'location' && flag == 'info'}}">
           <radio value="{{item.value}}" checked="{{item.checked}}" />
           <text>{{item.name}}</text>
         </label>
+        <!-- 位置型 （操作信息） -->
         <label class="type-item" wx:if="{{item.value == 'click' && (flag == 'task' || flag == 'approval' || flag == 'evaluate')}}">
           <radio value="{{item.value}}" checked="{{item.checked}}" />
           <text>{{item.name}}</text>
         </label>
       </block>
-      <!-- <label class="type-item">
-        <radio value="text" checked="true" />
-        <text>文本型</text>
-      </label>
-      <label class="type-item">
-        <radio value="int" />
-        <text>数字型</text>
-      </label>
-      <label class="type-item">
-        <radio value="select" />
-        <text>下拉选择型</text>
-      </label> -->
-      <!-- ******************** -->
-      <!-- <view class="dropDown-box" wx:if="{{dropDownBoxShow}}">
-        <view class="dropDown-item dropDown-item-add" bindtap="addDropDownItem">
-          <image src="/images/index/add_module_icon.png"></image>
-          <text>添加备选项</text>
-        </view>
-        <view class="dropDown-item" wx:for="{{dropDownData}}" wx:for-item="dropitem" wx:for-index="dropindex">
-          <image src="/images/index/del_module_icon.png" bindtap="delDropDownItem" data-index="{{dropindex}}"></image>
-          <input placeholder="备选项名称" placeholder-class="ph-class" value="{{dropitem}}" bindinput="getDropDownInput" data-index="{{dropindex}}"></input>
-        </view>
-      </view> -->
-      <!-- ******************** -->
-      <!-- <label class="type-item" wx:if="{{flag == 'info'}}">
-        <radio value="dateFather" />
-        <text>日期型</text>
-      </label> -->
-      <!-- --------------------- -->
-      <!-- <view wx:if="{{dateBoxShow}}">
-        <radio-group class="date-box" bindchange="dateTypeChange" wx:for-item="dateitem" wx:for-index="dateindex">
-          <label class="date-item" wx:for="{{dateTypeData}}" >
-            <radio value="{{dateitem.value}}" checked="{{dateitem.checked}}" />
-            <text>{{dateitem.name}}</text>
-          </label>
-        </radio-group>
-      </view> -->
-      <!-- --------------------- -->
-      <!-- <label class="type-item">
-        <radio value="image" />
-        <text>图片型</text>
-      </label>
-      <label class="type-item" wx:if="{{flag == 'info'}}">
-        <radio value="location" />
-        <text>位置型</text>
-      </label>
-      <label class="type-item" wx:if="{{flag == 'task' || flag == 'approval' || flag == 'evaluate'}}">
-        <radio value ="click" />
-        <text>打卡型</text>
-      </label> -->
     </radio-group>
     <view class="type-btn" bindtap="onConfirm">确定</view>
   </view>

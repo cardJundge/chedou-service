@@ -14,12 +14,9 @@ Page({
   data: {
     taskList: [],
     imageList: [],
-    field: []
-    // field: [{
-    //   name: '图片',
-    //   type: 'image',
-    //   required: 0
-    // }]
+    field: [],
+    optionChecked: [],
+    approvalBoxShow: false,
   },
 
   onLoad(options) {
@@ -55,7 +52,7 @@ Page({
       keywords: '',
       module_id: this.data.moduleId
     }
-    personnelModel.getTaskList(params,res => {
+    personnelModel.getTaskList(params, res => {
       if (res.data.status == 1) {
         res.data.data.forEach((item, index) => {
           this.data.taskList.push(item.nickname)
@@ -65,7 +62,7 @@ Page({
           taskAllList: res.data.data,
           taskList: this.data.taskList
         })
-        
+
       }
     })
   },
@@ -95,7 +92,7 @@ Page({
   // 删除图片
   delImage(e) {
     let name = e.currentTarget.dataset.name,
-    picIndex = e.currentTarget.dataset.index
+      picIndex = e.currentTarget.dataset.index
     this.data.field.forEach((item, index) => {
       if (item.name == name) {
         item.value.splice(picIndex, 1)
@@ -172,7 +169,7 @@ Page({
     })
   },
 
-  // 下拉选择
+  // 下拉选择-单选型
   optionSelect(e) {
     let name = e.currentTarget.dataset.name
     this.data.field.forEach((item, index) => {
@@ -181,6 +178,60 @@ Page({
       }
     })
     this.setData({
+      field: this.data.field
+    })
+  },
+
+  // 下拉选择-多选型
+  optionCheck(e) {
+    let name = e.currentTarget.dataset.name,
+      type = e.currentTarget.dataset.type,
+      option = e.currentTarget.dataset.option,
+      tempOption = []
+    option.forEach((item, index) => {
+      tempOption.push({
+        name: '',
+        checked: false
+      })
+      if (this.data.optionChecked.length == 0) {
+        tempOption[index].name = item
+      } else {
+        this.data.optionChecked.forEach((item1, index1) => {
+          if (item == item1) {
+            tempOption[index].name = item
+            tempOption[index].checked = true
+          } else {
+            tempOption[index].name = item
+          }
+        })
+      }
+    })
+    this.setData({
+      optionData: option,
+      tempOption: tempOption,
+      approvalBoxShow: true,
+      approvalBoxName: name,
+      approvalType: type
+    })
+  },
+
+  boxConfirm(e) {
+    let selectedOption = [],
+    name = e.detail.approvalBoxName
+    e.detail.approvalBoxList.forEach((item, index) => {
+      if (item.checked == true) {
+        selectedOption.push(item.name)
+      }
+    })
+    this.data.field.forEach((item, index) => {
+      if (item.name == name) {
+        item.value['option'] = this.data.optionData
+        item.value['checked'] = selectedOption
+      }
+    })
+    this.setData({
+      selectedOption: selectedOption.join(','),
+      optionChecked: selectedOption,
       field: this.data.field
     })
   },
@@ -293,7 +344,7 @@ Page({
     })
     this.data.taskAllList.forEach((item, index) => {
       console.log(item)
-      if(item.nickname == this.data.taskName) {
+      if (item.nickname == this.data.taskName) {
         console.log(item)
         this.data.taskId = item.id
         this.data.groupId = item.group_id
@@ -307,12 +358,12 @@ Page({
     this.data.taskFlowList.field = []
     this.data.taskFlowList['module_id'] = this.data.moduleId
     this.data.field.forEach((item, index) => {
-      if(item.required == 1 && !item.value) {
+      if (item.required == 1 && !item.value) {
         return wx.showToast({
           title: '必填项内容不能为空',
           icon: 'none'
         })
-      } else if (item.value){
+      } else if (item.value) {
         this.data.taskFlowList.field.push({
           name: item.name,
           key: item.key,
@@ -339,7 +390,7 @@ Page({
       this.data.taskFlowList['end_date'] = this.data.endDatetime
     }
 
-    if(!this.data.taskName) {
+    if (!this.data.taskName) {
       return wx.showToast({
         title: '必填项内容不能为空',
         icon: 'none'
@@ -351,8 +402,8 @@ Page({
 
     console.log(this.data.taskFlowList)
     let params = this.data.taskFlowList
-    indexModel.addTaskflow(params, res=> {
-      if(res.data.status == 1) {
+    indexModel.addTaskflow(params, res => {
+      if (res.data.status == 1) {
         wx.showToast({
           title: '任务流添加成功',
           icon: 'none'
@@ -361,7 +412,7 @@ Page({
           delta: 1
         })
       } else {
-        
+
       }
     })
   }

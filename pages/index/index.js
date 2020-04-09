@@ -31,11 +31,17 @@ Page({
   onShow() {
     this.getDataStatics()
     this.getModule()
+    this.setData({
+      editIconshow: false
+    })
   },
 
   // 首页获取数据统计
   getDataStatics() {
-    indexModel.dataStatistics(res => {
+    let params = {
+      service_id: app.globalData.userInfo.id
+    }
+    indexModel.dataStatistics(params, res => {
       if (res.data.status == 1) {
         this.setData({
           dataStatisticsArray: res.data.data
@@ -105,10 +111,18 @@ Page({
     })
   },
 
+  // 管理
+  toManage() {
+    this.setData({
+      editIconshow: true
+    })
+  },
+
   // 添加模块
   toAddModule() {
+    let data = JSON.stringify(this.data.businessArray)
     wx.navigateTo({
-      url: './add-module/zero/zero',
+      url: './add-module/zero/zero?businessArray=' + data,
     })
   },
 
@@ -131,6 +145,33 @@ Page({
           businessArray: modules
         })
 
+      }
+    })
+  },
+
+  // 管理自定义模块
+  toEditDefineModule(e) {
+    let id = e.currentTarget.dataset.id
+    wx.showActionSheet({
+      itemList: ['编辑模块','删除模块'],
+      success: res=> {
+        if(res.tapIndex == 0) {
+          wx.navigateTo({
+            url: './add-module/edit/edit?moduleId=' + id,
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '确定删除该模块吗？',
+            success: res=> {
+              if(res.confirm) {
+
+              } else {
+                
+              }
+            }
+          })
+        }
       }
     })
   },

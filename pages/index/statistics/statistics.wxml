@@ -4,12 +4,14 @@
 	<view class="top">
 		<scroll-view scroll-x>
 			<view class="top-tab">
-				<view class="top-tab-item {{topActive == index ? 'top-tab-item-active' : ''}}" bindtap="changeTopTab" data-index="{{index}}" data-id="{{item.id}}" wx:for="{{moduleList}}">
-					<text>{{item.name}}</text>
-					<view wx:if="{{topActive == index}}">
-						<i-icon class="top-tab-item-triangle" type="play_fill" color="#fff" size="12" />
+				<block wx:for="{{moduleList}}">
+					<view class="top-tab-item {{topActive == index ? 'top-tab-item-active' : ''}}" bindtap="changeTopTab" data-index="{{index}}" data-id="{{item.id}}">
+						<text>{{item.name}}</text>
+						<view wx:if="{{topActive == index}}">
+							<i-icon class="top-tab-item-triangle" type="play_fill" color="#fff" size="12" />
+						</view>
 					</view>
-				</view>
+				</block>
 			</view>
 		</scroll-view>
 		<view class="top-content">
@@ -52,7 +54,7 @@
 		</view>
 	</view>
 	<!-- 下拉选择型的标题 -->
-	<view class="select">
+	<view class="select" wx:if="{{moduleFlag == 'define'}}">
 		<view class="select-title">下拉选择型</view>
 		<view class="chart-tab">
 			<block wx:for="{{dateList}}">
@@ -84,7 +86,7 @@
 		<view class="laterate-title">逾期率</view>
 		<view class="chart-tab">
 			<block wx:for="{{dateList}}">
-				<view class="chart-tab-item {{laterateActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeLaterateTab" data-index="{{index}}">{{item}}日</view>
+				<view class="chart-tab-item {{laterateActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeLaterateTab" data-index="{{index}}" data-date="{{item}}">{{item}}日</view>
 			</block>
 		</view>
 		<view class="laterate-content">
@@ -96,19 +98,19 @@
 		<view class="latenum-title">超期数</view>
 		<view class="chart-tab">
 			<block wx:for="{{dateList}}">
-				<view class="chart-tab-item {{latenumActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeLatenumTab" data-index="{{index}}">{{item}}日</view>
+				<view class="chart-tab-item {{latenumActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeLatenumTab" data-index="{{index}}" data-date="{{item}}">{{item}}日</view>
 			</block>
 		</view>
 		<view class="latenum-content">
 			<ec-canvas id="mychart" canvas-id="mychart-bar" importData="{{latenumData}}" ec="{{ ec3 }}"></ec-canvas>
 		</view>
 	</view>
-	<!-- 综合 -->
+	<!-- 表格 -->
 	<view class="all">
-		<view class="all-title">超期数</view>
+		<view class="all-title">综合</view>
 		<view class="chart-tab">
 			<block wx:for="{{dateList}}">
-				<view class="chart-tab-item {{allActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeAllTab" data-index="{{index}}">{{item}}日</view>
+				<view class="chart-tab-item {{allActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeAllTab" data-index="{{index}}" data-date="{{item}}">{{item}}日</view>
 			</block>
 		</view>
 		<view class="all-content">
@@ -121,8 +123,13 @@
 					<view class="th">超期数</view>
 					<view class="th">分数</view>
 				</view>
-				<view class="tr" wx:for="{{tableList}}">
-					<view wx:for="{{item}}" wx:for-item="tditem" class="td">{{tditem}}</view>
+				<view class="tr" wx:for="{{tableData}}">
+					<view class="td">{{item.nickname}}</view>
+					<view class="td">0</view>
+					<view class="td">0</view>
+					<view class="td">{{item.failure}}</view>
+					<view class="td">{{item.overdue}}</view>
+					<view class="td">0</view>
 				</view>
 			</view>
 		</view>

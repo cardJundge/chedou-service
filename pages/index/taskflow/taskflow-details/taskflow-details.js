@@ -15,7 +15,9 @@ Page({
     tabList: [],
     isActive: 0,
     approvalBoxShow: false,
-    unfold: false
+    unfold: false,
+    optionChecked: [],
+    tempOption: []
   },
 
   onLoad(options) {
@@ -26,7 +28,7 @@ Page({
     this.data.listId = options.listId
     this.getTaskflowDetail()
     wx.setNavigationBarTitle({
-      title: options.moduleName 
+      title: options.moduleName
     })
   },
 
@@ -76,6 +78,21 @@ Page({
     this.data.tabList = []
     indexModel.getTaskflowDetail(params, res => {
       if (res.data.status == 1) {
+        res.data.data.field.forEach((item, index) => {
+          if (item.type == 'check') {
+            item.value = item.value.checked.join(',')
+          }
+        })
+        res.data.data.approval.forEach((item, index) => {
+          if (item.type == 'check' && item.record) {
+            item.record.content = item.record.content.checked.join(',')
+          }
+        })
+        res.data.data.norm.forEach((item, index) => {
+          if (item.type == 'check' && item.record) {
+            item.record.content = item.record.content.checked.join(',')
+          }
+        })
         this.setData({
           fieldInfo: res.data.data.field,
           startTime: res.data.data.start_date,
@@ -182,7 +199,7 @@ Page({
     }
   },
 
-  // 下拉框
+  // 下拉框-单选
   optionSelect(e) {
     console.log(e)
     let name = e.currentTarget.dataset.name
@@ -194,23 +211,73 @@ Page({
     this.toCompleteApproval(name)
   },
 
-  // 弹框确定
-  boxConfirm(e) {
-    let name = e.detail.approvalBoxName
-    let value = e.detail.approvalBoxVal
-    this.data.approval.forEach((item, index) => {
-      if (item.name == name) {
-        item.value = value
+  // 下拉框-多选
+  optionCheck(e) {
+    let name = e.currentTarget.dataset.name,
+      type = e.currentTarget.dataset.type,
+      option = e.currentTarget.dataset.option,
+      tempOption = []
+    option.forEach((item, index) => {
+      tempOption.push({
+        name: '',
+        checked: false
+      })
+      if (this.data.optionChecked.length == 0) {
+        tempOption[index].name = item
+      } else {
+        this.data.optionChecked.forEach((item1, index1) => {
+          if (item == item1) {
+            tempOption[index].name = item
+            tempOption[index].checked = true
+          } else {
+            tempOption[index].name = item
+          }
+        })
       }
     })
+    this.setData({
+      optionData: option,
+      tempOption: tempOption,
+      approvalBoxShow: true,
+      approvalBoxName: name,
+      approvalType: type
+    })
+  },
+
+  // 弹框确定
+  boxConfirm(e) {
+    let selectedOption = [],
+      name = e.detail.approvalBoxName,
+      value = e.detail.approvalBoxVal,
+      type = e.detail.approvalType
+    if (type == 'check') {
+      e.detail.approvalBoxList.forEach((item, index) => {
+        if (item.checked == true) {
+          selectedOption.push(item.name)
+        }
+      })
+      this.data.approval.forEach((item, index) => {
+        if (item.name == name) {
+          item.value['option'] = this.data.optionData
+          item.value['checked'] = selectedOption
+        }
+      })
+    } else {
+      this.data.approval.forEach((item, index) => {
+        if (item.name == name) {
+          item.value = value
+        }
+      })
+    }
+
     this.toCompleteApproval(name)
   },
 
   handle(i, name) {
     if (i < this.data.tempFilePaths.length) {
-      this.uploadimage(i, name, res  => {
+      this.uploadimage(i, name, res => {
         console.log(res)
-        this.handle(i  + 1, name)
+        this.handle(i + 1, name)
       })
     } else {
       console.log("全部上传完成")
@@ -219,7 +286,7 @@ Page({
   },
 
   // 上传
-  uploadimage(i, name, callback) {    
+  uploadimage(i, name, callback) {
     wx.uploadFile({
       url: app.globalData.hostName + '/api/auth/upload',
       filePath: this.data.tempFilePaths[i],
@@ -246,7 +313,7 @@ Page({
           })
         }
       },
-      fail: (err) => {}
+      fail: (err) => { }
     })
   },
 
@@ -263,7 +330,7 @@ Page({
     params.record['place'] = this.data.address
     params.record['date'] = this.data.dateTime
     params.case_id = this.data.listId
-    console.log(params)
+    console.log('zhelizheli', params)
     indexModel.toApproval(params, res => {
       if (res.data.status == 1) {
         this.getTaskflowDetail()

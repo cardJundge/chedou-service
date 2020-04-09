@@ -51,6 +51,8 @@ Page({
         tempData: ''
       })
     }
+
+    console.log(this.data.fieldData)
   },
 
   // 增加字段
@@ -103,7 +105,7 @@ Page({
       fieldName = e.currentTarget.dataset.name,
       fieldRequired = e.currentTarget.dataset.required
     this.data.fieldId = e.currentTarget.dataset.index
-    if (fieldType == 'select') {
+    if (fieldType == 'select' || fieldType == 'check') {
       let fieldOption = JSON.stringify(e.currentTarget.dataset.option)
       wx.navigateTo({
         url: '../select/select?flag=' + 'info' + '&name=' + fieldName + '&type=' + fieldType + '&required=' + fieldRequired + '&option=' + fieldOption,

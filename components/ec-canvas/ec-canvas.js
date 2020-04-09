@@ -16,7 +16,7 @@ Component({
     
     importData: {
       type: Array,
-      value: {},
+      value: [],
       observer(newVal, oldVal) {
         this.init()
       }
@@ -43,6 +43,7 @@ Component({
 
   methods: {
     init: function (callback) {
+      console.log('执行',this.data.importData)
       const version = wx.version.version.split('.').map(n => parseInt(n, 10));
       const isValid = version[0] > 1 || (version[0] === 1 && version[1] > 9)
         || (version[0] === 1 && version[1] === 9 && version[2] >= 91);

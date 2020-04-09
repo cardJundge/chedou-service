@@ -53,7 +53,7 @@ Page({
       taskInputType = e.currentTarget.dataset.type,
       taskInputWeight = e.currentTarget.dataset.weight
     this.data.taskInputId = e.currentTarget.dataset.index
-    if (taskInputType == 'select') {
+    if (taskInputType == 'select' || taskInputType == 'check') {
       let taskInputOption = JSON.stringify(e.currentTarget.dataset.option)
       wx.navigateTo({
         url: '../../select/select?flag=' + 'task' + '&name=' + taskInputName + '&type=' + taskInputType + '&weight=' + taskInputWeight + '&option=' + taskInputOption,
@@ -112,6 +112,9 @@ Page({
   },
 
   onConfirm() {
+    this.data.taskInputData.forEach((item, index) => {
+      item.weight = parseInt(item.weight)
+    })
     if (this.data.taskInputData.length == 0) {
       return wx.showToast({
         title: '作业员录入不能为空',
