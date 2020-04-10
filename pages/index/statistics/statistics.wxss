@@ -18,6 +18,11 @@ page {
   margin-bottom: 174rpx;
 }
 
+.top-task {
+  height: 192rpx;
+  margin-bottom: 438rpx;
+}
+
 .top-tab {
   width: 100%;
   height: 88rpx;
@@ -66,6 +71,55 @@ page {
   position: absolute;
   top: 98rpx;
   left: 24rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-content-task {
+  height: 490rpx;
+  background: #F8F8F8;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 24rpx;
+}
+
+.task-card {
+  width: 702rpx;
+  height: 160rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24rpx;
+}
+
+.task-card-left {
+  display: flex;
+  align-items: center;
+}
+
+.task-card-left image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 18rpx;
+}
+
+.task-card-right {
+  font-size: 50rpx;
+  color: #1A84FF;
+}
+
+.top-content-task-card {
+  width: 702rpx;
+  height: 306rpx;
   background: #fff;
   border-radius: 20rpx;
   padding: 24rpx;
@@ -160,9 +214,8 @@ page {
   width: 100%;
 }
 
-.select-item-name {
+.select-item-name {}
 
-}
 .select-item>view {
   width: 100%;
   display: flex;
@@ -243,18 +296,20 @@ page {
 }
 
 .table {
-  border:1px solid #ECECEC;
-  border-right:0;
+  border: 1px solid #ECECEC;
+  border-right: 0;
   border-bottom: 0;
   width: 100%;
 }
 
-.tr{
-  width:100%;
+.tr {
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
-.th,.td{
+
+.th,
+.td {
   padding: 12rpx 0;
   border-bottom: 1px solid #ECECEC;
   border-right: 1px solid #ECECEC;
@@ -262,11 +317,12 @@ page {
   width: 100%;
 }
 
-.th{
+.th {
   font-size: 24rpx;
   color: #25252A;
 }
-.td{
+
+.td {
   font-size: 24rpx;
   color: #9C9C9C;
 }

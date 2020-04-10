@@ -1,7 +1,7 @@
 <!--数据统计-->
 <view class="statistics">
 	<!-- 头部 -->
-	<view class="top">
+	<view class="top {{currentPage == 'task' ? 'top-task' : ''}}">
 		<scroll-view scroll-x>
 			<view class="top-tab">
 				<block wx:for="{{moduleList}}">
@@ -14,7 +14,7 @@
 				</block>
 			</view>
 		</scroll-view>
-		<view class="top-content">
+		<view class="top-content" wx:if="{{currentPage == 'service'}}">
 			<view class="top-content-title">本周数据统计</view>
 			<view class="top-content-num">
 				<view class="top-content-num-items">
@@ -32,23 +32,50 @@
 			</view>
 			<view class="top-content-msg">统计自{{allStatistics.date[0]}} 00:00至{{allStatistics.date[1]}} 24:00</view>
 		</view>
+		<view class="top-content top-content-task" wx:if="{{currentPage == 'task'}}">
+			<view class="task-card">
+				<view class="task-card-left">
+					<image src="/images/logo.png"></image>
+					<text>执行人</text>
+				</view>
+				<view class="task-card-right">90分</view>
+			</view>
+			<view class="top-content-task-card">
+				<view class="top-content-title">本周数据统计</view>
+				<view class="top-content-num">
+					<view class="top-content-num-items">
+						<text>{{allStatistics.count.unfinished}}</text>
+						<text>未完成</text>
+					</view>
+					<view class="top-content-num-items">
+						<text>{{allStatistics.count.complete}}</text>
+						<text>已完成</text>
+					</view>
+					<view class="top-content-num-items">
+						<text>{{allStatistics.count.total}}</text>
+						<text>案件总数</text>
+					</view>
+				</view>
+				<view class="top-content-msg">统计自{{allStatistics.date[0]}} 00:00至{{allStatistics.date[1]}} 24:00</view>
+			</view>
+		</view>
 	</view>
 	<!-- 时效统计 -->
-	<view class="ageing">
+	<view class="ageing" wx:if="{{moduleFlag == 'define'}}">
 		<view class="ageing-title">时效统计</view>
 		<view class="chart-tab">
 			<block wx:for="{{dateList}}">
-				<view class="chart-tab-item {{ageingActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeAgeingTab" data-index="{{index}}">{{item}}日</view>
+				<view class="chart-tab-item {{ageingActive == index ? 'chart-tab-item-active' : ''}}" bindtap="changeAgeingTab" data-index="{{index}}" data-date="{{item}}">{{item}}日</view>
 			</block>
 		</view>
 		<view class="ageing-list">
-			<block>
+			<block wx:for="{{ageingData}}">
 				<view class="ageing-item">
 					<view>
-						<text>1、</text>
-						<text>任务标题</text>
+						<text>{{index+1}}、</text>
+						<text>{{item.name}}</text>
 					</view>
-					<view>平均25分钟</view>
+					<view>平均{{item.avg}}分钟</view>
 				</view>
 			</block>
 		</view>
@@ -82,7 +109,7 @@
 		</view>
 	</view>
 	<!-- 逾期率 -->
-	<view class="laterate">
+	<view class="laterate" wx:if="{{moduleFlag == 'define'}}">
 		<view class="laterate-title">逾期率</view>
 		<view class="chart-tab">
 			<block wx:for="{{dateList}}">
@@ -94,7 +121,7 @@
 		</view>
 	</view>
 	<!-- 超期数 -->
-	<view class="latenum">
+	<view class="latenum" wx:if="{{moduleFlag == 'define'}}">
 		<view class="latenum-title">超期数</view>
 		<view class="chart-tab">
 			<block wx:for="{{dateList}}">
@@ -106,7 +133,7 @@
 		</view>
 	</view>
 	<!-- 表格 -->
-	<view class="all">
+	<view class="all" wx:if="{{currentPage == 'service' && moduleFlag == 'define'}}">
 		<view class="all-title">综合</view>
 		<view class="chart-tab">
 			<block wx:for="{{dateList}}">
@@ -124,11 +151,11 @@
 					<view class="th">分数</view>
 				</view>
 				<view class="tr" wx:for="{{tableData}}">
-					<view class="td">{{item.nickname}}</view>
+					<view class="td" bindtap="enterTaskPage" data-id="{{item.id}}">{{item.nickname}}</view>
+					<view class="td">{{item.aging}}</view>
 					<view class="td">0</view>
-					<view class="td">0</view>
-					<view class="td">{{item.failure}}</view>
-					<view class="td">{{item.overdue}}</view>
+					<view class="td">{{item.over_rate}}</view>
+					<view class="td">{{item.over}}</view>
 					<view class="td">0</view>
 				</view>
 			</view>

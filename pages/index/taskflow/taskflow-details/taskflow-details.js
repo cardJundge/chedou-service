@@ -99,15 +99,15 @@ Page({
           endTime: res.data.data.end_date
         })
         if (res.data.data.norm) {
-          this.data.tabList.push('任务标准')
+          this.data.tabList.push('员工操作项')
           this.data.norm = res.data.data.norm
         }
         if (res.data.data.approval) {
-          this.data.tabList.push('管理者审批')
+          this.data.tabList.push('管理操作项')
           this.data.approval = res.data.data.approval
         }
         if (res.data.data.comment) {
-          this.data.tabList.push('客户评价')
+          this.data.tabList.push('评价操作项')
           this.data.evaluate = res.data.data.comment
         }
         this.setData({

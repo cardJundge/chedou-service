@@ -38,7 +38,6 @@ Page({
   onShow() {
     if (this.data.tempData) {
       this.data.evaluateData[this.data.evaluateId] = this.data.tempData
-      // console.log(this.data.evaluateData)
       this.setData({
         evaluateData: this.data.evaluateData,
         tempData: ''

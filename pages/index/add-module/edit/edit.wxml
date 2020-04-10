@@ -28,7 +28,8 @@
 				<text wx:if="{{item.type == 'int'}}">数字型</text>
 				<text wx:if="{{item.type == 'location'}}">位置型</text>
 				<text wx:if="{{item.type == 'image'}}">图片型</text>
-				<text wx:if="{{item.type == 'select'}}">下拉选择型</text>
+				<text wx:if="{{item.type == 'select'}}">下拉选择-单选型</text>
+				<text wx:if="{{item.type == 'check'}}">下拉选择-多选型</text>
 				<text wx:if="{{item.type == 'date' || item.type == 'datetime' || item.type == 'time'}}">日期型</text>
 			</view>
 			<view class="edit-mark" bindtap="toEditField">
@@ -38,7 +39,7 @@
 		</view>
 	</view>
 	<!-- 员工操作项 -->
-	<view class="task-input"  wx:if="{{taskInputData}}">
+	<view class="task-input">
 		<view class="info-title" bindtap="openTaskInputBox">
 			<text>员工操作项</text>
 			<i-icon type="unfold" size="18" color="#A6A6A6" wx:if="{{!taskInputBoxShow}}" />
@@ -50,7 +51,8 @@
 				<text wx:if="{{item.type == 'text'}}">文本型</text>
 				<text wx:if="{{item.type == 'int'}}">数字型</text>
 				<text wx:if="{{item.type == 'image'}}">图片型</text>
-				<text wx:if="{{item.type == 'select'}}">下拉选择型</text>
+				<text wx:if="{{item.type == 'select'}}">下拉选择-单选型</text>
+				<text wx:if="{{item.type == 'check'}}">下拉选择-多选型</text>
         <text wx:if="{{item.type == 'click'}}">打卡型</text>
 			</view>
 			<view class="edit-mark" bindtap="toEditTaskInput">
@@ -60,7 +62,7 @@
 		</view>
 	</view>
   <!-- 管理操作项 -->
-  <view class="approval"  wx:if="{{approvalData}}">
+  <view class="approval">
 		<view class="info-title" bindtap="openApprovalBox">
 			<text>管理操作项</text>
 			<i-icon type="unfold" size="18" color="#A6A6A6" wx:if="{{!approvalBoxShow}}" />
@@ -72,7 +74,8 @@
 				<text wx:if="{{item.type == 'text'}}">文本型</text>
 				<text wx:if="{{item.type == 'int'}}">数字型</text>
 				<text wx:if="{{item.type == 'image'}}">图片型</text>
-				<text wx:if="{{item.type == 'select'}}">下拉选择型</text>
+				<text wx:if="{{item.type == 'select'}}">下拉选择-单选型</text>
+				<text wx:if="{{item.type == 'check'}}">下拉选择-多选型</text>
         <text wx:if="{{item.type == 'click'}}">打卡型</text>
 			</view>
 			<view class="edit-mark" bindtap="toEditApproval">
@@ -82,7 +85,7 @@
 		</view>
 	</view>
   <!-- 评价操作项 -->
-  <view class="evaluate"  wx:if="{{evaluateData}}">
+  <view class="evaluate">
 		<view class="info-title" bindtap="openEvaluateBox">
 			<text>评价操作项</text>
 			<i-icon type="unfold" size="18" color="#A6A6A6" wx:if="{{!evaluateBoxShow}}" />
@@ -94,7 +97,8 @@
 				<text wx:if="{{item.type == 'text'}}">文本型</text>
 				<text wx:if="{{item.type == 'int'}}">数字型</text>
 				<text wx:if="{{item.type == 'image'}}">图片型</text>
-				<text wx:if="{{item.type == 'select'}}">下拉选择型</text>
+				<text wx:if="{{item.type == 'select'}}">下拉选择-单选型</text>
+				<text wx:if="{{item.type == 'check'}}">下拉选择-多选型</text>
         <text wx:if="{{item.type == 'click'}}">打卡型</text>
 			</view>
 			<view class="edit-mark" bindtap="toEditEvaluate">

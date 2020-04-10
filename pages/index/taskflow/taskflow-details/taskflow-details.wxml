@@ -58,7 +58,7 @@
 		</view>
 		<view class="content-box">
 			<!-- 作业员录入 -->
-			<view class="task-input" wx:if="{{tabList[isActive] == '任务标准'}}">
+			<view class="task-input" wx:if="{{tabList[isActive] == '员工操作项'}}">
 				<block wx:for="{{norm}}">
 					<!-- 未完成 -->
 					<view class="content-box-item" wx:if="{{!item.record}}">
@@ -103,7 +103,7 @@
 			</view>
 
 			<!-- 管理者审核 -->
-			<view class="approval" wx:if="{{tabList[isActive] == '管理者审批'}}">
+			<view class="approval" wx:if="{{tabList[isActive] == '管理操作项'}}">
 				<block wx:for="{{approval}}">
 					<!-- 未完成 -->
 					<view class="content-box-item" wx:if="{{!item.record}}">
@@ -166,7 +166,7 @@
 			</view>
 
 			<!-- 客户评价 -->
-			<view class="evaluate" wx:if="{{tabList[isActive] == '客户评价'}}">
+			<view class="evaluate" wx:if="{{tabList[isActive] == '评价操作项'}}">
 				<!-- 已评价 -->
 				<!-- <block wx:for="{{evaluate}}"> -->
 				<!-- <view class="content-box-item" wx:if="{{item.record}}">

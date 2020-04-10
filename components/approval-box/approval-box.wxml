@@ -8,16 +8,13 @@
 		<view class="input-box">
 			<textarea wx:if="{{approvalType == 'text'}}" placeholder="请输入内容" placeholder-class="ph-class" bindinput="getTextInput" maxlength="500" value="{{textValue}}"></textarea>
 			<input wx:if="{{approvalType == 'int'}}" placeholder="请输入数字" placeholder-class="ph-class" bindinput="getIntInput" type="number"></input>
-			<!-- <view class="input-box-list" > -->
-				<!-- <block wx:for="{{optionData}}"> -->
-					<!-- <view class="input-box-item {{item.checked == true ? 'input-box-item-active' : ''}}" bindtap="toSelectOption" data-name="{{item.name}}">{{item.name}}</view> -->
-					<checkbox-group class="input-box-list" wx:if="{{approvalType == 'check'}}" bindchange="toSelectOption" >
-						<label class="input-box-item" wx:for="{{optionData}}">
-							<checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
-						</label>
-					</checkbox-group>
-				<!-- </block> -->
-			<!-- </view> -->
+			<scroll-view wx:if="{{approvalType == 'check'}}" scroll-y='true' style="max-height: 680rpx;">
+				<checkbox-group class="input-box-list" bindchange="toSelectOption">
+					<label class="input-box-item" wx:for="{{optionData}}">
+						<checkbox value="{{item.name}}" checked="{{item.checked}}" />{{item.name}}
+					</label>
+				</checkbox-group>
+			</scroll-view>
 		</view>
 		<view class="bottom-btn-bar">
 			<view bindtap="toCloseModule">取消</view>

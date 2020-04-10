@@ -14,6 +14,7 @@ var app = getApp()
 
 Page({
   data: {
+    currentPage: 'service',
     moduleList: [],
     topActive: 0,
     navScrollLeft: 0,
@@ -35,8 +36,9 @@ Page({
       onInit: initChart03
     },
     pieList: [{ name: 'xxx', data: ['2', '1'] }, { name: 'xxx', data: ['9', '1'] }],
-    laterateData: [],
-    latenumData: [],
+    ageingData: [],
+    laterateData: [{key: [], value: []}],
+    latenumData: [{key: [], value: []}],
     tableData: []
   },
 
@@ -59,9 +61,13 @@ Page({
   // 获取所有统计数据
   getAllStatisticsData() {
     let params = {
-      date: this.data.date,
-      service_id: app.globalData.userInfo.id
+      date: this.data.date
     }
+    if (this.data.currentPage == 'task') {
+      params.task_id = this.data.taskId
+    } else if (this.data.currentPage == 'service') (
+      params.service_id = app.globalData.userInfo.id
+    )
     this.data.moduleList.forEach((item, index) => {
       if (item.id == this.data.moduleId) {
         if (item.key) {
@@ -92,31 +98,45 @@ Page({
     indexModel.getAllStatistics(params, res => {
       if (res.data.status == 1) {
         // 拆分超期数键和值
-        let tempLatenum = [], tempLaterate = [], value1 = [], value2 = [],
-        key = Object.keys(res.data.data.overdue),
-        value = Object.values(res.data.data.overdue)
-        value.forEach((item, index) => {
-          value1.push(item.over_rate)
-          value2.push(item.over)
-        })
-        tempLatenum.push({
-          key: key,
-          value: value1
-        })
-        tempLaterate.push({
-          key: key,
-          value: value2
-        })
+        let tempLatenum = [], tempLaterate = [], laternumVal = [], laterateVal = [], overdueKey, overdueVal,ageingVal
+        if (res.data.data.overdue) {
+          overdueKey = Object.keys(res.data.data.overdue)
+          overdueVal = Object.values(res.data.data.overdue)
+          overdueVal.forEach((item, index) => {
+            laternumVal.push(item.over)
+            laterateVal.push(item.over_rate)
+          })
+          tempLatenum.push({
+            key: overdueKey,
+            value: laternumVal
+          })
+          tempLaterate.push({
+            key: overdueKey,
+            value: laterateVal
+          })
+        }
+
+        if (res.data.data.norm) {
+          ageingVal = Object.values(res.data.data.norm)
+        }
+             
         // 全部
         if (this.data.flag == 'all') {
-          this.setData({
-            allStatistics: res.data.data,
-            selectData: res.data.data.select,
-            tableData: res.data.data.operator,
-            latenumData: tempLatenum,
-            laterateData: tempLaterate
-          })
-          console.log('dkjgfjhsdgfjkdsgf',this.data.latenumData)
+          if(this.data.moduleFlag == 'define') {
+            this.setData({
+              allStatistics: res.data.data,
+              selectData: res.data.data.select,
+              tableData: res.data.data.operator,
+              latenumData: tempLatenum,
+              laterateData: tempLaterate,
+              ageingData: ageingVal
+            })
+          } else {
+            this.setData({
+              allStatistics: res.data.data
+            })
+          }
+          
         } else if (this.data.flag == 'table') {
           this.setData({
             tableData: res.data.data.operator
@@ -129,7 +149,13 @@ Page({
           this.setData({
             laterateData: tempLaterate
           })
+        } else if (this.data.flag == 'ageing') {
+          this.setData({
+            ageingData: ageingVal
+          })
         }
+      } else if (res.data.status == 0) {
+
       }
     })
   },
@@ -138,7 +164,6 @@ Page({
   changeTopTab(e) {
     let index = e.currentTarget.dataset.index,
       id = e.currentTarget.dataset.id
-    console.log(e)
     this.setData({
       topActive: index,
       moduleId: id
@@ -146,6 +171,16 @@ Page({
     this.getAllStatisticsData()
     // 给每一个data装一个color
     // this.setColor()
+  },
+
+  // 进入作业员页面
+  enterTaskPage(e) {
+    this.setData({
+      taskId: e.currentTarget.dataset.id,
+      currentPage: 'task',
+      date: 7
+    })
+    this.getAllStatisticsData()
   },
 
   // 时效统计时间切换
@@ -158,10 +193,14 @@ Page({
 
   // 下拉选择框时间切换
   changeSelectTab(e) {
-    let index = e.currentTarget.dataset.index
+    let index = e.currentTarget.dataset.index,
+    date = e.currentTarget.dataset.date
     this.setData({
-      selectActive: index
+      selectActive: index,
+      date: date,
+      flag: 'ageing'
     })
+    this.getAllStatisticsData()
   },
 
   // 逾期率时间切换
@@ -299,6 +338,8 @@ function initChart02(canvas, width, height, data) {
       x: 'center',
       type: 'value',
       show: true,
+      min: 0,
+      max: 100,
       // y轴的字体样式
       axisLabel: {
         show: true,
@@ -350,7 +391,6 @@ function initChart02(canvas, width, height, data) {
 
 // 柱状图
 function initChart03(canvas, width, height, data) {
-  console.log('@@@@@@@',data)
   const chart = echarts.init(canvas, null, {
     width: width,
     height: height
@@ -398,6 +438,8 @@ function initChart03(canvas, width, height, data) {
       x: 'center',
       type: 'value',
       show: true,
+      min: 0,
+      max: 100,
       // y轴的字体样式
       axisLabel: {
         show: true,

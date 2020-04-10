@@ -11,7 +11,10 @@ Page({
     secondBoxShow: true,
     taskInputBoxShow: false,
     approvalBoxShow: false,
-    evaluateBoxShow: false
+    evaluateBoxShow: false,
+    taskInputData: [],
+    approvalData: [],
+    evaluateData: []
   },
 
   onLoad(options) {
@@ -29,11 +32,23 @@ Page({
         this.setData({
           moduleName: res.data.data.name,
           fieldData: res.data.data.field,
-          taskInputData: res.data.data.norm,
-          approvalData: res.data.data.approval,
-          evaluateData: res.data.data.comment,
           moduleIcon: res.data.data.icon
         })
+        if (res.data.data.norm) {
+          this.setData({
+            taskInputData: res.data.data.norm
+          })
+        }
+        if (res.data.data.approval) {
+          this.setData({
+            approvalData: res.data.data.approval
+          })
+        }
+        if (res.data.data.comment) {
+          this.setData({
+            evaluateData: res.data.data.comment
+          })
+        }
       }
     })
   },
@@ -120,19 +135,22 @@ Page({
       icon: this.data.moduleIcon,
       field: this.data.fieldData
     }
-    if (this.data.taskInputData) {
+    if (this.data.taskInputData && this.data.taskInputData.length != 0) {
       params.norm = this.data.taskInputData
     }
-    if (this.data.approvalData) {
+    if (this.data.approvalData && this.data.approvalData.length != 0) {
       params.approval = this.data.approvalData
     }
 
-    if (this.data.evaluateData) {
+    if (this.data.evaluateData && this.data.evaluateData.length != 0) {
       params.comment = this.data.evaluateData
     }
 
-    indexModel.editModule(params, res=> {
+    indexModel.editModule(params, res => {
       if (res.data.status == 1) {
+        wx.showToast({
+          title: '模块修改成功'
+        })
         wx.switchTab({
           url: '../../index',
         })
