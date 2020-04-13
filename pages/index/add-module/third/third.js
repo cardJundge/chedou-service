@@ -71,23 +71,23 @@ Page({
       if (this.data.evaluateData.length != 0) {
         params.comment = this.data.evaluateData
       }
-        indexModel.addModule(params, res => {
-          if (res.data.status == 1) {
+      indexModel.addModule(params, res => {
+        if (res.data.status == 1) {
+          wx.showToast({
+            title: '模块创建成功',
+          })
+          wx.switchTab({
+            url: '../../index',
+          })
+        } else {
+          if (res.data.msg.match('Token')) { } else {
             wx.showToast({
-              title: '模块创建成功',
+              title: res.data.msg ? res.data.msg : '请求超时',
+              icon: 'none'
             })
-            wx.switchTab({
-              url: '../../index',
-            })
-          } else {
-            if (res.data.msg.match('Token')) { } else {
-              wx.showToast({
-                title: res.data.msg ? res.data.msg : '请求超时',
-                icon: 'none'
-              })
-            }
           }
-        })
+        }
+      })
     }
   }
 })

@@ -1,6 +1,6 @@
 <!--疾病调查-->
 <view class="sickness-body">
-  <view class="sickness-top">
+  <view class="list-top">
     <view class="search-bg">
       <view class="search-box">
         <view class="search">

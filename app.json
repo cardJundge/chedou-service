@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/login/login",
     "pages/index/index",
     "pages/mine/mine",
@@ -80,6 +81,7 @@
     "pages/index/taskflow/taskflow-details/taskflow-details",
     "pages/index/add-module/first/icon/icon",
     "pages/index/taskflow/add-taskflow/add-taskflow",
+    "pages/index/increment/increment",
     "pages/index/statistics/statistics"
   ],
   "window": {

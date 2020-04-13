@@ -26,6 +26,7 @@ Page({
     laterateActive: 0,
     latenumActive: 0,
     allActive: 0,
+    noData: false,
     ec1: {
       onInit: initChart01
     },
@@ -35,7 +36,8 @@ Page({
     ec3: {
       onInit: initChart03
     },
-    pieList: [{ name: 'xxx', data: ['2', '1'] }, { name: 'xxx', data: ['9', '1'] }],
+    pieList: [{ name: '数据1', data: [{name: '时间', value: '50'},{name: '地点', value: '50'}] }, { name: '数据2', data: [{name: '时间', value: '50'},{name: '地点', value: '50'}] }],
+    pieColor: color,
     ageingData: [],
     laterateData: [{key: [], value: []}],
     latenumData: [{key: [], value: []}],
@@ -97,6 +99,9 @@ Page({
     })
     indexModel.getAllStatistics(params, res => {
       if (res.data.status == 1) {
+        this.setData({
+          noData: false
+        })
         // 拆分超期数键和值
         let tempLatenum = [], tempLaterate = [], laternumVal = [], laterateVal = [], overdueKey, overdueVal,ageingVal
         if (res.data.data.overdue) {
@@ -155,7 +160,9 @@ Page({
           })
         }
       } else if (res.data.status == 0) {
-
+        this.setData({
+          noData: true
+        })
       }
     })
   },
@@ -177,6 +184,7 @@ Page({
   enterTaskPage(e) {
     this.setData({
       taskId: e.currentTarget.dataset.id,
+      taskName: e.currentTarget.dataset.name,
       currentPage: 'task',
       date: 7
     })

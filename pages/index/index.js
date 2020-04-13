@@ -15,7 +15,6 @@ Page({
     work_status: '',
     status: '',
     page: 1,
-    orderList: [],
     moduleArray: [],
     businessArray: [],
     spinShow: true,
@@ -24,9 +23,6 @@ Page({
     this.setData({
       serviceType: app.globalData.userInfo.type
     })
-  },
-  onReady() {
-    this.getOrderList()
   },
   onShow() {
     this.getDataStatics()
@@ -73,39 +69,12 @@ Page({
         url: './vehicle/vehicle',
       })
     }
-    //  else if (key == 'push') {
-    //   if (this.data.serviceType == 1 || this.data.serviceType == 4) {
-    //     wx.navigateTo({
-    //       url: './push/push',
-    //     })
-    //   } else if (this.data.serviceType == 2 || this.data.serviceType == 3) {
-    //     wx.navigateTo({
-    //       url: './repair/repair',
-    //     })
-    //   }
-    // } else if (key == "rescue") {
-    //   wx.navigateTo({
-    //     url: './rescue/rescue',
-    //   })
-    // } else if (key == 'trailer') {
-    //   wx.navigateTo({
-    //     url: './trailer/trailer',
-    //   })
-    // } else if (key == 'hurt') {
-    //   wx.navigateTo({
-    //     url: './hurt/hurt',
-    //   })
-    // } else if (key == 'risk') {
-    //   wx.navigateTo({
-    //     url: './risk/risk',
-    //   })
-    // }
   },
 
   // 进入新添加的模块详情
   toItemListSelf(e) {
     let id = e.currentTarget.dataset.id,
-    name = e.currentTarget.dataset.name
+      name = e.currentTarget.dataset.name
     wx.navigateTo({
       url: './taskflow/taskflow?moduleId=' + id + '&moduleName=' + name,
     })
@@ -133,7 +102,7 @@ Page({
         let module = []
         res.data.data.forEach((item, index) => {
           item.img = '/images/index/' + item.key + '.png'
-          if(item.icon) {
+          if (item.icon) {
             item.img = item.icon
           }
           module.push(item.id)
@@ -142,9 +111,9 @@ Page({
         let modules = res.data.data
 
         this.setData({
-          businessArray: modules
+          businessArray: modules,
+          spinShow: false
         })
-
       }
     })
   },
@@ -153,9 +122,9 @@ Page({
   toEditDefineModule(e) {
     let id = e.currentTarget.dataset.id
     wx.showActionSheet({
-      itemList: ['编辑模块','删除模块'],
-      success: res=> {
-        if(res.tapIndex == 0) {
+      itemList: ['编辑模块', '删除模块'],
+      success: res => {
+        if (res.tapIndex == 0) {
           wx.navigateTo({
             url: './add-module/edit/edit?moduleId=' + id,
           })
@@ -163,71 +132,28 @@ Page({
           wx.showModal({
             title: '提示',
             content: '确定删除该模块吗？',
-            success: res=> {
-              if(res.confirm) {
+            success: res => {
+              if (res.confirm) {
 
               } else {
-                
+
               }
             }
           })
         }
-      }
-    })
-  },
-
-  // 获取订单列表
-  getOrderList() {
-    indexModel.getOrderList(res => {
-      if (res.data.status == 1) {
-        res.data.data.data.forEach((item, index) => {
-          if (item.classify_id == 14) {
-            item.img = '/images/index/order/icon_daibannianshen.png'
-          } else if (item.classify_id == 15 || item.classify_id == 16) {
-            item.img = '/images/index/order/icon_daibanfuwu.png'
-          } else if (item.classify_id == 17) {
-            item.img = '/images/index/order/icon_cheliangjiance.png'
-          } else if (item.classify_id == 18) {
-            item.img = '/images/index/order/icon_daijia.png'
-          } else if (item.classify_id == 19 || item.classify_id == 22) {
-            item.img = '/images/index/order/icon_tuoche.png'
-          } else if (item.classify_id == 20 || item.classify_id == 31) {
-            item.img = '/images/index/order/icon_xiche.png'
-          } else {
-            item.img = '/images/index/order/icon_huantai.png'
-          }
-        })
-        this.data.orderList = res.data.data.data
-        this.getOrderClassify()
-      }
-    })
-  },
-
-  // 获取项目分类
-  getOrderClassify() {
-    indexModel.orderClassify(res => {
-      this.setData({
-        spinShow: false
-      })
-      if (res.data.status == 1) {
-        this.data.orderList.forEach((item, index) => {
-          res.data.data.forEach((its, ins) => {
-            if (item.classify_id == its.id) {
-              item.name = its.name
-            }
-          })
-        })
+      },
+      fail: err => {
         this.setData({
-          orderList: this.data.orderList,
+          editIconshow: false
         })
       }
     })
   },
 
-  // 进入订单详情
-  toOrderDetail(e) {
+  // 进入增值服务
+  toIncrement() {
     wx.navigateTo({
-      url: './order/order-detail/order-detail?orderId=' + e.currentTarget.dataset.id + '&orderImg=' + e.currentTarget.dataset.img + '&orderName=' + e.currentTarget.dataset.name,
+      url: './increment/increment',
     })
   }
 })

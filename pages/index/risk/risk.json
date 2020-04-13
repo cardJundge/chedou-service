@@ -1,6 +1,4 @@
 {
-  "usingComponents": {
-    "business-item": "/components/list/list"
-  },
+  "usingComponents": {},
   "navigationBarTitleText": "调查"
 }

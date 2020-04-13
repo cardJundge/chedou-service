@@ -38,7 +38,7 @@ Page({
   // 数据统计详情
   toDataDetails() {
     wx.navigateTo({
-      url: '../index/data-details/data-details',
+      url: '../index/statistics/statistics',
     })
   },
 
