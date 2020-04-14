@@ -1,8 +1,0 @@
-<!--调查详情-->
-<view class="risk-detail-body">
-  <!-- 业务基本信息 -->
-  <view class="basic">
-    <view class="basic-title">业务基本信息</view>
-  </view>
-</view>
-

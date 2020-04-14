@@ -326,3 +326,20 @@ page {
   font-size: 24rpx;
   color: #9C9C9C;
 }
+
+/* 暂无数据样式 */
+.no-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-data image{
+  width: 400rpx;
+  height: 400rpx;
+}
+
+.no-data text {
+  color: #9C9C9C;
+}

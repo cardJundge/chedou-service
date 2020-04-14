@@ -3,11 +3,6 @@ var app = getApp()
 import {
   IndexModel
 } from '../models/index.js'
-import {
-  PersonnelModel
-} from '../../personnel/models/personnel.js'
-
-var personnelModel = new PersonnelModel()
 
 var indexModel = new IndexModel()
 Page({
@@ -24,18 +19,18 @@ Page({
       moduleName: options.moduleName
     })
     wx.setNavigationBarTitle({
-      title: options.moduleName 
+      title: options.moduleName
     })
   },
 
   onShow() {
-    this.setData({
-      spinShow: true
-    })
     this.getTaskflowList()
   },
 
   getTaskflowList() {
+    this.setData({
+      spinShow: true
+    })
     let params = {
       module_id: this.data.moduleId
     }
@@ -163,11 +158,14 @@ Page({
 
   // 进入任务流详情
   toTaskflowDetail(e) {
-    let listId = e.currentTarget.dataset.id,
-      taskname = e.currentTarget.dataset.taskname
-    wx.navigateTo({
-      url: './taskflow-details/taskflow-details?listId=' + listId + '&taskname=' + taskname + '&moduleName=' + this.data.moduleName,
-    })
+    if (this.data.endTime - this.data.startTime < 350) {
+      let listId = e.currentTarget.dataset.id,
+        taskname = e.currentTarget.dataset.taskname
+      wx.navigateTo({
+        url: './taskflow-details/taskflow-details?listId=' + listId + '&taskname=' + taskname + '&moduleName=' + this.data.moduleName,
+      })
+    }
+
   },
 
   // 添加任务流
@@ -175,5 +173,87 @@ Page({
     wx.navigateTo({
       url: './add-taskflow/add-taskflow?moduleId=' + this.data.moduleId,
     })
+  },
+
+  // 删除任务流
+  toDelTaskflow(e) {
+    let listId = e.currentTarget.dataset.id
+    this.data.caseDelFlag = true
+    wx.showModal({
+      title: '提示',
+      content: '是否删除该案件?',
+      success: res => {
+        if (res.confirm) {
+          let params = {
+            id: listId
+          }
+          this.data.taskflowList.forEach((item, index) => {
+            if (item.id == listId) {
+              if (item.norm) {
+                item.norm.forEach((item1, index1) => {
+                  if (item1.record) {
+                    wx.showToast({
+                      title: '案件正在进行中',
+                      icon: 'none'
+                    })
+                    this.data.caseDelFlag = false
+                    return
+                  }
+                })
+              }
+              if (item.approval) {
+                item.approval.forEach((item1, index1) => {
+                  if (item1.record) {
+                    wx.showToast({
+                      title: '案件正在进行中',
+                      icon: 'none'
+                    })
+                    this.data.caseDelFlag = false
+                    return
+                  }
+                })
+              }
+              if (item.comment) {
+                item.comment.forEach((item1, index1) => {
+                  if (item1.record) {
+                    wx.showToast({
+                      title: '案件正在进行中',
+                      icon: 'none'
+                    })
+                    this.data.caseDelFlag = false
+                    return
+                  }
+                })
+              }
+            }
+          })
+          if ( this.data.caseDelFlag == true) {
+            indexModel.delTaskflow(params, res=> {
+              if (res.data.status == 1) {
+                wx.showToast({
+                  title: '删除成功',
+                })
+                this.getTaskflowList()
+              } else {
+                if (res.data.msg.match('Token')) {} else {
+                  wx.showToast({
+                    title: res.data.msg ? res.data.msg : '请求超时',
+                    icon: 'none'
+                  })
+                }
+              }
+            })
+          }    
+        }
+      }
+    })
+  },
+
+  bindTouchStart(e) {
+    this.data.startTime = e.timeStamp
+  },
+
+  bindTouchEnd(e) {
+    this.data.endTime = e.timeStamp
   }
 })

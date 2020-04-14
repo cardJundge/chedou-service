@@ -1,0 +1,43 @@
+/* 增值服务-详情 */
+.details-top {
+  padding: 12rpx 24rpx;
+}
+
+.details-top .top-item {
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #dbdbdb;
+  font-size: 24rpx;
+}
+
+.content-tab {
+  width: 100%;
+  padding: 12rpx 24rpx;
+  display: flex;
+  align-items: center;
+  color: #828282;
+}
+
+.tab-item {
+  line-height: 48rpx;
+  margin-right: 36rpx;
+  font-size: 24rpx;
+  position: relative;
+}
+
+.tab-item .line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50rpx;
+  height: 6rpx;
+  background: #1a65ff;
+}
+
+.tab-active {
+  font-size: 30rpx;
+  color: #242429;
+}

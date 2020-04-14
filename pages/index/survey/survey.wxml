@@ -28,13 +28,13 @@
         <text wx:if="{{item.type == 2}}">标的 {{item.car_no ? ('| ' + item.car_no) : ''}} {{item.send_user ? ('| ' + item.send_user) : ''}}</text>
       </view>
       <text class='list-item-right status01' wx:if='{{item.status==0}}'>待审核</text>
-      <text class='list-item-right status02' wx:if='{{item.status==1}}'>审核失败</text>
-      <text class='list-item-right status03' wx:if='{{item.status==2}}'>审核成功</text>
-      <text class='list-item-right status04' wx:if='{{item.status==3}}'>已分配</text>
-      <text class='list-item-right status05' wx:if='{{item.status==4}}'>进行中</text>
-      <text class='list-item-right status06' wx:if='{{item.status==5}}'>已取消</text>
-      <text class='list-item-right status06' wx:if='{{item.status==6}}'>已完成</text>
-      <text class='list-item-right status06' wx:if='{{item.status==100 && (item.turn_service_id != serviceId)}}'>已转单</text>
+      <text class='list-item-right status06' wx:if='{{item.status==1}}'>审核失败</text>
+      <text class='list-item-right status02' wx:if='{{item.status==2}}'>审核成功</text>
+      <text class='list-item-right status01' wx:if='{{item.status==3}}'>已分配</text>
+      <text class='list-item-right status02' wx:if='{{item.status==4}}'>进行中</text>
+      <text class='list-item-right status04' wx:if='{{item.status==5}}'>已取消</text>
+      <text class='list-item-right status04' wx:if='{{item.status==6}}'>已完成</text>
+      <text class='list-item-right status04' wx:if='{{item.status==100 && (item.turn_service_id != serviceId)}}'>已转单</text>
       <text class='list-item-right status01' wx:if='{{item.status==100 && (item.turn_service_id == serviceId)}}'>待审核</text>
     </view>
     <view class="more-data" wx:if="{{hasMoreData}}" bindtap="getMoreData">点击加载更多...</view>

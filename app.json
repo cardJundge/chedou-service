@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/login/login",
     "pages/index/index",
     "pages/mine/mine",
@@ -18,17 +17,6 @@
     "pages/mine/account/account-detail/account-detail",
     "pages/mine/project/project",
     "pages/mine/project/add-project/add-project",
-    "pages/index/push/push",
-    "pages/index/push/push-detail/push-detail",
-    "pages/index/rescue/rescue",
-    "pages/index/trailer/trailer",
-    "pages/index/hurt/hurt",
-    "pages/index/risk/risk",
-    "pages/index/risk/add-risk/add-risk",
-    "pages/index/risk/risk-detail/risk-detail",
-    "pages/index/rescue/rescue-detail/rescue-detail",
-    "pages/index/trailer/trailer-detail/trailer-detail",
-    "pages/index/hurt/hurtDetail/hurtDetail",
     "pages/index/order/order-detail/order-detail",
     "pages/index/survey/survey",
     "pages/index/survey/add-survey/add-survey",
@@ -38,8 +26,6 @@
     "pages/index/survey/survey-location/survey-location",
     "pages/index/sickness/sickness",
     "pages/index/sickness/sickness-details/sickness-details",
-    "pages/index/repair/repair",
-    "pages/index/repair/repair-detail/repair-detail",
     "pages/personnel/add-group/add-group",
     "pages/mine/service-brand/service-brand",
     "pages/index/sickness/task-details/task-details",
@@ -81,8 +67,10 @@
     "pages/index/taskflow/taskflow-details/taskflow-details",
     "pages/index/add-module/first/icon/icon",
     "pages/index/taskflow/add-taskflow/add-taskflow",
+    "pages/index/statistics/statistics",
     "pages/index/increment/increment",
-    "pages/index/statistics/statistics"
+    "pages/index/increment/add-increment/add-increment",
+    "pages/index/increment/increment-details/increment-details"
   ],
   "window": {
     "backgroundTextStyle": "light",

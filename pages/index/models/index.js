@@ -382,6 +382,17 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
+  // 删除模块
+  delModule(param, callback) {
+    var params = {
+      url: '/api/ser/module/' + param.id + '/delete',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
   // 新模块案件列表
   getTaskflowList(param, callback) {
     var params = {
@@ -412,6 +423,17 @@ class IndexModel extends HTTP {
       type: 'POST',
       auth: true,
       data: param,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 新模块案件删除
+  delTaskflow(param, callback) {
+    var params = {
+      url: '/api/ser/case/' + param.id + '/delete',
+      type: 'GET',
+      auth: true,
       sCallback: callback
     }
     this.request(params)

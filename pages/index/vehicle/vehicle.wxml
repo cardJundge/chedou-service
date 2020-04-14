@@ -24,7 +24,7 @@
     <image src="/images/loading.gif"></image>
   </view>
   <!-- 车物列表 -->
-  <view class="vehicle-list" wx:if="{{!spinShow && !hasNoData}}" style="margin-top: {{marginTop}}rpx">
+  <view class="list-content" wx:if="{{!spinShow && !hasNoData}}" style="margin-top: {{marginTop}}rpx">
     <!-- <i-swipeout operateWidth="{{80}}" > -->
       <view wx:for="{{vehicleList}}" slot="content" class="list-item" catchtap="toVehicleDetails" bindtouchstart='bindTouchStart' bindtouchend='bindTouchEnd' bindlongtap="toDelVehicleItem" data-id="{{item.id}}" data-status="{{item.status}}">
         <view class="list-item-left">

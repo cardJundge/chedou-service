@@ -17,7 +17,7 @@
 		<image src="/images/loading.gif"></image>
 	</view>
 	<view class="list-content" wx:if="{{!spinShow && !noData}}">
-		<view class="list-item" wx:for="{{taskflowList}}" wx:key="" bindtap="toTaskflowDetail" data-id="{{item.id}}" data-taskname="{{item.task_id.nickname}}">
+		<view class="list-item" wx:for="{{taskflowList}}" wx:key="" catchtap="toTaskflowDetail" bindtouchstart='bindTouchStart' bindtouchend='bindTouchEnd' bindlongtap="toDelTaskflow" data-id="{{item.id}}" data-taskname="{{item.task_id.nickname}}">
 			<view class="list-item-left">
 				<text>{{item.case_no}}</text>
 				<text>{{item.task_id.nickname}} | {{item.start_date}}</text>
@@ -26,7 +26,7 @@
 				<prograss wx:if="{{item.percentage || item.percentage == 0}}" proportion="{{item.percentage}}" />
 			</view>
 			<view class='list-item-right' wx:if="{{item.showType == 'approval'}}">
-				<view wx:if="{{item.approvalName == '已审批'}}" class="status02">
+				<view wx:if="{{item.approvalName == '已审批'}}" class="status04">
 					{{item.approvalName}}
 				</view>
 				<view wx:if="{{item.approvalName == '未审批'}}" class="status01">
@@ -34,7 +34,7 @@
 				</view>
 			</view>
 			<view class='list-item-right' wx:if="{{item.showType == 'comment'}}">
-				<view wx:if="{{item.commentName == '已评价'}}" class="status02">
+				<view wx:if="{{item.commentName == '已评价'}}" class="status04">
 					{{item.commentName}}
 				</view>
 				<view wx:if="{{item.commentName == '未评价'}}" class="status01">

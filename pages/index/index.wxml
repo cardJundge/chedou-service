@@ -35,6 +35,13 @@
 			<text bindtap="toManage">管理</text>
 		</view>
 		<view class="business-content">
+			<view class="business-item" bindtap="toIncrement">
+				<!-- <i-icon class="left" type="add" size="48" color="#1a65ff" /> -->
+				<image class="left" src="/images/index/increment.png"></image>
+				<view class="business-item-text">
+					<text>增值服务</text>
+				</view>
+			</view>
 			<block wx:for="{{businessArray}}">
 				<!-- 系统模块 -->
 				<view wx:if="{{item.key}}" class="business-item" bindtap="toItemList" data-key="{{item.key}}">
@@ -54,13 +61,6 @@
 					<image wx:if="{{editIconshow}}" class="business-item-edit" src="/images/mine/icon_edit.png" catchtap="toEditDefineModule" data-id="{{item.id}}"></image>
 				</view>
 			</block>
-			<view class="business-item" bindtap="toIncrement">
-				<!-- <i-icon class="left" type="add" size="48" color="#1a65ff" /> -->
-				<image class="left" src="/images/index/increment.png"></image>
-				<view class="business-item-text">
-					<text>增值服务</text>
-				</view>
-			</view>
 			<view class="business-item" bindtap="toAddModule">
 				<!-- <i-icon class="left" type="add" size="48" color="#1a65ff" /> -->
 				<image class="left" src="/images/index/add_module.png"></image>

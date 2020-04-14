@@ -83,7 +83,7 @@ Page({
   // 管理
   toManage() {
     this.setData({
-      editIconshow: true
+      editIconshow: !this.data.editIconshow
     })
   },
 
@@ -121,6 +121,9 @@ Page({
   // 管理自定义模块
   toEditDefineModule(e) {
     let id = e.currentTarget.dataset.id
+    this.setData({
+      editIconshow: false
+    })
     wx.showActionSheet({
       itemList: ['编辑模块', '删除模块'],
       success: res => {
@@ -134,18 +137,28 @@ Page({
             content: '确定删除该模块吗？',
             success: res => {
               if (res.confirm) {
-
-              } else {
-
+                let params = {
+                  id: id
+                }
+                indexModel.delModule(params, res=> {
+                  if (res.data.status == 1) {
+                    wx.showToast({
+                      title: '删除成功',
+                    })
+                    this.getModule()
+                  } else {
+                    if (res.data.msg.match('Token')) {} else {
+                      wx.showToast({
+                        title: res.data.msg ? res.data.msg : '请求超时',
+                        icon: 'none'
+                      })
+                    }
+                  }
+                })
               }
             }
           })
         }
-      },
-      fail: err => {
-        this.setData({
-          editIconshow: false
-        })
       }
     })
   },

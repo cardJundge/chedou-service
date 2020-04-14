@@ -1,0 +1,17 @@
+<!--增值服务-详情-->
+<view>
+	<view class="details-top">
+		<view class="top-item">
+			<text>执行人:</text>
+			<text>客户姓名</text>
+		</view>
+	</view>
+	<view class="details-content">
+		<view class="content-tab">
+			<view class="tab-item" wx:for="{{tabList}}">
+				<text class="{{isActive == index ? 'tab-active' : ''}}">{{item}}</text>
+				<view class="line" wx:if="{{isActive == index}}"></view>
+			</view>
+		</view>
+	</view>
+</view>

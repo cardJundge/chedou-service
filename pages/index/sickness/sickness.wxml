@@ -19,7 +19,7 @@
     <image src="/images/loading.gif"></image>
   </view>
   <!-- 疾病列表 -->
-  <view class="sickness-list" wx:if="{{!spinShow && !hasNoData}}">
+  <view class="list-content" wx:if="{{!spinShow && !hasNoData}}">
     <view class="list-item" wx:for="{{sickList}}" bindtap="toSicknessDetails" data-id="{{item.id}}">
       <view class="list-item-left">
         <text>{{item.report_no}}</text>

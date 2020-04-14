@@ -26,6 +26,7 @@ Component({
       ctx.stroke()//对当前路径进行描边
       ctx.draw()
     },
+
     drawCircle(step) {
       var context = wx.createCanvasContext('canvasProgress', this)
       
@@ -51,6 +52,7 @@ Component({
       context.draw()
     },
   },
+  
   attached() {
     // 第二种方式通过组件的生命周期函数执行代码
     this.drawProgressbg()
