@@ -34,7 +34,7 @@
           </view>
           <view class="dropDown-item" wx:for="{{selectData}}" wx:for-item="dropitem" wx:for-index="dropindex">
             <image src="/images/index/del_module_icon.png" bindtap="delDropDownItem" data-index="{{dropindex}}" data-flag="select"></image>
-            <input placeholder="备选项名称" placeholder-class="ph-class" value="{{dropitem}}" bindinput="getDropDownInput" data-index="{{dropindex}}" data-flag="select"></input>
+            <input class="dropDown-item-input" placeholder="备选项名称" placeholder-class="ph-class" value="{{dropitem}}" bindinput="getDropDownInput" data-index="{{dropindex}}" data-flag="select"></input>
           </view>
         </view>
         <!-- ******************** -->
@@ -51,7 +51,7 @@
           </view>
           <view class="dropDown-item" wx:for="{{checkData}}" wx:for-item="dropitem" wx:for-index="dropindex">
             <image src="/images/index/del_module_icon.png" bindtap="delDropDownItem" data-index="{{dropindex}}" data-flag="check"></image>
-            <input placeholder="备选项名称" placeholder-class="ph-class" value="{{dropitem}}" bindinput="getDropDownInput" data-index="{{dropindex}}" data-flag="check"></input>
+            <input class="dropDown-item-input" placeholder="备选项名称" placeholder-class="ph-class" value="{{dropitem}}" bindinput="getDropDownInput" data-index="{{dropindex}}" data-flag="check"></input>
           </view>
         </view>
         <!-- ******************** -->

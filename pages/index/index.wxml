@@ -35,13 +35,12 @@
 			<text bindtap="toManage">管理</text>
 		</view>
 		<view class="business-content">
-			<view class="business-item" bindtap="toIncrement">
-				<!-- <i-icon class="left" type="add" size="48" color="#1a65ff" /> -->
+			<!-- <view class="business-item" bindtap="toIncrement">
 				<image class="left" src="/images/index/increment.png"></image>
 				<view class="business-item-text">
 					<text>增值服务</text>
 				</view>
-			</view>
+			</view> -->
 			<block wx:for="{{businessArray}}">
 				<!-- 系统模块 -->
 				<view wx:if="{{item.key}}" class="business-item" bindtap="toItemList" data-key="{{item.key}}">
@@ -51,6 +50,7 @@
 						<!-- <text wx:if="{{serviceType == 1 || serviceType == 4}}">{{item.name == '车辆维修' ? '车辆推修': item.name}}</text> -->
 						<text>{{item.name}}</text>
 					</view>
+					<image wx:if="{{editIconshow}}" class="business-item-edit" src="/images/mine/icon_edit.png" catchtap="toEditAllModule" data-id="{{item.id}}" data-flag="{{'system'}}"></image>
 				</view>
 				<!-- 自定义模块 -->
 				<view wx:if="{{item.icon}}" class="business-item" catchtap="toItemListSelf" data-id="{{item.id}}" data-name="{{item.name}}">
@@ -58,7 +58,7 @@
 					<view class="business-item-text">
 						<text>{{item.name}}</text>
 					</view>
-					<image wx:if="{{editIconshow}}" class="business-item-edit" src="/images/mine/icon_edit.png" catchtap="toEditDefineModule" data-id="{{item.id}}"></image>
+					<image wx:if="{{editIconshow}}" class="business-item-edit" src="/images/mine/icon_edit.png" catchtap="toEditAllModule" data-id="{{item.id}}" data-flag="{{'define'}}"></image>
 				</view>
 			</block>
 			<view class="business-item" bindtap="toAddModule">

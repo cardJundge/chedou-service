@@ -100,8 +100,12 @@ Page({
     personnelModel.getModule(res => {
       if (res.data.status == 1) {
         let module = []
+        this.data.systemModuleId = []
         res.data.data.forEach((item, index) => {
           item.img = '/images/index/' + item.key + '.png'
+          if (item.key) {
+            this.data.systemModuleId.push(item.id)
+          }
           if (item.icon) {
             item.img = item.icon
           }
@@ -119,15 +123,22 @@ Page({
   },
 
   // 管理自定义模块
-  toEditDefineModule(e) {
-    let id = e.currentTarget.dataset.id
+  toEditAllModule(e) {
+    let id = e.currentTarget.dataset.id,
+    flag = e.currentTarget.dataset.flag,
+    itemList = []
     this.setData({
       editIconshow: false
     })
+    if (flag == 'system') {
+      itemList = ['删除模块']
+    } else {
+      itemList = ['删除模块', '编辑模块']
+    }
     wx.showActionSheet({
-      itemList: ['编辑模块', '删除模块'],
+      itemList: itemList,
       success: res => {
-        if (res.tapIndex == 0) {
+        if (res.tapIndex == 1) {
           wx.navigateTo({
             url: './add-module/edit/edit?moduleId=' + id,
           })
@@ -137,24 +148,40 @@ Page({
             content: '确定删除该模块吗？',
             success: res => {
               if (res.confirm) {
-                let params = {
-                  id: id
-                }
-                indexModel.delModule(params, res=> {
-                  if (res.data.status == 1) {
-                    wx.showToast({
-                      title: '删除成功',
-                    })
-                    this.getModule()
-                  } else {
-                    if (res.data.msg.match('Token')) {} else {
-                      wx.showToast({
-                        title: res.data.msg ? res.data.msg : '请求超时',
-                        icon: 'none'
-                      })
-                    }
+                if (flag == 'define') {
+                  let params = {
+                    id: id
                   }
-                })
+                  indexModel.delModule(params, res=> {
+                    if (res.data.status == 1) {
+                      wx.showToast({
+                        title: '删除成功',
+                      })
+                      this.getModule()
+                    } else {
+                      if (res.data.msg.match('Token')) {} else {
+                        wx.showToast({
+                          title: res.data.msg ? res.data.msg : '请求超时',
+                          icon: 'none'
+                        })
+                      }
+                    }
+                  })
+                } else if (flag == 'system')  {
+                  this.data.systemModuleId.forEach((item, index) => {
+                    if (item == id) {
+                      this.data.systemModuleId.splice(index, 1)
+                    }
+                  })
+                  let params = {
+                    module: this.data.systemModuleId.join(',')
+                  }
+                  indexModel.setSelfModule(params, res=> {
+                    if (res.data.status == 1) {
+                      this.getModule()
+                    }
+                  })
+                }
               }
             }
           })

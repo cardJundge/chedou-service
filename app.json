@@ -70,7 +70,8 @@
     "pages/index/statistics/statistics",
     "pages/index/increment/increment",
     "pages/index/increment/add-increment/add-increment",
-    "pages/index/increment/increment-details/increment-details"
+    "pages/index/increment/increment-details/increment-details",
+    "pages/index/increment/increment-details/pack-details/pack-details"
   ],
   "window": {
     "backgroundTextStyle": "light",

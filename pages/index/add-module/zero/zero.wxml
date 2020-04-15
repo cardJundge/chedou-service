@@ -1,15 +1,11 @@
 <!--创建模块===》开始页面-->
 <view class="zero-body">
-	<!-- <view class="zero-tab">
-		<view class="zero-tab-item {{tabActive == index ? 'zero-tab-item-active' : ''}}" wx:for="{{tabList}}" bindtap="changeTab" data-index="{{index}}">{{item}}</view>
-	</view> -->
-
 	<!-- 系统模块 -->
 	<view class="system">
 		<view class="title">系统模块</view>
 		<view class="system-list">
-			<block wx:for="{{businessArray}}">
-				<view wx:if="{{item.key}}" class="system-item">
+			<block wx:for="{{allModule}}">
+				<view class="system-item" bindtap="addSystemModule" data-id="{{item.id}}">
 					<image class="left" src="{{item.img}}"></image>
 					<view class="system-item-text">
 						<text>{{item.name}}</text>
@@ -18,28 +14,7 @@
 			</block>
 		</view>
 	</view>
-	<!-- <view class="system" wx:if="{{tabActive == 0}}">
-		<view class="list-item" bindtap="addSystemModule">
-			<view class="list-item-left">
-				<image src="/images/union/add_img.png"></image>
-			</view>
-			<view class="list-item-right">
-				<text>添加模块</text>
-				<i-icon class="icon" type="enter" font-size="18" color="#A6A6A6" />
-			</view>
-		</view>
-		<block wx:for="{{businessArray}}">
-			<view wx:if="{{item.key}}" class="list-item">
-				<view class="list-item-left">
-					<image src="{{item.img}}"></image>
-				</view>
-				<view class="list-item-right">
-					<text>{{item.name}}</text>
-					<text></text>
-				</view>
-			</view>
-		</block>
-	</view> -->
+
 	<!-- 自定义模块 -->
 	<view class="define">
 		<view class="title">自建模块</view>
@@ -56,28 +31,6 @@
 				</view>
 		</view>
 	</view>
-	<!-- <view class="define" wx:if="{{tabActive == 1}}">
-		<view class="list-item" bindtap="addDefineModule">
-			<view class="list-item-left">
-				<image src="/images/union/add_img.png"></image>
-			</view>
-			<view class="list-item-right">
-				<text>添加模块</text>
-				<i-icon type="enter" font-size="18" color="#A6A6A6" />
-			</view>
-		</view>
-		<block wx:for="{{businessArray}}">
-			<view wx:if="{{item.icon}}" class="list-item" bindtap="handleModule" data-id="{{item.id}}">
-				<view class="list-item-left">
-					<image src="{{item.img}}"></image>
-				</view>
-				<view class="list-item-right">
-					<text>{{item.name}}</text>
-					<i-icon type="switch" font-size="18" color="#A6A6A6"/>
-				</view>
-			</view>
-		</block>
-	</view> -->
 </view>
 <!-- 添加模块components -->
 <!-- <add-module module="{{moduleArray}}" bottomSpin="{{bottomSpin}}" isShow="{{isAddModule}}" bind:okEvent="okEvent" /> -->

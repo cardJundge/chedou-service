@@ -83,26 +83,27 @@ Page({
             item.value = item.value.checked.join(',')
           }
         })
-        res.data.data.approval.forEach((item, index) => {
-          if (item.type == 'check' && item.record) {
-            item.record.content = item.record.content.checked.join(',')
-          }
-        })
-        res.data.data.norm.forEach((item, index) => {
-          if (item.type == 'check' && item.record) {
-            item.record.content = item.record.content.checked.join(',')
-          }
-        })
+       
         this.setData({
           fieldInfo: res.data.data.field,
           startTime: res.data.data.start_date,
           endTime: res.data.data.end_date
         })
         if (res.data.data.norm) {
+          res.data.data.norm.forEach((item, index) => {
+            if (item.type == 'check' && item.record) {
+              item.record.content = item.record.content.checked.join(',')
+            }
+          })
           this.data.tabList.push('员工操作项')
           this.data.norm = res.data.data.norm
         }
         if (res.data.data.approval) {
+          res.data.data.approval.forEach((item, index) => {
+            if (item.type == 'check' && item.record) {
+              item.record.content = item.record.content.checked.join(',')
+            }
+          })
           this.data.tabList.push('管理操作项')
           this.data.approval = res.data.data.approval
         }

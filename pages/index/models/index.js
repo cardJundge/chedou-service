@@ -16,14 +16,12 @@ class IndexModel extends HTTP {
   }
 
   // 设置关联模块
-  setSelfModule(module, callback) {
+  setSelfModule(param, callback) {
     var params = {
       url: '/api/ser/index/setModule',
       type: 'POST',
       auth: true,
-      data: {
-        module: module
-      },
+      data: param,
       sCallback: callback
     }
     this.request(params)
