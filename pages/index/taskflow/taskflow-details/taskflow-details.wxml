@@ -159,6 +159,7 @@
 							<picker bindchange="optionSelect" data-name="{{item.name}}" range="{{item.option}}" wx:if="{{item.type == 'select'}}">
 								<text class="item-complete-change">更改</text>
 							</picker>
+							<text class="item-complete-change" wx:elif="{{item.type == 'check'}}" bindtap="optionCheck" data-name="{{item.name}}" data-type="{{item.type}}" data-option="{{item.value.option}}">更改</text>
 							<text wx:else class="item-complete-change" bindtap="toComplete" data-name="{{item.name}}" data-type="{{item.type}}">更改</text>
 						</view>
 					</view>

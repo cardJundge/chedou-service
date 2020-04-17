@@ -32,3 +32,27 @@
 .add-item-content input {
   width: 80%;
 }
+
+.add-btn {
+  width: 100%;
+  height: 120rpx;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.add-btn view {
+  width: 702rpx;
+  height: 80rpx;
+  background: #1a65ff;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20rpx;
+}

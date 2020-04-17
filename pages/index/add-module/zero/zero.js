@@ -44,7 +44,6 @@ Page({
     let params = {
       module: this.data.systemModuleId.join(',')
     }
-    console.log(this.data.systemModuleId)
     indexModel.setSelfModule(params, res => {
       if (res.data.status == 1) {
         this.getAllModule()
