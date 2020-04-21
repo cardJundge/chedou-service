@@ -27,7 +27,7 @@
 		</view>
 		<view class="top-item">
 			<text>服务截止时间:</text>
-			<text>2021-03-20 18：:00</text>
+			<text>2021-03-20 18:00</text>
 		</view>
 	</view>
 	<view class="details-content">

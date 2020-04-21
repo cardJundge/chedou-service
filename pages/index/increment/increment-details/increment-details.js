@@ -1,4 +1,9 @@
 // 增值服务-详情
+import {
+  IndexModel
+} from '../../models/index.js'
+
+var indexModel = new IndexModel()
 Page({
   data: {
     tabList: ['增值服务包'],
@@ -7,8 +12,11 @@ Page({
   },
 
   onLoad(options) {
-
+    // 获取增值服务详情
+    this.getIncrementDetails()
   },
+
+  getIncrementDetails() {},
 
   // 增值服务包使用详情
   toPackDetails() {

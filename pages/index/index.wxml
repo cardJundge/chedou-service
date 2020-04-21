@@ -35,12 +35,12 @@
 			<text bindtap="toManage">管理</text>
 		</view>
 		<view class="business-content">
-			<!-- <view class="business-item" bindtap="toIncrement">
+			<view class="business-item" bindtap="toIncrement">
 				<image class="left" src="/images/index/increment.png"></image>
 				<view class="business-item-text">
 					<text>增值服务</text>
 				</view>
-			</view> -->
+			</view>
 			<block wx:for="{{businessArray}}">
 				<!-- 系统模块 -->
 				<view wx:if="{{item.key}}" class="business-item" bindtap="toItemList" data-key="{{item.key}}">

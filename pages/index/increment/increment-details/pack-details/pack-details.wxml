@@ -1,13 +1,15 @@
 <!--增值服务包使用详情-->
 <view class="pack-list">
-  <view class="pack-item">
-    <view class="pack-item-top">
-      <text>2020-04-20 14:20:30</text>
-      <text>已完成</text>
-    </view>
-    <view class="pack-item-bottom">
-      <text>上线检测</text>
-      <text>¥80.00</text>
-    </view>
-  </view>
+	<block wx:for="{{packDetails}}">
+		<view class="pack-item">
+			<view class="pack-item-top">
+				<text>{{item.time}}</text>
+				<text>{{item.status}}</text>
+			</view>
+			<view class="pack-item-bottom">
+				<text>{{item.name}}</text>
+				<text>¥{{item.money}}</text>
+			</view>
+		</view>
+	</block>
 </view>

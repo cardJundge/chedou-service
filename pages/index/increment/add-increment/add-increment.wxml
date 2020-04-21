@@ -6,7 +6,7 @@
 			<text>客户姓名</text>
 		</view>
 		<view class="add-item-content">
-			<input placeholder="请输入客户姓名" placeholder-class="ph-class" bindinput="getInputName" value="{{}}"></input>
+			<input placeholder="请输入客户姓名" placeholder-class="ph-class" bindinput="getInputName" value="{{clientName}}"></input>
 		</view>
 	</view>
 	<view class="add-item">
@@ -15,7 +15,7 @@
 			<text>客户电话</text>
 		</view>
 		<view class="add-item-content">
-			<input placeholder="请输入客户电话" placeholder-class="ph-class" bindinput="getInputMobile" value="{{}}"></input>
+			<input placeholder="请输入客户电话" placeholder-class="ph-class" bindinput="getInputMobile" value="{{clientMobile}}"></input>
 		</view>
 	</view>
 	<view class="add-item">
