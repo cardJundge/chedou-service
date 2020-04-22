@@ -6,27 +6,32 @@ import {
 var indexModel = new IndexModel()
 Page({
   data: {
-    incrementList: [{name: '客户姓名', mobile: '13911111111', case_no: '547687646546548'}]
+    incrementList: []
   },
 
   onLoad(options) {
+    this.data.moduleId = options.moduleId
     // 获取增值服务列表
     this.getIncrementList() 
   },
 
   getIncrementList() {
-
-  },
-
-  addIncrement() {
-    wx.navigateTo({
-      url: './add-increment/add-increment',
+    let params = {
+      key: 'added'
+    }
+    indexModel.getWorkList(params, res=> {
+      if (res.data.status == 1) {
+        this.setData({
+          incrementList: res.data.data.data
+        })
+      }
     })
   },
 
-  toIncrementDetails() {
+  toIncrementDetails(e) {
+    let id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: './increment-details/increment-details',
+      url: './increment-details/increment-details?listId=' + id + '&moduleId=' + this.data.moduleId,
     })
   },
 

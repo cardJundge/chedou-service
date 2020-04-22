@@ -17,7 +17,6 @@
     "pages/mine/account/account-detail/account-detail",
     "pages/mine/project/project",
     "pages/mine/project/add-project/add-project",
-    "pages/index/order/order-detail/order-detail",
     "pages/index/survey/survey",
     "pages/index/survey/add-survey/add-survey",
     "pages/index/survey/survey-details/survey-details",
@@ -69,9 +68,11 @@
     "pages/index/taskflow/add-taskflow/add-taskflow",
     "pages/index/statistics/statistics",
     "pages/index/increment/increment",
-    "pages/index/increment/add-increment/add-increment",
     "pages/index/increment/increment-details/increment-details",
-    "pages/index/increment/increment-details/pack-details/pack-details"
+    "pages/index/increment/increment-details/pack-details/pack-details",
+    "pages/clock-in/clock-in",
+    "pages/clock-in/personnel/personnel",
+    "pages/clock-in/place/place"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -102,12 +103,6 @@
         "iconPath": "/images/tabbar/personnel.png",
         "selectedIconPath": "/images/tabbar/personneled.png",
         "text": "人员"
-      },
-      {
-        "pagePath": "pages/union/union",
-        "iconPath": "/images/tabbar/union.png",
-        "selectedIconPath": "/images/tabbar/unioned.png",
-        "text": "联盟"
       },
       {
         "pagePath": "pages/mine/mine",

@@ -11,15 +11,15 @@
 		</view>
 		<view class="top-item">
 			<text>保险公司:</text>
-			<text>中国平安</text>
+			<text>中银保险陕西分公司</text>
 		</view>
 		<view class="top-item">
 			<text>被保险人姓名:</text>
-			<text>陈xx</text>
+			<text>{{incrementDetailsData.name}}</text>
 		</view>
 		<view class="top-item">
 			<text>联系电话:</text>
-			<text>176xxxx4562</text>
+			<text>{{incrementDetailsData.mobile}}</text>
 		</view>
 		<view class="top-item">
 			<text>服务开始时间:</text>
@@ -47,7 +47,6 @@
 			<view class="image-box">
 				<image src="/images/logo.png"></image>
 				<text>中银保险</text>
-				<view bindtap="toSaveImage">保存图片</view>
 			</view>
 		</view>
 	</view>

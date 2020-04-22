@@ -1,0 +1,48 @@
+<!--打卡统计-->
+<view class="clock-in-body">
+	<!-- 打卡统计卡片 -->
+	<view class="statistics flex-sb-02">
+		<view class="statistics-01 flex-sb-01">
+			<view class="flex al-c">
+				<picker mode="date" start="2010" end="2050" bindchange="dateChange">
+					<view>{{dateObj}}</view>
+				</picker>
+				<i-icon type="unfold" color="#1a65ff" size="20" />
+			</view>
+			<text bindtap="toPlace">查看人员位置</text>
+		</view>
+		<view class="statistics-02 flex-sa-02">
+      <text>打卡人数/全部人数</text>
+      <text>12/20</text>
+      <text>考勤设置</text>
+		</view>
+		<view class="statistics-03 flex-sa-01">
+			<view class="statistics-03-item flex flex-d-col al-c">
+				<text>0</text>
+				<text>未打卡</text>
+			</view>
+			<view class="statistics-03-item flex flex-d-col al-c">
+				<text>110</text>
+				<text>已打卡</text>
+			</view>
+			<view class="statistics-03-item flex flex-d-col al-c">
+				<text>20</text>
+				<text>休假中</text>
+			</view>
+			<view class="statistics-03-item flex flex-d-col al-c">
+				<text>0</text>
+				<text>请假中</text>
+			</view>
+		</view>
+	</view>
+	<!-- 人员列表 -->
+	<view class="task-list">
+		<view class="task-item flex-sb-01" bindtap="toPersonnel">
+			<view class="task-item-left flex al-c">
+				<image src="/images/logo.png"></image>
+				<text>zhangxx</text>
+			</view>
+			<view class="task-item-right flex-c-01 status-01">正常</view>
+		</view>
+	</view>
+</view>

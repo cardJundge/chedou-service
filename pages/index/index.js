@@ -55,7 +55,8 @@ Page({
 
   // 进入业务列表
   toItemList(e) {
-    let key = e.currentTarget.dataset.key
+    let key = e.currentTarget.dataset.key,
+    id = e.currentTarget.dataset.id
     if (key == 'survey') {
       wx.navigateTo({
         url: './survey/survey',
@@ -67,6 +68,10 @@ Page({
     } else if (key == 'traffic') {
       wx.navigateTo({
         url: './vehicle/vehicle',
+      })
+    } else if (key == 'added') {
+      wx.navigateTo({
+        url: './increment/increment?moduleId=' + id,
       })
     }
   },
@@ -190,10 +195,17 @@ Page({
     })
   },
 
-  // 进入增值服务
-  toIncrement() {
+  // 进入打卡页面
+  toClockIn() {
     wx.navigateTo({
-      url: './increment/increment',
+      url: '../clock-in/clock-in',
+    })
+  },
+
+  // 进入联盟页面
+  toUnion() {
+    wx.navigateTo({
+      url: '../union/union',
     })
   }
 })

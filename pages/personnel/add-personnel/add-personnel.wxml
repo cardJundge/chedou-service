@@ -11,6 +11,10 @@
         <input placeholder-class="ph-class" type="text" placeholder="输入作业员电话" name="mobile" value="{{formData.mobile}}"></input>
       </view>
       <view class="input-box">
+        <text decode="{{true}}">机构&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
+        <input placeholder-class="ph-class" type="text" placeholder="输入机构名称" name="org" value="{{formData.org}}"></input>
+      </view>
+      <view class="input-box">
         <text decode="{{true}}">工号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text>
         <input placeholder-class="ph-class" type="text" placeholder="输入作业员工号" name="jobNo" value="{{formData.jobNo}}"></input>
       </view>

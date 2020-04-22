@@ -1,7 +1,7 @@
 /* 增值服务 */
 @import "../common-top/common-top.wxss";
-.increment-body {
-
+.search {
+  width: 100%;
 }
 
 .list-content {

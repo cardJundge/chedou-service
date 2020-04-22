@@ -35,19 +35,11 @@
 			<text bindtap="toManage">管理</text>
 		</view>
 		<view class="business-content">
-			<view class="business-item" bindtap="toIncrement">
-				<image class="left" src="/images/index/increment.png"></image>
-				<view class="business-item-text">
-					<text>增值服务</text>
-				</view>
-			</view>
 			<block wx:for="{{businessArray}}">
 				<!-- 系统模块 -->
-				<view wx:if="{{item.key}}" class="business-item" bindtap="toItemList" data-key="{{item.key}}">
+				<view wx:if="{{item.key}}" class="business-item" bindtap="toItemList" data-key="{{item.key}}" data-id="{{item.id}}">
 					<image class="left" src="{{item.img}}"></image>
 					<view class="business-item-text">
-						<!-- <text wx:if="{{serviceType == 2 || serviceType == 3}}">{{item.name}}</text> -->
-						<!-- <text wx:if="{{serviceType == 1 || serviceType == 4}}">{{item.name == '车辆维修' ? '车辆推修': item.name}}</text> -->
 						<text>{{item.name}}</text>
 					</view>
 					<image wx:if="{{editIconshow}}" class="business-item-edit" src="/images/mine/icon_edit.png" catchtap="toEditAllModule" data-id="{{item.id}}" data-flag="{{'system'}}"></image>
@@ -70,14 +62,26 @@
 			</view>
 		</view>
 	</view>
-	<!-- 接单系统 -->
-	<view class="order">
-		<view class="order-title">
-			<text>系统通知</text>
+	<!-- 企业管理系统 -->
+	<view class="qms">
+		<view class="qms-title">
+			<text>企业管理</text>
 		</view>
-		<view class="order-null">
-			<image src="/images/index/order_null.png"></image>
-			<text>您还没有通知哦~</text>
+		<view class="qms-content">
+			<view class="qms-item" bindtap="toClockIn">
+				<view class="qms-item-left">
+					<text>打卡</text>
+					<text>人员管控</text>
+				</view>
+				<image src="/images/clock/icon_clock.png"></image>
+			</view>
+			<view class="qms-item" bindtap="toUnion">
+				<view class="qms-item-left">
+					<text>联盟</text>
+					<text>相互合作</text>
+				</view>
+				<image src="/images/union/icon_union.png"></image>
+			</view>
 		</view>
 	</view>
 </view>

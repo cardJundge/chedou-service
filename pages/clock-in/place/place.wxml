@@ -1,0 +1,5 @@
+<!--人员位置-->
+<view>
+  <map longitude="{{poi.longitude}}" latitude="{{poi.latitude}}" markers="{{markers}}" id="myMap" style="width: 100%; height: {{mapheight*2}}rpx;" scale='14' subkey="D6XBZ-FS6WW-3NCRH-ONAVZ-Z5YBH-A7F2L" show-location circles="{{circles}}">
+</map>
+</view>

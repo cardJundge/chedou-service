@@ -20,6 +20,7 @@ Page({
       nickName: '',
       mobile: '',
       jobNo: '',
+      org: '',
       password: '',
     }
   },
@@ -40,6 +41,7 @@ Page({
           nickName: data.nickname,
           mobile: data.mobile,
           jobNo: data.job_no,
+          org: data.org
         },
         groupId:data.group_id,
         taskId: data.id,
@@ -183,7 +185,6 @@ Page({
 
   // 提交添加人员表单
   formSubmit(e) {
-    console.log(this.data.module)
     let params = e.detail.value
     if (!this.WxValidate.checkForm(params)) {
       const error = this.WxValidate.errorList[0]

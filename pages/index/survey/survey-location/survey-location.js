@@ -1,7 +1,7 @@
 // 出险/定损地点
 var QQMapWX = require('../../../../dist/qqmap-wx-jssdk.min.js');
 var address = new QQMapWX({
-  key: 'OEIBZ-MF2HD-B6U4J-HRVAP-AASNO-CMBEQ'
+  key: 'D6XBZ-FS6WW-3NCRH-ONAVZ-Z5YBH-A7F2L'
 })
 Page({
   data: {

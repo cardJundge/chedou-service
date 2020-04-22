@@ -39,40 +39,6 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
-  // 获取订单列表
-  getOrderList(callback) {
-    var params = {
-      url: '/api/ser/order/lists',
-      type: 'GET',
-      auth: true,
-      sCallback: callback
-    }
-    this.request(params)
-  }
-
-  // 获取订单详情
-  getOrderDetails(param, callback) {
-    var params = {
-      url: '/api/ser/order/info',
-      type: 'GET',
-      auth: true,
-      data: param,
-      sCallback: callback
-    }
-    this.request(params)
-  }
-
-  // 订单分类列表
-  orderClassify(callback) {
-    var params = {
-      url: '/api/auth/classify',
-      type: 'GET',
-      auth: true,
-      sCallback: callback
-    }
-    this.request(params)
-  }
-
   // 业务详情
   getBusinessDetail(key, id, type, callback) {
     var params = {

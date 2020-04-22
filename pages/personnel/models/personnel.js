@@ -17,20 +17,21 @@ class PersonnelModel extends HTTP {
   }
 
   // 添加人员
-  addTask(params, callback) {
+  addTask(param, callback) {
     var params = {
       url: '/api/ser/user/increase',
       type: 'POST',
       auth: true,
       data: {
-        nickname: params.nickName,
-        mobile: params.mobile,
-        job_no: params.jobNo,
-        password: params.password,
-        module: params.module,
-        type: params.type,
-        group_id: params.groupId,
-        service_id: params.serviceId
+        nickname: param.nickName,
+        mobile: param.mobile,
+        job_no: param.jobNo,
+        org: param.org,
+        password: param.password,
+        module: param.module,
+        type: param.type,
+        group_id: param.groupId,
+        service_id: param.serviceId
       },
       sCallback: callback
     }
@@ -72,21 +73,22 @@ class PersonnelModel extends HTTP {
   }
 
   // 编辑人员
-  editTask(params, callback) {
+  editTask(param, callback) {
     var params = {
       url: '/api/ser/user/store',
       type: 'POST',
       auth: true,
       data: {
-        nickname: params.nickName,
-        mobile: params.mobile,
-        job_no: params.jobNo,
-        password: params.password,
-        module: params.module,
-        type: params.type,
-        group_id: params.groupId,
-        id: params.id,
-        service_id: params.serviceId
+        nickname: param.nickName,
+        mobile: param.mobile,
+        job_no: param.jobNo,
+        password: param.password,
+        module: param.module,
+        org: param.org,
+        type: param.type,
+        group_id: param.groupId,
+        id: param.id,
+        service_id: param.serviceId
       },
       sCallback: callback
     }

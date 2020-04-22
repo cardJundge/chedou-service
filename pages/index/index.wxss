@@ -1,11 +1,8 @@
 /**首页**/
 
-.index-body {
-}
+.index-body {}
 
-.spin-article {
-  
-}
+.spin-article {}
 
 /* 数据统计 */
 
@@ -63,8 +60,7 @@
 
 /* 业务模块 */
 
-.business {
-}
+.business {}
 
 .business-title {
   width: 100%;
@@ -133,10 +129,9 @@
 
 /* 接单系统 */
 
-.order {
-}
+.qms {}
 
-.order-title {
+.qms-title {
   width: 100%;
   padding: 24rpx;
   display: flex;
@@ -144,33 +139,42 @@
   justify-content: flex-start;
 }
 
-.order-title text:first-child {
+.qms-title text:first-child {
   font-size: 36rpx;
 }
 
-.order-content {
-  width: 702rpx;
-  margin: 0 24rpx 24rpx;
-  padding: 0 24rpx 24rpx;
-  box-shadow: 0 0 10rpx 0 rgba(0, 0, 0, 0.10);
-  border-radius: 20rpx;
-
+.qms-content {
+  width: 100%;
+  padding: 0 24rpx 34rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.order-null {
+.qms-item {
+  width: 340rpx;
+  height: 126rpx;
+  box-shadow: 0 0 6rpx 2rpx rgba(0, 0, 0, 0.1);
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.qms-item-left {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 78rpx 0;
-  box-shadow: 0;
+  align-items: flex-start;
 }
 
-.order-null image {
-  width: 150rpx;
-  height: 150rpx;
-  margin-bottom: 24rpx;
+.qms-item-left text:last-child {
+  font-size: 20rpx;
+  color: #BBBBBB;
+  margin-top: 12rpx;
 }
 
-.order-null text {
- color: #aeaeae;
+.qms-item image {
+  width: 80rpx;
+  height: 80rpx;
 }
