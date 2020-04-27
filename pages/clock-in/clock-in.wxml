@@ -10,6 +10,7 @@
 				<i-icon type="unfold" color="#1a65ff" size="20" />
 			</view>
 			<text bindtap="toPlace">查看人员位置</text>
+			<text bindtap="toApprovalLeave">请假</text>
 		</view>
 		<view class="statistics-02 flex-sa-02">
       <text>打卡人数/全部人数</text>

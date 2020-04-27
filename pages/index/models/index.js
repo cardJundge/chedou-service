@@ -55,6 +55,40 @@ class IndexModel extends HTTP {
     this.request(params)
   }
 
+  // 获取增值服务信息
+  getAddedInfo(param, callback) {
+    var params = {
+      url: '/api/added/' + param.id + '/info',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 系统中所有增值服务列表
+  getAllAddedList(callback) {
+    var params = {
+      url: '/api/auth/classify',
+      type: 'GET',
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
+  // 增值服务包使用详情
+  getPackDetails(param, callback) {
+    var params = {
+      url: '/api/auth/order',
+      type: 'GET',
+      data: param,
+      auth: true,
+      sCallback: callback
+    }
+    this.request(params)
+  }
+
   // 获取疾病任务记录
   getSickRecordList(param, callback) {
     var params = {

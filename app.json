@@ -72,7 +72,9 @@
     "pages/index/increment/increment-details/pack-details/pack-details",
     "pages/clock-in/clock-in",
     "pages/clock-in/personnel/personnel",
-    "pages/clock-in/place/place"
+    "pages/clock-in/place/place",
+    "pages/clock-in/trail/trail",
+    "pages/clock-in/leave/leave"
   ],
   "window": {
     "backgroundTextStyle": "light",

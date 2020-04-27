@@ -29,5 +29,12 @@ Page({
     wx.navigateTo({
       url: './personnel/personnel',
     })
+  },
+
+  // 审批请假
+  toApprovalLeave() {
+    wx.navigateTo({
+      url: './leave/leave',
+    })
   }
 })

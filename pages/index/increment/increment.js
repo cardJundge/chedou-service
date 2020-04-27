@@ -29,9 +29,10 @@ Page({
   },
 
   toIncrementDetails(e) {
-    let id = e.currentTarget.dataset.id
+    let id = e.currentTarget.dataset.id,
+    status = e.currentTarget.dataset.status
     wx.navigateTo({
-      url: './increment-details/increment-details?listId=' + id + '&moduleId=' + this.data.moduleId,
+      url: './increment-details/increment-details?listId=' + id + '&status=' + status,
     })
   },
 

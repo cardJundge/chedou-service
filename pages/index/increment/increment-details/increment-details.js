@@ -12,25 +12,50 @@ Page({
   },
 
   onLoad(options) {
+    console.log(options)
     this.data.listId = options.listId
-    this.data.moduleId = options.moduleId
+    this.data.listStatus = options.status
     // 获取增值服务详情
     this.getIncrementDetails()
+    if (this.data.listStatus == '1') {
+      this.setData({
+        hasPackage: true
+      })
+    } else {
+      this.setData({
+        hasPackage: false
+      })
+    }
   },
 
   getIncrementDetails() {
-    indexModel.getBusinessDetail('added', this.data.listId, this.data.moduleId, res=> {
+    let params = {
+      id: this.data.listId
+    }
+    indexModel.getAddedInfo(params, res => {
       if (res.data.status == 1) {
         this.setData({
-          incrementDetailsData: res.data.data
+          incrementDetails: res.data.data
         })
-        if (res.data.data.status == 0) {
-          this.setData({
-            hasPackage: false
-          })
-        } else {
-          this.setData({
-            hasPackage: true
+        if (this.data.incrementDetails.project) {
+          indexModel.getAllAddedList(res1 => {
+            if (res.data.status == 1) {
+              this.data.classifyList = res1.data.data
+              let tempVal = [], tempKey = []
+              tempKey = Object.keys(this.data.incrementDetails.project)
+              tempVal = Object.values(this.data.incrementDetails.project)
+              tempVal.forEach((item, index) => {
+                item.id = tempKey[index]
+                this.data.classifyList.forEach((item1, index1) => {
+                  if (item.id == item1.id) {
+                    item.name = item1.name
+                  }
+                })
+              })
+              this.setData({
+                projectList: tempVal
+              })
+            }
           })
         }
       }
@@ -38,9 +63,13 @@ Page({
   },
 
   // 增值服务包使用详情
-  toPackDetails() {
+  toPackDetails(e) {
+    let userId = e.currentTarget.dataset.user,
+      classifyId = e.currentTarget.dataset.classify,
+      policyId = e.currentTarget.dataset.policy,
+      classifyName = e.currentTarget.dataset.name
     wx.navigateTo({
-      url: './pack-details/pack-details',
+      url: './pack-details/pack-details?userId=' + userId + '&classifyId=' + classifyId + '&policyId=' + policyId + '&classifyName=' + classifyName,
     })
   }
 })
