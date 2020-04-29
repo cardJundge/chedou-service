@@ -5,7 +5,13 @@
 		<view class="title">系统模块</view>
 		<view class="system-list">
 			<block wx:for="{{allModule}}">
-				<view class="system-item" bindtap="addSystemModule" data-id="{{item.id}}">
+				<view class="system-item" bindtap="addSystemModule" data-id="{{item.id}}" wx:if="{{serviceType != 11 && item.id != 10}}">
+					<image class="left" src="{{item.img}}"></image>
+					<view class="system-item-text">
+						<text>{{item.name}}</text>
+					</view>
+				</view>
+				<view class="system-item" bindtap="addSystemModule" data-id="{{item.id}}" wx:if="{{serviceType == 11}}">
 					<image class="left" src="{{item.img}}"></image>
 					<view class="system-item-text">
 						<text>{{item.name}}</text>

@@ -9,21 +9,19 @@ Component({
 
   },
   methods: {
+    // 同意请假
+    toConfirm() {
+      this.setData({
+        isShow: false
+      })
+    },
 
-  },
-
-  // 同意请假
-  toConfirm() {
-    this.setData({
-      isShow: false
-    })
-  },
-
-  // 拒绝请假
-  toCancel() {
-    console.log('eeeee')
-    this.setData({
-      isShow: false
-    })
+    // 拒绝请假
+    toCloseModule() {
+      console.log('eeeee')
+      this.setData({
+        isShow: false
+      })
+    }
   }
 })

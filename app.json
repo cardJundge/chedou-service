@@ -73,8 +73,7 @@
     "pages/clock-in/clock-in",
     "pages/clock-in/personnel/personnel",
     "pages/clock-in/place/place",
-    "pages/clock-in/trail/trail",
-    "pages/clock-in/leave/leave"
+    "pages/clock-in/trail/trail"
   ],
   "window": {
     "backgroundTextStyle": "light",

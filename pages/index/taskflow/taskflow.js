@@ -178,7 +178,7 @@ Page({
   // 删除任务流
   toDelTaskflow(e) {
     let listId = e.currentTarget.dataset.id
-    this.data.caseDelFlag = true
+    // this.data.caseDelFlag = true
     wx.showModal({
       title: '提示',
       content: '是否删除该案件?',
@@ -187,47 +187,47 @@ Page({
           let params = {
             id: listId
           }
-          this.data.taskflowList.forEach((item, index) => {
-            if (item.id == listId) {
-              if (item.norm) {
-                item.norm.forEach((item1, index1) => {
-                  if (item1.record) {
-                    wx.showToast({
-                      title: '案件正在进行中',
-                      icon: 'none'
-                    })
-                    this.data.caseDelFlag = false
-                    return
-                  }
-                })
-              }
-              if (item.approval) {
-                item.approval.forEach((item1, index1) => {
-                  if (item1.record) {
-                    wx.showToast({
-                      title: '案件正在进行中',
-                      icon: 'none'
-                    })
-                    this.data.caseDelFlag = false
-                    return
-                  }
-                })
-              }
-              if (item.comment) {
-                item.comment.forEach((item1, index1) => {
-                  if (item1.record) {
-                    wx.showToast({
-                      title: '案件正在进行中',
-                      icon: 'none'
-                    })
-                    this.data.caseDelFlag = false
-                    return
-                  }
-                })
-              }
-            }
-          })
-          if ( this.data.caseDelFlag == true) {
+          // this.data.taskflowList.forEach((item, index) => {
+            // if (item.id == listId) {
+              // if (item.norm) {
+              //   item.norm.forEach((item1, index1) => {
+              //     if (item1.record) {
+              //       wx.showToast({
+              //         title: '案件正在进行中',
+              //         icon: 'none'
+              //       })
+              //       this.data.caseDelFlag = false
+              //       return
+              //     }
+              //   })
+              // }
+              // if (item.approval) {
+              //   item.approval.forEach((item1, index1) => {
+              //     if (item1.record) {
+              //       wx.showToast({
+              //         title: '案件正在进行中',
+              //         icon: 'none'
+              //       })
+              //       this.data.caseDelFlag = false
+              //       return
+              //     }
+              //   })
+              // }
+              // if (item.comment) {
+              //   item.comment.forEach((item1, index1) => {
+              //     if (item1.record) {
+              //       wx.showToast({
+              //         title: '案件正在进行中',
+              //         icon: 'none'
+              //       })
+              //       this.data.caseDelFlag = false
+              //       return
+              //     }
+              //   })
+              // }
+            // }
+          // })
+
             indexModel.delTaskflow(params, res=> {
               if (res.data.status == 1) {
                 wx.showToast({
@@ -242,8 +242,7 @@ Page({
                   })
                 }
               }
-            })
-          }    
+            })    
         }
       }
     })

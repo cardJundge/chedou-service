@@ -19,8 +19,11 @@ Page({
     otherData: [],
     isDisabled: false,
     companyArray: [
-      '公估公司', '4s店', '维修店', '保险公司', '调查公司', '咨询公司', '律所'
+      '公估公司', '4s店', '维修店', '改装厂', '调查公司', '咨询公司', '轮胎', '道路救援', '二手车', '其他', '保险公司', '电信服务商'
     ]
+    // companyArray: [
+    //   '公估公司', '4s店', '维修店', '保险公司', '调查公司', '咨询公司', '律所'
+    // ]
   },
   onLoad: function (options) {
     this.data.otherData = JSON.parse(options.params)
@@ -74,7 +77,7 @@ Page({
       this.data.otherData.companyType = this.data.company
       this.data.otherData.company = params.company
       this.data.otherData.shortName = params.shortName
-      loginModel.postRegister(this.data.otherData, res=> {
+      loginModel.postRegister(this.data.otherData, res => {
         if (res.data.status == 1) {
           this.setData({
             isDisabled: false

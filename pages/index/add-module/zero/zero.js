@@ -4,6 +4,7 @@ import {
 } from './../../models/index.js'
 
 var indexModel = new IndexModel()
+var app = getApp()
 Page({
   data: {
 
@@ -11,7 +12,8 @@ Page({
 
   onLoad(options) {
     this.setData({
-      businessArray: JSON.parse(options.businessArray)
+      businessArray: JSON.parse(options.businessArray),
+      serviceType: app.globalData.userInfo.type
     })
     this.data.systemModuleId = []
     this.data.businessArray.forEach((item, index) => {
